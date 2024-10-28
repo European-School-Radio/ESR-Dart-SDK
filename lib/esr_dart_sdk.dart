@@ -3,6 +3,30 @@
 /// More dartdocs go here.
 library;
 
-export 'src/esr_dart_sdk_base.dart';
+// Services
+export 'src/services/esr_productions.dart' show ESRProductionsService;
 
-// TODO: Export any libraries intended for clients of this package.
+// Models
+export 'src/models/esr_country.dart' show ESRCountry;
+export 'src/models/esr_lang.dart' show ESRLang;
+export 'src/models/esr_production.dart' show ESRProduction;
+export 'src/models/esr_production_type.dart' show ESRProductionType;
+export 'src/models/esr_role.dart' show ESRRole;
+export 'src/models/esr_school.dart' show ESRSchool;
+export 'src/models/esr_school_type.dart' show ESRSchoolType;
+export 'src/models/esr_school_year.dart' show ESRSchoolYear;
+export 'src/models/esr_sector.dart' show ESRSector;
+export 'src/models/esr_user.dart' show ESRUser;
+export 'src/models/esr_users_school.dart' show ESRUsersSchools;
+export 'src/models/esr_zone.dart' show ESRZone;
+export 'src/models/esr_zone_type.dart' show ESRZoneType;
+
+// Wire Models
+export 'src/wire_models/esr_production_paginated_results.dart' show ESRProductionPaginatedResults;
+
+// Exceptions
+export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
+
+// Enums
+export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
+export 'src/enums/sorting/esr_production_sorting.dart' show ESRProductionSorting;

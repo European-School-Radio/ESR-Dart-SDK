@@ -1,14 +1,14 @@
 name: esr_dart_sdk
-description: A starting point for Dart libraries or applications.
+description: SDK for Utilizing European School Radio's Public API and its utilities.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/European-School-Radio/ESR-Dart-SDK
 
 environment:
   sdk: ^3.5.4
 
 # Add regular dependencies here.
 dependencies:
-  # path: ^1.8.0
+  http: ^1.2.2
 
 dev_dependencies:
   lints: ^4.0.0
