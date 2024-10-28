@@ -4,8 +4,8 @@
 library;
 
 // Services
-export 'src/services/esr_productions.dart' show ESRProductionsService;
-export 'src/services/esr_langs.dart' show ESRLangsService;
+export 'src/services/esr_productions_service.dart' show ESRProductionsService;
+export 'src/services/esr_langs_service.dart' show ESRLangsService;
 
 // Models
 export 'src/models/esr_country.dart' show ESRCountry;

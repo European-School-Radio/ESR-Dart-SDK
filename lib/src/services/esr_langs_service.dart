@@ -1,26 +1,25 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_production_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_lang_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
-class ESRProductionsService {
+class ESRLangsService {
   String _apiURL = "";
 
-  ESRProductionsService(){
+  ESRLangsService(){
     _apiURL = ESRServerConfig.api_url;
   }
 
-  Future<ESRProductionPaginatedResults> getAllProductions([
+  Future<ESRLangsPaginatedResults> getAllLangs([
     int? page,
     int? limit,
-    ESRLang? language,
-    ESRProductionSorting? sorting,
+    ESRLangSorting? sorting,
     ESRSortingDirections? direction
   ]) async {
-    final urlBuilder = UrlBuilder('$_apiURL/productions');
+    final urlBuilder = UrlBuilder('$_apiURL/langs');
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
@@ -28,12 +27,6 @@ class ESRProductionsService {
 
     if (limit != null){
       urlBuilder.addQueryParam("limit", limit.toString());
-    }
-
-    if (language == null){
-      urlBuilder.addQueryParam("lang", "en");
-    } else {
-      urlBuilder.addQueryParam("lang", language.flag);
     }
 
     if (sorting != null){
@@ -49,7 +42,7 @@ class ESRProductionsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRProductionPaginatedResults.fromJson(jsonData);
+      return ESRLangsPaginatedResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

@@ -13,14 +13,24 @@ class ESRLangsPaginatedResults {
     required this.results
   });
 
-  factory ESRLangsPaginatedResults.fromJson(Map<String, dynamic> json){
-    List<ESRLang> serializedLangs = (json['results'] as List<dynamic>)
-        .map((singleLang) => ESRLang.fromJson(singleLang as Map<String, dynamic>))
+  factory ESRLangsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRLang> serializedLangs = [];
+
+    List<dynamic> langsList;
+    if (limit == null || limit != -1) {
+      langsList = json['results'] as List<dynamic>;
+    } else {
+      langsList = json['langs'] as List<dynamic>;
+    }
+
+    serializedLangs = langsList
+        .map((singleProduction) => ESRLang.fromJson(singleProduction as Map<String, dynamic>))
         .toList();
+
     return ESRLangsPaginatedResults(
-        count: json['count'],
-        nextPage: json['next'],
-        previousPage: json['previous'],
+        count: (limit == null || limit != -1) ? json['count'] : serializedLangs.length,
+        nextPage: (limit == null || limit != -1) ? json['next'] : null,
+        previousPage: (limit == null || limit != -1) ? json['previous'] : null,
         results: serializedLangs
     );
   }
