@@ -55,6 +55,8 @@ class ESRLangsService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRLang.fromJson(jsonData['lang']);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Lang with id $id not found");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

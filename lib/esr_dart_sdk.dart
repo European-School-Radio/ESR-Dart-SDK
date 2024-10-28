@@ -28,6 +28,7 @@ export 'src/wire_models/esr_langs_paginated_results.dart' show ESRLangsPaginated
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
+export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
