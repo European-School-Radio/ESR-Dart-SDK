@@ -5,6 +5,7 @@ library;
 
 // Services
 export 'src/services/esr_productions.dart' show ESRProductionsService;
+export 'src/services/esr_langs.dart' show ESRLangsService;
 
 // Models
 export 'src/models/esr_country.dart' show ESRCountry;
@@ -23,6 +24,7 @@ export 'src/models/esr_zone_type.dart' show ESRZoneType;
 
 // Wire Models
 export 'src/wire_models/esr_production_paginated_results.dart' show ESRProductionPaginatedResults;
+export 'src/wire_models/esr_langs_paginated_results.dart' show ESRLangsPaginatedResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
@@ -30,3 +32,4 @@ export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpReque
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
 export 'src/enums/sorting/esr_production_sorting.dart' show ESRProductionSorting;
+export 'src/enums/sorting/esr_lang_sorting.dart' show ESRLangSorting;

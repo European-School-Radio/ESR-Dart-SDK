@@ -14,11 +14,21 @@ class ESRProductionsService {
   }
 
   Future<ESRProductionPaginatedResults> getAllProductions([
-      ESRLang? language,
-      ESRProductionSorting? sorting,
-      ESRSortingDirections? direction
+    int? page,
+    int? limit,
+    ESRLang? language,
+    ESRProductionSorting? sorting,
+    ESRSortingDirections? direction
   ]) async {
     final urlBuilder = UrlBuilder('$_apiURL/productions');
+
+    if (page != null){
+      urlBuilder.addQueryParam("page", page.toString());
+    }
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    }
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
