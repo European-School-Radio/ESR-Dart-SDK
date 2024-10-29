@@ -21,6 +21,13 @@ export 'src/models/esr_user.dart' show ESRUser;
 export 'src/models/esr_users_school.dart' show ESRUsersSchools;
 export 'src/models/esr_zone.dart' show ESRZone;
 export 'src/models/esr_zone_type.dart' show ESRZoneType;
+export 'src/models/esr_frequency.dart' show ESRFrequency;
+export 'src/models/esr_weekday.dart' show ESRWeekday;
+export 'src/models/esr_archive.dart' show ESRArchive;
+export 'src/models/esr_production_subject.dart' show ESRProductionSubject;
+export 'src/models/esr_reservation.dart' show ESRReservation;
+export 'src/models/esr_subject.dart' show ESRSubject;
+export 'src/models/esr_archive_subject.dart' show ESRArchiveSubject;
 
 // Wire Models
 export 'src/wire_models/esr_production_paginated_results.dart' show ESRProductionPaginatedResults;

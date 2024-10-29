@@ -1,8 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_lang.dart';
-import 'package:esr_dart_sdk/src/models/esr_production_type.dart';
-import 'package:esr_dart_sdk/src/models/esr_school_year.dart';
-import 'package:esr_dart_sdk/src/models/esr_users_school.dart';
-import 'package:esr_dart_sdk/src/models/esr_zone.dart';
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRProduction {
   int id = 0;
@@ -22,6 +18,9 @@ class ESRProduction {
   bool disabled = false;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
+  ESRReservation? reservation;
+  List<ESRArchive> archives = [];
+  List<ESRProductionSubject> productionSubjects = [];
 
   ESRProduction({
     required this.id,
@@ -41,9 +40,22 @@ class ESRProduction {
     required this.disabled,
     required this.created,
     required this.updated,
+    required this.reservation,
+    required this.archives,
+    required this.productionSubjects
   });
 
   factory ESRProduction.fromJson(Map<String, dynamic> json) {
+    List<ESRArchive> serializedArchives = (json['archives'] as List<dynamic>?)
+        ?.map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .toList()
+        ?? [];
+
+    List<ESRProductionSubject> serializedProductionSubjects = (json['production_subjects'] as List<dynamic>?)
+        ?.map((singleProductionSubject) => ESRProductionSubject.fromJson(singleProductionSubject as Map<String, dynamic>))
+        .toList()
+        ?? [];
+
     return ESRProduction(
       id: json['id'],
       name: json['name'],
@@ -62,6 +74,9 @@ class ESRProduction {
       disabled: json['disabled'] ?? false,
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
+      reservation: json['reservation'] != null ? ESRReservation.fromJson(json['reservation']) : null,
+      archives: serializedArchives,
+      productionSubjects: serializedProductionSubjects
     );
   }
 }
