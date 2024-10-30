@@ -1,25 +1,26 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_school_type_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_country_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_lang_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
-class ESRSchoolTypesService {
+class ESRCountriesService {
   String _apiURL = "";
 
-  ESRSchoolTypesService(){
+  ESRCountriesService(){
     _apiURL = ESRServerConfig.apiUrl;
   }
 
-  Future<ESRSchoolTypesPaginatedResults> getAllSchoolTypes({
+  Future<ESRCountriesPaginatedResults> getAllCountries({
     int? page,
     int? limit,
-    ESRSchoolTypeSorting? sorting,
+    ESRCountrySorting? sorting,
     ESRSortingDirections? direction
   }) async {
-    final urlBuilder = UrlBuilder('$_apiURL/school-types');
+    final urlBuilder = UrlBuilder('$_apiURL/countries');
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
@@ -42,21 +43,21 @@ class ESRSchoolTypesService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRSchoolTypesPaginatedResults.fromJson(jsonData, limit);
+      return ESRCountriesPaginatedResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
 
-  Future<ESRSchoolType> getSchoolTypeById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/school-type/$id'));
+  Future<ESRCountry> getCountryById(int id) async {
+    var request = http.Request('GET', Uri.parse('$_apiURL/country/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRSchoolType.fromJson(jsonData['school_type']);
+      return ESRCountry.fromJson(jsonData['country']);
     } else if (response.statusCode == 404){
-      throw ObjectNotFoundException("School type with id $id not found");
+      throw ObjectNotFoundException("Country with id $id not found");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

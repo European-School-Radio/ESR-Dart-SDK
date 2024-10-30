@@ -22,25 +22,25 @@ class ESRProductionsService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/productions');
 
-    if (page != null){
+    if (page != null) {
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null) {
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
-    if (language == null){
+    if (language == null) {
       urlBuilder.addQueryParam("lang", "en");
     } else {
       urlBuilder.addQueryParam("lang", language.flag);
     }
 
-    if (sorting != null){
+    if (sorting != null) {
       urlBuilder.addQueryParam("sort", sorting.value.toString());
     }
 
-    if (direction != null){
+    if (direction != null) {
       urlBuilder.addQueryParam("direction", direction.value.toString());
     }
 
@@ -56,7 +56,7 @@ class ESRProductionsService {
   }
 
   Future<ESRProduction> getProductionById(int id, {ESRLang? language}) async {
-    final urlBuilder = UrlBuilder('$_apiURL/production');
+    final urlBuilder = UrlBuilder('$_apiURL/production/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");

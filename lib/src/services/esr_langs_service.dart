@@ -49,7 +49,7 @@ class ESRLangsService {
   }
 
   Future<ESRLang> getLangById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/lang/1'));
+    var request = http.Request('GET', Uri.parse('$_apiURL/lang/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
