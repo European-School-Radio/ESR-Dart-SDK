@@ -24,7 +24,7 @@ class ESRLangsPaginatedResults {
     }
 
     serializedLangs = langsList
-        .map((singleProduction) => ESRLang.fromJson(singleProduction as Map<String, dynamic>))
+        .map((singleLang) => ESRLang.fromJson(singleLang as Map<String, dynamic>))
         .toList();
 
     return ESRLangsPaginatedResults(
