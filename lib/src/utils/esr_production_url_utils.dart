@@ -8,7 +8,7 @@ class ESRProductionUrlUtils {
       lang = language.flag;
     }
 
-    return "${ESRServerConfig.apiUrl}/getBanner/$productionID?lang=$lang";
+    return "${ESRServerConfig.apiUrl}/production/getBanner/$productionID?lang=$lang";
   }
 
   static String getSpotURL(int productionID, [ESRLang? language]){
@@ -17,7 +17,7 @@ class ESRProductionUrlUtils {
       lang = language.flag;
     }
 
-    return "${ESRServerConfig.apiUrl}/getSpot/$productionID?lang=$lang";
+    return "${ESRServerConfig.apiUrl}/production/getSpot/$productionID?lang=$lang";
   }
 
   static String getVideoBannerURL(int productionID, [ESRLang? language]){
@@ -26,6 +26,6 @@ class ESRProductionUrlUtils {
       lang = language.flag;
     }
 
-    return "${ESRServerConfig.apiUrl}/getVideo/$productionID?lang=$lang";
+    return "${ESRServerConfig.apiUrl}/production/getVideo/$productionID?lang=$lang";
   }
 }

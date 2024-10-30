@@ -56,3 +56,4 @@ export 'src/enums/sorting/esr_school_sorting.dart' show ESRSchoolSorting;
 
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;
+export 'src/utils/esr_school_url_utils.dart' show ESRSchoolUrlUtils;
