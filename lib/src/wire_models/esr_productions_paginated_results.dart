@@ -1,19 +1,19 @@
 import 'package:esr_dart_sdk/src/models/esr_production.dart';
 
-class ESRProductionPaginatedResults {
+class ESRProductionsPaginatedResults {
   int count = 0;
   String? nextPage;
   String? previousPage;
   List<ESRProduction> results = [];
 
-  ESRProductionPaginatedResults({
+  ESRProductionsPaginatedResults({
     required this.count,
     this.nextPage,
     this.previousPage,
     required this.results
   });
 
-  factory ESRProductionPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
+  factory ESRProductionsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRProduction> serializedProductions = [];
 
     List<dynamic> productionsList;
@@ -27,7 +27,7 @@ class ESRProductionPaginatedResults {
         .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))
         .toList();
 
-    return ESRProductionPaginatedResults(
+    return ESRProductionsPaginatedResults(
         count: (limit == null || limit != -1) ? json['count'] : serializedProductions.length,
         nextPage: (limit == null || limit != -1) ? json['next'] : null,
         previousPage: (limit == null || limit != -1) ? json['previous'] : null,

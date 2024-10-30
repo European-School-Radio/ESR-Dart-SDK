@@ -7,6 +7,7 @@ library;
 export 'src/services/esr_productions_service.dart' show ESRProductionsService;
 export 'src/services/esr_langs_service.dart' show ESRLangsService;
 export 'src/services/esr_subjects_service.dart' show ESRSubjectsService;
+export 'src/services/esr_school_types_service.dart' show ESRSchoolTypesService;
 
 // Models
 export 'src/models/esr_country.dart' show ESRCountry;
@@ -31,9 +32,10 @@ export 'src/models/esr_subject.dart' show ESRSubject;
 export 'src/models/esr_archive_subject.dart' show ESRArchiveSubject;
 
 // Wire Models
-export 'src/wire_models/esr_production_paginated_results.dart' show ESRProductionPaginatedResults;
+export 'src/wire_models/esr_productions_paginated_results.dart' show ESRProductionsPaginatedResults;
 export 'src/wire_models/esr_langs_paginated_results.dart' show ESRLangsPaginatedResults;
 export 'src/wire_models/esr_subjects_paginated_results.dart' show ESRSubjectsPaginatedResults;
+export 'src/wire_models/esr_school_types_paginated_results.dart' show ESRSchoolTypesPaginatedResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
@@ -44,6 +46,7 @@ export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirecti
 export 'src/enums/sorting/esr_production_sorting.dart' show ESRProductionSorting;
 export 'src/enums/sorting/esr_lang_sorting.dart' show ESRLangSorting;
 export 'src/enums/sorting/esr_subject_sorting.dart' show ESRSubjectSorting;
+export 'src/enums/sorting/esr_school_type_sorting.dart' show ESRSchoolTypeSorting;
 
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;

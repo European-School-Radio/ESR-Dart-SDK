@@ -13,7 +13,7 @@ class ESRProductionsService {
     _apiURL = ESRServerConfig.apiUrl;
   }
 
-  Future<ESRProductionPaginatedResults> getAllProductions({
+  Future<ESRProductionsPaginatedResults> getAllProductions({
     int? page,
     int? limit,
     ESRLang? language,
@@ -49,7 +49,7 @@ class ESRProductionsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRProductionPaginatedResults.fromJson(jsonData, limit);
+      return ESRProductionsPaginatedResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
