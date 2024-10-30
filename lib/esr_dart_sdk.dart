@@ -41,3 +41,6 @@ export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundExcep
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
 export 'src/enums/sorting/esr_production_sorting.dart' show ESRProductionSorting;
 export 'src/enums/sorting/esr_lang_sorting.dart' show ESRLangSorting;
+
+// Utils
+export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;

@@ -10,15 +10,15 @@ class ESRLangsService {
   String _apiURL = "";
 
   ESRLangsService(){
-    _apiURL = ESRServerConfig.api_url;
+    _apiURL = ESRServerConfig.apiUrl;
   }
 
-  Future<ESRLangsPaginatedResults> getAllLangs([
+  Future<ESRLangsPaginatedResults> getAllLangs({
     int? page,
     int? limit,
     ESRLangSorting? sorting,
     ESRSortingDirections? direction
-  ]) async {
+  }) async {
     final urlBuilder = UrlBuilder('$_apiURL/langs');
 
     if (page != null){

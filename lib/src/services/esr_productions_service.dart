@@ -10,16 +10,16 @@ class ESRProductionsService {
   String _apiURL = "";
 
   ESRProductionsService(){
-    _apiURL = ESRServerConfig.api_url;
+    _apiURL = ESRServerConfig.apiUrl;
   }
 
-  Future<ESRProductionPaginatedResults> getAllProductions([
+  Future<ESRProductionPaginatedResults> getAllProductions({
     int? page,
     int? limit,
     ESRLang? language,
     ESRProductionSorting? sorting,
     ESRSortingDirections? direction
-  ]) async {
+  }) async {
     final urlBuilder = UrlBuilder('$_apiURL/productions');
 
     if (page != null){
@@ -55,7 +55,7 @@ class ESRProductionsService {
     }
   }
 
-  Future<ESRProduction> getProductionById(int id, [ESRLang? language]) async {
+  Future<ESRProduction> getProductionById(int id, {ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/production');
 
     if (language == null){
