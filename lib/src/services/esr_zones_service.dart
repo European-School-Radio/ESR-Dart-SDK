@@ -1,25 +1,25 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_school_type_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_zone_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
-class ESRSchoolTypesService {
+class ESRZonesService {
   String _apiURL = "";
 
-  ESRSchoolTypesService(){
+  ESRZonesService(){
     _apiURL = ESRServerConfig.apiUrl;
   }
 
-  Future<ESRSchoolTypesPaginatedResults> getAllSchoolTypes({
+  Future<ESRZonesPaginatedResults> getAllZones({
     int? page,
     int? limit,
-    ESRSchoolTypeSorting? sorting,
+    ESRZoneSorting? sorting,
     ESRSortingDirections? direction
   }) async {
-    final urlBuilder = UrlBuilder('$_apiURL/school-types');
+    final urlBuilder = UrlBuilder('$_apiURL/zones');
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
@@ -42,14 +42,14 @@ class ESRSchoolTypesService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRSchoolTypesPaginatedResults.fromJson(jsonData, limit);
+      return ESRZonesPaginatedResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
 
-  Future<ESRSchoolType> getSchoolTypeById(int id, {ESRLang? language}) async {
-    final urlBuilder = UrlBuilder('$_apiURL/school-type/$id');
+  Future<ESRZone> getZoneById(int id, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/zone/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
@@ -62,9 +62,9 @@ class ESRSchoolTypesService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRSchoolType.fromJson(jsonData['school_type']);
+      return ESRZone.fromJson(jsonData['zone']);
     } else if (response.statusCode == 404){
-      throw ObjectNotFoundException("School type with id $id not found");
+      throw ObjectNotFoundException("Country with id $id not found");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

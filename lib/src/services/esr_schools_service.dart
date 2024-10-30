@@ -48,8 +48,16 @@ class ESRSchoolsService {
     }
   }
 
-  Future<ESRCountry> getSchoolById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/school/$id'));
+  Future<ESRCountry> getSchoolById(int id, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/school/$id');
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
