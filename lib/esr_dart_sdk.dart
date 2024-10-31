@@ -12,6 +12,7 @@ export 'src/services/esr_countries_service.dart' show ESRCountriesService;
 export 'src/services/esr_schools_service.dart' show ESRSchoolsService;
 export 'src/services/esr_production_types_service.dart' show ESRProductionTypesService;
 export 'src/services/esr_zones_service.dart' show ESRZonesService;
+export 'src/services/esr_frequencies_service.dart' show ESRFrequenciesService;
 
 // Models
 export 'src/models/esr_country.dart' show ESRCountry;
@@ -44,6 +45,7 @@ export 'src/wire_models/esr_countries_paginated_results.dart' show ESRCountriesP
 export 'src/wire_models/esr_schools_paginated_results.dart' show ESRSchoolsPaginatedResults;
 export 'src/wire_models/esr_production_types_paginated_results.dart' show ESRProductionTypesPaginatedResults;
 export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
+export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
@@ -59,6 +61,7 @@ export 'src/enums/sorting/esr_country_sorting.dart' show ESRCountrySorting;
 export 'src/enums/sorting/esr_school_sorting.dart' show ESRSchoolSorting;
 export 'src/enums/sorting/esr_production_type_sorting.dart' show ESRProductionTypeSorting;
 export 'src/enums/sorting/esr_zone_sorting.dart' show ESRZoneSorting;
+export 'src/enums/sorting/esr_frequency_sorting.dart' show ESRFrequencySorting;
 
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;
