@@ -13,25 +13,34 @@ class ESRCommunityPostsService {
 
   Future<List<ESRCommunityPost>> getAllPosts({
     int? page,
-    int? limit
+    int? limit,
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/posts');
     urlBuilder.addQueryParam("status", "publish");
 
-    if (page != null){
+    if (page != null) {
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null) {
       urlBuilder.addQueryParam("per_page", limit.toString());
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
     http.StreamedResponse response = await request.send();
+
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return jsonData.map((singlePost) => ESRCommunityPost.fromJson(singlePost));
+
+      List<ESRCommunityPost> communityPosts = [];
+      if (jsonData is List<dynamic>) {
+        communityPosts = jsonData
+            .map((singlePost) =>
+            ESRCommunityPost.fromJson(singlePost as Map<String, dynamic>))
+            .toList();
+      }
+      return communityPosts;
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

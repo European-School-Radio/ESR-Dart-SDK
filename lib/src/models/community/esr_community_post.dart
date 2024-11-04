@@ -11,7 +11,7 @@ class ESRCommunityPost {
   String title = "";
   String content = "";
   String excerpt = "";
-  String featuredMediaUrl = "";
+  String? featuredMediaUrl = "";
   int commentCounter = 0;
   int likeCounter = 0;
   int lolReactionCounter = 0;
