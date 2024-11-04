@@ -1,4 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_zone_type.dart';
+import 'package:esr_dart_sdk/src/models/api/esr_zone_type.dart';
 
 class ESRZone {
   int id = 0;

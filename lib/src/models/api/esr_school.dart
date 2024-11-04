@@ -1,5 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_country.dart';
-import 'package:esr_dart_sdk/src/models/esr_school_type.dart';
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRSchool {
   int id = 0;

@@ -1,6 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_role.dart';
-import 'package:esr_dart_sdk/src/models/esr_school.dart';
-import 'package:esr_dart_sdk/src/models/esr_user.dart';
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRUsersSchools {
   int id = 0;

@@ -1,4 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_production.dart';
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRProductionsPaginatedResults {
   int count = 0;

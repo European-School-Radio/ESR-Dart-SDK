@@ -1,6 +1,4 @@
-import 'package:esr_dart_sdk/src/models/esr_country.dart';
-import 'package:esr_dart_sdk/src/models/esr_role.dart';
-import 'package:esr_dart_sdk/src/models/esr_sector.dart';
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRUser {
   int id = 0;
