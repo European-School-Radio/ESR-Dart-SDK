@@ -35,6 +35,19 @@ class ESRCommunityPostsService {
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
+  }
 
+  Future<ESRCommunityPost> getPostById(int id) async {
+    var request = http.Request('GET', Uri.parse('$_apiURL/posts/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityPost.fromJson(jsonData);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
   }
 }
