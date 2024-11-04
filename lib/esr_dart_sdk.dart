@@ -52,6 +52,7 @@ export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenc
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
+export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;

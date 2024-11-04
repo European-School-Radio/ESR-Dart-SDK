@@ -41,6 +41,13 @@ class ESRCommunityPostsService {
             .toList();
       }
       return communityPosts;
+    } else if (response.statusCode == 400){
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      if (jsonData['code'] == "rest_post_invalid_page_number"){
+        throw NoMorePagesException("No more pages available");
+      }
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
