@@ -43,6 +43,10 @@ class ESRCommunityPost {
     required this.amazedCounter
   });
 
+  int getReactionsTotalCount(){
+    return (likeCounter + lolReactionCounter + joyCounter + coolCounter + badCounter + angerCounter + amazedCounter);
+  }
+
   factory ESRCommunityPost.fromJson(Map<String, dynamic> json){
     var unescape = HtmlUnescape();
 
