@@ -14,6 +14,7 @@ export 'src/services/api/esr_production_types_service.dart' show ESRProductionTy
 export 'src/services/api/esr_zones_service.dart' show ESRZonesService;
 export 'src/services/api/esr_frequencies_service.dart' show ESRFrequenciesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
+export 'src/services/api/esr_reservations_service.dart' show ESRReservationsService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -48,6 +49,7 @@ export 'src/wire_models/esr_schools_paginated_results.dart' show ESRSchoolsPagin
 export 'src/wire_models/esr_production_types_paginated_results.dart' show ESRProductionTypesPaginatedResults;
 export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
 export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
+export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
