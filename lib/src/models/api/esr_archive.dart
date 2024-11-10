@@ -70,9 +70,9 @@ class ESRArchive {
         sections: json['sections'],
         subtitles: json['sections'],
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
-        broadcastDay: DateTime.parse(json['broadcast_day']),
-        startTime: DateTime.parse('1970-01-01 ${json['start_time']}'),
-        endTime: DateTime.parse('1970-01-01 ${json['end_time']}'),
+        broadcastDay: DateTime.parse(json['broadcast_day']).toLocal(),
+        startTime: DateTime.parse('1970-01-01 ${json['start_time']}').toLocal(),
+        endTime: DateTime.parse('1970-01-01 ${json['end_time']}').toLocal(),
         tags: json['tags'],
         disabled: json['disabled'],
         averageRating: json['average_rating'],
@@ -81,8 +81,8 @@ class ESRArchive {
         listensCount: json['listens_count'],
         sharesCount: json['shares_count'],
         commentsCount: json['comments_count'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal(),
         archiveSubjects: serializedArchiveSubjects
     );
   }

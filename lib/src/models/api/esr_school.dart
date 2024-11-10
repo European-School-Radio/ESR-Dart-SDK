@@ -67,8 +67,8 @@ class ESRSchool {
         followCount: json['follow_count'],
         sharesCount: json['shares_count'],
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

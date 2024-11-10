@@ -23,12 +23,12 @@ class ESRSchoolYear {
     return ESRSchoolYear(
         id: json['id'],
         name: json['name'],
-        schedulableStartDate: DateTime.parse(json['schedulable_start_date']),
-        schedulableEndDate: DateTime.parse(json['schedulable_end_date']),
-        podcastsStartDate: DateTime.parse(json['podcasts_start_date']),
-        podcastsEndDate: DateTime.parse(json['podcasts_end_date']),
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        schedulableStartDate: DateTime.parse(json['schedulable_start_date']).toLocal(),
+        schedulableEndDate: DateTime.parse(json['schedulable_end_date']).toLocal(),
+        podcastsStartDate: DateTime.parse(json['podcasts_start_date']).toLocal(),
+        podcastsEndDate: DateTime.parse(json['podcasts_end_date']).toLocal(),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

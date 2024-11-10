@@ -18,8 +18,8 @@ class ESRFrequency {
         id: json['id'],
         name: json['name'],
         description: json['description'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated'])
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

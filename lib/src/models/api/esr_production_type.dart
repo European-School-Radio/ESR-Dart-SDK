@@ -50,12 +50,12 @@ class ESRProductionType {
         isSpecial: json['is_special'],
         isLive: json['is_live'],
         isPodcast: json['is_podcast'],
-        activeSince: (json['active_since'] != null) ? DateTime.parse(json['active_since']) : null,
-        activeUntil: (json['active_until'] != null) ? DateTime.parse(json['active_until']) : null,
+        activeSince: (json['active_since'] != null) ? DateTime.parse(json['active_since']).toLocal() : null,
+        activeUntil: (json['active_until'] != null) ? DateTime.parse(json['active_until']).toLocal() : null,
         maxAudioDuration: json['max_audio_duration'],
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated'])
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

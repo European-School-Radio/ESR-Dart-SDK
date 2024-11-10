@@ -24,8 +24,8 @@ class ESRLang {
         nativeName: json['native_name'],
         code: json['code'],
         flag: json['flag'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated'])
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

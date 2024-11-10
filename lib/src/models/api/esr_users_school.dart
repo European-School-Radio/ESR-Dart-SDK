@@ -26,8 +26,8 @@ class ESRUsersSchools {
         school: ESRSchool.fromJson(json['school']),
         role: ESRRole.fromJson(json['role']),
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

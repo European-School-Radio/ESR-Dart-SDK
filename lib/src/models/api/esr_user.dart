@@ -62,8 +62,8 @@ class ESRUser {
         schoolsChecked: json['schools_checked'],
         followCount: json['follow_count'],
         followingCount: json['following_count'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

@@ -33,7 +33,7 @@ class ESRReservation {
   factory ESRReservation.fromJson(Map<String, dynamic> json){
     return ESRReservation(
         id: json['id'],
-        bookingDate: DateTime.parse(json['booking_date']),
+        bookingDate: DateTime.parse(json['booking_date']).toLocal(),
         frequency: ESRFrequency.fromJson(json['frequency']),
         slots: json['slots'],
         isRepeated: json['is_repeated'],
@@ -42,8 +42,8 @@ class ESRReservation {
         disabled: json['disabled'],
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
         repeatedWeekday: ESRWeekday.fromJson(json['repeated_weekday']),
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated'])
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

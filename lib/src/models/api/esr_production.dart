@@ -72,8 +72,8 @@ class ESRProduction {
       likesCount: json['likes_count'] ?? 0,
       sharesCount: json['shares-Count'] ?? 0,
       disabled: json['disabled'] ?? false,
-      created: DateTime.parse(json['created']),
-      updated: DateTime.parse(json['updated']),
+      created: DateTime.parse(json['created']).toLocal(),
+      updated: DateTime.parse(json['updated']).toLocal(),
       reservation: json['reservation'] != null ? ESRReservation.fromJson(json['reservation']) : null,
       archives: serializedArchives,
       productionSubjects: serializedProductionSubjects

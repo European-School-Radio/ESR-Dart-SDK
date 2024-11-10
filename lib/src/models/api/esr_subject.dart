@@ -21,8 +21,8 @@ class ESRSubject {
         name: json['name'],
         description: json['description'],
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated'])
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }

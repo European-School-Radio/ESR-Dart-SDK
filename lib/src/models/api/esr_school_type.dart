@@ -21,8 +21,8 @@ class ESRSchoolType {
         name: json['name'],
         description: json['description'],
         unitsGroupId: json['units_group_id'],
-        created: DateTime.parse(json['created']),
-        updated: DateTime.parse(json['updated']),
+        created: DateTime.parse(json['created']).toLocal(),
+        updated: DateTime.parse(json['updated']).toLocal()
     );
   }
 }
