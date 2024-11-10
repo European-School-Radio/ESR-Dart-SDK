@@ -24,7 +24,7 @@ class ESRReservationsService {
     }
   }
 
-  Future<List<ESRReservation>> getReservationsOnDate(DateTime searchDate, {ESRLang? language}) async {
+  Future<ESRReservationsByDateResults> getReservationsOnDate(DateTime searchDate, {ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/reservations/byDate');
     urlBuilder.addQueryParam("search_date", ESRDateTimeFormatter.formatDateRequests(searchDate));
 
@@ -39,15 +39,7 @@ class ESRReservationsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-
-      List<ESRReservation> reservations = [];
-      if (jsonData['reservations'] is List) {
-        reservations = (jsonData['reservations'] as List)
-            .map((singleReservation) => ESRReservation.fromJson(singleReservation as Map<String, dynamic>))
-            .toList();
-      }
-
-      return reservations;
+      return ESRReservationsByDateResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

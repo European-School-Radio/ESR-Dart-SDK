@@ -50,6 +50,7 @@ export 'src/wire_models/esr_production_types_paginated_results.dart' show ESRPro
 export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
 export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
+export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservationsByDateResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
