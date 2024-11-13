@@ -16,6 +16,9 @@ export 'src/services/api/esr_frequencies_service.dart' show ESRFrequenciesServic
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/api/esr_reservations_service.dart' show ESRReservationsService;
 
+// WebSocket Services
+export 'src/services/api/websockets/productions/esr_productions_now_playing_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService;
+
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
 export 'src/models/api/esr_lang.dart' show ESRLang;
@@ -56,6 +59,8 @@ export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservati
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
 export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
+export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;
+export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
