@@ -55,6 +55,9 @@ export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenc
 export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
 export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservationsByDateResults;
 
+// WebSockets Wire Models
+export 'src/wire_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
+
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
