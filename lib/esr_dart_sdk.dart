@@ -41,6 +41,9 @@ export 'src/models/api/esr_production_subject.dart' show ESRProductionSubject;
 export 'src/models/api/esr_reservation.dart' show ESRReservation;
 export 'src/models/api/esr_subject.dart' show ESRSubject;
 export 'src/models/api/esr_archive_subject.dart' show ESRArchiveSubject;
+export 'src/models/api/esr_zone_subject.dart' show ESRZoneSubject;
+export 'src/models/api/esr_zone_production_type.dart' show ESRZoneProductionType;
+export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 
 // Wire Models
@@ -55,6 +58,7 @@ export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginated
 export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
 export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservationsByDateResults;
+export 'src/wire_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
 
 // WebSockets Wire Models
 export 'src/wire_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;

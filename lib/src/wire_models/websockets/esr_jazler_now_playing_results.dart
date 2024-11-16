@@ -24,7 +24,6 @@ class ESRJazlerNowPlayingResults {
   factory ESRJazlerNowPlayingResults.fromJson(Map<String, dynamic> response) {
     final Map<String, dynamic> nowPlayingSongParsed = response["data"];
 
-    DateTime now = DateTime.now();
     DateFormat format = DateFormat("HH:mm");
 
     DateTime parsedStartTime = format.parse(nowPlayingSongParsed["start_time"]);
