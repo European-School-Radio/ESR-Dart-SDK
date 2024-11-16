@@ -24,7 +24,7 @@ class ESRProductionsNowPlayingResults {
 
     return ESRProductionsNowPlayingResults(
       message: response["message"],
-      maxItems: response["max_items"],
+      maxItems: response["max_item"],
       hasNowPlayingProduction: nowPlayingProductionsParsed["has_now_playing_production"],
       broadcastDays: (nowPlayingProductionsParsed['found_broadcast_days'] as List)
           .map((dateStr) => DateTime.parse(dateStr).toLocal())

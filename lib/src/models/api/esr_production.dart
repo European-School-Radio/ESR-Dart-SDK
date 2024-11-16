@@ -56,7 +56,6 @@ class ESRProduction {
         .toList()
         ?? [];
 
-    print(json);
     return ESRProduction(
       id: json['id'],
       name: json['name'],

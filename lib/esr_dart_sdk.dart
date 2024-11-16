@@ -18,6 +18,7 @@ export 'src/services/api/esr_reservations_service.dart' show ESRReservationsServ
 
 // WebSocket Services
 export 'src/services/api/websockets/productions/esr_productions_now_playing_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService;
+export 'src/services/api/websockets/jazler/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -57,6 +58,7 @@ export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservati
 
 // WebSockets Wire Models
 export 'src/wire_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
+export 'src/wire_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;

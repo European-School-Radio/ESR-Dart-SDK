@@ -75,6 +75,19 @@ class ESRProductionsNowPlayingWebsocketService {
 
   Stream<ESRProductionsNowPlayingResults> get stream => _controller.stream;
 
+  StreamSubscription<ESRProductionsNowPlayingResults> addListener(
+      void Function(ESRProductionsNowPlayingResults event) onData,
+      {Function? onError,
+        void Function()? onDone,
+        bool? cancelOnError}) {
+    return _controller.stream.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
+
   void sendMessage(String message) {
     if (!_isConnected) {
       throw WebsocketNotConnectedException("WebSocket is NOT connected");
