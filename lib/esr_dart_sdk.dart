@@ -13,8 +13,9 @@ export 'src/services/api/esr_schools_service.dart' show ESRSchoolsService;
 export 'src/services/api/esr_production_types_service.dart' show ESRProductionTypesService;
 export 'src/services/api/esr_zones_service.dart' show ESRZonesService;
 export 'src/services/api/esr_frequencies_service.dart' show ESRFrequenciesService;
-export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/api/esr_reservations_service.dart' show ESRReservationsService;
+export 'src/services/api/esr_reservation_slots_service.dart' show ESRReservationSlotsService;
+export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
 export 'src/services/api/websockets/productions/esr_productions_now_playing_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService;
@@ -45,6 +46,7 @@ export 'src/models/api/esr_archive_subject.dart' show ESRArchiveSubject;
 export 'src/models/api/esr_zone_subject.dart' show ESRZoneSubject;
 export 'src/models/api/esr_zone_production_type.dart' show ESRZoneProductionType;
 export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
+export 'src/models/api/esr_reservation_slot.dart' show ESRReservationSlot;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 
 // Wire Models
@@ -58,7 +60,7 @@ export 'src/wire_models/esr_production_types_paginated_results.dart' show ESRPro
 export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
 export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
-export 'src/wire_models/esr_reservations_by_date_results.dart' show ESRReservationsByDateResults;
+export 'src/wire_models/esr_reservation_slots_by_date_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/wire_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
 
 // WebSockets Wire Models
