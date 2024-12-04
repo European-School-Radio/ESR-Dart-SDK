@@ -27,13 +27,13 @@ class ESRProductionsNowPlayingResults {
       maxItems: response["max_item"],
       hasNowPlayingProduction: nowPlayingProductionsParsed["has_now_playing_production"],
       broadcastDays: (nowPlayingProductionsParsed['found_broadcast_days'] as List)
-          .map((dateStr) => DateTime.parse(dateStr).toLocal())
+          .map((dateStr) => DateTime.parse("$dateStr 00:00:00").toLocal())
           .toList(),
       broadcastTimeStarts: (nowPlayingProductionsParsed['found_time_start'] as List)
-          .map((dateStr) => DateTime.parse(dateStr).toLocal())
+          .map((dateStr) => DateTime.parse("1970-01-01 $dateStr").toLocal())
           .toList(),
       broadcastTimeEnds: (nowPlayingProductionsParsed['found_time_end'] as List)
-          .map((dateStr) => DateTime.parse(dateStr).toLocal())
+          .map((dateStr) => DateTime.parse("1970-01-01 $dateStr").toLocal())
           .toList(),
       nowPlayingProductions: (nowPlayingProductionsParsed['now_playing_production_details'] as List)
           .map((prod) => ESRProduction.fromJson(prod))
