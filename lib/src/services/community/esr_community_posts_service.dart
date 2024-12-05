@@ -6,16 +6,24 @@ import 'package:http/http.dart' as http;
 
 class ESRCommunityPostsService {
   String _apiURL = "";
+  String _baseURL = "";
 
   ESRCommunityPostsService(){
     _apiURL = ESRServerConfig.communityApiUrl;
+    _baseURL = ESRServerConfig.communityBaseUrl;
   }
 
   Future<List<ESRCommunityPost>> getAllPosts({
     int? page,
     int? limit,
+    ESRLang? language
   }) async {
-    final urlBuilder = UrlBuilder('$_apiURL/posts');
+    String lang = "en";
+    if (language != null){
+      lang = language.flag;
+    }
+
+    final urlBuilder = UrlBuilder('$_baseURL/$lang/wp-json/wp/v2/posts');
     urlBuilder.addQueryParam("status", "publish");
 
     if (page != null) {
