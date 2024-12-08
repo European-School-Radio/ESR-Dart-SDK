@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ESRProductionType {
   int id = 0;
   String name = "";
@@ -38,6 +40,32 @@ class ESRProductionType {
   });
 
   factory ESRProductionType.fromJson(Map<String, dynamic> json){
+    DateTime? localActiveSince = null;
+    DateTime? localActiveUntil = null;
+    DateFormat dateFormat = DateFormat("YYYY-mm-dd HH:mm:ss");
+    if (json["active_since"] != null){
+      DateTime utcActiveSince = dateFormat.parse(json['active_since']);
+      localActiveSince = DateTime.utc(
+        utcActiveSince.year,
+        utcActiveSince.month,
+        utcActiveSince.day,
+        utcActiveSince.hour,
+        utcActiveSince.minute,
+        utcActiveSince.second,
+      ).toLocal();
+    }
+    if (json["active_until"] != null){
+      DateTime utcActiveUntil = dateFormat.parse(json['active_until']);
+      localActiveUntil = DateTime.utc(
+        utcActiveUntil.year,
+        utcActiveUntil.month,
+        utcActiveUntil.day,
+        utcActiveUntil.hour,
+        utcActiveUntil.minute,
+        utcActiveUntil.second,
+      ).toLocal();
+    }
+
     return ESRProductionType(
         id: json['id'],
         name: json['name'],
@@ -50,12 +78,12 @@ class ESRProductionType {
         isSpecial: json['is_special'],
         isLive: json['is_live'],
         isPodcast: json['is_podcast'],
-        activeSince: (json['active_since'] != null) ? DateTime.parse(json['active_since']).toLocal() : null,
-        activeUntil: (json['active_until'] != null) ? DateTime.parse(json['active_until']).toLocal() : null,
+        activeSince: localActiveSince,
+        activeUntil: localActiveUntil,
         maxAudioDuration: json['max_audio_duration'],
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

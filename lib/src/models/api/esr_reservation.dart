@@ -1,5 +1,6 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
+import 'package:intl/intl.dart';
 
 class ESRReservation {
   int id = 0;
@@ -31,9 +32,20 @@ class ESRReservation {
   });
 
   factory ESRReservation.fromJson(Map<String, dynamic> json){
+    DateFormat dateFormat = DateFormat("YYYY-mm-dd HH:mm:ss");
+    DateTime utcBookingDate = dateFormat.parse(json["booking_date"]);
+    DateTime localBookingDate = DateTime.utc(
+      utcBookingDate.year,
+      utcBookingDate.month,
+      utcBookingDate.day,
+      utcBookingDate.hour,
+      utcBookingDate.minute,
+      utcBookingDate.second,
+    ).toLocal();
+
     return ESRReservation(
         id: json['id'],
-        bookingDate: DateTime.parse(json['booking_date']).toLocal(),
+        bookingDate: localBookingDate,
         frequency: ESRFrequency.fromJson(json['frequency']),
         slots: json['slots'],
         isRepeated: json['is_repeated'],
@@ -42,8 +54,8 @@ class ESRReservation {
         disabled: json['disabled'],
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
         repeatedWeekday: ESRWeekday.fromJson(json['repeated_weekday']),
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

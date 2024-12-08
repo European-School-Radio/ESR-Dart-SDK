@@ -15,8 +15,8 @@ class ESRWeekday {
     return ESRWeekday(
         id: json['id'],
         name: json['name'],
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

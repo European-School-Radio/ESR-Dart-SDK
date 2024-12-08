@@ -21,8 +21,8 @@ class ESRArchiveSubject {
         id: json['id'],
         subject: ESRSubject.fromJson(json['subject']),
         archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

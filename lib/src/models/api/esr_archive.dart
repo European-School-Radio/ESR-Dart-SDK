@@ -1,5 +1,6 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
+import 'package:intl/intl.dart';
 
 class ESRArchive {
   int id = 0;
@@ -59,6 +60,38 @@ class ESRArchive {
         .map((singleArchiveSubject) => ESRArchiveSubject.fromJson(singleArchiveSubject as Map<String, dynamic>))
         .toList();
 
+    DateFormat hourFormat = DateFormat("HH:mm:ss");
+    DateTime utcStartTime = hourFormat.parse(json['start_time']);
+    DateTime localStartTime = DateTime.utc(
+      utcStartTime.year,
+      utcStartTime.month,
+      utcStartTime.day,
+      utcStartTime.hour,
+      utcStartTime.minute,
+      utcStartTime.second,
+    ).toLocal();
+
+    DateTime utcEndTime = hourFormat.parse(json['end_time']);
+    DateTime localEndTime = DateTime.utc(
+      utcEndTime.year,
+      utcEndTime.month,
+      utcEndTime.day,
+      utcEndTime.hour,
+      utcEndTime.minute,
+      utcEndTime.second,
+    ).toLocal();
+
+    DateFormat dateFormat = DateFormat("YYYY-mm-dd");
+    DateTime utcBroadcastDay = dateFormat.parse(json['broadcast_day']);
+    DateTime localBroadcastDay = DateTime.utc(
+      utcBroadcastDay.year,
+      utcBroadcastDay.month,
+      utcBroadcastDay.day,
+      utcBroadcastDay.hour,
+      utcBroadcastDay.minute,
+      utcBroadcastDay.second,
+    ).toLocal();
+
     return ESRArchive(
         id: json['id'],
         name: json['name'],
@@ -70,9 +103,9 @@ class ESRArchive {
         sections: json['sections'],
         subtitles: json['sections'],
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
-        broadcastDay: DateTime.parse(json['broadcast_day']).toLocal(),
-        startTime: DateTime.parse('1970-01-01 ${json['start_time']}').toLocal(),
-        endTime: DateTime.parse('1970-01-01 ${json['end_time']}').toLocal(),
+        broadcastDay: localBroadcastDay,
+        startTime: localStartTime,
+        endTime: localEndTime,
         tags: json['tags'],
         disabled: json['disabled'],
         averageRating: json['average_rating'],
@@ -81,8 +114,8 @@ class ESRArchive {
         listensCount: json['listens_count'],
         sharesCount: json['shares_count'],
         commentsCount: json['comments_count'],
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal(),
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated']),
         archiveSubjects: serializedArchiveSubjects
     );
   }

@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ESRSchoolYear {
   int id = 0;
   String name = "";
@@ -20,15 +22,56 @@ class ESRSchoolYear {
   });
 
   factory ESRSchoolYear.fromJson(Map<String, dynamic> json){
+    DateFormat dateFormat = DateFormat("YYYY-mm-dd");
+    DateTime utcSchedulableStart = dateFormat.parse(json['schedulable_start_date']);
+    DateTime localSchedulableStart = DateTime.utc(
+      utcSchedulableStart.year,
+      utcSchedulableStart.month,
+      utcSchedulableStart.day,
+      utcSchedulableStart.hour,
+      utcSchedulableStart.minute,
+      utcSchedulableStart.second,
+    ).toLocal();
+
+    DateTime utcSchedulableEnd = dateFormat.parse(json['schedulable_end_date']);
+    DateTime localSchedulableEnd = DateTime.utc(
+      utcSchedulableEnd.year,
+      utcSchedulableEnd.month,
+      utcSchedulableEnd.day,
+      utcSchedulableEnd.hour,
+      utcSchedulableEnd.minute,
+      utcSchedulableEnd.second,
+    ).toLocal();
+
+    DateTime utcPodcastStart = dateFormat.parse(json['podcasts_start_date']);
+    DateTime localPodcastStart = DateTime.utc(
+      utcPodcastStart.year,
+      utcPodcastStart.month,
+      utcPodcastStart.day,
+      utcPodcastStart.hour,
+      utcPodcastStart.minute,
+      utcPodcastStart.second,
+    ).toLocal();
+
+    DateTime utcPodcastEnd = dateFormat.parse(json['podcasts_end_date']);
+    DateTime localPodcastEnd = DateTime.utc(
+      utcPodcastEnd.year,
+      utcPodcastEnd.month,
+      utcPodcastEnd.day,
+      utcPodcastEnd.hour,
+      utcPodcastEnd.minute,
+      utcPodcastEnd.second,
+    ).toLocal();
+
     return ESRSchoolYear(
         id: json['id'],
         name: json['name'],
-        schedulableStartDate: DateTime.parse(json['schedulable_start_date']).toLocal(),
-        schedulableEndDate: DateTime.parse(json['schedulable_end_date']).toLocal(),
-        podcastsStartDate: DateTime.parse(json['podcasts_start_date']).toLocal(),
-        podcastsEndDate: DateTime.parse(json['podcasts_end_date']).toLocal(),
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        schedulableStartDate: localSchedulableStart,
+        schedulableEndDate: localSchedulableEnd,
+        podcastsStartDate: localPodcastStart,
+        podcastsEndDate: localPodcastEnd,
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

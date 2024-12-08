@@ -50,8 +50,8 @@ class ESRZone {
         color: json['color'],
         zoneType: ESRZoneType.fromJson(json['zone_type']),
         disabled: json['disabled'],
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal(),
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated']),
         zoneSubjects: serializedZoneSubjects,
         zoneProductionTypes: serializedZoneProductionTypes,
         zoneSchedules: serializedZoneSchedules);

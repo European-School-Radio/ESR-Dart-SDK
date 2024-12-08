@@ -18,8 +18,8 @@ class ESRZoneType {
         id: json['id'],
         name: json['name'],
         isVisible: json['is_visible'],
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

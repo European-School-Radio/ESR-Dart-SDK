@@ -21,8 +21,8 @@ class ESRProductionSubject {
         id: json['id'],
         subject: ESRSubject.fromJson(json['subject']),
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
-        created: DateTime.parse(json['created']).toLocal(),
-        updated: DateTime.parse(json['updated']).toLocal()
+        created: DateTime.parse(json['created']),
+        updated: DateTime.parse(json['updated'])
     );
   }
 }

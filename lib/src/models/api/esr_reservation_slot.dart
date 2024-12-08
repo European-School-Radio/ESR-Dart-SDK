@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:intl/intl.dart';
 
 class ESRReservationSlot {
   int id = 0;
@@ -20,14 +21,35 @@ class ESRReservationSlot {
   });
   
   factory ESRReservationSlot.fromJson(Map<String, dynamic> json){
+    DateFormat dateFormat = DateFormat("HH:mm:ss");
+    DateTime utcTimeStart = dateFormat.parse(json['time_start']);
+    DateTime localTimeStart = DateTime.utc(
+      utcTimeStart.year,
+      utcTimeStart.month,
+      utcTimeStart.day,
+      utcTimeStart.hour,
+      utcTimeStart.minute,
+      utcTimeStart.second,
+    ).toLocal();
+
+    DateTime utcTimeEnd = dateFormat.parse(json['time_end']);
+    DateTime localTimeEnd = DateTime.utc(
+      utcTimeEnd.year,
+      utcTimeEnd.month,
+      utcTimeEnd.day,
+      utcTimeEnd.hour,
+      utcTimeEnd.minute,
+      utcTimeEnd.second,
+    ).toLocal();
+
     return ESRReservationSlot(
       id: (json["id"] == null) ? 0 : json["id"],
       slotDate: DateTime.parse(json['slot_date'] + " 00:00:00").toLocal(),
-      timeStart: DateTime.parse("1970-01-01 " + json["time_start"]).toLocal(),
-      timeEnd: DateTime.parse("1970-01-01 " + json["time_end"]).toLocal(),
+      timeStart: localTimeStart,
+      timeEnd: localTimeEnd,
       reservation: ESRReservation.fromJson(json['reservation']),
-      created: (json['created'] == null) ? DateTime.now() : DateTime.parse(json['created']).toLocal(),
-      updated: (json['updated'] == null) ? DateTime.now() : DateTime.parse(json['updated']).toLocal()
+      created: (json['created'] == null) ? DateTime.now() : DateTime.parse(json['created']),
+      updated: (json['updated'] == null) ? DateTime.now() : DateTime.parse(json['updated'])
     );
   }
 }

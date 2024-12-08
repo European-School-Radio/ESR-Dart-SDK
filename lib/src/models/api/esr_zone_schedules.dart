@@ -23,12 +23,30 @@ class ESRZoneSchedules {
 
   factory ESRZoneSchedules.fromJson(Map<String, dynamic> json){
     DateFormat format = DateFormat("HH:mm:ss");
+    DateTime utcTimeFrom = format.parse(json['time_from']);
+    DateTime localTimeFrom = DateTime.utc(
+      utcTimeFrom.year,
+      utcTimeFrom.month,
+      utcTimeFrom.day,
+      utcTimeFrom.hour,
+      utcTimeFrom.minute,
+      utcTimeFrom.second,
+    ).toLocal();
 
+    DateTime utcTimeTo = format.parse(json["time_to"]);
+    DateTime localTimeTo = DateTime.utc(
+      utcTimeTo.year,
+      utcTimeTo.month,
+      utcTimeTo.day,
+      utcTimeTo.hour,
+      utcTimeTo.minute,
+      utcTimeTo.second,
+    ).toLocal();
 
     return ESRZoneSchedules(
       id: json["id"],
-      timeFrom: format.parse(json["time_from"]).toLocal(),
-      timeTo: format.parse(json["time_to"]).toLocal(),
+      timeFrom: localTimeFrom,
+      timeTo: localTimeTo,
       zone: IsNumericUtils.isNumeric(json["zone"].toString()) ? null : ESRZone.fromJson(json["zone"]),
       weekday: ESRWeekday.fromJson(json["weekday"]),
       created: DateTime.parse(json["created"]),
