@@ -21,8 +21,8 @@ class ESRReservationSlot {
   });
   
   factory ESRReservationSlot.fromJson(Map<String, dynamic> json){
-    DateFormat dateFormat = DateFormat("HH:mm:ss");
-    DateTime utcTimeStart = dateFormat.parse(json['time_start']);
+    DateFormat timeFormat = DateFormat("HH:mm:ss");
+    DateTime utcTimeStart = timeFormat.parse(json['time_start']);
     DateTime localTimeStart = DateTime.utc(
       utcTimeStart.year,
       utcTimeStart.month,
@@ -32,7 +32,7 @@ class ESRReservationSlot {
       utcTimeStart.second,
     ).toLocal();
 
-    DateTime utcTimeEnd = dateFormat.parse(json['time_end']);
+    DateTime utcTimeEnd = timeFormat.parse(json['time_end']);
     DateTime localTimeEnd = DateTime.utc(
       utcTimeEnd.year,
       utcTimeEnd.month,
@@ -42,9 +42,20 @@ class ESRReservationSlot {
       utcTimeEnd.second,
     ).toLocal();
 
+    DateFormat dateFormat = DateFormat("yyyy-mm-dd");
+    DateTime utcSlotDate = dateFormat.parse(json["slot_date"]);
+    DateTime localSlotDate = DateTime.utc(
+      utcSlotDate.year,
+      utcSlotDate.month,
+      utcSlotDate.day,
+      utcSlotDate.hour,
+      utcSlotDate.minute,
+      utcSlotDate.second,
+    ).toLocal();
+
     return ESRReservationSlot(
       id: (json["id"] == null) ? 0 : json["id"],
-      slotDate: DateTime.parse(json['slot_date'] + " 00:00:00").toLocal(),
+      slotDate: localSlotDate,
       timeStart: localTimeStart,
       timeEnd: localTimeEnd,
       reservation: ESRReservation.fromJson(json['reservation']),

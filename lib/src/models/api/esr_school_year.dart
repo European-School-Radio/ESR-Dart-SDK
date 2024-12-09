@@ -22,7 +22,7 @@ class ESRSchoolYear {
   });
 
   factory ESRSchoolYear.fromJson(Map<String, dynamic> json){
-    DateFormat dateFormat = DateFormat("YYYY-mm-dd");
+    DateFormat dateFormat = DateFormat("yyyy-mm-dd");
     DateTime utcSchedulableStart = dateFormat.parse(json['schedulable_start_date']);
     DateTime localSchedulableStart = DateTime.utc(
       utcSchedulableStart.year,

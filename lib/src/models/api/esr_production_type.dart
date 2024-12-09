@@ -42,7 +42,7 @@ class ESRProductionType {
   factory ESRProductionType.fromJson(Map<String, dynamic> json){
     DateTime? localActiveSince = null;
     DateTime? localActiveUntil = null;
-    DateFormat dateFormat = DateFormat("YYYY-mm-dd HH:mm:ss");
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     if (json["active_since"] != null){
       DateTime utcActiveSince = dateFormat.parse(json['active_since']);
       localActiveSince = DateTime.utc(

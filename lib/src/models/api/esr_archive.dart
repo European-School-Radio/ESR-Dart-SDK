@@ -81,7 +81,7 @@ class ESRArchive {
       utcEndTime.second,
     ).toLocal();
 
-    DateFormat dateFormat = DateFormat("YYYY-mm-dd");
+    DateFormat dateFormat = DateFormat("yyyy-mm-dd");
     DateTime utcBroadcastDay = dateFormat.parse(json['broadcast_day']);
     DateTime localBroadcastDay = DateTime.utc(
       utcBroadcastDay.year,

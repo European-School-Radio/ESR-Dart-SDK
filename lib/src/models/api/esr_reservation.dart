@@ -32,7 +32,7 @@ class ESRReservation {
   });
 
   factory ESRReservation.fromJson(Map<String, dynamic> json){
-    DateFormat dateFormat = DateFormat("YYYY-mm-dd HH:mm:ss");
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
     DateTime utcBookingDate = dateFormat.parse(json["booking_date"]);
     DateTime localBookingDate = DateTime.utc(
       utcBookingDate.year,
