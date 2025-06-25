@@ -50,23 +50,23 @@ export 'src/models/api/esr_reservation_slot.dart' show ESRReservationSlot;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 
 // Wire Models
-export 'src/wire_models/esr_productions_paginated_results.dart' show ESRProductionsPaginatedResults;
-export 'src/wire_models/esr_langs_paginated_results.dart' show ESRLangsPaginatedResults;
-export 'src/wire_models/esr_subjects_paginated_results.dart' show ESRSubjectsPaginatedResults;
-export 'src/wire_models/esr_school_types_paginated_results.dart' show ESRSchoolTypesPaginatedResults;
-export 'src/wire_models/esr_countries_paginated_results.dart' show ESRCountriesPaginatedResults;
-export 'src/wire_models/esr_schools_paginated_results.dart' show ESRSchoolsPaginatedResults;
-export 'src/wire_models/esr_production_types_paginated_results.dart' show ESRProductionTypesPaginatedResults;
-export 'src/wire_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
-export 'src/wire_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
-export 'src/wire_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
-export 'src/wire_models/esr_reservation_slots_by_date_results.dart' show ESRReservationSlotsByDateResults;
-export 'src/wire_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
+export 'src/payload_models/esr_productions_paginated_results.dart' show ESRProductionsPaginatedResults;
+export 'src/payload_models/esr_langs_paginated_results.dart' show ESRLangsPaginatedResults;
+export 'src/payload_models/esr_subjects_paginated_results.dart' show ESRSubjectsPaginatedResults;
+export 'src/payload_models/esr_school_types_paginated_results.dart' show ESRSchoolTypesPaginatedResults;
+export 'src/payload_models/esr_countries_paginated_results.dart' show ESRCountriesPaginatedResults;
+export 'src/payload_models/esr_schools_paginated_results.dart' show ESRSchoolsPaginatedResults;
+export 'src/payload_models/esr_production_types_paginated_results.dart' show ESRProductionTypesPaginatedResults;
+export 'src/payload_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
+export 'src/payload_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
+export 'src/payload_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
+export 'src/payload_models/esr_reservation_slots_by_date_results.dart' show ESRReservationSlotsByDateResults;
+export 'src/payload_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
 
 // WebSockets Wire Models
-export 'src/wire_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
-export 'src/wire_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
-export 'src/wire_models/websockets/esr_productions_next_playing_results.dart' show ESRProductionsNextPlayingResults;
+export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
+export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
+export 'src/payload_models/websockets/esr_productions_next_playing_results.dart' show ESRProductionsNextPlayingResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
