@@ -22,8 +22,6 @@ extension ESRLangSortingExtension on ESRLangSorting {
         return 'flag';
       case ESRLangSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

@@ -19,8 +19,6 @@ extension ESRSchoolTypeSortingExtension on ESRSchoolTypeSorting {
         return 'units_group_id';
       case ESRSchoolTypeSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

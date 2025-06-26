@@ -16,8 +16,6 @@ extension ESRCountrySortingExtension on ESRCountrySorting {
         return 'code';
       case ESRCountrySorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

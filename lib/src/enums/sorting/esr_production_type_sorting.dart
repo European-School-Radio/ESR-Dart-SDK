@@ -52,8 +52,6 @@ extension ESRProductionTypeSortingExtension on ESRProductionTypeSorting {
         return "disabled";
       case ESRProductionTypeSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

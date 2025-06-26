@@ -16,8 +16,6 @@ extension ESRFrequencySortingExtension on ESRFrequencySorting {
         return 'translations__description';
       case ESRFrequencySorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

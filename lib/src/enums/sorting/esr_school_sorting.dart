@@ -61,8 +61,6 @@ extension ESRCountrySortingExtension on ESRSchoolSorting {
         return 'disabled';
       case ESRSchoolSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

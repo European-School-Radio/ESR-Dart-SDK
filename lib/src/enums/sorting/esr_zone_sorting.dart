@@ -25,8 +25,6 @@ extension ESRZoneSortingExtension on ESRZoneSorting {
         return 'disabled';
       case ESRZoneSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

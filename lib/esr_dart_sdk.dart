@@ -3,6 +3,9 @@
 /// More dartdocs go here.
 library;
 
+//Core
+export 'src/core/esr_sdk.dart' show ESRSDK;
+
 // Services
 export 'src/services/api/esr_productions_service.dart' show ESRProductionsService;
 export 'src/services/api/esr_langs_service.dart' show ESRLangsService;
@@ -86,6 +89,7 @@ export 'src/enums/sorting/esr_school_sorting.dart' show ESRSchoolSorting;
 export 'src/enums/sorting/esr_production_type_sorting.dart' show ESRProductionTypeSorting;
 export 'src/enums/sorting/esr_zone_sorting.dart' show ESRZoneSorting;
 export 'src/enums/sorting/esr_frequency_sorting.dart' show ESRFrequencySorting;
+export 'src/enums/esr_environments.dart' show EsrEnvironments;
 
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;

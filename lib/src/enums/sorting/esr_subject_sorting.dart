@@ -19,8 +19,6 @@ extension ESRSubjectSortingExtension on ESRSubjectSorting {
         return 'disabled';
       case ESRSubjectSorting.created:
         return 'created';
-      default:
-        return null;
     }
   }
 }

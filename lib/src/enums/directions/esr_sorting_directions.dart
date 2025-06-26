@@ -10,8 +10,6 @@ extension EsrSortingDirectionsExtension on ESRSortingDirections {
         return "ASC";
       case ESRSortingDirections.desc:
         return 'DESC';
-      default:
-        return null;
-    }
+      }
   }
 }
