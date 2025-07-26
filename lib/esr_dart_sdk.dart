@@ -18,6 +18,8 @@ export 'src/services/api/esr_zones_service.dart' show ESRZonesService;
 export 'src/services/api/esr_frequencies_service.dart' show ESRFrequenciesService;
 export 'src/services/api/esr_reservations_service.dart' show ESRReservationsService;
 export 'src/services/api/esr_reservation_slots_service.dart' show ESRReservationSlotsService;
+export 'src/services/api/esr_users_service.dart' show ESRUsersService;
+export 'src/services/api/esr_user_schools_service.dart' show ESRUserSchoolsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -50,6 +52,7 @@ export 'src/models/api/esr_zone_subject.dart' show ESRZoneSubject;
 export 'src/models/api/esr_zone_production_type.dart' show ESRZoneProductionType;
 export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
 export 'src/models/api/esr_reservation_slot.dart' show ESRReservationSlot;
+export 'src/models/api/esr_user_jwt_data.dart' show ESRUserJwtData;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 
 // Wire Models
@@ -65,6 +68,8 @@ export 'src/payload_models/esr_frequencies_paginated_results.dart' show ESRFrequ
 export 'src/payload_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
 export 'src/payload_models/esr_reservation_slots_by_date_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/payload_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
+export 'src/payload_models/esr_user_login_results.dart' show ESRUserLoginResults;
+export 'src/payload_models/esr_user_schools_active_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
@@ -75,6 +80,7 @@ export 'src/payload_models/websockets/esr_productions_next_playing_results.dart'
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
 export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
+export 'src/exceptions/information_not_valid_exception.dart' show InformationNotValidException;
 export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;
 export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
 
@@ -89,7 +95,7 @@ export 'src/enums/sorting/esr_school_sorting.dart' show ESRSchoolSorting;
 export 'src/enums/sorting/esr_production_type_sorting.dart' show ESRProductionTypeSorting;
 export 'src/enums/sorting/esr_zone_sorting.dart' show ESRZoneSorting;
 export 'src/enums/sorting/esr_frequency_sorting.dart' show ESRFrequencySorting;
-export 'src/enums/esr_environments.dart' show EsrEnvironments;
+export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;

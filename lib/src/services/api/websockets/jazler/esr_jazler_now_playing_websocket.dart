@@ -6,6 +6,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 class ESRJazlerNowPlayingWebsocketService {
+  final sdk = ESRSDK();
   String _baseWebSocketURL = "";
 
   bool _isConnected = false;
@@ -14,7 +15,11 @@ class ESRJazlerNowPlayingWebsocketService {
       StreamController<ESRJazlerNowPlayingResults>.broadcast();
 
   ESRJazlerNowPlayingWebsocketService() {
-    _baseWebSocketURL = "${ESRServerConfig.websocketUrl}/jazler-now-on-air/";
+    if (sdk.env == ESREnvironments.test){
+      _baseWebSocketURL = "${ESRServerConfig.webBaseTestUrl}/jazler-now-on-air/";
+    } else {
+      _baseWebSocketURL = "${ESRServerConfig.websocketUrl}/jazler-now-on-air/";
+    }
   }
 
   void connect() {

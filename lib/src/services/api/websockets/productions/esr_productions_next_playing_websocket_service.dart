@@ -7,6 +7,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 class ESRProductionsNextPlayingWebsocketService {
+  final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _maxItems = 1;
@@ -17,8 +18,13 @@ class ESRProductionsNextPlayingWebsocketService {
       StreamController<ESRProductionsNextPlayingResults>.broadcast();
 
   ESRProductionsNextPlayingWebsocketService() {
-    _baseWebSocketURL =
-        "${ESRServerConfig.websocketUrl}/productions-next-playing/";
+    if (sdk.env == ESREnvironments.test) {
+      _baseWebSocketURL =
+          "${ESRServerConfig.webBaseTestUrl}/productions-next-playing/";
+    } else {
+      _baseWebSocketURL =
+          "${ESRServerConfig.websocketUrl}/productions-next-playing/";
+    }
   }
 
   void setLanguage(ESRLang language) {
@@ -78,8 +84,8 @@ class ESRProductionsNextPlayingWebsocketService {
   StreamSubscription<ESRProductionsNextPlayingResults> addListener(
       void Function(ESRProductionsNextPlayingResults event) onData,
       {Function? onError,
-        void Function()? onDone,
-        bool? cancelOnError}) {
+      void Function()? onDone,
+      bool? cancelOnError}) {
     return _controller.stream.listen(
       onData,
       onError: onError,

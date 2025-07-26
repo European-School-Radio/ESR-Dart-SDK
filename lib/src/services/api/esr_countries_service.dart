@@ -7,10 +7,15 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
 class ESRCountriesService {
+  final sdk = ESRSDK();
   String _apiURL = "";
 
   ESRCountriesService(){
-    _apiURL = ESRServerConfig.apiUrl;
+    if (sdk.env == ESREnvironments.test){
+      _apiURL = ESRServerConfig.apiTestUrl;
+    } else {
+      _apiURL = ESRServerConfig.apiUrl;
+    }
   }
 
   Future<ESRCountriesPaginatedResults> getAllCountries({

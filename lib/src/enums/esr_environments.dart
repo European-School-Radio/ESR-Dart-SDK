@@ -1,15 +1,18 @@
-enum EsrEnvironments {
+enum ESREnvironments {
   production,
-  test
+  test,
+  youthRadio
 }
 
-extension EsrEnvironmentsExtension on EsrEnvironments {
+extension EsrEnvironmentsExtension on ESREnvironments {
   String? get value {
     switch (this){
-      case EsrEnvironments.production:
+      case ESREnvironments.production:
         return "https://api.europeanschoolradio.eu";
-      case EsrEnvironments.test:
+      case ESREnvironments.test:
         return 'https://api-new.europeanschoolradio.eu';
+      case ESREnvironments.youthRadio:
+        return "https://api.europeanschoolradio.eu";
       }
   }
 }

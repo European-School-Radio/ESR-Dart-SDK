@@ -12,6 +12,8 @@ dependencies:
   intl: ^0.20.2
   html_unescape: ^2.0.0
   web_socket_channel: ^3.0.3
+  jwt_decoder: ^2.0.1
+  email_validator: ^3.0.0
 
 dev_dependencies:
   lints: ^4.0.0

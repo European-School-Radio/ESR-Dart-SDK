@@ -6,11 +6,11 @@ class ESRSDK {
   factory ESRSDK() => _instance;
 
   late final String apiKey;
-  late final EsrEnvironments env;
+  late final ESREnvironments env;
 
   static Future<void> init({
     required String apiKey,
-    required EsrEnvironments env
+    required ESREnvironments env
   }) async {
     final instance = _instance;
     instance.apiKey = apiKey;

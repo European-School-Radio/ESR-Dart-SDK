@@ -4,10 +4,15 @@ import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:http/http.dart' as http;
 
 class ESRReservationsService {
+  final sdk = ESRSDK();
   String _apiURL = "";
 
   ESRReservationsService(){
-    _apiURL = ESRServerConfig.apiUrl;
+    if (sdk.env == ESREnvironments.test){
+      _apiURL = ESRServerConfig.apiTestUrl;
+    } else {
+      _apiURL = ESRServerConfig.apiUrl;
+    }
   }
 
   Future<ESRReservationsMinMaxDatesResults> getMinMaxDates() async {

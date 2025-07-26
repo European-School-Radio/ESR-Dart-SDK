@@ -7,10 +7,15 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
 class ESRFrequenciesService {
+  final sdk = ESRSDK();
   String _apiURL = "";
 
   ESRFrequenciesService(){
-    _apiURL = ESRServerConfig.apiUrl;
+    if (sdk.env == ESREnvironments.test){
+      _apiURL = ESRServerConfig.apiTestUrl;
+    } else {
+      _apiURL = ESRServerConfig.apiUrl;
+    }
   }
 
   Future<ESRFrequenciesPaginatedResults> getAllFrequencies({
