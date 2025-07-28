@@ -29,8 +29,6 @@ class ESRUsersService {
       'password': password,
       'request_application': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
     };
-    print("george");
-    print(sdk.env.name);
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
