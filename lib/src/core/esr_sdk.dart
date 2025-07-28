@@ -5,8 +5,8 @@ class ESRSDK {
   ESRSDK._internal();
   factory ESRSDK() => _instance;
 
-  late final String apiKey;
-  late final ESREnvironments env;
+  late String apiKey;
+  late ESREnvironments env;
 
   static Future<void> init({
     required String apiKey,
@@ -17,5 +17,10 @@ class ESRSDK {
     instance.env = env;
 
     print('ESR SDK initialised ✅');
+  }
+
+  void updateEnv(ESREnvironments newEnv) {
+    env = newEnv;
+    print('ESR SDK env updated to $newEnv 🔁');
   }
 }
