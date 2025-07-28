@@ -100,3 +100,4 @@ export 'src/enums/esr_environments.dart' show ESREnvironments;
 // Utils
 export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;
 export 'src/utils/esr_school_url_utils.dart' show ESRSchoolUrlUtils;
+export 'src/utils/esr_user_url_utils.dart' show ESRUserUrlUtils;
