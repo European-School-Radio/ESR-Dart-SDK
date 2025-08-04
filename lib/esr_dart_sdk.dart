@@ -20,6 +20,7 @@ export 'src/services/api/esr_reservations_service.dart' show ESRReservationsServ
 export 'src/services/api/esr_reservation_slots_service.dart' show ESRReservationSlotsService;
 export 'src/services/api/esr_users_service.dart' show ESRUsersService;
 export 'src/services/api/esr_user_schools_service.dart' show ESRUserSchoolsService;
+export 'src/services/api/esr_school_years_service.dart' show ESRSchoolYearsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -70,6 +71,7 @@ export 'src/payload_models/esr_reservation_slots_by_date_results.dart' show ESRR
 export 'src/payload_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
 export 'src/payload_models/esr_user_login_results.dart' show ESRUserLoginResults;
 export 'src/payload_models/esr_user_schools_active_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
+export 'src/payload_models/esr_latest_school_year_result.dart' show ESRLatestSchoolYearResult;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
