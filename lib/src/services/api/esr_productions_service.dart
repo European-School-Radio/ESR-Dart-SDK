@@ -203,4 +203,64 @@ class ESRProductionsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRProductionsAddResults> addProduction(ESRAddProduction production, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/production/add');
+
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.MultipartRequest('POST', Uri.parse(urlBuilder.build()));
+    request.fields.addAll({
+      "${production.name.keys.first}[school_year]": production.schoolYearID.toString(),
+      "${production.name.keys.first}[user_school]": production.userSchoolID.toString(),
+      "${production.name.keys.first}[production_type]": production.productionTypeID.toString(),
+      "${production.name.keys.first}[lang]": production.languageID.toString(),
+      "${production.name.keys.first}[disabled]": production.disabled ? "1": "0",
+    });
+
+    if (production.zoneID != null){
+      request.fields.addAll({
+        "${production.name.keys.first}[zone]": production.zoneID.toString(),
+      });
+    }
+
+    for (var nameEntry in production.name.entries){
+      request.fields.addAll({
+        "${nameEntry.key}[name]": nameEntry.value
+      });
+    }
+
+    for (var descriptionEntry in production.description.entries){
+      request.fields.addAll({
+        "${descriptionEntry.key}[description]": descriptionEntry.value
+      });
+    }
+
+    if (production.imageBanner != null){
+      request.files.add(
+          await http.MultipartFile.fromPath('en[image_banner]', production.imageBanner.toString())
+      );
+    }
+    if (production.videoBanner != null){
+      request.files.add(
+          await http.MultipartFile.fromPath('en[video_banner]', production.videoBanner.toString())
+      );
+    }
+    if (production.spot != null){
+      request.files.add(
+          await http.MultipartFile.fromPath('en[spot]', production.spot.toString())
+      );
+    }
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRProductionsAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

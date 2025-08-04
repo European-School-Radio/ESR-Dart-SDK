@@ -8,4 +8,8 @@ class ESRDateTimeFormatter {
   static String formatDateRequests(DateTime datetime){
     return DateFormat("yyyy-MM-dd").format(datetime);
   }
+
+  static String formatTimeRequests(DateTime datetime){
+    return DateFormat("HH:mm:ss").format(datetime);
+  }
 }

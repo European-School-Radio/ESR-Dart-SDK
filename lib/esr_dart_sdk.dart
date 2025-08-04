@@ -21,6 +21,7 @@ export 'src/services/api/esr_reservation_slots_service.dart' show ESRReservation
 export 'src/services/api/esr_users_service.dart' show ESRUsersService;
 export 'src/services/api/esr_user_schools_service.dart' show ESRUserSchoolsService;
 export 'src/services/api/esr_school_years_service.dart' show ESRSchoolYearsService;
+export 'src/services/api/esr_archives_service.dart' show ESRArchivesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -31,7 +32,7 @@ export 'src/services/api/websockets/productions/esr_productions_next_playing_web
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
 export 'src/models/api/esr_lang.dart' show ESRLang;
-export 'src/models/api/esr_production.dart' show ESRProduction;
+export 'src/models/api/esr_production.dart' show ESRProduction, ESRAddProduction;
 export 'src/models/api/esr_production_type.dart' show ESRProductionType;
 export 'src/models/api/esr_role.dart' show ESRRole;
 export 'src/models/api/esr_school.dart' show ESRSchool;
@@ -44,7 +45,7 @@ export 'src/models/api/esr_zone.dart' show ESRZone;
 export 'src/models/api/esr_zone_type.dart' show ESRZoneType;
 export 'src/models/api/esr_frequency.dart' show ESRFrequency;
 export 'src/models/api/esr_weekday.dart' show ESRWeekday;
-export 'src/models/api/esr_archive.dart' show ESRArchive;
+export 'src/models/api/esr_archive.dart' show ESRArchive, ESRAddArchive;
 export 'src/models/api/esr_production_subject.dart' show ESRProductionSubject;
 export 'src/models/api/esr_reservation.dart' show ESRReservation;
 export 'src/models/api/esr_subject.dart' show ESRSubject;
@@ -72,6 +73,8 @@ export 'src/payload_models/esr_now_playing_zone_results.dart' show ESRNowPlaying
 export 'src/payload_models/esr_user_login_results.dart' show ESRUserLoginResults;
 export 'src/payload_models/esr_user_schools_active_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
 export 'src/payload_models/esr_latest_school_year_result.dart' show ESRLatestSchoolYearResult;
+export 'src/payload_models/esr_productions_add_result.dart' show ESRProductionsAddResults;
+export 'src/payload_models/esr_archives_add_result.dart' show ESRArchivesAddResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;

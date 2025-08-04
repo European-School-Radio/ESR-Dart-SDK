@@ -120,3 +120,37 @@ class ESRArchive {
     );
   }
 }
+
+class ESRAddArchive {
+  int productionID;
+  Map<String, String> name = <String, String>{};
+  Map<String, String> description = <String, String>{};
+  Map<String, String>? transcript = <String, String>{};
+  Map<String, String>? tags = <String, String>{};
+  Map<String, String>? sections = <String, String>{};
+  Map<String, String>? subtitles = <String, String>{};
+  String? imageBanner;
+  String audioFile;
+  int audioFileDuration;
+  DateTime broadcastDay;
+  DateTime startTime;
+  DateTime endTime;
+  bool disabled = false;
+
+  ESRAddArchive({
+    required this.productionID,
+    required this.name,
+    required this.description,
+    this.transcript,
+    this.tags,
+    this.sections,
+    this.subtitles,
+    this.imageBanner,
+    required this.audioFile,
+    required this.audioFileDuration,
+    required this.broadcastDay,
+    required this.startTime,
+    required this.endTime,
+    required this.disabled
+  });
+}

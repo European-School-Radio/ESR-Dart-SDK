@@ -80,3 +80,31 @@ class ESRProduction {
     );
   }
 }
+
+class ESRAddProduction {
+  Map<String, String> name = <String, String>{};
+  Map<String, String> description = <String, String>{};
+  String? imageBanner;
+  String? videoBanner;
+  String? spot;
+  int schoolYearID;
+  int userSchoolID;
+  int productionTypeID;
+  int languageID;
+  int? zoneID;
+  bool disabled = false;
+
+  ESRAddProduction({
+    required this.name,
+    required this.description,
+    this.imageBanner,
+    this.videoBanner,
+    this.spot,
+    required this.schoolYearID,
+    required this.userSchoolID,
+    required this.productionTypeID,
+    required this.languageID,
+    this.zoneID,
+    required this.disabled
+  });
+}
