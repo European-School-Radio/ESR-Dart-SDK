@@ -26,3 +26,13 @@ class ESRProductionSubject {
     );
   }
 }
+
+class ESRAddProductionSubject {
+  int subjectID;
+  int productionID;
+
+  ESRAddProductionSubject({
+    required this.subjectID,
+    required this.productionID
+  });
+}

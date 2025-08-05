@@ -22,6 +22,8 @@ export 'src/services/api/esr_users_service.dart' show ESRUsersService;
 export 'src/services/api/esr_user_schools_service.dart' show ESRUserSchoolsService;
 export 'src/services/api/esr_school_years_service.dart' show ESRSchoolYearsService;
 export 'src/services/api/esr_archives_service.dart' show ESRArchivesService;
+export 'src/services/api/esr_production_subjects_service.dart' show ESRProductionSubjectsService;
+export 'src/services/api/esr_archive_subjects_service.dart' show ESRArchiveSubjectsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -46,10 +48,10 @@ export 'src/models/api/esr_zone_type.dart' show ESRZoneType;
 export 'src/models/api/esr_frequency.dart' show ESRFrequency;
 export 'src/models/api/esr_weekday.dart' show ESRWeekday;
 export 'src/models/api/esr_archive.dart' show ESRArchive, ESRAddArchive;
-export 'src/models/api/esr_production_subject.dart' show ESRProductionSubject;
+export 'src/models/api/esr_production_subject.dart' show ESRProductionSubject, ESRAddProductionSubject;
 export 'src/models/api/esr_reservation.dart' show ESRReservation;
 export 'src/models/api/esr_subject.dart' show ESRSubject;
-export 'src/models/api/esr_archive_subject.dart' show ESRArchiveSubject;
+export 'src/models/api/esr_archive_subject.dart' show ESRArchiveSubject, ESRAddArchiveSubject;
 export 'src/models/api/esr_zone_subject.dart' show ESRZoneSubject;
 export 'src/models/api/esr_zone_production_type.dart' show ESRZoneProductionType;
 export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
@@ -75,6 +77,8 @@ export 'src/payload_models/esr_user_schools_active_schools_results.dart' show ES
 export 'src/payload_models/esr_latest_school_year_result.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_productions_add_result.dart' show ESRProductionsAddResults;
 export 'src/payload_models/esr_archives_add_result.dart' show ESRArchivesAddResults;
+export 'src/payload_models/esr_production_subject_add_result.dart' show ESRProductionSubjectAddResult;
+export 'src/payload_models/esr_archive_subject_add_result.dart' show ESRArchiveSubjectAddResult;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;

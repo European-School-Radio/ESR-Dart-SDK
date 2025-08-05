@@ -26,3 +26,13 @@ class ESRArchiveSubject {
     );
   }
 }
+
+class ESRAddArchiveSubject {
+  int subjectID;
+  int archiveID;
+
+  ESRAddArchiveSubject({
+    required this.subjectID,
+    required this.archiveID
+  });
+}
