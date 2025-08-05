@@ -12,4 +12,8 @@ class ESRDateTimeFormatter {
   static String formatTimeRequests(DateTime datetime){
     return DateFormat("HH:mm:ss").format(datetime);
   }
+
+  static String formatMinimalTimeRequests(DateTime datetime){
+    return DateFormat("HH:mm").format(datetime);
+  }
 }
