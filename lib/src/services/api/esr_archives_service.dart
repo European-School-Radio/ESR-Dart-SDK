@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
-import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_production_sorting.dart';
+import 'dart:io' as io;
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/datetime_formatter.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
@@ -54,10 +53,16 @@ class ESRArchivesService {
       }
     }
 
-    if (archive.imageBanner != null){
-      request.files.add(
-          await http.MultipartFile.fromPath('en[banner]', archive.imageBanner.toString())
-      );
+    if (archive.imageBanner != null && archive.imageBanner.toString().isNotEmpty){
+      if (io.File(archive.imageBanner.toString()).existsSync()){
+        request.files.add(
+            await http.MultipartFile.fromPath('en[banner]', archive.imageBanner.toString())
+        );
+      }
+    }
+
+    if (archive.audioFile.toString().isEmpty || !io.File(archive.audioFile.toString()).existsSync()){
+      throw InformationNotValidException("Audio File not found");
     }
 
     request.files.add(

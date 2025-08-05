@@ -6,6 +6,7 @@ import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/datetime_formatter.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
+import 'dart:io' as io;
 
 class ESRProductionsService {
   final sdk = ESRSDK();
@@ -237,20 +238,26 @@ class ESRProductionsService {
       });
     }
 
-    if (production.imageBanner != null){
-      request.files.add(
-          await http.MultipartFile.fromPath('en[image_banner]', production.imageBanner.toString())
-      );
+    if (production.imageBanner != null && production.imageBanner.toString().isNotEmpty){
+      if (io.File(production.imageBanner.toString()).existsSync()){
+        request.files.add(
+            await http.MultipartFile.fromPath('en[image_banner]', production.imageBanner.toString())
+        );
+      }
     }
-    if (production.videoBanner != null){
-      request.files.add(
-          await http.MultipartFile.fromPath('en[video_banner]', production.videoBanner.toString())
-      );
+    if (production.videoBanner != null && production.videoBanner.toString().isNotEmpty){
+      if (io.File(production.videoBanner.toString()).existsSync()){
+        request.files.add(
+            await http.MultipartFile.fromPath('en[video_banner]', production.videoBanner.toString())
+        );
+      }
     }
-    if (production.spot != null){
-      request.files.add(
-          await http.MultipartFile.fromPath('en[spot]', production.spot.toString())
-      );
+    if (production.spot != null && production.spot.toString().isNotEmpty){
+      if (io.File(production.spot.toString()).existsSync()){
+        request.files.add(
+            await http.MultipartFile.fromPath('en[spot]', production.spot.toString())
+        );
+      }
     }
 
     request.headers.addAll(headers);
