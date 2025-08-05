@@ -61,7 +61,12 @@ class ESRArchive {
         .toList();
 
     DateFormat hourFormat = DateFormat("HH:mm:ss");
-    DateTime utcStartTime = hourFormat.parse(json['start_time']);
+    DateTime utcStartTime;
+    if (json["start_time"].toString().split(":").length == 2){
+      utcStartTime = hourFormat.parse(json['start_time'] + ":00");
+    } else {
+      utcStartTime = hourFormat.parse(json['start_time']);
+    }
     DateTime localStartTime = DateTime.utc(
       utcStartTime.year,
       utcStartTime.month,
@@ -71,7 +76,12 @@ class ESRArchive {
       utcStartTime.second,
     ).toLocal();
 
-    DateTime utcEndTime = hourFormat.parse(json['end_time']);
+    DateTime utcEndTime;
+    if (json["end_time"].toString().split(":").length == 2){
+      utcEndTime = hourFormat.parse(json['end_time'] + ":00");
+    } else {
+      utcEndTime = hourFormat.parse(json['end_time']);
+    }
     DateTime localEndTime = DateTime.utc(
       utcEndTime.year,
       utcEndTime.month,
@@ -98,7 +108,7 @@ class ESRArchive {
         description: json['description'],
         banner: json['banner'],
         mp3File: json['mp3_file'],
-        duration: json['duration'],
+        duration: int.parse(json['duration'].toString()),
         transcript: json['transcript'],
         sections: json['sections'],
         subtitles: json['sections'],
