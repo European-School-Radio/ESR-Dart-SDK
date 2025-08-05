@@ -29,6 +29,7 @@ class ESRArchivesService {
       "${archive.name.keys.first}[production]": archive.productionID.toString(),
       "${archive.name.keys.first}[broadcast_day]": ESRDateTimeFormatter.formatDateRequests(archive.broadcastDay),
       "${archive.name.keys.first}[start_time]": ESRDateTimeFormatter.formatTimeRequests(archive.startTime),
+      "${archive.name.keys.first}[end_time]": ESRDateTimeFormatter.formatTimeRequests(archive.endTime),
       "${archive.name.keys.first}[disabled]": archive.disabled ? "1": "0",
       "${archive.name.keys.first}[duration]": archive.audioFileDuration.toString(),
     });
