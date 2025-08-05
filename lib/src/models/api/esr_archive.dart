@@ -126,9 +126,6 @@ class ESRAddArchive {
   Map<String, String> name = <String, String>{};
   Map<String, String> description = <String, String>{};
   Map<String, String>? transcript = <String, String>{};
-  Map<String, String>? tags = <String, String>{};
-  Map<String, String>? sections = <String, String>{};
-  Map<String, String>? subtitles = <String, String>{};
   String? imageBanner;
   String audioFile;
   int audioFileDuration;
@@ -142,9 +139,6 @@ class ESRAddArchive {
     required this.name,
     required this.description,
     this.transcript,
-    this.tags,
-    this.sections,
-    this.subtitles,
     this.imageBanner,
     required this.audioFile,
     required this.audioFileDuration,

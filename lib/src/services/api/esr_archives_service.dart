@@ -54,30 +54,6 @@ class ESRArchivesService {
       }
     }
 
-    if (archive.tags != null){
-      for (var tagEntry in archive.tags!.entries){
-        request.fields.addAll({
-          "${tagEntry.key}[tags]": tagEntry.value
-        });
-      }
-    }
-
-    if (archive.sections != null){
-      for (var sectionEntry in archive.sections!.entries){
-        request.fields.addAll({
-          "${sectionEntry.key}[sections]": sectionEntry.value
-        });
-      }
-    }
-
-    if (archive.subtitles != null){
-      for (var subtitleEntry in archive.subtitles!.entries){
-        request.fields.addAll({
-          "${subtitleEntry.key}[subtitles]": subtitleEntry.value
-        });
-      }
-    }
-
     if (archive.imageBanner != null){
       request.files.add(
           await http.MultipartFile.fromPath('en[banner]', archive.imageBanner.toString())
