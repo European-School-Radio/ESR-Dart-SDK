@@ -16,7 +16,7 @@ class ESRJazlerNowPlayingWebsocketService {
 
   ESRJazlerNowPlayingWebsocketService() {
     if (sdk.env == ESREnvironments.test){
-      _baseWebSocketURL = "${ESRServerConfig.webBaseTestUrl}/jazler-now-on-air/";
+      _baseWebSocketURL = "${ESRServerConfig.websocketTestUrl}/jazler-now-on-air/";
     } else {
       _baseWebSocketURL = "${ESRServerConfig.websocketUrl}/jazler-now-on-air/";
     }

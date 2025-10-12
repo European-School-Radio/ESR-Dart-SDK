@@ -20,10 +20,10 @@ class ESRProductionsNowPlayingWebsocketService {
   ESRProductionsNowPlayingWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
-          "${ESRServerConfig.webBaseTestUrl}/productions-now-playing/";
+          "${ESRServerConfig.websocketTestUrl}/productions-now-playing/";
     } else {
       _baseWebSocketURL =
-          "${ESRServerConfig.webBaseTestUrl}/productions-now-playing/";
+          "${ESRServerConfig.websocketUrl}/productions-now-playing/";
     }
   }
 
