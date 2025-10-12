@@ -3,7 +3,6 @@ import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRProductionsNowPlayingResults {
   String message = "";
-  int maxItems = 0;
   bool hasNowPlayingProduction = false;
   List<DateTime> broadcastDays = [];
   List<DateTime> broadcastTimeStarts = [];
@@ -12,7 +11,6 @@ class ESRProductionsNowPlayingResults {
 
   ESRProductionsNowPlayingResults(
       {required this.message,
-      required this.maxItems,
       required this.hasNowPlayingProduction,
       required this.broadcastDays,
       required this.broadcastTimeStarts,
@@ -24,7 +22,6 @@ class ESRProductionsNowPlayingResults {
 
     return ESRProductionsNowPlayingResults(
       message: response["message"],
-      maxItems: response["max_item"],
       hasNowPlayingProduction: nowPlayingProductionsParsed["has_now_playing_production"],
       broadcastDays: (nowPlayingProductionsParsed['found_broadcast_days'] as List)
           .map((dateStr) => DateTime.parse("$dateStr 00:00:00").toLocal())
