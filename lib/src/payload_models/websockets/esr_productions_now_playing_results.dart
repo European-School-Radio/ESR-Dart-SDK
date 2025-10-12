@@ -32,9 +32,11 @@ class ESRProductionsNowPlayingResults {
       broadcastTimeEnds: (nowPlayingProductionsParsed['found_time_end'] as List)
           .map((dateStr) => DateTime.parse("1970-01-01 $dateStr").toLocal())
           .toList(),
-      nowPlayingProductions: (nowPlayingProductionsParsed['now_playing_production_details'] as List)
-          .map((prod) => ESRProduction.fromJson(prod))
-          .toList()
+        nowPlayingProductions: (nowPlayingProductionsParsed['now_playing_production_details'] != null)
+            ? (nowPlayingProductionsParsed['now_playing_production_details'] as List)
+            .map((prod) => ESRProduction.fromJson(prod))
+            .toList()
+            : []
     );
   }
 }
