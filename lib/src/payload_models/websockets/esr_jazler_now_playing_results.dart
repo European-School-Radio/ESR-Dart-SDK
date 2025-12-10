@@ -33,6 +33,13 @@ class ESRJazlerNowPlayingResults {
 
 
     List<String> splitMediaRunTime = nowPlayingSongParsed["media_runtime"].toString().split(":");
+    int mediaRunTimeMinutes = 0;
+    int mediaRunTimeSeconds = 0;
+
+    if (splitMediaRunTime.length == 2){
+      mediaRunTimeMinutes = int.tryParse(splitMediaRunTime[0]) ?? 0;
+      mediaRunTimeSeconds = int.tryParse(splitMediaRunTime[1]) ?? 0;
+    }
 
     return ESRJazlerNowPlayingResults(
       message: (response["message"]) ?? "",
@@ -41,7 +48,7 @@ class ESRJazlerNowPlayingResults {
       songTitle: nowPlayingSongParsed["song_title"],
       artistName: nowPlayingSongParsed["artist_name"],
       jazlerID: nowPlayingSongParsed["jazler_id"],
-      mediaRuntime: Duration(minutes: int.parse(splitMediaRunTime[0]), seconds: int.parse(splitMediaRunTime[1])),
+      mediaRuntime: Duration(minutes: mediaRunTimeMinutes, seconds: mediaRunTimeSeconds),
       expireTime: parsedExpireTime.subtract(greeceOffset).toLocal()
     );
   }
