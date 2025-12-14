@@ -58,6 +58,7 @@ export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
 export 'src/models/api/esr_reservation_slot.dart' show ESRReservationSlot;
 export 'src/models/api/esr_user_jwt_data.dart' show ESRUserJwtData;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
+export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
 // Wire Models
 export 'src/payload_models/esr_productions_paginated_results.dart' show ESRProductionsPaginatedResults;

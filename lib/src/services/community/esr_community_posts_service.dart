@@ -74,4 +74,18 @@ class ESRCommunityPostsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRCommunityPostReactions> getPostReactionsByUserForPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/reactions/check/all/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityPostReactions.fromJson(jsonData);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
