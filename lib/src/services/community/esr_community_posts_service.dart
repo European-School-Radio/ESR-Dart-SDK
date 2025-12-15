@@ -88,4 +88,102 @@ class ESRCommunityPostsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<int?> addAmazedReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/amazed-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addAngerReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/anger-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addBadReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/bad-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addCoolReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/cool-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addJoyReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/joy-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addLikeReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/like-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<int?> addLolReactionToPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/lol-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return jsonData["meta_id"];
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
