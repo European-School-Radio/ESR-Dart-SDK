@@ -22,13 +22,13 @@ class ESRCommunityPostReactions{
       return ESRCommunityPostReactions();
     }
     return ESRCommunityPostReactions(
-        lolReactionID: json["lol_reaction_meta_id"],
-        likeReactionID: json["like_reaction_meta_id"],
-        joyReactionID: json["joy_reaction_meta_id"],
-        coolReactionID: json["cool_reaction_meta_id"],
-        badReactionID: json["bad_reaction_meta_id"],
-        angerReactionID: json["anger_reaction_meta_id"],
-        amazedReactionID: json["amazed_reaction_meta_id"]
+        lolReactionID: (json["lol_reaction_meta_id"] != null) ? int.parse(json["lol_reaction_meta_id"]) : null,
+        likeReactionID: (json["like_reaction_meta_id"] != null) ? int.parse(json["like_reaction_meta_id"]) : null,
+        joyReactionID: (json["joy_reaction_meta_id"] != null) ? int.parse(json["joy_reaction_meta_id"]) : null,
+        coolReactionID: (json["cool_reaction_meta_id"] != null) ? int.parse(json["cool_reaction_meta_id"]) : null,
+        badReactionID: (json["bad_reaction_meta_id"] != null) ? int.parse(json["bad_reaction_meta_id"]) : null,
+        angerReactionID: (json["anger_reaction_meta_id"] != null) ? int.parse(json["anger_reaction_meta_id"]) : null,
+        amazedReactionID: (json["amazed_reaction_meta_id"] != null) ? int.parse(json["amazed_reaction_meta_id"]) : null
     );
   }
 }
