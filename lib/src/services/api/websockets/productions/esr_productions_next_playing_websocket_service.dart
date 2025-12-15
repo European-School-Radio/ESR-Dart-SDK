@@ -74,7 +74,7 @@ class ESRProductionsNextPlayingWebsocketService {
         disconnect();
       },
       onDone: () {
-        disconnect();
+        _isConnected = false;
       },
     );
   }
@@ -102,12 +102,17 @@ class ESRProductionsNextPlayingWebsocketService {
   }
 
   void disconnect() {
-    if (!_isConnected) {
-      throw WebsocketNotConnectedException("WebSocket is NOT connected");
+    if (!_isConnected){
+      return;
     }
 
     _isConnected = false;
+
     _channel?.sink.close(status.normalClosure);
-    _controller.close();
+    _channel = null;
+
+    if (!_controller.isClosed) {
+      _controller.close();
+    }
   }
 }
