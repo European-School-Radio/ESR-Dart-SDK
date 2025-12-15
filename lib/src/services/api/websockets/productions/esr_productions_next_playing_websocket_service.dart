@@ -107,7 +107,7 @@ class ESRProductionsNextPlayingWebsocketService {
     }
 
     _isConnected = false;
-    _channel?.sink.close(status.goingAway);
+    _channel?.sink.close(status.normalClosure);
     _controller.close();
   }
 }
