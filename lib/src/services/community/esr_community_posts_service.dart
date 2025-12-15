@@ -186,4 +186,88 @@ class ESRCommunityPostsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<void> removeAmazedReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/amazed-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeAngerReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/anger-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeBadReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/bad-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeCoolReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/cool-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeJoyReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/joy-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeLikeReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/like-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<void> removeLolReactionFromPost(int id) async {
+    var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/lol-reaction-post/$id'));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      await response.stream.bytesToString();
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
