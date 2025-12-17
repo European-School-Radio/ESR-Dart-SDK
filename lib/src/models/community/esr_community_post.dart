@@ -12,6 +12,7 @@ class ESRCommunityPost {
   String content = "";
   String excerpt = "";
   String? featuredMediaUrl = "";
+  String? featuredMediaAlternativeText = "";
   int commentCounter = 0;
   int likeCounter = 0;
   int lolReactionCounter = 0;
@@ -33,6 +34,7 @@ class ESRCommunityPost {
     required this.content,
     required this.excerpt,
     required this.featuredMediaUrl,
+    required this.featuredMediaAlternativeText,
     required this.commentCounter,
     required this.likeCounter,
     required this.lolReactionCounter,
@@ -62,6 +64,7 @@ class ESRCommunityPost {
         content: json['content']['rendered'],
         excerpt: json['excerpt']['rendered'],
         featuredMediaUrl: json['featured_image']['href'],
+        featuredMediaAlternativeText: json['featured_image']['alternative_text'],
         commentCounter: json['comments_counter'],
         likeCounter: int.parse(json['reactions_counter']['reaction_like']),
         lolReactionCounter: int.parse(json['reactions_counter']['reaction_lol']),
