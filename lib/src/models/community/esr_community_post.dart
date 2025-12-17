@@ -3,7 +3,6 @@ import 'package:html_unescape/html_unescape.dart';
 class ESRCommunityPost {
   int id = 0;
   DateTime publishedDate = DateTime.now();
-  DateTime publishedDateUtc = DateTime.now();
   String postUrl = "";
   String slug = "";
   String status = "";
@@ -25,7 +24,6 @@ class ESRCommunityPost {
   ESRCommunityPost({
     required this.id,
     required this.publishedDate,
-    required this.publishedDateUtc,
     required this.postUrl,
     required this.slug,
     required this.status,
@@ -54,8 +52,7 @@ class ESRCommunityPost {
 
     return ESRCommunityPost(
         id: json['id'],
-        publishedDate: DateTime.parse(json['date']),
-        publishedDateUtc: DateTime.parse(json['date_gmt']),
+        publishedDate: DateTime.parse(json['date_gmt'] + "Z").toLocal(),
         postUrl: json['link'],
         slug: json['slug'],
         status: json['status'],
