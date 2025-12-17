@@ -7,6 +7,7 @@ class ESRProduction {
   String? imageBanner;
   String? videoBanner;
   String? spot;
+  String? imageBannerAlternativeText;
   ESRSchoolYear schoolYear;
   ESRUsersSchools userSchool;
   ESRProductionType productionType;
@@ -29,6 +30,7 @@ class ESRProduction {
     this.imageBanner,
     this.videoBanner,
     this.spot,
+    this.imageBannerAlternativeText,
     required this.schoolYear,
     required this.userSchool,
     required this.productionType,
@@ -63,6 +65,7 @@ class ESRProduction {
       imageBanner: json['image_banner'],
       videoBanner: json['video_banner'],
       spot: json['spot'],
+      imageBannerAlternativeText: json["image_banner_alternative_text"],
       schoolYear: ESRSchoolYear.fromJson(json['school_year']),
       userSchool: ESRUsersSchools.fromJson(json['user_school']),
       productionType: ESRProductionType.fromJson(json['production_type']),
