@@ -41,22 +41,22 @@ class ESRJazlerNowPlayingResults {
       mediaRunTimeSeconds = int.tryParse(splitMediaRunTime[1]) ?? 0;
     }
 
-    String eventType = "";
+    String? eventType = "";
     try {
       eventType = nowPlayingSongParsed["event_type"];
     } on Exception {}
 
-    String songTitle = "";
+    String? songTitle = "";
     try {
       songTitle = nowPlayingSongParsed["song_title"];
     } on Exception {}
 
-    String artistName = "";
+    String? artistName = "";
     try {
       artistName = nowPlayingSongParsed["artist_name"];
     } on Exception {}
 
-    String jazlerID = "";
+    String? jazlerID = "";
     try {
       jazlerID = nowPlayingSongParsed["jazler_id"];
     } on Exception {}
@@ -65,10 +65,10 @@ class ESRJazlerNowPlayingResults {
     return ESRJazlerNowPlayingResults(
       message: (response["message"]) ?? "",
       startTime: parsedStartTime.subtract(greeceOffset).toLocal(),
-      eventType: eventType,
-      songTitle: songTitle,
-      artistName: artistName,
-      jazlerID: jazlerID,
+      eventType: eventType ?? "",
+      songTitle: songTitle ?? "",
+      artistName: artistName ?? "",
+      jazlerID: jazlerID ?? "",
       mediaRuntime: Duration(minutes: mediaRunTimeMinutes, seconds: mediaRunTimeSeconds),
       expireTime: parsedExpireTime.subtract(greeceOffset).toLocal()
     );
