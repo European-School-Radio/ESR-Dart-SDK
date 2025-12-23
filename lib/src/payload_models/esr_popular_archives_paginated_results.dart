@@ -16,12 +16,7 @@ class ESRPopularArchivesPaginatedResults {
   factory ESRPopularArchivesPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRArchive> serializedArchives = [];
 
-    List<dynamic> archivesList;
-    try {
-      archivesList = json['popular_archives'] as List<dynamic>;
-    } on Exception {
-      archivesList = json['results'] as List<dynamic>;
-    }
+    List<dynamic> archivesList = (json['popular_archives'] ?? json['results']) as List<dynamic>;
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
