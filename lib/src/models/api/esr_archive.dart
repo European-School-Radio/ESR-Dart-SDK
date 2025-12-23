@@ -8,6 +8,7 @@ class ESRArchive {
   String? description = "";
   String? banner = "";
   String? mp3File = "";
+  String? bannerAlternativeText = "";
   int? duration = 0;
   String? transcript = "";
   String? sections = "";
@@ -34,6 +35,7 @@ class ESRArchive {
     required this.description,
     required this.banner,
     required this.mp3File,
+    required this.bannerAlternativeText,
     required this.duration,
     required this.transcript,
     required this.sections,
@@ -108,6 +110,7 @@ class ESRArchive {
         description: json['description'],
         banner: json['banner'],
         mp3File: json['mp3_file'],
+        bannerAlternativeText: json['banner_alternative_text'],
         duration: int.parse(json['duration'].toString()),
         transcript: json['transcript'],
         sections: json['sections'],
