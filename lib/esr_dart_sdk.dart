@@ -80,6 +80,8 @@ export 'src/payload_models/esr_productions_add_result.dart' show ESRProductionsA
 export 'src/payload_models/esr_archives_add_result.dart' show ESRArchivesAddResults;
 export 'src/payload_models/esr_production_subject_add_result.dart' show ESRProductionSubjectAddResult;
 export 'src/payload_models/esr_archive_subject_add_result.dart' show ESRArchiveSubjectAddResult;
+export 'src/payload_models/esr_archives_for_you_results.dart' show ESRArchivesForYouResults;
+export 'src/payload_models/esr_archives_country_popular_results.dart' show ESRArchivesCountryPopularResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
@@ -97,6 +99,7 @@ export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNot
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
 export 'src/enums/sorting/esr_production_sorting.dart' show ESRProductionSorting;
+export 'src/enums/sorting/esr_archive_sorting.dart' show ESRArchiveSorting;
 export 'src/enums/sorting/esr_lang_sorting.dart' show ESRLangSorting;
 export 'src/enums/sorting/esr_subject_sorting.dart' show ESRSubjectSorting;
 export 'src/enums/sorting/esr_school_type_sorting.dart' show ESRSchoolTypeSorting;
