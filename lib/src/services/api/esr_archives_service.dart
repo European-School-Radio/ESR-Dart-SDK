@@ -117,7 +117,11 @@ class ESRArchivesService {
       urlBuilder.addQueryParam("lang", language.flag);
     }
 
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
