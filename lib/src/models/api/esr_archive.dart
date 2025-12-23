@@ -14,6 +14,7 @@ class ESRArchive {
   String? sections = "";
   String? subtitles = "";
   ESRProduction? production;
+  ESRLang lang;
   DateTime broadcastDay = DateTime.now();
   DateTime startTime = DateTime.now();
   DateTime endTime = DateTime.now();
@@ -41,6 +42,7 @@ class ESRArchive {
     required this.sections,
     required this.subtitles,
     required this.production,
+    required this.lang,
     required this.broadcastDay,
     required this.startTime,
     required this.endTime,
@@ -116,6 +118,7 @@ class ESRArchive {
         sections: json['sections'],
         subtitles: json['sections'],
         production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
+        lang: ESRLang.fromJson(json['lang']),
         broadcastDay: localBroadcastDay,
         startTime: localStartTime,
         endTime: localEndTime,
