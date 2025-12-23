@@ -16,12 +16,7 @@ class ESRCountriesPaginatedResults {
   factory ESRCountriesPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRCountry> serializedCountries = [];
 
-    List<dynamic> countriesList;
-    if (limit == null || limit != -1) {
-      countriesList = json['results'] as List<dynamic>;
-    } else {
-      countriesList = json['countries'] as List<dynamic>;
-    }
+    List<dynamic> countriesList = (json['countries'] ?? json['results']) as List<dynamic>;
 
     serializedCountries = countriesList
         .map((singleCountry) => ESRCountry.fromJson(singleCountry as Map<String, dynamic>))

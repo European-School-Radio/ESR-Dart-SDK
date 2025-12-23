@@ -16,12 +16,7 @@ class ESRFrequenciesPaginatedResults {
   factory ESRFrequenciesPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRFrequency> serializedFrequencies = [];
 
-    List<dynamic> frequenciesList;
-    if (limit == null || limit != -1) {
-      frequenciesList = json['results'] as List<dynamic>;
-    } else {
-      frequenciesList = json['frequencies'] as List<dynamic>;
-    }
+    List<dynamic> frequenciesList = (json['frequencies'] ?? json['results']) as List<dynamic>;
 
     serializedFrequencies = frequenciesList
         .map((singleFrequency) => ESRFrequency.fromJson(singleFrequency as Map<String, dynamic>))

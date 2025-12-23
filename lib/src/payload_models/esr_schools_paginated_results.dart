@@ -16,12 +16,7 @@ class ESRSchoolsPaginatedResults {
   factory ESRSchoolsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRSchool> serializedSchools = [];
 
-    List<dynamic> schoolsList;
-    if (limit == null || limit != -1) {
-      schoolsList = json['results'] as List<dynamic>;
-    } else {
-      schoolsList = json['schools'] as List<dynamic>;
-    }
+    List<dynamic> schoolsList = (json['schools'] ?? json['results']) as List<dynamic>;
 
     serializedSchools = schoolsList
         .map((singleSchool) => ESRSchool.fromJson(singleSchool as Map<String, dynamic>))

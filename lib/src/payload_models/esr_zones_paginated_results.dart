@@ -16,12 +16,7 @@ class ESRZonesPaginatedResults {
   factory ESRZonesPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRZone> serializedZones = [];
 
-    List<dynamic> zonesList;
-    if (limit == null || limit != -1) {
-      zonesList = json['results'] as List<dynamic>;
-    } else {
-      zonesList = json['zones'] as List<dynamic>;
-    }
+    List<dynamic> zonesList = (json['zones'] ?? json['results']) as List<dynamic>;
 
     serializedZones = zonesList
         .map((singleZone) => ESRZone.fromJson(singleZone as Map<String, dynamic>))

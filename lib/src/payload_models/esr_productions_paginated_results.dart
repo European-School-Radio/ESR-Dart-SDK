@@ -16,12 +16,7 @@ class ESRProductionsPaginatedResults {
   factory ESRProductionsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRProduction> serializedProductions = [];
 
-    List<dynamic> productionsList;
-    if (limit == null || limit != -1) {
-      productionsList = json['results'] as List<dynamic>;
-    } else {
-      productionsList = json['productions'] as List<dynamic>;
-    }
+    List<dynamic> productionsList = (json['productions'] ?? json['results']) as List<dynamic>;
 
     serializedProductions = productionsList
         .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))

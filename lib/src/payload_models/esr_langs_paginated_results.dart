@@ -16,12 +16,7 @@ class ESRLangsPaginatedResults {
   factory ESRLangsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRLang> serializedLangs = [];
 
-    List<dynamic> langsList;
-    if (limit == null || limit != -1) {
-      langsList = json['results'] as List<dynamic>;
-    } else {
-      langsList = json['langs'] as List<dynamic>;
-    }
+    List<dynamic> langsList = (json['langs'] ?? json['results']) as List<dynamic>;
 
     serializedLangs = langsList
         .map((singleLang) => ESRLang.fromJson(singleLang as Map<String, dynamic>))
