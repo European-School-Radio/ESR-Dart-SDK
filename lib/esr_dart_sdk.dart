@@ -24,6 +24,7 @@ export 'src/services/api/esr_school_years_service.dart' show ESRSchoolYearsServi
 export 'src/services/api/esr_archives_service.dart' show ESRArchivesService;
 export 'src/services/api/esr_production_subjects_service.dart' show ESRProductionSubjectsService;
 export 'src/services/api/esr_archive_subjects_service.dart' show ESRArchiveSubjectsService;
+export 'src/services/api/esr_popular_archives_service.dart' show ESRPopularArchivesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -82,6 +83,7 @@ export 'src/payload_models/esr_production_subject_add_result.dart' show ESRProdu
 export 'src/payload_models/esr_archive_subject_add_result.dart' show ESRArchiveSubjectAddResult;
 export 'src/payload_models/esr_archives_for_you_results.dart' show ESRArchivesForYouResults;
 export 'src/payload_models/esr_archives_country_popular_results.dart' show ESRArchivesCountryPopularResults;
+export 'src/payload_models/esr_popular_archives_paginated_results.dart' show ESRPopularArchivesPaginatedResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
