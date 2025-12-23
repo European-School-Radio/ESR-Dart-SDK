@@ -17,10 +17,10 @@ class ESRPopularArchivesPaginatedResults {
     List<ESRArchive> serializedArchives = [];
 
     List<dynamic> archivesList;
-    if (limit == null || limit == -1){
-      archivesList = json['results'] as List<dynamic>;
-    } else {
+    try {
       archivesList = json['popular_archives'] as List<dynamic>;
+    } on Exception {
+      archivesList = json['results'] as List<dynamic>;
     }
 
     serializedArchives = archivesList
