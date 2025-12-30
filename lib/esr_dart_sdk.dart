@@ -117,3 +117,4 @@ export 'src/utils/esr_production_url_utils.dart' show ESRProductionUrlUtils;
 export 'src/utils/esr_archive_url_utils.dart' show ESRArchiveUrlUtils;
 export 'src/utils/esr_school_url_utils.dart' show ESRSchoolUrlUtils;
 export 'src/utils/esr_user_url_utils.dart' show ESRUserUrlUtils;
+export 'src/utils/esr_jalzer_url_utils.dart' show ESRJazlerUrlUtils;
