@@ -14,4 +14,15 @@ class ESRJazlerUrlUtils {
 
     return "$baseURL/jazler/get-current-album-image";
   }
+
+  static String getLiveRadioPlayerURL(){
+    String baseURL = "";
+    if (sdk.env == ESREnvironments.test){
+      baseURL = ESRServerConfig.webBaseTestUrl;
+    } else {
+      baseURL = ESRServerConfig.webBaseUrl;
+    }
+
+    return "$baseURL/player";
+  }
 }
