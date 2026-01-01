@@ -12,7 +12,18 @@ extension EsrEnvironmentsExtension on ESREnvironments {
       case ESREnvironments.test:
         return 'https://next-dev.europeanschoolradio.eu';
       case ESREnvironments.youthRadio:
-        return "https://europeanschoolradio.eu";
+        return "https://youthradio.eu";
       }
+  }
+
+  String? get requestApplication {
+    switch (this){
+      case ESREnvironments.production:
+        return "european_school_radio";
+      case ESREnvironments.test:
+        return "european_school_radio";
+      case ESREnvironments.youthRadio:
+        return "youth_radio";
+    }
   }
 }

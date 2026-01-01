@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 
 class ESRArchiveUrlUtils {
@@ -17,7 +18,7 @@ class ESRArchiveUrlUtils {
       baseURL = ESRServerConfig.apiUrl;
     }
 
-    return "$baseURL/archive/getBanner/$archiveID?lang=$lang";
+    return "$baseURL/archive/getBanner/$archiveID?lang=$lang&request_application=${sdk.env.requestApplication}";
   }
 
   static String getAudioURL(int archiveID, {ESRLang? language}){
@@ -42,17 +43,6 @@ class ESRArchiveUrlUtils {
       lang = language.flag;
     }
 
-    String baseURL = "";
-    if (sdk.env == ESREnvironments.test){
-      baseURL = ESRServerConfig.webBaseTestUrl;
-    } else if (sdk.env == ESREnvironments.production){
-      baseURL = ESRServerConfig.webBaseUrl;
-    } else if (sdk.env == ESREnvironments.youthRadio){
-      baseURL = ESRServerConfig.webBaseYouthUrl;
-    } else {
-      baseURL = ESRServerConfig.webBaseUrl;
-    }
-
-    return "$baseURL/$lang/episode/$archiveID";
+    return "${sdk.env.value}/$lang/episode/$archiveID";
   }
 }

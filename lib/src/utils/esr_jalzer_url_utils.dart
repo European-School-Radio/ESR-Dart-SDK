@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 
 class ESRJazlerUrlUtils {
@@ -16,13 +17,7 @@ class ESRJazlerUrlUtils {
   }
 
   static String getLiveRadioPlayerURL(){
-    String baseURL = "";
-    if (sdk.env == ESREnvironments.test){
-      baseURL = ESRServerConfig.webBaseTestUrl;
-    } else {
-      baseURL = ESRServerConfig.webBaseUrl;
-    }
 
-    return "$baseURL/player";
+    return "${sdk.env.value}/player";
   }
 }
