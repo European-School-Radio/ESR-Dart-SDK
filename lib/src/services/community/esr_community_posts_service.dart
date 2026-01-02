@@ -61,8 +61,13 @@ class ESRCommunityPostsService {
     }
   }
 
-  Future<ESRCommunityPost> getPostById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/posts/$id'));
+  Future<ESRCommunityPost> getPostById(int id, {ESRLang? language}) async {
+    String lang = "en";
+    if (language != null){
+      lang = language.flag;
+    }
+
+    var request = http.Request('GET', Uri.parse('$_baseURL/$lang/wp-json/wp/v2/posts/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
