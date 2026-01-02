@@ -108,7 +108,7 @@ class ESRArchive {
 
     int? archiveDuration;
     if (json['duration'] != null){
-      if (IsNumericUtils.isNumeric(json['duration'])){
+      if (IsNumericUtils.isNumeric(json['duration'].toString())){
         archiveDuration = int.parse(json['duration'].toString());
       }
     }
