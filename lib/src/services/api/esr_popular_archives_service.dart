@@ -18,7 +18,8 @@ class ESRPopularArchivesService {
 
   Future<ESRPopularArchivesPaginatedResults> getPopularArchives({
     int? page,
-    int? limit
+    int? limit,
+    ESRLang? language
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/popular-archives');
 
@@ -28,6 +29,12 @@ class ESRPopularArchivesService {
 
     if (limit != null){
       urlBuilder.addQueryParam("limit", limit.toString());
+    }
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
