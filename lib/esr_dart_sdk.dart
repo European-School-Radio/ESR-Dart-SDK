@@ -97,6 +97,7 @@ export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
 export 'src/exceptions/information_not_valid_exception.dart' show InformationNotValidException;
 export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;
 export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
+export 'src/exceptions/contest_submission_archive_exception.dart' show ContestSubmissionArchiveException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;

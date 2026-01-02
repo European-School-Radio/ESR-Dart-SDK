@@ -19,6 +19,33 @@ class ESRArchivesService {
     }
   }
 
+  Future<ESRArchive> getArchiveById(int id, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archive/$id');
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+
+      if (jsonData['is_active_contest_submission'] != null){
+        throw ContestSubmissionArchiveException("Archive $id is an active contest submission and cannot be displayed yet");
+      }
+
+      return ESRArchive.fromJson(jsonData['archive']);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Archive with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRArchivesAddResults> addArchive(ESRAddArchive archive, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/archive/add');
 
