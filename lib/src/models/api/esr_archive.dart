@@ -106,6 +106,13 @@ class ESRArchive {
       utcBroadcastDay.second,
     ).toLocal();
 
+    int? archiveDuration;
+    if (json['duration'] != null){
+      if (IsNumericUtils.isNumeric(json['duration'])){
+        archiveDuration = int.parse(json['duration']);
+      }
+    }
+
     return ESRArchive(
         id: json['id'],
         name: json['name'],
@@ -113,7 +120,7 @@ class ESRArchive {
         banner: json['banner'],
         mp3File: json['mp3_file'],
         bannerAlternativeText: json['banner_alternative_text'],
-        duration: IsNumericUtils.isNumeric(json['duration']) ? int.parse(json['duration'].toString()) : null,
+        duration: archiveDuration,
         transcript: json['transcript'],
         sections: json['sections'],
         subtitles: json['sections'],
