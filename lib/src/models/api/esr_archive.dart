@@ -113,7 +113,7 @@ class ESRArchive {
         banner: json['banner'],
         mp3File: json['mp3_file'],
         bannerAlternativeText: json['banner_alternative_text'],
-        duration: int.parse(json['duration'].toString()),
+        duration: IsNumericUtils.isNumeric(json['duration']) ? int.parse(json['duration'].toString()) : null,
         transcript: json['transcript'],
         sections: json['sections'],
         subtitles: json['sections'],
