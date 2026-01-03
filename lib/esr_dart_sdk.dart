@@ -84,6 +84,7 @@ export 'src/payload_models/esr_archive_subject_add_result.dart' show ESRArchiveS
 export 'src/payload_models/esr_archives_for_you_results.dart' show ESRArchivesForYouResults;
 export 'src/payload_models/esr_archives_country_popular_results.dart' show ESRArchivesCountryPopularResults;
 export 'src/payload_models/esr_popular_archives_paginated_results.dart' show ESRPopularArchivesPaginatedResults;
+export 'src/payload_models/esr_archives_similar_results.dart' show ESRArchivesSimilarResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
