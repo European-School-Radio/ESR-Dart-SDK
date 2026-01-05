@@ -131,3 +131,28 @@ class ESRArchivesSimilarResults {
     );
   }
 }
+
+class ESRArchivesMultipleResults {
+  String status = "";
+  List<ESRArchive> archivesList = [];
+
+  ESRArchivesMultipleResults({
+    required this.status,
+    required this.archivesList
+  });
+
+  factory ESRArchivesMultipleResults.fromJson(Map<String, dynamic> json){
+    List<ESRArchive> serializedArchives = [];
+
+    List<dynamic> archivesList = json['archives_list'] as List<dynamic>;
+
+    serializedArchives = archivesList
+        .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .toList();
+
+    return ESRArchivesMultipleResults(
+      status: json["status"],
+      archivesList: serializedArchives
+    );
+  }
+}
