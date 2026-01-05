@@ -18,7 +18,7 @@ class ESRProductionSubjectsService {
     }
   }
 
-  Future<ESRProductionSubjectAddResult> addProductionSubject(ESRAddProductionSubject productionSubject, String jwt) async {
+  Future<ESRProductionSubjectsAddResult> addProductionSubject(ESRAddProductionSubject productionSubject, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/production-subject/add');
 
     var headers = {
@@ -36,7 +36,7 @@ class ESRProductionSubjectsService {
     if (response.statusCode == 201) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRProductionSubjectAddResult.fromJson(jsonData);
+      return ESRProductionSubjectsAddResult.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

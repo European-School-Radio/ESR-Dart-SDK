@@ -16,7 +16,7 @@ class ESRPopularArchivesService {
     }
   }
 
-  Future<ESRPopularArchivesPaginatedResults> getPopularArchives({
+  Future<ESRArchivesPopularPaginatedResults> getPopularArchives({
     int? page,
     int? limit,
     ESRLang? language
@@ -42,7 +42,7 @@ class ESRPopularArchivesService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRPopularArchivesPaginatedResults.fromJson(jsonData, limit);
+      return ESRArchivesPopularPaginatedResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

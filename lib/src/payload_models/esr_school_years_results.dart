@@ -11,8 +11,8 @@ class ESRLatestSchoolYearResult{
 
   factory ESRLatestSchoolYearResult.fromJson(Map<String, dynamic> json){
     return ESRLatestSchoolYearResult(
-      status: json['status'],
-      schoolYear: ESRSchoolYear.fromJson(json["school_year"])
+        status: json['status'],
+        schoolYear: ESRSchoolYear.fromJson(json["school_year"])
     );
   }
 }

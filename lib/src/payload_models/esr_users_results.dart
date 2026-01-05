@@ -1,19 +1,19 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
-class ESRUserLoginResults {
+class ESRUsersLoginResults {
   bool success;
   String status;
   String message;
   ESRUserJwtData? jwtData;
 
-  ESRUserLoginResults(
+  ESRUsersLoginResults(
       {required this.success,
       required this.status,
       required this.message,
       this.jwtData});
 
-  factory ESRUserLoginResults.fromJson(Map<String, dynamic> json) {
-    return ESRUserLoginResults(
+  factory ESRUsersLoginResults.fromJson(Map<String, dynamic> json) {
+    return ESRUsersLoginResults(
         success: (json["status"] == "success"),
         status: json["status"],
         message: json["message"],

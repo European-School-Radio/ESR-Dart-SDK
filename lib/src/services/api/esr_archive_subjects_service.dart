@@ -18,7 +18,7 @@ class ESRArchiveSubjectsService {
     }
   }
 
-  Future<ESRArchiveSubjectAddResult> addArchiveSubject(ESRAddArchiveSubject archiveSubject, String jwt) async {
+  Future<ESRArchiveSubjectsAddResult> addArchiveSubject(ESRAddArchiveSubject archiveSubject, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/archive-subject/add');
 
     var headers = {
@@ -36,7 +36,7 @@ class ESRArchiveSubjectsService {
     if (response.statusCode == 201) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRArchiveSubjectAddResult.fromJson(jsonData);
+      return ESRArchiveSubjectsAddResult.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

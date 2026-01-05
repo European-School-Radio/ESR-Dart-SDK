@@ -1,18 +1,18 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
-class ESRArchiveSubjectAddResult {
+class ESRArchiveSubjectsAddResult {
   String status;
   String message;
   ESRArchiveSubject archiveSubject;
 
-  ESRArchiveSubjectAddResult({
+  ESRArchiveSubjectsAddResult({
     required this.status,
     required this.message,
     required this.archiveSubject
   });
   
-  factory ESRArchiveSubjectAddResult.fromJson(Map<String, dynamic> json){
-    return ESRArchiveSubjectAddResult(
+  factory ESRArchiveSubjectsAddResult.fromJson(Map<String, dynamic> json){
+    return ESRArchiveSubjectsAddResult(
       status: json["status"],
       message: json["message"],
       archiveSubject: ESRArchiveSubject.fromJson(json["archive_subject"])

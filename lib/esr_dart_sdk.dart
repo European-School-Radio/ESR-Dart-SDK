@@ -62,34 +62,27 @@ export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
 // Wire Models
-export 'src/payload_models/esr_productions_paginated_results.dart' show ESRProductionsPaginatedResults;
-export 'src/payload_models/esr_langs_paginated_results.dart' show ESRLangsPaginatedResults;
-export 'src/payload_models/esr_subjects_paginated_results.dart' show ESRSubjectsPaginatedResults;
-export 'src/payload_models/esr_school_types_paginated_results.dart' show ESRSchoolTypesPaginatedResults;
-export 'src/payload_models/esr_countries_paginated_results.dart' show ESRCountriesPaginatedResults;
-export 'src/payload_models/esr_schools_paginated_results.dart' show ESRSchoolsPaginatedResults;
-export 'src/payload_models/esr_production_types_paginated_results.dart' show ESRProductionTypesPaginatedResults;
-export 'src/payload_models/esr_zones_paginated_results.dart' show ESRZonesPaginatedResults;
-export 'src/payload_models/esr_frequencies_paginated_results.dart' show ESRFrequenciesPaginatedResults;
-export 'src/payload_models/esr_reservations_min_max_dates_results.dart' show ESRReservationsMinMaxDatesResults;
-export 'src/payload_models/esr_reservation_slots_by_date_results.dart' show ESRReservationSlotsByDateResults;
-export 'src/payload_models/esr_now_playing_zone_results.dart' show ESRNowPlayingZoneResults;
-export 'src/payload_models/esr_user_login_results.dart' show ESRUserLoginResults;
-export 'src/payload_models/esr_user_schools_active_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
-export 'src/payload_models/esr_latest_school_year_result.dart' show ESRLatestSchoolYearResult;
-export 'src/payload_models/esr_productions_add_result.dart' show ESRProductionsAddResults;
-export 'src/payload_models/esr_archives_add_result.dart' show ESRArchivesAddResults;
-export 'src/payload_models/esr_production_subject_add_result.dart' show ESRProductionSubjectAddResult;
-export 'src/payload_models/esr_archive_subject_add_result.dart' show ESRArchiveSubjectAddResult;
-export 'src/payload_models/esr_archives_for_you_results.dart' show ESRArchivesForYouResults;
-export 'src/payload_models/esr_archives_country_popular_results.dart' show ESRArchivesCountryPopularResults;
-export 'src/payload_models/esr_popular_archives_paginated_results.dart' show ESRPopularArchivesPaginatedResults;
-export 'src/payload_models/esr_archives_similar_results.dart' show ESRArchivesSimilarResults;
+export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults;
+export 'src/payload_models/esr_subjects_results.dart' show ESRSubjectsPaginatedResults;
+export 'src/payload_models/esr_school_types_results.dart' show ESRSchoolTypesPaginatedResults;
+export 'src/payload_models/esr_countries_results.dart' show ESRCountriesPaginatedResults;
+export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults;
+export 'src/payload_models/esr_production_types_results.dart' show ESRProductionTypesPaginatedResults;
+export 'src/payload_models/esr_frequencies_results.dart' show ESRFrequenciesPaginatedResults;
+export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMinMaxDatesResults;
+export 'src/payload_models/esr_reservation_slots_results.dart' show ESRReservationSlotsByDateResults;
+export 'src/payload_models/esr_zones_results.dart' show ESRZonesPaginatedResults, ESRNowPlayingZoneResults;
+export 'src/payload_models/esr_users_results.dart' show ESRUsersLoginResults;
+export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
+export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
+export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
+export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
+export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults;
+export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults;
 
 // WebSockets Wire Models
-export 'src/payload_models/websockets/esr_productions_now_playing_results.dart' show ESRProductionsNowPlayingResults;
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
-export 'src/payload_models/websockets/esr_productions_next_playing_results.dart' show ESRProductionsNextPlayingResults;
+export 'src/payload_models/websockets/esr_productions_results.dart' show ESRProductionsNowPlayingResults, ESRProductionsNextPlayingResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;

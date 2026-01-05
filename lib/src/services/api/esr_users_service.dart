@@ -17,7 +17,7 @@ class ESRUsersService {
     }
   }
 
-  Future<ESRUserLoginResults> loginUsername(String username, String password) async {
+  Future<ESRUsersLoginResults> loginUsername(String username, String password) async {
     final urlBuilder = UrlBuilder('$_apiURL/users/login');
 
     var headers = {
@@ -36,13 +36,13 @@ class ESRUsersService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRUserLoginResults.fromJson(jsonData);
+      return ESRUsersLoginResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
 
-  Future<ESRUserLoginResults> loginEmail(String email, String password) async {
+  Future<ESRUsersLoginResults> loginEmail(String email, String password) async {
     if (!EmailValidator.validate(email)){
       throw InformationNotValidException("Email Address is not valid");
     }
@@ -65,7 +65,7 @@ class ESRUsersService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRUserLoginResults.fromJson(jsonData);
+      return ESRUsersLoginResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

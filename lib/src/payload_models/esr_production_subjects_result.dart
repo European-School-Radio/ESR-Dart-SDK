@@ -1,18 +1,18 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
-class ESRProductionSubjectAddResult {
+class ESRProductionSubjectsAddResult {
   String status;
   String message;
   ESRProductionSubject productionSubject;
 
-  ESRProductionSubjectAddResult({
+  ESRProductionSubjectsAddResult({
     required this.status,
     required this.message,
     required this.productionSubject
   });
   
-  factory ESRProductionSubjectAddResult.fromJson(Map<String, dynamic> json){
-    return ESRProductionSubjectAddResult(
+  factory ESRProductionSubjectsAddResult.fromJson(Map<String, dynamic> json){
+    return ESRProductionSubjectsAddResult(
       status: json["status"],
       message: json["message"],
         productionSubject: ESRProductionSubject.fromJson(json["production_subject"])
