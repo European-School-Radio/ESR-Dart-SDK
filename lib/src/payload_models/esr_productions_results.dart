@@ -50,3 +50,34 @@ class ESRProductionsPaginatedResults {
     );
   }
 }
+
+class ESRProductionsPopularPaginatedResults {
+  int count = 0;
+  String? nextPage;
+  String? previousPage;
+  List<ESRProduction> results = [];
+
+  ESRProductionsPopularPaginatedResults({
+    required this.count,
+    this.nextPage,
+    this.previousPage,
+    required this.results
+  });
+
+  factory ESRProductionsPopularPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRProduction> serializedProductions = [];
+
+    List<dynamic> productionsList = (json['popular_productions'] ?? json['results']) as List<dynamic>;
+
+    serializedProductions = productionsList
+        .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))
+        .toList();
+
+    return ESRProductionsPopularPaginatedResults(
+        count: (limit == null || limit != -1) ? json['count'] : serializedProductions.length,
+        nextPage: (limit == null || limit != -1) ? json['next'] : null,
+        previousPage: (limit == null || limit != -1) ? json['previous'] : null,
+        results: serializedProductions
+    );
+  }
+}
