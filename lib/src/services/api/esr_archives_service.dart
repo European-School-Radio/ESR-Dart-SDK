@@ -287,4 +287,166 @@ class ESRArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRArchivesListResults> archivesSearch({
+    int? page,
+    int? limit,
+    ESRLang? language,
+    ESRArchiveSorting? sort,
+    ESRSortingDirections? direction,
+    String? searchQuery,
+    List<ESRSubject>? subjects,
+    List<ESRAgeCategory>? ageCategories,
+    List<ESRClassificationCategory>? classificationCategories,
+    List<ESRAudioClass>? audioClasses,
+    List<String>? tags,
+    List<ESRSchoolType>? schoolTypes,
+    DateTime? from,
+    DateTime? to,
+    ESRLang? archiveLanguage,
+    List<ESRCountry>? country,
+    List<ESRSchool>? school,
+    List<ESRProductionType>? productionType,
+    List<ESRFrequency>? frequency,
+    List<ESRZone>? zone,
+    Duration? durationFrom,
+    Duration? durationTo,
+    double? averageRatingFrom,
+    double? averageRatingTo,
+    bool? showSchedulable,
+    bool? showPodcast,
+    bool? showSpecial
+  }) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archives/search');
+
+    if (page != null){
+      urlBuilder.addQueryParam("page", page.toString());
+    }
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    }
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
+    }
+
+    if (sort == null){
+      urlBuilder.addQueryParam("sort", ESRArchiveSorting.created.value.toString());
+    } else {
+      urlBuilder.addQueryParam("sort", sort.value.toString());
+    }
+
+    if (direction == null){
+      urlBuilder.addQueryParam("direction", ESRSortingDirections.desc.value.toString());
+    } else {
+      urlBuilder.addQueryParam("direction", direction.value.toString());
+    }
+    
+    if (searchQuery != null){
+      urlBuilder.addQueryParam("q", searchQuery);
+    }
+    
+    if (subjects != null){
+      urlBuilder.addQueryParam("subject", subjects.map((singleSubject) => singleSubject.id).join(","));
+    }
+
+    if (ageCategories != null){
+      urlBuilder.addQueryParam("age_categories", ageCategories.map((singleAgeCategory) => singleAgeCategory.id).join(","));
+    }
+    
+    if (classificationCategories != null){
+      urlBuilder.addQueryParam("classification_categories", classificationCategories.map((singleClassificationCategory) => singleClassificationCategory.id).join(","));
+    }
+
+    if (audioClasses != null){
+      urlBuilder.addQueryParam("audio_classes", audioClasses.map((singleAudioClass) => singleAudioClass.id).join(","));
+    }
+
+    if (tags != null){
+      urlBuilder.addQueryParam("tags", tags.join(","));
+    }
+
+    if (schoolTypes != null){
+      urlBuilder.addQueryParam("school_type", schoolTypes.map((singleSchoolType) => singleSchoolType.id).join(","));
+    }
+
+    if (from != null){
+      urlBuilder.addQueryParam("from", ESRDateTimeFormatter.formatDateRequests(from));
+    }
+
+    if (to != null){
+      urlBuilder.addQueryParam("to", ESRDateTimeFormatter.formatDateRequests(to));
+    }
+    
+    if (archiveLanguage != null){
+      urlBuilder.addQueryParam("archive_lang", archiveLanguage.flag.toString());
+    }
+
+    if (country != null){
+      urlBuilder.addQueryParam("country", country.map((singleCountry) => singleCountry.id).join(","));
+    }
+
+    if (school != null){
+      urlBuilder.addQueryParam("school", school.map((singleSchool) => singleSchool.id).join(","));
+    }
+
+    if (productionType != null){
+      urlBuilder.addQueryParam("ptype", productionType.map((singleProductionType) => singleProductionType.id).join(","));
+    }
+
+    if (frequency != null){
+      urlBuilder.addQueryParam("frequency", frequency.map((singleFrequency) => singleFrequency.id).join(","));
+    }
+
+    if (zone != null){
+      urlBuilder.addQueryParam("zone", zone.map((singleZone) => singleZone.id).join(","));
+    }
+
+    if (durationFrom != null){
+      urlBuilder.addQueryParam("duration_from", durationFrom.inSeconds.toString());
+    }
+
+    if (durationTo != null){
+      urlBuilder.addQueryParam("duration_to", durationTo.inSeconds.toString());
+    }
+    
+    if (averageRatingFrom != null){
+      urlBuilder.addQueryParam("average_rating_from", averageRatingFrom.toString());
+    }
+    
+    if (averageRatingTo != null){
+      urlBuilder.addQueryParam("average_rating_to", averageRatingTo.toString());
+    }
+
+    if (showSchedulable != null && showSchedulable){
+      urlBuilder.addQueryParam("show_schedulable", "1");
+    } else {
+      urlBuilder.addQueryParam("show_schedulable", "0");
+    }
+
+    if (showPodcast != null && showPodcast){
+      urlBuilder.addQueryParam("show_podcasts", "1");
+    } else {
+      urlBuilder.addQueryParam("show_podcasts", "0");
+    }
+
+    if (showSpecial != null && showSpecial){
+      urlBuilder.addQueryParam("show_special", "1");
+    } else {
+      urlBuilder.addQueryParam("show_special", "0");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchivesListResults.fromJson(jsonData, limit);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
