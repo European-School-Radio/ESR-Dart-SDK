@@ -26,6 +26,7 @@ export 'src/services/api/esr_production_subjects_service.dart' show ESRProductio
 export 'src/services/api/esr_archive_subjects_service.dart' show ESRArchiveSubjectsService;
 export 'src/services/api/esr_popular_archives_service.dart' show ESRPopularArchivesService;
 export 'src/services/api/esr_popular_productions_service.dart' show ESRPopularProductionsService;
+export 'src/services/api/esr_age_categories_service.dart' show ESRAgeCategoriesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -58,6 +59,7 @@ export 'src/models/api/esr_zone_subject.dart' show ESRZoneSubject;
 export 'src/models/api/esr_zone_production_type.dart' show ESRZoneProductionType;
 export 'src/models/api/esr_zone_schedules.dart' show ESRZoneSchedules;
 export 'src/models/api/esr_reservation_slot.dart' show ESRReservationSlot;
+export 'src/models/api/esr_age_category.dart' show ESRAgeCategory;
 export 'src/models/api/esr_user_jwt_data.dart' show ESRUserJwtData;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
@@ -80,6 +82,7 @@ export 'src/payload_models/esr_production_subjects_result.dart' show ESRProducti
 export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
 export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults;
 export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults, ESRProductionsPopularPaginatedResults;
+export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategoriesPaginatedResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
@@ -106,6 +109,7 @@ export 'src/enums/sorting/esr_school_sorting.dart' show ESRSchoolSorting;
 export 'src/enums/sorting/esr_production_type_sorting.dart' show ESRProductionTypeSorting;
 export 'src/enums/sorting/esr_zone_sorting.dart' show ESRZoneSorting;
 export 'src/enums/sorting/esr_frequency_sorting.dart' show ESRFrequencySorting;
+export 'src/enums/sorting/esr_age_category_sorting.dart' show ESRAgeCategorySorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
