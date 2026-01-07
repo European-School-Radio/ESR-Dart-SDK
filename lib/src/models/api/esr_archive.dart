@@ -113,12 +113,18 @@ class ESRArchive {
       }
     }
 
+    String? mp3File = json['mp3_file'];
+    mp3File ??= json['mp3_file_file'];
+
+    String? bannerFile = json['banner'];
+    bannerFile ??= json['banner_file'];
+
     return ESRArchive(
         id: json['id'],
         name: json['name'],
         description: json['description'],
-        banner: json['banner'],
-        mp3File: json['mp3_file'],
+        banner: bannerFile,
+        mp3File: mp3File,
         bannerAlternativeText: json['banner_alternative_text'],
         duration: archiveDuration,
         transcript: json['transcript'],
