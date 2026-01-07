@@ -156,3 +156,34 @@ class ESRArchivesMultipleResults {
     );
   }
 }
+
+class ESRArchivesListResults {
+  int count = 0;
+  String? nextPage;
+  String? previousPage;
+  List<ESRArchive> results = [];
+
+  ESRArchivesListResults({
+    required this.count,
+    this.nextPage,
+    this.previousPage,
+    required this.results
+  });
+
+  factory ESRArchivesListResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRArchive> serializedArchives = [];
+
+    List<dynamic> archivesList = (json['archives'] ?? json['results']) as List<dynamic>;
+
+    serializedArchives = archivesList
+        .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .toList();
+
+    return ESRArchivesListResults(
+        count: (limit == null || limit != -1) ? json['count'] : serializedArchives.length,
+        nextPage: (limit == null || limit != -1) ? json['next'] : null,
+        previousPage: (limit == null || limit != -1) ? json['previous'] : null,
+        results: serializedArchives
+    );
+  }
+}

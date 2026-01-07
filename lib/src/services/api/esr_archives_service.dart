@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_archive_sorting.dart';
 import 'dart:io' as io;
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/datetime_formatter.dart';
@@ -235,6 +237,52 @@ class ESRArchivesService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRArchivesMultipleResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRArchivesListResults> getArchivesList({
+    int? page,
+    int? limit,
+    ESRLang? language,
+    ESRArchiveSorting? sort,
+    ESRSortingDirections? direction
+  }) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archives');
+
+    if (page != null){
+      urlBuilder.addQueryParam("page", page.toString());
+    }
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    }
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
+    }
+    
+    if (sort == null){
+      urlBuilder.addQueryParam("sort", ESRArchiveSorting.created.value.toString());
+    } else {
+      urlBuilder.addQueryParam("sort", sort.value.toString());
+    }
+
+    if (direction == null){
+      urlBuilder.addQueryParam("direction", ESRSortingDirections.desc.value.toString());
+    } else {
+      urlBuilder.addQueryParam("direction", direction.value.toString());
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchivesListResults.fromJson(jsonData, limit);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
