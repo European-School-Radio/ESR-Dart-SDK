@@ -4,11 +4,11 @@ import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
-class ESRProductionsArchivesService {
+class ESRPopularProductionsService {
   final sdk = ESRSDK();
   String _apiURL = "";
 
-  ESRProductionsArchivesService(){
+  ESRPopularProductionsService(){
     if (sdk.env == ESREnvironments.test){
       _apiURL = ESRServerConfig.apiTestUrl;
     } else {

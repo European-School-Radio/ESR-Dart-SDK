@@ -25,7 +25,7 @@ export 'src/services/api/esr_archives_service.dart' show ESRArchivesService;
 export 'src/services/api/esr_production_subjects_service.dart' show ESRProductionSubjectsService;
 export 'src/services/api/esr_archive_subjects_service.dart' show ESRArchiveSubjectsService;
 export 'src/services/api/esr_popular_archives_service.dart' show ESRPopularArchivesService;
-export 'src/services/api/esr_popular_productions_service.dart' show ESRProductionsArchivesService;
+export 'src/services/api/esr_popular_productions_service.dart' show ESRPopularProductionsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
