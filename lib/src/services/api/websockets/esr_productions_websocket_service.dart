@@ -264,15 +264,19 @@ class ESRProductionsSearchWebsocketService {
     return _language;
   }
 
-  void setMaxItems(int newMaxItems) {
-    if (_isConnected) {
-      throw WebsocketAlreadyConnectedException(
-          "WebSocket is already connected");
-    }
+  void setPageSize(int newMaxItems) {
     _pageSize = newMaxItems;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "page_size": _pageSize.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
   }
 
-  int getMaxItems() {
+  int getPageSize() {
     return _pageSize;
   }
 
