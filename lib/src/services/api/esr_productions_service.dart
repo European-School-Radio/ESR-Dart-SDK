@@ -82,7 +82,7 @@ class ESRProductionsService {
     ESRProductionSorting? sorting,
     ESRSortingDirections? direction
   }) async {
-    final urlBuilder = UrlBuilder('$_apiURL/production/search');
+    final urlBuilder = UrlBuilder('$_apiURL/productions/search');
 
     if (page != null) {
       urlBuilder.addQueryParam("page", page.toString());
