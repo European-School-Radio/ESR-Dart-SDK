@@ -326,7 +326,7 @@ class ESRProductionsSearchWebsocketService {
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRProductionsPaginatedResults.fromJson(jsonMessage, _pageSize));
+        _controller.add(ESRProductionsPaginatedResults.fromJson(jsonMessage, _pageSize, isWebSocket: true));
       },
       onError: (error) {
         _isConnected = false;

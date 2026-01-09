@@ -33,10 +33,17 @@ class ESRProductionsPaginatedResults {
     required this.results
   });
 
-  factory ESRProductionsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit){
+  factory ESRProductionsPaginatedResults.fromJson(Map<String, dynamic> json, int? limit, {
+    bool isWebSocket=false
+    }){
     List<ESRProduction> serializedProductions = [];
+    List<dynamic> productionsList = [];
 
-    List<dynamic> productionsList = (json['productions'] ?? json['results']) as List<dynamic>;
+    if (isWebSocket){
+      productionsList = json['data'] as List<dynamic>;
+    } else {
+      productionsList = (json['productions'] ?? json['results']) as List<dynamic>;
+    }
 
     serializedProductions = productionsList
         .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))
