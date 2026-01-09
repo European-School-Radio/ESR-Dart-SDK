@@ -32,9 +32,8 @@ export 'src/services/api/esr_audio_classes_service.dart' show ESRAudioClassesSer
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
-export 'src/services/api/websockets/productions/esr_productions_now_playing_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService;
-export 'src/services/api/websockets/jazler/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
-export 'src/services/api/websockets/productions/esr_productions_next_playing_websocket_service.dart' show ESRProductionsNextPlayingWebsocketService;
+export 'src/services/api/websockets/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
+export 'src/services/api/websockets/esr_productions_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService, ESRProductionsNextPlayingWebsocketService, ESRProductionsSearchWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
