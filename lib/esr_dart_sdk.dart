@@ -34,6 +34,7 @@ export 'src/services/community/esr_community_posts_service.dart' show ESRCommuni
 // WebSocket Services
 export 'src/services/api/websockets/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
 export 'src/services/api/websockets/esr_productions_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService, ESRProductionsNextPlayingWebsocketService, ESRProductionsSearchWebsocketService;
+export 'src/services/api/websockets/esr_archives_websocket_service.dart' show ESRArchivesSearchWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;

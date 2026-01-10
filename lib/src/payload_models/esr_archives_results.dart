@@ -170,10 +170,15 @@ class ESRArchivesListResults {
     required this.results
   });
 
-  factory ESRArchivesListResults.fromJson(Map<String, dynamic> json, int? limit){
+  factory ESRArchivesListResults.fromJson(Map<String, dynamic> json, int? limit, { bool isWebSocket = false }){
     List<ESRArchive> serializedArchives = [];
+    List<dynamic> archivesList = [];
 
-    List<dynamic> archivesList = (json['archives'] ?? json['results']) as List<dynamic>;
+    if (isWebSocket){
+      archivesList = json['data'] as List<dynamic>;
+    } else {
+      archivesList = (json['archives'] ?? json['results']) as List<dynamic>;
+    }
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
