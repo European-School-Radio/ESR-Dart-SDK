@@ -20,6 +20,7 @@ class ESRSchoolsPaginatedResults {
 
     serializedSchools = schoolsList
         .map((singleSchool) => ESRSchool.fromJson(singleSchool as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRSchoolsPaginatedResults(

@@ -16,6 +16,7 @@ class ESRUserSchoolsActiveSchoolsResults {
       status: json["status"],
       userSchools: userSchoolsList
           .map((singleUserSchool) => ESRUsersSchools.fromJson(singleUserSchool as Map<String, dynamic>))
+          .where((item) => !item.disabled)
           .toList()
     );
   }

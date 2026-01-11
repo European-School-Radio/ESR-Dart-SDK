@@ -38,6 +38,7 @@ class ESRArchivesCountryPopularResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesCountryPopularResults(
@@ -66,6 +67,7 @@ class ESRArchivesForYouResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesForYouResults(
@@ -96,6 +98,7 @@ class ESRArchivesPopularPaginatedResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesPopularPaginatedResults(
@@ -123,6 +126,7 @@ class ESRArchivesSimilarResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesSimilarResults(
@@ -148,6 +152,7 @@ class ESRArchivesMultipleResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesMultipleResults(
@@ -182,6 +187,7 @@ class ESRArchivesListResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesListResults(

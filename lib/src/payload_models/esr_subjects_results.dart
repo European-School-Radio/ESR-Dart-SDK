@@ -20,6 +20,7 @@ class ESRSubjectsPaginatedResults {
 
     serializedSubjects = subjectsList
         .map((singleSubject) => ESRSubject.fromJson(singleSubject as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRSubjectsPaginatedResults(

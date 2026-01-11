@@ -20,6 +20,7 @@ class ESRProductionTypesPaginatedResults {
 
     serializedProductionTypes = productionTypesList
         .map((singleProductionType) => ESRProductionType.fromJson(singleProductionType as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRProductionTypesPaginatedResults(

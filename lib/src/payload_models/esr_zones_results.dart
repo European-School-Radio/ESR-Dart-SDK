@@ -14,9 +14,9 @@ class ESRNowPlayingZoneResults {
   });
 
   factory ESRNowPlayingZoneResults.fromJson(Map<String, dynamic> json){
-    ESRZone? zoneDetailsTemp = null;
-    DateTime? activeSince = null;
-    DateTime? activeUntil = null;
+    ESRZone? zoneDetailsTemp;
+    DateTime? activeSince;
+    DateTime? activeUntil;
 
     if (json["zone_details"] != null){
       zoneDetailsTemp = ESRZone.fromJson(json["zone_details"]);
@@ -67,6 +67,7 @@ class ESRZonesPaginatedResults {
 
     serializedZones = zonesList
         .map((singleZone) => ESRZone.fromJson(singleZone as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRZonesPaginatedResults(

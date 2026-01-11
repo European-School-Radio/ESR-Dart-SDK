@@ -45,6 +45,7 @@ class ESRProductionsPaginatedResults {
 
     serializedProductions = productionsList
         .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRProductionsPaginatedResults(
@@ -76,6 +77,7 @@ class ESRProductionsPopularPaginatedResults {
 
     serializedProductions = productionsList
         .map((singleProduction) => ESRProduction.fromJson(singleProduction as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRProductionsPopularPaginatedResults(
