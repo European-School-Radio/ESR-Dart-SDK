@@ -17,6 +17,7 @@ enum ESRArchiveSorting {
   commentsCount,
   created,
   updated,
+  relativity
 }
 
 extension ESRArchiveSortingExtension on ESRArchiveSorting {
@@ -58,7 +59,8 @@ extension ESRArchiveSortingExtension on ESRArchiveSorting {
         return "created";
       case ESRArchiveSorting.updated:
         return "updated";
-
+      case ESRArchiveSorting.relativity:
+          return "relativity";
     }
   }
 }

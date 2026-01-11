@@ -102,6 +102,7 @@ export 'src/exceptions/information_not_valid_exception.dart' show InformationNot
 export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;
 export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
 export 'src/exceptions/contest_submission_archive_exception.dart' show ContestSubmissionArchiveException;
+export 'src/exceptions/sort_not_allowed_exception.dart' show SortNotAllowedException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;
