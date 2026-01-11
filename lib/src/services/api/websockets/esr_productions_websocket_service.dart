@@ -240,8 +240,8 @@ class ESRProductionsSearchWebsocketService {
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRProductionsPaginatedResults> _controller =
-  StreamController<ESRProductionsPaginatedResults>.broadcast();
+  final StreamController<ESRProductionsWebsocketListResults> _controller =
+  StreamController<ESRProductionsWebsocketListResults>.broadcast();
 
   ESRProductionsSearchWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
@@ -326,7 +326,7 @@ class ESRProductionsSearchWebsocketService {
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRProductionsPaginatedResults.fromJson(jsonMessage, _pageSize, isWebSocket: true));
+        _controller.add(ESRProductionsWebsocketListResults.fromJson(jsonMessage, _pageSize));
       },
       onError: (error) {
         _isConnected = false;
@@ -338,10 +338,10 @@ class ESRProductionsSearchWebsocketService {
     );
   }
 
-  Stream<ESRProductionsPaginatedResults> get stream => _controller.stream;
+  Stream<ESRProductionsWebsocketListResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRProductionsPaginatedResults> addListener(
-      void Function(ESRProductionsPaginatedResults event) onData,
+  StreamSubscription<ESRProductionsWebsocketListResults> addListener(
+      void Function(ESRProductionsWebsocketListResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {
