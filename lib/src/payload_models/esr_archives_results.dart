@@ -206,6 +206,13 @@ class ESRArchivesWebsocketListResults {
   factory ESRArchivesWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRArchive> serializedArchives = [];
 
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRArchivesWebsocketListResults(
+        count: 0,
+        results: []
+      );
+    }
+
     List<dynamic> archivesList = json['data'] as List<dynamic>;
 
     serializedArchives = archivesList

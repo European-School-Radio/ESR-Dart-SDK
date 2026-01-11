@@ -64,6 +64,13 @@ class ESRProductionsWebsocketListResults {
   factory ESRProductionsWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRProduction> serializedProductions = [];
 
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRProductionsWebsocketListResults(
+          count: 0,
+          results: []
+      );
+    }
+
     List<dynamic> productionsList = json['data'] as List<dynamic>;
 
     serializedProductions = productionsList
