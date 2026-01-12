@@ -20,6 +20,7 @@ class ESRClassificationCategoriesPaginatedResults {
 
     serializedClassificationCategories = classificationCategoriesList
         .map((singleClassificationCategory) => ESRClassificationCategory.fromJson(singleClassificationCategory as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRClassificationCategoriesPaginatedResults(

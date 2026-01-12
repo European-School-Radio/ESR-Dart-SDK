@@ -84,8 +84,8 @@ export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsAct
 export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
 export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
-export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults;
-export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults, ESRProductionsPopularPaginatedResults;
+export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults, ESRArchivesWebsocketListResults;
+export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults, ESRProductionsWebsocketListResults, ESRProductionsPopularPaginatedResults;
 export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategoriesPaginatedResults;
 export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults, ESRClassificationCategoriesCountryAverageResults;
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
@@ -102,6 +102,7 @@ export 'src/exceptions/information_not_valid_exception.dart' show InformationNot
 export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;
 export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
 export 'src/exceptions/contest_submission_archive_exception.dart' show ContestSubmissionArchiveException;
+export 'src/exceptions/sort_not_allowed_exception.dart' show SortNotAllowedException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;

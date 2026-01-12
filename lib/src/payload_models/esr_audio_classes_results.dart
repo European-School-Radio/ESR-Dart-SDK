@@ -20,6 +20,7 @@ class ESRAudioClassesPaginatedResults {
 
     serializedAudioClasses = audioClassesList
         .map((singleAudioClass) => ESRAudioClass.fromJson(singleAudioClass as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRAudioClassesPaginatedResults(

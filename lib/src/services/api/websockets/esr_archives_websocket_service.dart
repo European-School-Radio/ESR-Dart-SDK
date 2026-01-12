@@ -18,8 +18,8 @@ class ESRArchivesSearchWebsocketService {
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRArchivesListResults> _controller =
-  StreamController<ESRArchivesListResults>.broadcast();
+  final StreamController<ESRArchivesWebsocketListResults> _controller =
+  StreamController<ESRArchivesWebsocketListResults>.broadcast();
 
   ESRArchivesSearchWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
@@ -104,7 +104,7 @@ class ESRArchivesSearchWebsocketService {
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRArchivesListResults.fromJson(jsonMessage, _pageSize, isWebSocket: true));
+        _controller.add(ESRArchivesWebsocketListResults.fromJson(jsonMessage, _pageSize));
       },
       onError: (error) {
         _isConnected = false;
@@ -116,10 +116,10 @@ class ESRArchivesSearchWebsocketService {
     );
   }
 
-  Stream<ESRArchivesListResults> get stream => _controller.stream;
+  Stream<ESRArchivesWebsocketListResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRArchivesListResults> addListener(
-      void Function(ESRArchivesListResults event) onData,
+  StreamSubscription<ESRArchivesWebsocketListResults> addListener(
+      void Function(ESRArchivesWebsocketListResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {

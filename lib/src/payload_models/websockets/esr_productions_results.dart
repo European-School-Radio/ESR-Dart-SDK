@@ -34,6 +34,7 @@ class ESRProductionsNowPlayingResults {
             .toList(),
         nowPlayingProductions: (nowPlayingProductionsParsed.containsKey("now_playing_production_details") && nowPlayingProductionsParsed['now_playing_production_details'] != null) ? (nowPlayingProductionsParsed['now_playing_production_details'] as List)
             .map((prod) => ESRProduction.fromJson(prod))
+            .where((item) => !item.disabled)
             .toList() : []
     );
   }
@@ -77,6 +78,7 @@ class ESRProductionsNextPlayingResults {
             .toList(),
         nextPlayingProductions: (nextPlayingProductionsParsed['next_playing_production_details'] as List)
             .map((prod) => ESRProduction.fromJson(prod))
+            .where((item) => !item.disabled)
             .toList(),
         todayDate: DateTime.parse(nextPlayingProductionsParsed["today_date"] + " 00:00:00")
     );

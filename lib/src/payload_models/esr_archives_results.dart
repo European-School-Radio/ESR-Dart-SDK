@@ -38,6 +38,7 @@ class ESRArchivesCountryPopularResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesCountryPopularResults(
@@ -66,6 +67,7 @@ class ESRArchivesForYouResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesForYouResults(
@@ -96,6 +98,7 @@ class ESRArchivesPopularPaginatedResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesPopularPaginatedResults(
@@ -123,6 +126,7 @@ class ESRArchivesSimilarResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesSimilarResults(
@@ -148,6 +152,7 @@ class ESRArchivesMultipleResults {
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesMultipleResults(
@@ -170,24 +175,53 @@ class ESRArchivesListResults {
     required this.results
   });
 
-  factory ESRArchivesListResults.fromJson(Map<String, dynamic> json, int? limit, { bool isWebSocket = false }){
+  factory ESRArchivesListResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRArchive> serializedArchives = [];
-    List<dynamic> archivesList = [];
 
-    if (isWebSocket){
-      archivesList = json['data'] as List<dynamic>;
-    } else {
-      archivesList = (json['archives'] ?? json['results']) as List<dynamic>;
-    }
+    List<dynamic> archivesList = (json['archives'] ?? json['results']) as List<dynamic>;
 
     serializedArchives = archivesList
         .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRArchivesListResults(
         count: (limit == null || limit != -1) ? json['count'] : serializedArchives.length,
         nextPage: (limit == null || limit != -1) ? json['next'] : null,
         previousPage: (limit == null || limit != -1) ? json['previous'] : null,
+        results: serializedArchives
+    );
+  }
+}
+
+class ESRArchivesWebsocketListResults {
+  int count = 0;
+  List<ESRArchive> results = [];
+
+  ESRArchivesWebsocketListResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRArchivesWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRArchive> serializedArchives = [];
+
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRArchivesWebsocketListResults(
+        count: 0,
+        results: []
+      );
+    }
+
+    List<dynamic> archivesList = json['data'] as List<dynamic>;
+
+    serializedArchives = archivesList
+        .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .where((item) => !item.disabled)
+        .toList();
+
+    return ESRArchivesWebsocketListResults(
+        count: json['count'] ?? 0,
         results: serializedArchives
     );
   }

@@ -20,6 +20,7 @@ class ESRAgeCategoriesPaginatedResults {
 
     serializedAgeCategories = ageCategoriesList
         .map((singleAgeCategory) => ESRAgeCategory.fromJson(singleAgeCategory as Map<String, dynamic>))
+        .where((item) => !item.disabled)
         .toList();
 
     return ESRAgeCategoriesPaginatedResults(

@@ -268,6 +268,9 @@ class ESRArchivesService {
     if (sort == null){
       urlBuilder.addQueryParam("sort", ESRArchiveSorting.created.value.toString());
     } else {
+      if (sort == ESRArchiveSorting.relativity){
+        throw SortNotAllowedException("Relativity sort not allowed on normal HTTP requests. Use the Archive Search WebSocket instead.");
+      }
       urlBuilder.addQueryParam("sort", sort.value.toString());
     }
 
@@ -336,6 +339,9 @@ class ESRArchivesService {
     if (sort == null){
       urlBuilder.addQueryParam("sort", ESRArchiveSorting.created.value.toString());
     } else {
+      if (sort == ESRArchiveSorting.relativity){
+        throw SortNotAllowedException("Relativity sort not allowed on normal HTTP requests. Use the Archive Search WebSocket instead.");
+      }
       urlBuilder.addQueryParam("sort", sort.value.toString());
     }
 
