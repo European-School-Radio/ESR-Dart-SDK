@@ -42,9 +42,18 @@ class ESRClassificationCategoriesCountryAverageResults {
   });
 
   factory ESRClassificationCategoriesCountryAverageResults.fromJson(Map<String, dynamic> json){
+    List<ESRClassificationCategory> serializedClassificationCategories = [];
+
+    List<dynamic> classificationCategoriesList = json['classification_categories'] as List<dynamic>;
+
+    serializedClassificationCategories = classificationCategoriesList
+        .map((singleClassificationCategory) => ESRClassificationCategory.fromJson(singleClassificationCategory as Map<String, dynamic>))
+        .where((item) => !item.disabled)
+        .toList();
+
     return ESRClassificationCategoriesCountryAverageResults(
       status: json['status'],
-      classificationCategories: json['classification_categories']
+      classificationCategories: serializedClassificationCategories
     );
   }
 }
