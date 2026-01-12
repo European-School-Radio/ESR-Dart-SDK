@@ -30,3 +30,20 @@ class ESRClassificationCategoriesPaginatedResults {
     );
   }
 }
+
+class ESRClassificationCategoriesCountryAverageResults {
+  String status = "";
+  List<ESRClassificationCategory> classificationCategories = [];
+
+  ESRClassificationCategoriesCountryAverageResults({
+    required this.status,
+    required this.classificationCategories
+  });
+
+  factory ESRClassificationCategoriesCountryAverageResults.fromJson(Map<String, dynamic> json){
+    return ESRClassificationCategoriesCountryAverageResults(
+      status: json['status'],
+      classificationCategories: json['classification_categories']
+    );
+  }
+}

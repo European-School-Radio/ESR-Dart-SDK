@@ -87,7 +87,7 @@ export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubj
 export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults;
 export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults, ESRProductionsPopularPaginatedResults;
 export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategoriesPaginatedResults;
-export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults;
+export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults, ESRClassificationCategoriesCountryAverageResults;
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
 
 // WebSockets Wire Models
