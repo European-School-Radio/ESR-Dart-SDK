@@ -35,7 +35,7 @@ class ESRSchoolsPaginatedResults {
 class ESRSchoolsMinimalData {
   int id = 0;
   String name = "";
-  String nativeName = "";
+  String? nativeName;
 
   ESRSchoolsMinimalData({
     required this.id,
