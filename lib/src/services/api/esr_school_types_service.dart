@@ -21,10 +21,17 @@ class ESRSchoolTypesService {
   Future<ESRSchoolTypesPaginatedResults> getAllSchoolTypes({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRSchoolTypeSorting? sorting,
     ESRSortingDirections? direction
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/school-types');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
