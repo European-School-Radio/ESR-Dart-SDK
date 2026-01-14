@@ -21,10 +21,17 @@ class ESRLangsService {
   Future<ESRLangsPaginatedResults> getAllLangs({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRLangSorting? sorting,
     ESRSortingDirections? direction
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/langs');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
@@ -53,8 +60,16 @@ class ESRLangsService {
     }
   }
 
-  Future<ESRLang> getLangById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/lang/$id'));
+  Future<ESRLang> getLangById(int id, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/lang/$id');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
