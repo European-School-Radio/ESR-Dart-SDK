@@ -21,10 +21,17 @@ class ESRZonesService {
   Future<ESRZonesPaginatedResults> getAllZones({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRZoneSorting? sorting,
     ESRSortingDirections? direction
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/zones');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
