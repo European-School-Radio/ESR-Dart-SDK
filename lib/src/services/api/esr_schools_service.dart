@@ -83,7 +83,7 @@ class ESRSchoolsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRSchoolsMinimalDataResults.fromJson(jsonData['school']);
+      return ESRSchoolsMinimalDataResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
