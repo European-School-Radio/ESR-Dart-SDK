@@ -74,4 +74,18 @@ class ESRSchoolsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRSchoolsMinimalDataResults> getSchoolsMinimalData() async {
+    final urlBuilder = UrlBuilder('$_apiURL/schools/minimal-data');
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRSchoolsMinimalDataResults.fromJson(jsonData['school']);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

@@ -31,3 +31,48 @@ class ESRSchoolsPaginatedResults {
     );
   }
 }
+
+class ESRSchoolsMinimalData {
+  int id = 0;
+  String name = "";
+  String nativeName = "";
+
+  ESRSchoolsMinimalData({
+    required this.id,
+    required this.name,
+    required this.nativeName
+  });
+
+  factory ESRSchoolsMinimalData.fromJson(Map<String, dynamic> json){
+    return ESRSchoolsMinimalData(
+      id: json['id'],
+      name: json['name'],
+      nativeName: json['native_name']
+    );
+  }
+}
+
+class ESRSchoolsMinimalDataResults {
+  String status = "";
+  List<ESRSchoolsMinimalData> schoolMinimalData = [];
+
+  ESRSchoolsMinimalDataResults({
+    required this.status,
+    required this.schoolMinimalData
+  });
+
+  factory ESRSchoolsMinimalDataResults.fromJson(Map<String, dynamic> json){
+    List<ESRSchoolsMinimalData> serializedSchools = [];
+
+    List<dynamic> schoolsList = json['school_minimal_data'] as List<dynamic>;
+
+    serializedSchools = schoolsList
+        .map((singleSchool) => ESRSchoolsMinimalData.fromJson(singleSchool as Map<String, dynamic>))
+        .toList();
+
+    return ESRSchoolsMinimalDataResults(
+      status: json['status'],
+      schoolMinimalData: serializedSchools
+    );
+  }
+}
