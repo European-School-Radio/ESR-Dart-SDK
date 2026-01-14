@@ -21,10 +21,17 @@ class ESRProductionTypesService {
   Future<ESRProductionTypesPaginatedResults> getAllProductionTypes({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRProductionTypeSorting? sorting,
     ESRSortingDirections? direction
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/production-types');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
