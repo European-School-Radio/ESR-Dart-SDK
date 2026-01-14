@@ -21,10 +21,17 @@ class ESRFrequenciesService {
   Future<ESRFrequenciesPaginatedResults> getAllFrequencies({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRFrequencySorting? sorting,
     ESRSortingDirections? direction
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/frequencies');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
 
     if (page != null){
       urlBuilder.addQueryParam("page", page.toString());
