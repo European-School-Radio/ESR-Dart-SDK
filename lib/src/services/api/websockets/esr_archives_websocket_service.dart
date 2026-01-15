@@ -13,6 +13,9 @@ class ESRArchivesSearchWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  bool _showSchedulable = false;
+  bool _showPodcast = false;
+  bool _showSpecial = false;
   ESRArchiveSorting _sorting = ESRArchiveSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
@@ -90,6 +93,54 @@ class ESRArchivesSearchWebsocketService {
     return _direction;
   }
 
+  void setShowSchedulable(bool newShowSchedulable){
+    _showSchedulable = newShowSchedulable;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "show_schedulable": _showSchedulable.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  bool getShowSchedulable(){
+    return _showSchedulable;
+  }
+
+  void setShowPodcast(bool newShowPodcast){
+    _showPodcast = newShowPodcast;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "show_podcasts": _showPodcast.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  bool getShowPodcast(){
+    return _showPodcast;
+  }
+
+  void setShowSpecial(bool newShowSpecial){
+    _showSpecial = newShowSpecial;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "show_special": _showSpecial.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+  
+  bool getShowSpecial(){
+    return _showSpecial;
+  }
+
   void connect() {
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException("WebSocket is already connected");
@@ -98,6 +149,11 @@ class ESRArchivesSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("show_schedulable", _showSchedulable.toString());
+    urlBuilder.addQueryParam("show_podcasts", _showPodcast.toString());
+    urlBuilder.addQueryParam("show_special", _showSpecial.toString());
+    urlBuilder.addQueryParam("sort", _sorting.value.toString());
+    urlBuilder.addQueryParam("direction", _direction.value.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;
