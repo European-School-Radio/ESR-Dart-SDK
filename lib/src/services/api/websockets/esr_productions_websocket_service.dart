@@ -235,6 +235,7 @@ class ESRProductionsSearchWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int? _userId;
   ESRProductionSorting _sorting = ESRProductionSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
@@ -280,6 +281,19 @@ class ESRProductionsSearchWebsocketService {
     return _pageSize;
   }
 
+  void setUserId(int newUserId){
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+
+    _userId = newUserId;
+  }
+
+  int? getUserId(){
+    return _userId;
+  }
+
   void setSorting(ESRProductionSorting newSorting) {
     _sorting = newSorting;
 
@@ -320,6 +334,10 @@ class ESRProductionsSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    
+    if (_userId != null){
+      urlBuilder.addQueryParam("user_id", _userId.toString());
+    }
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;

@@ -76,3 +76,36 @@ class ESRSchoolsMinimalDataResults {
     );
   }
 }
+
+class ESRSchoolsWebsocketListResults {
+  int count = 0;
+  List<ESRSchool> results = [];
+
+  ESRSchoolsWebsocketListResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRSchoolsWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRSchool> serializedSchools = [];
+
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRSchoolsWebsocketListResults(
+          count: 0,
+          results: []
+      );
+    }
+
+    List<dynamic> schoolsList = json['data'] as List<dynamic>;
+
+    serializedSchools = schoolsList
+        .map((singleSchool) => ESRSchool.fromJson(singleSchool as Map<String, dynamic>))
+        .where((item) => !item.disabled)
+        .toList();
+
+    return ESRSchoolsWebsocketListResults(
+        count: json['count'] ?? 0,
+        results: serializedSchools
+    );
+  }
+}

@@ -35,6 +35,7 @@ export 'src/services/community/esr_community_posts_service.dart' show ESRCommuni
 export 'src/services/api/websockets/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
 export 'src/services/api/websockets/esr_productions_websocket_service.dart' show ESRProductionsNowPlayingWebsocketService, ESRProductionsNextPlayingWebsocketService, ESRProductionsSearchWebsocketService;
 export 'src/services/api/websockets/esr_archives_websocket_service.dart' show ESRArchivesSearchWebsocketService;
+export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESRSchoolsSearchWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -73,7 +74,7 @@ export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults
 export 'src/payload_models/esr_subjects_results.dart' show ESRSubjectsPaginatedResults;
 export 'src/payload_models/esr_school_types_results.dart' show ESRSchoolTypesPaginatedResults;
 export 'src/payload_models/esr_countries_results.dart' show ESRCountriesPaginatedResults;
-export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults;
+export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults, ESRSchoolsWebsocketListResults;
 export 'src/payload_models/esr_production_types_results.dart' show ESRProductionTypesPaginatedResults;
 export 'src/payload_models/esr_frequencies_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMinMaxDatesResults;

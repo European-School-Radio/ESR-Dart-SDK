@@ -2,42 +2,40 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_archive_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_school_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-class ESRArchivesSearchWebsocketService {
+class ESRSchoolsSearchWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
   int? _userId;
-  bool _showSchedulable = false;
-  bool _showPodcast = false;
-  bool _showSpecial = false;
-  ESRArchiveSorting _sorting = ESRArchiveSorting.created;
+  ESRSchoolSorting _sorting = ESRSchoolSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRArchivesWebsocketListResults> _controller =
-  StreamController<ESRArchivesWebsocketListResults>.broadcast();
+  final StreamController<ESRSchoolsWebsocketListResults> _controller =
+  StreamController<ESRSchoolsWebsocketListResults>.broadcast();
 
-  ESRArchivesSearchWebsocketService() {
+  ESRSchoolsSearchWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketTestUrl}/archives-search/";
+      "${ESRServerConfig.websocketTestUrl}/schools-search/";
     } else {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketUrl}/archives-search/";
+      "${ESRServerConfig.websocketUrl}/schools-search/";
     }
   }
 
   void setLanguage(ESRLang language) {
     if (_isConnected) {
-      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
     }
     _language = language;
   }
@@ -46,8 +44,8 @@ class ESRArchivesSearchWebsocketService {
     return _language;
   }
 
-  void setPageSize(int newMaxItems) {
-    _pageSize = newMaxItems;
+  void setPageSize(int newPageSize) {
+    _pageSize = newPageSize;
 
     if (_isConnected){
       Map<String, String> message = {
@@ -75,7 +73,7 @@ class ESRArchivesSearchWebsocketService {
     return _userId;
   }
 
-  void setSorting(ESRArchiveSorting newSorting) {
+  void setSorting(ESRSchoolSorting newSorting) {
     _sorting = newSorting;
 
     if (_isConnected){
@@ -87,7 +85,7 @@ class ESRArchivesSearchWebsocketService {
     }
   }
 
-  ESRArchiveSorting getSorting(){
+  ESRSchoolSorting getSorting(){
     return _sorting;
   }
 
@@ -107,54 +105,6 @@ class ESRArchivesSearchWebsocketService {
     return _direction;
   }
 
-  void setShowSchedulable(bool newShowSchedulable){
-    _showSchedulable = newShowSchedulable;
-
-    if (_isConnected){
-      Map<String, String> message = {
-        "show_schedulable": _showSchedulable.toString()
-      };
-      String jsonMessage = jsonEncode(message);
-      _channel?.sink.add(jsonMessage);
-    }
-  }
-
-  bool getShowSchedulable(){
-    return _showSchedulable;
-  }
-
-  void setShowPodcast(bool newShowPodcast){
-    _showPodcast = newShowPodcast;
-
-    if (_isConnected){
-      Map<String, String> message = {
-        "show_podcasts": _showPodcast.toString()
-      };
-      String jsonMessage = jsonEncode(message);
-      _channel?.sink.add(jsonMessage);
-    }
-  }
-
-  bool getShowPodcast(){
-    return _showPodcast;
-  }
-
-  void setShowSpecial(bool newShowSpecial){
-    _showSpecial = newShowSpecial;
-
-    if (_isConnected){
-      Map<String, String> message = {
-        "show_special": _showSpecial.toString()
-      };
-      String jsonMessage = jsonEncode(message);
-      _channel?.sink.add(jsonMessage);
-    }
-  }
-  
-  bool getShowSpecial(){
-    return _showSpecial;
-  }
-
   void connect() {
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException("WebSocket is already connected");
@@ -163,9 +113,6 @@ class ESRArchivesSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
-    urlBuilder.addQueryParam("show_schedulable", _showSchedulable.toString());
-    urlBuilder.addQueryParam("show_podcasts", _showPodcast.toString());
-    urlBuilder.addQueryParam("show_special", _showSpecial.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 
@@ -178,7 +125,7 @@ class ESRArchivesSearchWebsocketService {
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRArchivesWebsocketListResults.fromJson(jsonMessage, _pageSize));
+        _controller.add(ESRSchoolsWebsocketListResults.fromJson(jsonMessage, _pageSize));
       },
       onError: (error) {
         _isConnected = false;
@@ -190,10 +137,10 @@ class ESRArchivesSearchWebsocketService {
     );
   }
 
-  Stream<ESRArchivesWebsocketListResults> get stream => _controller.stream;
+  Stream<ESRSchoolsWebsocketListResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRArchivesWebsocketListResults> addListener(
-      void Function(ESRArchivesWebsocketListResults event) onData,
+  StreamSubscription<ESRSchoolsWebsocketListResults> addListener(
+      void Function(ESRSchoolsWebsocketListResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {
