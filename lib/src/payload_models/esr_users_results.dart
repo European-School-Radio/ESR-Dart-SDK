@@ -22,3 +22,35 @@ class ESRUsersLoginResults {
             : null);
   }
 }
+
+class ESRUsersWebsocketListResults {
+  int count = 0;
+  List<ESRUser> results = [];
+
+  ESRUsersWebsocketListResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRUsersWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRUser> serializedUsers = [];
+
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRUsersWebsocketListResults(
+          count: 0,
+          results: []
+      );
+    }
+
+    List<dynamic> schoolsList = json['data'] as List<dynamic>;
+
+    serializedUsers = schoolsList
+        .map((singleUser) => ESRUser.fromJson(singleUser as Map<String, dynamic>))
+        .toList();
+
+    return ESRUsersWebsocketListResults(
+        count: json['count'] ?? 0,
+        results: serializedUsers
+    );
+  }
+}
