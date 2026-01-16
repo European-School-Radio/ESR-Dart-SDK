@@ -51,6 +51,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "page_size": _pageSize.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -80,6 +81,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "sort": _sorting.value.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -96,6 +98,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "direction": _direction.value.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -112,6 +115,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "show_schedulable": _showSchedulable.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -128,6 +132,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "show_podcasts": _showPodcast.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -144,6 +149,7 @@ class ESRArchivesSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "show_special": _showSpecial.toString()
       };
       String jsonMessage = jsonEncode(message);

@@ -49,6 +49,7 @@ class ESRUsersSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "page_size": _pageSize.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -78,6 +79,7 @@ class ESRUsersSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "sort": _sorting.value.toString()
       };
       String jsonMessage = jsonEncode(message);
@@ -94,6 +96,7 @@ class ESRUsersSearchWebsocketService {
 
     if (_isConnected){
       Map<String, String> message = {
+        "action": "paginate",
         "direction": _direction.value.toString()
       };
       String jsonMessage = jsonEncode(message);
