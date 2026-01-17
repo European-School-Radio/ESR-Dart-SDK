@@ -21,6 +21,7 @@ class ESRCountriesService {
   Future<ESRCountriesPaginatedResults> getAllCountries({
     int? page,
     int? limit,
+    ESRLang? language,
     ESRCountrySorting? sorting,
     ESRSortingDirections? direction
   }) async {
@@ -32,6 +33,12 @@ class ESRCountriesService {
 
     if (limit != null){
       urlBuilder.addQueryParam("limit", limit.toString());
+    }
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
     }
 
     if (sorting != null){
@@ -53,8 +60,16 @@ class ESRCountriesService {
     }
   }
 
-  Future<ESRCountry> getCountryById(int id) async {
-    var request = http.Request('GET', Uri.parse('$_apiURL/country/$id'));
+  Future<ESRCountry> getCountryById(int id, { ESRLang? language }) async {
+    final urlBuilder = UrlBuilder('$_apiURL/country/$id');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
