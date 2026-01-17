@@ -20,6 +20,8 @@ class ESRSchool {
   String? spot;
   int followCount = 0;
   int sharesCount = 0;
+  int schoolUsersCount = 0;
+  int schoolProductionsCount = 0;
   bool disabled = false;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
@@ -44,6 +46,8 @@ class ESRSchool {
     this.spot,
     required this.followCount,
     required this.sharesCount,
+    required this.schoolUsersCount,
+    required this.schoolProductionsCount,
     required this.disabled,
     required this.created,
     required this.updated
@@ -66,6 +70,8 @@ class ESRSchool {
         phone: json['phone'],
         followCount: json['follow_count'],
         sharesCount: json['shares_count'],
+        schoolUsersCount: json['school_users_count'],
+        schoolProductionsCount: json['school_productions_count'],
         disabled: json['disabled'],
         created: DateTime.parse(json['created']),
         updated: DateTime.parse(json['updated'])
