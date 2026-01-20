@@ -177,3 +177,23 @@ class ESRAddArchive {
     required this.disabled
   });
 }
+
+class ESRArchiveSubtitle {
+  int startTime = 0;
+  int endTime = 0;
+  String subtitleText = "";
+
+  ESRArchiveSubtitle({
+    required this.startTime,
+    required this.endTime,
+    required this.subtitleText
+  });
+
+  factory ESRArchiveSubtitle.fromJson(Map<String, dynamic> json){
+    return ESRArchiveSubtitle(
+      startTime: json['start_time'],
+      endTime: json['end_time'],
+      subtitleText: json['subtitle_text']
+    );
+  }
+}

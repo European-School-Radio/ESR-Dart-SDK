@@ -469,4 +469,24 @@ class ESRArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRArchiveSubtitlesResults> getArchiveSubtitles(int id, { ESRLang? language }) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archives/subtitlesByArchive/$id');
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchiveSubtitlesResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

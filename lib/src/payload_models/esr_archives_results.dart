@@ -243,3 +243,28 @@ class ESRArchivesIncreaseListenCounterResults {
     );
   }
 }
+
+class ESRArchiveSubtitlesResults {
+  String status = "";
+  List<ESRArchiveSubtitle> subtitles = [];
+
+  ESRArchiveSubtitlesResults({
+    required this.status,
+    required this.subtitles
+  });
+
+  factory ESRArchiveSubtitlesResults.fromJson(Map<String, dynamic> json){
+    List<ESRArchiveSubtitle> serializedSubtitles = [];
+
+    List<dynamic> subtitlesList = json['subtitles'] as List<dynamic>;
+
+    serializedSubtitles = subtitlesList
+        .map((singleSubtitle) => ESRArchiveSubtitle.fromJson(singleSubtitle as Map<String, dynamic>))
+        .toList();
+
+    return ESRArchiveSubtitlesResults(
+      status: json['status'],
+      subtitles: serializedSubtitles
+    );
+  }
+}

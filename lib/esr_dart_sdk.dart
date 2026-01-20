@@ -54,7 +54,7 @@ export 'src/models/api/esr_zone.dart' show ESRZone;
 export 'src/models/api/esr_zone_type.dart' show ESRZoneType;
 export 'src/models/api/esr_frequency.dart' show ESRFrequency;
 export 'src/models/api/esr_weekday.dart' show ESRWeekday;
-export 'src/models/api/esr_archive.dart' show ESRArchive, ESRAddArchive;
+export 'src/models/api/esr_archive.dart' show ESRArchive, ESRAddArchive, ESRArchiveSubtitle;
 export 'src/models/api/esr_production_subject.dart' show ESRProductionSubject, ESRAddProductionSubject;
 export 'src/models/api/esr_reservation.dart' show ESRReservation;
 export 'src/models/api/esr_subject.dart' show ESRSubject;
@@ -86,7 +86,7 @@ export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsAct
 export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
 export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
-export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults, ESRArchivesWebsocketListResults, ESRArchivesIncreaseListenCounterResults;
+export 'src/payload_models/esr_archives_results.dart' show ESRArchivesAddResults, ESRArchivesCountryPopularResults, ESRArchivesForYouResults, ESRArchivesPopularPaginatedResults, ESRArchivesSimilarResults, ESRArchivesMultipleResults, ESRArchivesListResults, ESRArchivesWebsocketListResults, ESRArchivesIncreaseListenCounterResults, ESRArchiveSubtitlesResults;
 export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddResults, ESRProductionsPaginatedResults, ESRProductionsWebsocketListResults, ESRProductionsPopularPaginatedResults;
 export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategoriesPaginatedResults;
 export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults, ESRClassificationCategoriesCountryAverageResults;
