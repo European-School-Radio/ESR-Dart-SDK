@@ -456,7 +456,7 @@ class ESRArchivesService {
     }
   }
 
-  Future<ESRArchivesIncreaseListenCounterResults> increaseListenCounter(String id) async {
+  Future<ESRArchivesIncreaseListenCounterResults> increaseListenCounter(int id) async {
     final urlBuilder = UrlBuilder('$_apiURL/archive/listen/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
