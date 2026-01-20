@@ -256,11 +256,13 @@ class ESRArchiveSubtitlesResults {
   factory ESRArchiveSubtitlesResults.fromJson(Map<String, dynamic> json){
     List<ESRArchiveSubtitle> serializedSubtitles = [];
 
-    List<dynamic> subtitlesList = json['subtitles'] as List<dynamic>;
+    if (json['subtitles'] != null){
+      List<dynamic> subtitlesList = json['subtitles'] as List<dynamic>;
 
-    serializedSubtitles = subtitlesList
-        .map((singleSubtitle) => ESRArchiveSubtitle.fromJson(singleSubtitle as Map<String, dynamic>))
-        .toList();
+      serializedSubtitles = subtitlesList
+          .map((singleSubtitle) => ESRArchiveSubtitle.fromJson(singleSubtitle as Map<String, dynamic>))
+          .toList();
+    }
 
     return ESRArchiveSubtitlesResults(
       status: json['status'],
