@@ -226,3 +226,20 @@ class ESRArchivesWebsocketListResults {
     );
   }
 }
+
+class ESRArchivesIncreaseListenCounterResults {
+  String status = "";
+  String message = "";
+
+  ESRArchivesIncreaseListenCounterResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRArchivesIncreaseListenCounterResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesIncreaseListenCounterResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}

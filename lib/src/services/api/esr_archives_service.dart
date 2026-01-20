@@ -455,4 +455,18 @@ class ESRArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRArchivesIncreaseListenCounterResults> increaseListenCounter(String id) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archive/listen/$id');
+
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchivesIncreaseListenCounterResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
