@@ -481,7 +481,7 @@ class ESRArchivesService {
       urlBuilder.addQueryParam("lang", "en");
     }
 
-    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
