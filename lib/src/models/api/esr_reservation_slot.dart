@@ -6,6 +6,7 @@ class ESRReservationSlot {
   DateTime slotDate = DateTime.now();
   DateTime timeStart = DateTime.now();
   DateTime timeEnd = DateTime.now();
+  bool hasArchive = false;
   ESRReservation reservation;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
@@ -15,6 +16,7 @@ class ESRReservationSlot {
     required this.slotDate,
     required this.timeStart,
     required this.timeEnd,
+    required this.hasArchive,
     required this.reservation,
     required this.created,
     required this.updated
@@ -58,6 +60,7 @@ class ESRReservationSlot {
       slotDate: localSlotDate,
       timeStart: localTimeStart,
       timeEnd: localTimeEnd,
+      hasArchive: json['has_archive'],
       reservation: ESRReservation.fromJson(json['reservation']),
       created: (json['created'] == null) ? DateTime.now() : DateTime.parse(json['created']),
       updated: (json['updated'] == null) ? DateTime.now() : DateTime.parse(json['updated'])

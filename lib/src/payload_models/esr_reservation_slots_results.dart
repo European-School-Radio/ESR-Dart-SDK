@@ -1,9 +1,11 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
 class ESRReservationSlotsByDateResults {
+  String status = "";
   List<ESRReservationSlot> reservationSlots = [];
 
   ESRReservationSlotsByDateResults({
+    required this.status,
     required this.reservationSlots
   });
 
@@ -25,6 +27,7 @@ class ESRReservationSlotsByDateResults {
     });
 
     return ESRReservationSlotsByDateResults(
+      status: json['status'],
       reservationSlots: serializedReservations
     );
   }
