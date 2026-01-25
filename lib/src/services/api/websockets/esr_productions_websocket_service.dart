@@ -236,6 +236,8 @@ class ESRProductionsSearchWebsocketService {
   ESRLang? _language;
   int _pageSize = 1;
   int? _userId;
+  bool _showSchedulable = false;
+  bool _showPodcast = false;
   ESRProductionSorting _sorting = ESRProductionSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
@@ -312,6 +314,40 @@ class ESRProductionsSearchWebsocketService {
     return _sorting;
   }
 
+  void setShowSchedulable(bool newShowSchedulable){
+    _showSchedulable = newShowSchedulable;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "show_schedulable": (_showSchedulable) ? "1" : "0"
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  bool getShowSchedulable(){
+    return _showSchedulable;
+  }
+
+  void setShowPodcast(bool newShowPodcast){
+    _showPodcast = newShowPodcast;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "show_podcasts": (_showPodcast) ? "1" : "0"
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  bool getShowPodcast(){
+    return _showPodcast;
+  }
+
   void setDirection(ESRSortingDirections newDirection){
     _direction = newDirection;
 
@@ -336,8 +372,10 @@ class ESRProductionsSearchWebsocketService {
 
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
+    urlBuilder.addQueryParam("show_schedulable", (_showSchedulable) ? "1" : "0");
+    urlBuilder.addQueryParam("show_podcasts", (_showPodcast) ? "1" : "0");
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
-    
+
     if (_userId != null){
       urlBuilder.addQueryParam("user_id", _userId.toString());
     }
