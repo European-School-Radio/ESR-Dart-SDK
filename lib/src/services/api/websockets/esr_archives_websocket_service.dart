@@ -116,7 +116,7 @@ class ESRArchivesSearchWebsocketService {
     if (_isConnected){
       Map<String, String> message = {
         "action": "paginate",
-        "show_schedulable": _showSchedulable.toString()
+        "show_schedulable": (_showSchedulable) ? "1" : "0"
       };
       String jsonMessage = jsonEncode(message);
       _channel?.sink.add(jsonMessage);
@@ -133,7 +133,7 @@ class ESRArchivesSearchWebsocketService {
     if (_isConnected){
       Map<String, String> message = {
         "action": "paginate",
-        "show_podcasts": _showPodcast.toString()
+        "show_podcasts": (_showPodcast) ? "1" : "0"
       };
       String jsonMessage = jsonEncode(message);
       _channel?.sink.add(jsonMessage);
@@ -150,7 +150,7 @@ class ESRArchivesSearchWebsocketService {
     if (_isConnected){
       Map<String, String> message = {
         "action": "paginate",
-        "show_special": _showSpecial.toString()
+        "show_special": (_showSpecial) ? "1" : "0"
       };
       String jsonMessage = jsonEncode(message);
       _channel?.sink.add(jsonMessage);
@@ -169,9 +169,9 @@ class ESRArchivesSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
-    urlBuilder.addQueryParam("show_schedulable", _showSchedulable.toString());
-    urlBuilder.addQueryParam("show_podcasts", _showPodcast.toString());
-    urlBuilder.addQueryParam("show_special", _showSpecial.toString());
+    urlBuilder.addQueryParam("show_schedulable", (_showSchedulable) ? "1" : "0");
+    urlBuilder.addQueryParam("show_podcasts", (_showPodcast) ? "1" : "0");
+    urlBuilder.addQueryParam("show_special", (_showSpecial) ? "1" : "0");
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 
