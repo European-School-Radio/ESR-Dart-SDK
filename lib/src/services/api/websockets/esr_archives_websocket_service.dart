@@ -169,9 +169,6 @@ class ESRArchivesSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
-    urlBuilder.addQueryParam("show_schedulable", (_showSchedulable) ? "1" : "0");
-    urlBuilder.addQueryParam("show_podcasts", (_showPodcast) ? "1" : "0");
-    urlBuilder.addQueryParam("show_special", (_showSpecial) ? "1" : "0");
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 

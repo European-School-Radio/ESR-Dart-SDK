@@ -206,9 +206,9 @@ class ESRArchivesWebsocketListResults {
   factory ESRArchivesWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
     List<ESRArchive> serializedArchives = [];
 
-    if (!json.containsKey("data") || json['data'] == null){
+    if ((!json.containsKey("data") || json['data'] == null) && json.containsKey("count")){
       return ESRArchivesWebsocketListResults(
-        count: 0,
+        count: json['count'] ?? 0,
         results: []
       );
     }
