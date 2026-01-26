@@ -37,6 +37,7 @@ export 'src/services/api/websockets/esr_productions_websocket_service.dart' show
 export 'src/services/api/websockets/esr_archives_websocket_service.dart' show ESRArchivesSearchWebsocketService;
 export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESRSchoolsSearchWebsocketService;
 export 'src/services/api/websockets/esr_users_websocket_service.dart' show ESRUsersSearchWebsocketService;
+export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -67,6 +68,7 @@ export 'src/models/api/esr_age_category.dart' show ESRAgeCategory;
 export 'src/models/api/esr_classification_category.dart' show ESRClassificationCategory;
 export 'src/models/api/esr_audio_class.dart' show ESRAudioClass;
 export 'src/models/api/esr_user_jwt_data.dart' show ESRUserJwtData;
+export 'src/models/api/esr_archive_user_schools.dart' show ESRArchiveUserSchools;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
@@ -122,6 +124,7 @@ export 'src/enums/sorting/esr_age_category_sorting.dart' show ESRAgeCategorySort
 export 'src/enums/sorting/esr_classification_category_sorting.dart' show ESRClassificationCategorySorting;
 export 'src/enums/sorting/esr_audio_class_sorting.dart' show ESRAudioClassSorting;
 export 'src/enums/sorting/esr_user_sorting.dart' show ESRUserSorting;
+export 'src/enums/sorting/esr_archive_user_schools_sorting.dart' show ESRArchiveUserSchoolsSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
