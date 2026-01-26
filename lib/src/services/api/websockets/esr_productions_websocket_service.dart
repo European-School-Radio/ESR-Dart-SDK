@@ -4,6 +4,7 @@ import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
 import 'package:esr_dart_sdk/src/enums/sorting/esr_production_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
+import 'package:esr_dart_sdk/src/payload_models/esr_productions_results.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;

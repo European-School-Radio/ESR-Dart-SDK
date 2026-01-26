@@ -93,10 +93,10 @@ export 'src/payload_models/esr_productions_results.dart' show ESRProductionsAddR
 export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategoriesPaginatedResults;
 export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults, ESRClassificationCategoriesCountryAverageResults;
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
+export 'src/payload_models/esr_archive_user_schools_result.dart' show ESRArchiveUserSchoolsListResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
-export 'src/payload_models/websockets/esr_productions_results.dart' show ESRProductionsNowPlayingResults, ESRProductionsNextPlayingResults;
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
