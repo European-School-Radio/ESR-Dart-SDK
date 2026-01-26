@@ -69,6 +69,8 @@ export 'src/models/api/esr_classification_category.dart' show ESRClassificationC
 export 'src/models/api/esr_audio_class.dart' show ESRAudioClass;
 export 'src/models/api/esr_user_jwt_data.dart' show ESRUserJwtData;
 export 'src/models/api/esr_archive_user_schools.dart' show ESRArchiveUserSchools;
+export 'src/models/api/esr_archive_age_category.dart' show ESRArchiveAgeCategory;
+export 'src/models/api/esr_archive_language.dart' show ESRArchiveLanguage;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 

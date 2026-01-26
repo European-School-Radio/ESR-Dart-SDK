@@ -29,8 +29,8 @@ class ESRArchive {
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
   List<ESRArchiveSubject> archiveSubjects = [];
-  List<ESRLang> archiveSecondaryLanguages = [];
-  List<ESRAgeCategory> archiveAgeCategories = [];
+  List<ESRArchiveLanguage> archiveSecondaryLanguages = [];
+  List<ESRArchiveAgeCategory> archiveAgeCategories = [];
   int translatedLanguagesCount = 0;
 
   ESRArchive({
@@ -70,12 +70,12 @@ class ESRArchive {
         .map((singleArchiveSubject) => ESRArchiveSubject.fromJson(singleArchiveSubject as Map<String, dynamic>))
         .toList();
 
-    List<ESRLang> serializedArchiveSecondaryLanguages = (json['archive_secondary_languages'] as List<dynamic>)
-        .map((singleSecondaryLanguage) => ESRLang.fromJson(singleSecondaryLanguage as Map<String, dynamic>))
+    List<ESRArchiveLanguage> serializedArchiveSecondaryLanguages = (json['archive_secondary_languages'] as List<dynamic>)
+        .map((singleSecondaryLanguage) => ESRArchiveLanguage.fromJson(singleSecondaryLanguage as Map<String, dynamic>))
         .toList();
 
-    List<ESRAgeCategory> serializedArchiveAgeCategories = (json['archive_age_categories'] as List<dynamic>)
-        .map((singleArchiveAgeCategory) => ESRAgeCategory.fromJson(singleArchiveAgeCategory as Map<String, dynamic>))
+    List<ESRArchiveAgeCategory> serializedArchiveAgeCategories = (json['archive_age_categories'] as List<dynamic>)
+        .map((singleArchiveAgeCategory) => ESRArchiveAgeCategory.fromJson(singleArchiveAgeCategory as Map<String, dynamic>))
         .toList();
 
     DateFormat hourFormat = DateFormat("HH:mm:ss");
