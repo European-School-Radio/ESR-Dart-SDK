@@ -329,3 +329,20 @@ class ESRArchivesLikesCounterByArchiveResults {
     );
   }
 }
+
+class ESRArchivesAverageRatingByArchiveResults {
+  int count = 0;
+  double averageRating = 0.0;
+
+  ESRArchivesAverageRatingByArchiveResults({
+    required this.count,
+    required this.averageRating
+  });
+
+  factory ESRArchivesAverageRatingByArchiveResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesAverageRatingByArchiveResults(
+      count: json['count'],
+      averageRating: json['average_rating']
+    );
+  }
+}
