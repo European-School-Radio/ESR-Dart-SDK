@@ -287,3 +287,17 @@ class ESRArchivesIncreaseSharesCounterResults {
     );
   }
 }
+
+class ESRArchivesSharesCounterByArchiveResults {
+  int count = 0;
+
+  ESRArchivesSharesCounterByArchiveResults({
+    required this.count
+  });
+
+  factory ESRArchivesSharesCounterByArchiveResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesSharesCounterByArchiveResults(
+      count: json['count']
+    );
+  }
+}
