@@ -202,3 +202,20 @@ class ESRProductionsNextPlayingResults {
     );
   }
 }
+
+class ESRProductionsIncreaseSharesCounterResults {
+  String status = "";
+  String message = "";
+
+  ESRProductionsIncreaseSharesCounterResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRProductionsIncreaseSharesCounterResults.fromJson(Map<String, dynamic> json){
+    return ESRProductionsIncreaseSharesCounterResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
