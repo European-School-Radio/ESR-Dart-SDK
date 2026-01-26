@@ -493,4 +493,20 @@ class ESRArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRArchivesIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    final urlBuilder = UrlBuilder('$_apiURL/archive/share/$id');
+
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchivesIncreaseSharesCounterResults.fromJson(jsonData);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Archive with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

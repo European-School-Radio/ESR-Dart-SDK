@@ -270,3 +270,20 @@ class ESRArchiveSubtitlesResults {
     );
   }
 }
+
+class ESRArchivesIncreaseSharesCounterResults {
+  String status = "";
+  String message = "";
+
+  ESRArchivesIncreaseSharesCounterResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRArchivesIncreaseSharesCounterResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesIncreaseSharesCounterResults(
+        status: json['status'],
+        message: json['message']
+    );
+  }
+}
