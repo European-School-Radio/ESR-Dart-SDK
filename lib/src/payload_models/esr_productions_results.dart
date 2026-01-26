@@ -219,3 +219,17 @@ class ESRProductionsIncreaseSharesCounterResults {
     );
   }
 }
+
+class ESRProductionsSharesCounterByProductionResults {
+  int count = 0;
+
+  ESRProductionsSharesCounterByProductionResults({
+    required this.count
+  });
+
+  factory ESRProductionsSharesCounterByProductionResults.fromJson(Map<String, dynamic> json){
+    return ESRProductionsSharesCounterByProductionResults(
+      count: json['count']
+    );
+  }
+}
