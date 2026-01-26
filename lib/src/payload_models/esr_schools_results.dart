@@ -126,3 +126,17 @@ class ESRSchoolsIncreaseSharesCounterResults {
     );
   }
 }
+
+class ESRSchoolsSharesCounterBySchoolResults {
+  int count = 0;
+
+  ESRSchoolsSharesCounterBySchoolResults({
+    required this.count
+  });
+
+  factory ESRSchoolsSharesCounterBySchoolResults.fromJson(Map<String, dynamic> json){
+    return ESRSchoolsSharesCounterBySchoolResults(
+      count: json['count']
+    );
+  }
+}

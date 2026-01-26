@@ -180,3 +180,125 @@ class ESRSchoolsSearchWebsocketService {
     }
   }
 }
+
+class ESRSchoolsSharesCounterWebsocketService {
+  final sdk = ESRSDK();
+  String _baseWebSocketURL = "";
+  ESRLang? _language;
+  int _pageSize = 1;
+  int? _schoolId;
+
+  bool _isConnected = false;
+  WebSocketChannel? _channel;
+  final StreamController<ESRSchoolsSharesCounterBySchoolResults> _controller =
+  StreamController<ESRSchoolsSharesCounterBySchoolResults>.broadcast();
+
+  ESRSchoolsSharesCounterWebsocketService() {
+    if (sdk.env == ESREnvironments.test) {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketTestUrl}/schools-shares/";
+    } else {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketUrl}/schools-shares/";
+    }
+  }
+
+  void setLanguage(ESRLang language) {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+    _language = language;
+  }
+
+  ESRLang? getLanguage() {
+    return _language;
+  }
+
+  void setPageSize(int newPageSize) {
+    _pageSize = newPageSize;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page_size": _pageSize.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPageSize() {
+    return _pageSize;
+  }
+
+  void setSchoolId(int newSchoolId){
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+
+    _schoolId = newSchoolId;
+  }
+
+  int? getSchoolId(){
+    return _schoolId;
+  }
+
+  void connect() {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
+    }
+
+    final urlBuilder = UrlBuilder(_baseWebSocketURL);
+    urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
+    urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("school_id", _schoolId.toString());
+
+    _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
+    _isConnected = true;
+    _channel?.stream.listen(
+          (message) {
+        Map<String, dynamic> jsonMessage = jsonDecode(message);
+        _controller.add(ESRSchoolsSharesCounterBySchoolResults.fromJson(jsonMessage));
+      },
+      onError: (error) {
+        _isConnected = false;
+        disconnect();
+      },
+      onDone: () {
+        _isConnected = false;
+      },
+    );
+  }
+
+  Stream<ESRSchoolsSharesCounterBySchoolResults> get stream => _controller.stream;
+
+  StreamSubscription<ESRSchoolsSharesCounterBySchoolResults> addListener(
+      void Function(ESRSchoolsSharesCounterBySchoolResults event) onData,
+      {Function? onError,
+        void Function()? onDone,
+        bool? cancelOnError}) {
+    return _controller.stream.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
+
+  void disconnect() {
+    if (!_isConnected){
+      return;
+    }
+
+    _isConnected = false;
+
+    _channel?.sink.close(status.normalClosure);
+    _channel = null;
+
+    if (!_controller.isClosed) {
+      _controller.close();
+    }
+  }
+}
