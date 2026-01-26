@@ -19,8 +19,8 @@ class ESRArchiveLanguage {
   factory ESRArchiveLanguage.fromJson(Map<String, dynamic> json){
     return ESRArchiveLanguage(
       id: json['id'],
-      language: IsNumericUtils.isNumeric(json['language']) ? null : ESRLang.fromJson(json['language']),
-      archive: IsNumericUtils.isNumeric(json['archive']) ? null : ESRArchive.fromJson(json['archive']),
+      language: IsNumericUtils.isNumeric(json['language'].toString()) ? null : ESRLang.fromJson(json['language']),
+      archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
     );

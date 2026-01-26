@@ -19,8 +19,8 @@ class ESRArchiveAgeCategory {
   factory ESRArchiveAgeCategory.fromJson(Map<String, dynamic> json){
     return ESRArchiveAgeCategory(
       id: json['id'],
-      ageCategory: IsNumericUtils.isNumeric(json['age_category']) ? null : ESRAgeCategory.fromJson(json['age_category']),
-      archive: IsNumericUtils.isNumeric(json['archive']) ? null : ESRArchive.fromJson(json['archive']),
+      ageCategory: IsNumericUtils.isNumeric(json['age_category'].toString()) ? null : ESRAgeCategory.fromJson(json['age_category']),
+      archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
     );
