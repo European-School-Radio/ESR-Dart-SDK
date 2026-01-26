@@ -29,6 +29,9 @@ class ESRArchive {
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
   List<ESRArchiveSubject> archiveSubjects = [];
+  List<ESRLang> archiveSecondaryLanguages = [];
+  List<ESRAgeCategory> archiveAgeCategories = [];
+  int translatedLanguagesCount = 0;
 
   ESRArchive({
     required this.id,
@@ -56,12 +59,23 @@ class ESRArchive {
     required this.commentsCount,
     required this.created,
     required this.updated,
-    required this.archiveSubjects
+    required this.archiveSubjects,
+    required this.archiveSecondaryLanguages,
+    required this.archiveAgeCategories,
+    required this.translatedLanguagesCount
   });
 
   factory ESRArchive.fromJson(Map<String, dynamic> json){
     List<ESRArchiveSubject> serializedArchiveSubjects = (json['archive_subjects'] as List<dynamic>)
         .map((singleArchiveSubject) => ESRArchiveSubject.fromJson(singleArchiveSubject as Map<String, dynamic>))
+        .toList();
+
+    List<ESRLang> serializedArchiveSecondaryLanguages = (json['archive_secondary_languages'] as List<dynamic>)
+        .map((singleSecondaryLanguage) => ESRLang.fromJson(singleSecondaryLanguage as Map<String, dynamic>))
+        .toList();
+
+    List<ESRAgeCategory> serializedArchiveAgeCategories = (json['archive_age_categories'] as List<dynamic>)
+        .map((singleArchiveAgeCategory) => ESRAgeCategory.fromJson(singleArchiveAgeCategory as Map<String, dynamic>))
         .toList();
 
     DateFormat hourFormat = DateFormat("HH:mm:ss");
@@ -145,7 +159,10 @@ class ESRArchive {
         commentsCount: json['comments_count'],
         created: DateTime.parse(json['created']),
         updated: DateTime.parse(json['updated']),
-        archiveSubjects: serializedArchiveSubjects
+        archiveSubjects: serializedArchiveSubjects,
+        archiveSecondaryLanguages: serializedArchiveSecondaryLanguages,
+        archiveAgeCategories: serializedArchiveAgeCategories,
+        translatedLanguagesCount: json['translated_languages_count']
     );
   }
 }
