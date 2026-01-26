@@ -301,3 +301,17 @@ class ESRArchivesSharesCounterByArchiveResults {
     );
   }
 }
+
+class ESRArchivesListensCounterByArchiveResults {
+  int count = 0;
+
+  ESRArchivesListensCounterByArchiveResults({
+    required this.count
+  });
+
+  factory ESRArchivesListensCounterByArchiveResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesListensCounterByArchiveResults(
+      count: json['count']
+    );
+  }
+}
