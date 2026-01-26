@@ -315,3 +315,17 @@ class ESRArchivesListensCounterByArchiveResults {
     );
   }
 }
+
+class ESRArchivesLikesCounterByArchiveResults {
+  int count = 0;
+
+  ESRArchivesLikesCounterByArchiveResults({
+    required this.count
+  });
+
+  factory ESRArchivesLikesCounterByArchiveResults.fromJson(Map<String, dynamic> json){
+    return ESRArchivesLikesCounterByArchiveResults(
+      count: json['count']
+    );
+  }
+}
