@@ -16,8 +16,12 @@ class ESRJazlerUrlUtils {
     return "$baseURL/jazler/get-current-album-image";
   }
 
-  static String getLiveRadioPlayerURL(){
+  static String getLiveRadioPlayerURL({ESRLang? language}){
+    String lang = "en";
+    if (language != null){
+      lang = language.flag;
+    }
 
-    return "${sdk.env.value}/player";
+    return "${sdk.env.value}/$lang/player";
   }
 }
