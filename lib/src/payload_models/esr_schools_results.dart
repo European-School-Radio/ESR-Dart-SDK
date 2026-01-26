@@ -109,3 +109,20 @@ class ESRSchoolsWebsocketListResults {
     );
   }
 }
+
+class ESRSchoolsIncreaseSharesCounterResults {
+  String status = "";
+  String message = "";
+
+  ESRSchoolsIncreaseSharesCounterResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRSchoolsIncreaseSharesCounterResults.fromJson(Map<String, dynamic> json){
+    return ESRSchoolsIncreaseSharesCounterResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}

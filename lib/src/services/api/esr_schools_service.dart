@@ -88,4 +88,20 @@ class ESRSchoolsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRSchoolsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    final urlBuilder = UrlBuilder('$_apiURL/school/share/$id');
+
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRSchoolsIncreaseSharesCounterResults.fromJson(jsonData);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Archive with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

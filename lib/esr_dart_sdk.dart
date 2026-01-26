@@ -79,7 +79,7 @@ export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults
 export 'src/payload_models/esr_subjects_results.dart' show ESRSubjectsPaginatedResults;
 export 'src/payload_models/esr_school_types_results.dart' show ESRSchoolTypesPaginatedResults;
 export 'src/payload_models/esr_countries_results.dart' show ESRCountriesPaginatedResults;
-export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults, ESRSchoolsWebsocketListResults;
+export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults, ESRSchoolsWebsocketListResults, ESRSchoolsIncreaseSharesCounterResults;
 export 'src/payload_models/esr_production_types_results.dart' show ESRProductionTypesPaginatedResults;
 export 'src/payload_models/esr_frequencies_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMinMaxDatesResults;
