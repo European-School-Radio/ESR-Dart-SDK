@@ -233,3 +233,28 @@ class ESRProductionsSharesCounterByProductionResults {
     );
   }
 }
+
+class ESRProductionsFollowersByProductionResults {
+  int count = 0;
+  List<ESRFollowProduction> data = [];
+
+  ESRProductionsFollowersByProductionResults({
+    required this.count,
+    required this.data
+  });
+
+  factory ESRProductionsFollowersByProductionResults.fromJson(Map<String, dynamic> json){
+    List<ESRFollowProduction> serializedFollowProductions = [];
+
+    List<dynamic> productionsList = json['data'] as List<dynamic>;
+
+    serializedFollowProductions = productionsList
+        .map((singleProductionFollower) => ESRFollowProduction.fromJson(singleProductionFollower as Map<String, dynamic>))
+        .toList();
+
+    return ESRProductionsFollowersByProductionResults(
+      count: json['count'],
+      data: serializedFollowProductions
+    );
+  }
+}
