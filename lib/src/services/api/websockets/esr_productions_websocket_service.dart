@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_production_followers_sorting.dart';
 import 'package:esr_dart_sdk/src/enums/sorting/esr_production_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
@@ -375,6 +376,8 @@ class ESRProductionsSearchWebsocketService {
     urlBuilder.addQueryParam("show_schedulable", (_showSchedulable) ? "1" : "0");
     urlBuilder.addQueryParam("show_podcasts", (_showPodcast) ? "1" : "0");
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("sort", _sorting.value.toString());
+    urlBuilder.addQueryParam("direction", _direction.value.toString());
 
     if (_userId != null){
       urlBuilder.addQueryParam("user_id", _userId.toString());
@@ -566,6 +569,9 @@ class ESRProductionsFollowersWebsocketService {
   int _pageSize = 1;
   int? _productionId;
 
+  ESRProductionFollowersSorting _sorting = ESRProductionFollowersSorting.created;
+  ESRSortingDirections _direction = ESRSortingDirections.desc;
+
   bool _isConnected = false;
   WebSocketChannel? _channel;
   final StreamController<ESRProductionsFollowersByProductionResults> _controller =
@@ -622,6 +628,40 @@ class ESRProductionsFollowersWebsocketService {
     return _productionId;
   }
 
+  void setSorting(ESRProductionFollowersSorting newSorting) {
+    _sorting = newSorting;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "sort": _sorting.value.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  ESRProductionFollowersSorting getSorting(){
+    return _sorting;
+  }
+
+  void setDirection(ESRSortingDirections newDirection){
+    _direction = newDirection;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "direction": _direction.value.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  ESRSortingDirections getDirection(){
+    return _direction;
+  }
+
   void connect() {
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException("WebSocket is already connected");
@@ -631,6 +671,8 @@ class ESRProductionsFollowersWebsocketService {
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
     urlBuilder.addQueryParam("production_id", _productionId.toString());
+    urlBuilder.addQueryParam("sort", _sorting.value.toString());
+    urlBuilder.addQueryParam("direction", _direction.value.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;

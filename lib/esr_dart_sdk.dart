@@ -128,6 +128,7 @@ export 'src/enums/sorting/esr_classification_category_sorting.dart' show ESRClas
 export 'src/enums/sorting/esr_audio_class_sorting.dart' show ESRAudioClassSorting;
 export 'src/enums/sorting/esr_user_sorting.dart' show ESRUserSorting;
 export 'src/enums/sorting/esr_archive_user_schools_sorting.dart' show ESRArchiveUserSchoolsSorting;
+export 'src/enums/sorting/esr_production_followers_sorting.dart' show ESRProductionFollowersSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
