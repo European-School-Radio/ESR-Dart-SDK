@@ -72,6 +72,7 @@ export 'src/models/api/esr_archive_user_schools.dart' show ESRArchiveUserSchools
 export 'src/models/api/esr_archive_age_category.dart' show ESRArchiveAgeCategory;
 export 'src/models/api/esr_archive_language.dart' show ESRArchiveLanguage;
 export 'src/models/api/esr_follow_production.dart' show ESRFollowProduction;
+export 'src/models/api/esr_production_language.dart' show ESRProductionLanguage;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 

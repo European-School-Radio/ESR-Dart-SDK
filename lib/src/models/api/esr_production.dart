@@ -22,6 +22,8 @@ class ESRProduction {
   ESRReservation? reservation;
   List<ESRArchive> archives = [];
   List<ESRProductionSubject> productionSubjects = [];
+  List<ESRProductionLanguage> productionSecondaryLanguages = [];
+  int translatedLanguagesCount = 0;
 
   ESRProduction({
     required this.id,
@@ -44,7 +46,9 @@ class ESRProduction {
     required this.updated,
     required this.reservation,
     required this.archives,
-    required this.productionSubjects
+    required this.productionSubjects,
+    required this.productionSecondaryLanguages,
+    required this.translatedLanguagesCount
   });
 
   factory ESRProduction.fromJson(Map<String, dynamic> json) {
@@ -57,6 +61,10 @@ class ESRProduction {
         ?.map((singleProductionSubject) => ESRProductionSubject.fromJson(singleProductionSubject as Map<String, dynamic>))
         .toList()
         ?? [];
+
+    List<ESRProductionLanguage> serializedProductionSecondaryLanguages = (json['production_secondary_languages'] as List<dynamic>)
+        .map((singleSecondaryLanguage) => ESRProductionLanguage.fromJson(singleSecondaryLanguage as Map<String, dynamic>))
+        .toList();
 
     return ESRProduction(
       id: json['id'],
@@ -79,7 +87,9 @@ class ESRProduction {
       updated: DateTime.parse(json['updated']),
       reservation: json['reservation'] != null ? ESRReservation.fromJson(json['reservation']) : null,
       archives: serializedArchives,
-      productionSubjects: serializedProductionSubjects
+      productionSubjects: serializedProductionSubjects,
+      productionSecondaryLanguages: serializedProductionSecondaryLanguages,
+      translatedLanguagesCount: json['translated_languages_count']
     );
   }
 }
