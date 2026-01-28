@@ -258,3 +258,17 @@ class ESRProductionsFollowersByProductionResults {
     );
   }
 }
+
+class ESRProductionsLikesCounterByProductionResults {
+  int count = 0;
+
+  ESRProductionsLikesCounterByProductionResults({
+    required this.count
+  });
+
+  factory ESRProductionsLikesCounterByProductionResults.fromJson(Map<String, dynamic> json){
+    return ESRProductionsLikesCounterByProductionResults(
+      count: json['count']
+    );
+  }
+}

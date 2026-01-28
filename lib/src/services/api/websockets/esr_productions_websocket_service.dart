@@ -721,3 +721,124 @@ class ESRProductionsFollowersWebsocketService {
     }
   }
 }
+
+class ESRProductionsLikesCounterWebsocketService {
+  final sdk = ESRSDK();
+  String _baseWebSocketURL = "";
+  ESRLang? _language;
+  int _pageSize = 1;
+  int? _productionId;
+
+  bool _isConnected = false;
+  WebSocketChannel? _channel;
+  final StreamController<ESRProductionsLikesCounterByProductionResults> _controller =
+  StreamController<ESRProductionsLikesCounterByProductionResults>.broadcast();
+
+  ESRProductionsLikesCounterWebsocketService() {
+    if (sdk.env == ESREnvironments.test) {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketTestUrl}/like-productions-by-production/";
+    } else {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketUrl}/like-productions-by-production/";
+    }
+  }
+
+  void setLanguage(ESRLang language) {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
+    }
+    _language = language;
+  }
+
+  ESRLang? getLanguage() {
+    return _language;
+  }
+
+  void setPageSize(int newMaxItems) {
+    _pageSize = newMaxItems;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page_size": _pageSize.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPageSize() {
+    return _pageSize;
+  }
+
+  void setProductionId(int newProductionId){
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+
+    _productionId = newProductionId;
+  }
+
+  int? getProductionId(){
+    return _productionId;
+  }
+
+  void connect() {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
+    }
+
+    final urlBuilder = UrlBuilder(_baseWebSocketURL);
+    urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
+    urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("production_id", _productionId.toString());
+
+    _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
+    _isConnected = true;
+    _channel?.stream.listen(
+          (message) {
+        Map<String, dynamic> jsonMessage = jsonDecode(message);
+        _controller.add(ESRProductionsLikesCounterByProductionResults.fromJson(jsonMessage));
+      },
+      onError: (error) {
+        _isConnected = false;
+        disconnect();
+      },
+      onDone: () {
+        _isConnected = false;
+      },
+    );
+  }
+
+  Stream<ESRProductionsLikesCounterByProductionResults> get stream => _controller.stream;
+
+  StreamSubscription<ESRProductionsLikesCounterByProductionResults> addListener(
+      void Function(ESRProductionsLikesCounterByProductionResults event) onData,
+      {Function? onError,
+        void Function()? onDone,
+        bool? cancelOnError}) {
+    return _controller.stream.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
+
+  void disconnect() {
+    if (!_isConnected){
+      return;
+    }
+
+    _isConnected = false;
+
+    _channel?.sink.close(status.normalClosure);
+    _channel = null;
+
+    if (!_controller.isClosed) {
+      _controller.close();
+    }
+  }
+}
