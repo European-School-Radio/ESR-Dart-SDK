@@ -53,7 +53,7 @@ class ESRSchoolsService {
     }
   }
 
-  Future<ESRCountry> getSchoolById(int id, {ESRLang? language}) async {
+  Future<ESRSchool> getSchoolById(int id, {ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/school/$id');
 
     if (language == null){
@@ -67,7 +67,7 @@ class ESRSchoolsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRCountry.fromJson(jsonData['school']);
+      return ESRSchool.fromJson(jsonData['school']);
     } else if (response.statusCode == 404){
       throw ObjectNotFoundException("School with id $id not found");
     } else {
