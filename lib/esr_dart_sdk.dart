@@ -38,6 +38,7 @@ export 'src/services/api/websockets/esr_archives_websocket_service.dart' show ES
 export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESRSchoolsSearchWebsocketService, ESRSchoolsSharesCounterWebsocketService;
 export 'src/services/api/websockets/esr_users_websocket_service.dart' show ESRUsersSearchWebsocketService;
 export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService;
+export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' show ESRUsersSchoolsBySchoolWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -88,7 +89,7 @@ export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMi
 export 'src/payload_models/esr_reservation_slots_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/payload_models/esr_zones_results.dart' show ESRZonesPaginatedResults, ESRNowPlayingZoneResults;
 export 'src/payload_models/esr_users_results.dart' show ESRUsersLoginResults, ESRUsersWebsocketListResults;
-export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults;
+export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults;
 export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
 export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
@@ -130,6 +131,7 @@ export 'src/enums/sorting/esr_audio_class_sorting.dart' show ESRAudioClassSortin
 export 'src/enums/sorting/esr_user_sorting.dart' show ESRUserSorting;
 export 'src/enums/sorting/esr_archive_user_schools_sorting.dart' show ESRArchiveUserSchoolsSorting;
 export 'src/enums/sorting/esr_production_followers_sorting.dart' show ESRProductionFollowersSorting;
+export 'src/enums/sorting/esr_users_schools_sorting.dart' show ESRUsersSchoolsSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils

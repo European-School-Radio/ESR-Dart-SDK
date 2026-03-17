@@ -21,3 +21,35 @@ class ESRUserSchoolsActiveSchoolsResults {
     );
   }
 }
+
+class ESRUserSchoolsBySchoolResults {
+  int count = 0;
+  List<ESRUsersSchools> results;
+
+  ESRUserSchoolsBySchoolResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRUserSchoolsBySchoolResults.fromJson(Map<String, dynamic> json, int? limit) {
+    List<ESRUsersSchools> serializedUsers = [];
+
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRUserSchoolsBySchoolResults(
+        count: 0,
+        results: []
+      );
+    }
+
+    List<dynamic> userSchoolsList = json['data'] as List<dynamic>;
+
+    serializedUsers = userSchoolsList
+        .map((singleUserSchool) => ESRUsersSchools.fromJson(singleUserSchool as Map<String, dynamic>))
+        .toList();
+
+    return ESRUserSchoolsBySchoolResults(
+      count: json['count'] ?? 0,
+      results: serializedUsers
+    );
+  }
+}
