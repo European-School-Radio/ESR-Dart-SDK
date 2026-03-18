@@ -138,6 +138,7 @@ export 'src/enums/sorting/esr_user_sorting.dart' show ESRUserSorting;
 export 'src/enums/sorting/esr_archive_user_schools_sorting.dart' show ESRArchiveUserSchoolsSorting;
 export 'src/enums/sorting/esr_production_followers_sorting.dart' show ESRProductionFollowersSorting;
 export 'src/enums/sorting/esr_users_schools_sorting.dart' show ESRUsersSchoolsSorting;
+export 'src/enums/sorting/esr_playlist_sorting.dart' show ESRPlaylistSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils

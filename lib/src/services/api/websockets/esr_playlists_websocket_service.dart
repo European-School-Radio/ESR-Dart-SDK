@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_users_schools_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_playlist_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -15,7 +15,7 @@ class ESRPlaylistsByUserWebsocketService {
   int _pageSize = 1;
   int? _userId;
   bool onlyPublic = true;
-  ESRUsersSchoolsSorting _sorting = ESRUsersSchoolsSorting.created;
+  ESRPlaylistSorting _sorting = ESRPlaylistSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
@@ -88,7 +88,7 @@ class ESRPlaylistsByUserWebsocketService {
     return onlyPublic;
   }
 
-  void setSorting(ESRUsersSchoolsSorting newSorting) {
+  void setSorting(ESRPlaylistSorting newSorting) {
     _sorting = newSorting;
 
     if (_isConnected){
@@ -101,7 +101,7 @@ class ESRPlaylistsByUserWebsocketService {
     }
   }
 
-  ESRUsersSchoolsSorting getSorting(){
+  ESRPlaylistSorting getSorting(){
     return _sorting;
   }
 
