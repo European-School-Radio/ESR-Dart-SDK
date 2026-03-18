@@ -14,6 +14,7 @@ class ESRPlaylistsWebsocketService {
   ESRLang? _language;
   int _pageSize = 1;
   int? _userId;
+  bool onlyPublic = true;
   ESRUsersSchoolsSorting _sorting = ESRUsersSchoolsSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
@@ -74,6 +75,19 @@ class ESRPlaylistsWebsocketService {
     return _userId;
   }
 
+  void setOnlyPublic(bool newOnlyPublic){
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+
+    onlyPublic = newOnlyPublic;
+  }
+
+  bool getOnlyPublic(){
+    return onlyPublic;
+  }
+
   void setSorting(ESRUsersSchoolsSorting newSorting) {
     _sorting = newSorting;
 
@@ -118,6 +132,7 @@ class ESRPlaylistsWebsocketService {
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
+    urlBuilder.addQueryParam("only_public", (onlyPublic) ? "1" : "0");
 
     if (_userId != null){
       urlBuilder.addQueryParam("user_id", _userId.toString());
