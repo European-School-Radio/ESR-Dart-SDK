@@ -40,7 +40,7 @@ export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESR
 export 'src/services/api/websockets/esr_users_websocket_service.dart' show ESRUsersSearchWebsocketService;
 export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService, ESRArchiveUserSchoolsByUserWebsocketService;
 export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' show ESRUsersSchoolsBySchoolWebsocketService;
-export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsWebsocketService;
+export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;

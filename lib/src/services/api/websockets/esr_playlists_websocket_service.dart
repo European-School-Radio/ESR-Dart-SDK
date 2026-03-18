@@ -8,7 +8,7 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-class ESRPlaylistsWebsocketService {
+class ESRPlaylistsByUserWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
