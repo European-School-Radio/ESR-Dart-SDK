@@ -13,6 +13,7 @@ class ESRArchiveUserSchoolsByArchiveWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _archiveId;
   ESRArchiveUserSchoolsSorting _sorting = ESRArchiveUserSchoolsSorting.userFirstName;
   ESRSortingDirections _direction = ESRSortingDirections.asc;
@@ -58,6 +59,19 @@ class ESRArchiveUserSchoolsByArchiveWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage){
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
   }
 
   void setArchiveId(int newArchiveId){
@@ -112,6 +126,7 @@ class ESRArchiveUserSchoolsByArchiveWebsocketService {
 
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
     urlBuilder.addQueryParam("archive_id", _archiveId.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
@@ -180,6 +195,7 @@ class ESRArchiveUserSchoolsByUserWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _userId;
   ESRArchiveUserSchoolsSorting _sorting = ESRArchiveUserSchoolsSorting.userFirstName;
   ESRSortingDirections _direction = ESRSortingDirections.asc;
@@ -225,6 +241,23 @@ class ESRArchiveUserSchoolsByUserWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
   }
 
   void setUserId(int newUserId){
@@ -280,6 +313,7 @@ class ESRArchiveUserSchoolsByUserWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("user_id", _userId.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());

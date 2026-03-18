@@ -13,6 +13,7 @@ class ESRArchivesSearchWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _userId;
   bool _showSchedulable = false;
   bool _showPodcast = false;
@@ -61,6 +62,23 @@ class ESRArchivesSearchWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
   }
 
   void setUserId(int newUserId){
@@ -169,6 +187,7 @@ class ESRArchivesSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("show_schedulable", (_showSchedulable) ? "1" : "0");
     urlBuilder.addQueryParam("show_podcasts", (_showPodcast) ? "1" : "0");
     urlBuilder.addQueryParam("show_special", (_showSpecial) ? "1" : "0");
@@ -242,6 +261,7 @@ class ESRArchivesSharesCounterWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _archiveId;
 
   bool _isConnected = false;
@@ -287,6 +307,23 @@ class ESRArchivesSharesCounterWebsocketService {
     return _pageSize;
   }
 
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
+  }
+
   void setArchiveId(int newArchiveId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
@@ -308,6 +345,7 @@ class ESRArchivesSharesCounterWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("archive_id", _archiveId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
@@ -363,6 +401,7 @@ class ESRArchivesListensCounterWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _archiveId;
 
   bool _isConnected = false;
@@ -408,6 +447,23 @@ class ESRArchivesListensCounterWebsocketService {
     return _pageSize;
   }
 
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
+  }
+
   void setArchiveId(int newArchiveId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
@@ -429,6 +485,7 @@ class ESRArchivesListensCounterWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("archive_id", _archiveId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
@@ -484,6 +541,7 @@ class ESRArchivesLikesCounterWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _archiveId;
 
   bool _isConnected = false;
@@ -529,6 +587,23 @@ class ESRArchivesLikesCounterWebsocketService {
     return _pageSize;
   }
 
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
+  }
+
   void setArchiveId(int newArchiveId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
@@ -550,6 +625,7 @@ class ESRArchivesLikesCounterWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("archive_id", _archiveId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
@@ -605,6 +681,7 @@ class ESRArchivesAverageRatingsWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _archiveId;
 
   bool _isConnected = false;
@@ -650,6 +727,23 @@ class ESRArchivesAverageRatingsWebsocketService {
     return _pageSize;
   }
 
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
+  }
+
   void setArchiveId(int newArchiveId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
@@ -671,6 +765,7 @@ class ESRArchivesAverageRatingsWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("archive_id", _archiveId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
@@ -726,6 +821,7 @@ class ESRArchivesBySchoolWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _schoolId;
   ESRArchiveSorting _sorting = ESRArchiveSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
@@ -771,6 +867,23 @@ class ESRArchivesBySchoolWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
   }
 
   void setSchoolId(int newSchoolId){
@@ -828,6 +941,7 @@ class ESRArchivesBySchoolWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 
@@ -898,6 +1012,7 @@ class ESRArchivesByUserWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _userId;
   ESRArchiveSorting _sorting = ESRArchiveSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
@@ -943,6 +1058,23 @@ class ESRArchivesByUserWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
   }
 
   void setUserId(int newUserId){
@@ -1000,6 +1132,7 @@ class ESRArchivesByUserWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 

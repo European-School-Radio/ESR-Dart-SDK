@@ -13,6 +13,7 @@ class ESRUsersSearchWebsocketService {
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
+  int _page = 1;
   int? _userId;
   ESRUserSorting _sorting = ESRUserSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
@@ -59,6 +60,23 @@ class ESRUsersSearchWebsocketService {
 
   int getPageSize() {
     return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
   }
 
   void setUserId(int newUserId){
@@ -116,6 +134,7 @@ class ESRUsersSearchWebsocketService {
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
 
