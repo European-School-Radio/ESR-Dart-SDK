@@ -16,7 +16,7 @@ class ESRUserSchoolsService {
     }
   }
 
-  Future<ESRUserSchoolsActiveSchoolsResults> getActiveUserSchoolsForUser(int userID, String userJWT) async {
+  Future<ESRUserSchoolsActiveSchoolsResults> getActiveUserSchoolsForUser(int userID) async {
     final urlBuilder = UrlBuilder('$_apiURL/user-school/byUser/$userID?page=1&limit=-1');
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
