@@ -38,7 +38,7 @@ export 'src/services/api/websockets/esr_productions_websocket_service.dart' show
 export 'src/services/api/websockets/esr_archives_websocket_service.dart' show ESRArchivesSearchWebsocketService, ESRArchivesSharesCounterWebsocketService, ESRArchivesListensCounterWebsocketService, ESRArchivesLikesCounterWebsocketService, ESRArchivesAverageRatingsWebsocketService, ESRArchivesBySchoolWebsocketService, ESRArchivesByUserWebsocketService;
 export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESRSchoolsSearchWebsocketService, ESRSchoolsSharesCounterWebsocketService;
 export 'src/services/api/websockets/esr_users_websocket_service.dart' show ESRUsersSearchWebsocketService;
-export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService;
+export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService, ESRArchiveUserSchoolsByUserWebsocketService;
 export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' show ESRUsersSchoolsBySchoolWebsocketService;
 
 // Models
