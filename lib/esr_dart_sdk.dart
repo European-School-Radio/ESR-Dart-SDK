@@ -29,6 +29,7 @@ export 'src/services/api/esr_popular_productions_service.dart' show ESRPopularPr
 export 'src/services/api/esr_age_categories_service.dart' show ESRAgeCategoriesService;
 export 'src/services/api/esr_classification_categories_service.dart' show ESRClassificationCategoriesService;
 export 'src/services/api/esr_audio_classes_service.dart' show ESRAudioClassesService;
+export 'src/services/api/esr_user_settings_service.dart' show ESRUserSettingsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 
 // WebSocket Services
@@ -74,6 +75,7 @@ export 'src/models/api/esr_archive_age_category.dart' show ESRArchiveAgeCategory
 export 'src/models/api/esr_archive_language.dart' show ESRArchiveLanguage;
 export 'src/models/api/esr_follow_production.dart' show ESRFollowProduction;
 export 'src/models/api/esr_production_language.dart' show ESRProductionLanguage;
+export 'src/models/api/esr_user_setting.dart' show ESRUserSetting;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
@@ -99,6 +101,7 @@ export 'src/payload_models/esr_age_categories_results.dart' show ESRAgeCategorie
 export 'src/payload_models/esr_classification_categories_results.dart' show ESRClassificationCategoriesPaginatedResults, ESRClassificationCategoriesCountryAverageResults;
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
 export 'src/payload_models/esr_archive_user_schools_result.dart' show ESRArchiveUserSchoolsListResults;
+export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsByUserPublicResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
