@@ -72,7 +72,7 @@ class ESRUsersService {
   }
 
   Future<ESRUsersPublicProfile> getPublicProfileById(int id, {ESRLang? language}) async {
-    final urlBuilder = UrlBuilder('$_apiURL/users/publicProfile');
+    final urlBuilder = UrlBuilder('$_apiURL/users/publicProfile/$id');
 
     if (language != null){
       urlBuilder.addQueryParam("lang", language.flag);
