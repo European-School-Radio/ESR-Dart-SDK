@@ -54,3 +54,20 @@ class ESRUsersWebsocketListResults {
     );
   }
 }
+
+class ESRUsersPublicProfile {
+  String status = "";
+  ESRUser? userDetails;
+
+  ESRUsersPublicProfile({
+    required this.status,
+    required this.userDetails
+  });
+  
+  factory ESRUsersPublicProfile.fromJson(Map<String, dynamic> json){
+    return ESRUsersPublicProfile(
+      status: json['status'],
+      userDetails: ESRUser.fromJson(json['user_details'])
+    );
+  }
+}
