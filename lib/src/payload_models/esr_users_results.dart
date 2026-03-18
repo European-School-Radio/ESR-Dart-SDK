@@ -57,7 +57,7 @@ class ESRUsersWebsocketListResults {
 
 class ESRUsersPublicProfile {
   String status = "";
-  ESRUser? userDetails;
+  ESRUserPublicProfile? userDetails;
 
   ESRUsersPublicProfile({
     required this.status,
@@ -67,7 +67,7 @@ class ESRUsersPublicProfile {
   factory ESRUsersPublicProfile.fromJson(Map<String, dynamic> json){
     return ESRUsersPublicProfile(
       status: json['status'],
-      userDetails: ESRUser.fromJson(json['user_details'])
+      userDetails: ESRUserPublicProfile.fromJson(json['user_details'])
     );
   }
 }

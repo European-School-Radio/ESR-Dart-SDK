@@ -50,7 +50,7 @@ export 'src/models/api/esr_school.dart' show ESRSchool;
 export 'src/models/api/esr_school_type.dart' show ESRSchoolType;
 export 'src/models/api/esr_school_year.dart' show ESRSchoolYear;
 export 'src/models/api/esr_sector.dart' show ESRSector;
-export 'src/models/api/esr_user.dart' show ESRUser;
+export 'src/models/api/esr_user.dart' show ESRUser, ESRUserPublicProfile;
 export 'src/models/api/esr_users_school.dart' show ESRUsersSchools;
 export 'src/models/api/esr_zone.dart' show ESRZone;
 export 'src/models/api/esr_zone_type.dart' show ESRZoneType;
