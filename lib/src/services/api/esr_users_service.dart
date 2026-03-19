@@ -109,10 +109,14 @@ class ESRUsersService {
     }
   }
 
-  Future<ESRUsersSimilarUsersResults> getSimilarUsersById(int id, int maxItems, {ESRLang? language}) async {
+  Future<ESRUsersSimilarUsersResults> getSimilarUsersById(int id, {int? maxItems, ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/users/find-similar/$id');
 
-    urlBuilder.addQueryParam("max_results", maxItems.toString());
+    if (maxItems != null){
+      urlBuilder.addQueryParam("max_results", maxItems.toString());
+    } else {
+      urlBuilder.addQueryParam("max_results", "5");
+    }
 
     if (language != null){
       urlBuilder.addQueryParam("lang", language.flag);

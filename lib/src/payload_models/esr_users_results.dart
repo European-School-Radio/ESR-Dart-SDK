@@ -88,7 +88,7 @@ class ESRUserCoverDataResults {
 
 class ESRUsersSimilarUsersResults {
   String status = "";
-  List<ESRUser> similarUsers = [];
+  List<ESRUserPublicProfile> similarUsers = [];
 
   ESRUsersSimilarUsersResults({
     required this.status,
@@ -98,8 +98,8 @@ class ESRUsersSimilarUsersResults {
   factory ESRUsersSimilarUsersResults.fromJson(Map<String, dynamic> json){
     List<dynamic> usersList = json['similar_users'] as List<dynamic>;
 
-    List<ESRUser> serializedUsers = usersList
-        .map((singleUser) => ESRUser.fromJson(singleUser as Map<String, dynamic>))
+    List<ESRUserPublicProfile> serializedUsers = usersList
+        .map((singleUser) => ESRUserPublicProfile.fromJson(singleUser as Map<String, dynamic>))
         .toList();
 
     return ESRUsersSimilarUsersResults(

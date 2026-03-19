@@ -84,6 +84,7 @@ class ESRUserPublicProfile {
   ESRLang? preferredLang;
   int followCount = 0;
   int followingCount = 0;
+  double? aiScore;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
 
@@ -100,6 +101,7 @@ class ESRUserPublicProfile {
     this.preferredLang,
     required this.followCount,
     required this.followingCount,
+    this.aiScore,
     required this.created,
     required this.updated
   });
@@ -118,6 +120,7 @@ class ESRUserPublicProfile {
         preferredLang: (json['preferred_lang'] != null) ? ESRLang.fromJson(json['preferred_lang']) : null,
         followCount: json['follow_count'],
         followingCount: json['following_count'],
+        aiScore: json['ai_score'],
         created: DateTime.parse(json['created']),
         updated: DateTime.parse(json['updated'])
     );
