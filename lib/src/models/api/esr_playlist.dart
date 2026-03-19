@@ -9,6 +9,7 @@ class ESRPlaylist {
   int followCount = 0;
   int likesCount = 0;
   int sharesCount = 0;
+  int? playlistArchiveCount = 0;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
 
@@ -21,6 +22,7 @@ class ESRPlaylist {
     required this.followCount,
     required this.likesCount,
     required this.sharesCount,
+    required this.playlistArchiveCount,
     required this.created,
     required this.updated
   });
@@ -35,6 +37,7 @@ class ESRPlaylist {
       followCount: json['follow_count'],
       likesCount: json['likes_count'],
       sharesCount: json['shares_count'],
+      playlistArchiveCount: json['playlist_archive_count'],
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );
