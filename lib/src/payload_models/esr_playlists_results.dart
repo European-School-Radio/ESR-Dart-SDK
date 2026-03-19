@@ -31,3 +31,20 @@ class ESRPlaylistsByUserResults {
     );
   }
 }
+
+class ESRPlaylistsIncreaseSharesCounterResults {
+  String status = "";
+  String message = "";
+
+  ESRPlaylistsIncreaseSharesCounterResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRPlaylistsIncreaseSharesCounterResults.fromJson(Map<String, dynamic> json){
+    return ESRPlaylistsIncreaseSharesCounterResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
