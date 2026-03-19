@@ -77,6 +77,7 @@ class ESRUserPublicProfile {
   String lastName = "";
   String? nativeFirstName;
   String? nativeLastName;
+  String username = "";
   String position = "";
   ESRRole role;
   ESRSector sector;
@@ -94,6 +95,7 @@ class ESRUserPublicProfile {
     required this.lastName,
     this.nativeFirstName,
     this.nativeLastName,
+    required this.username,
     required this.position,
     required this.role,
     required this.sector,
@@ -113,6 +115,7 @@ class ESRUserPublicProfile {
         lastName: json['last_name'],
         nativeFirstName: json['native_first_name'],
         nativeLastName: json['native_last_name'],
+        username: json['username'],
         position: json['position'],
         role: ESRRole.fromJson(json['role']),
         sector: ESRSector.fromJson(json['sector']),
