@@ -71,3 +71,17 @@ class ESRUsersPublicProfile {
     );
   }
 }
+
+class ESRUserCoverDataResults {
+  String? coverURL;
+
+  ESRUserCoverDataResults({
+    required this.coverURL
+  });
+
+  factory ESRUserCoverDataResults.fromJson(Map<String, dynamic> json){
+    return ESRUserCoverDataResults(
+      coverURL: (json['cover_url'] != false) ? json['cover_url'] : null
+    );
+  }
+}

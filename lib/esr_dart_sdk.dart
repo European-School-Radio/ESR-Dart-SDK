@@ -92,7 +92,7 @@ export 'src/payload_models/esr_frequencies_results.dart' show ESRFrequenciesPagi
 export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMinMaxDatesResults;
 export 'src/payload_models/esr_reservation_slots_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/payload_models/esr_zones_results.dart' show ESRZonesPaginatedResults, ESRNowPlayingZoneResults;
-export 'src/payload_models/esr_users_results.dart' show ESRUsersLoginResults, ESRUsersWebsocketListResults, ESRUsersPublicProfile;
+export 'src/payload_models/esr_users_results.dart' show ESRUsersLoginResults, ESRUsersWebsocketListResults, ESRUsersPublicProfile, ESRUserCoverDataResults;
 export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults;
 export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;

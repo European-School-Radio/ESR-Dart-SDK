@@ -93,4 +93,19 @@ class ESRUsersService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRUserCoverDataResults> getUserCoverById(int id) async {
+    final urlBuilder = UrlBuilder('${ESRServerConfig.communityBaseUrl}/wp-json/custom/get/user/cover/$id');
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUserCoverDataResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
