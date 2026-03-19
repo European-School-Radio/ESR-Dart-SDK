@@ -108,4 +108,27 @@ class ESRUsersService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRUsersSimilarUsersResults> getSimilarUsersById(int id, int maxItems, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/users/find-similar/$id');
+
+    urlBuilder.addQueryParam("max_results", maxItems.toString());
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag);
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersSimilarUsersResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

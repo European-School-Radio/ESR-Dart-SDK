@@ -85,3 +85,26 @@ class ESRUserCoverDataResults {
     );
   }
 }
+
+class ESRUsersSimilarUsersResults {
+  String status = "";
+  List<ESRUser> similarUsers = [];
+
+  ESRUsersSimilarUsersResults({
+    required this.status,
+    required this.similarUsers
+  });
+
+  factory ESRUsersSimilarUsersResults.fromJson(Map<String, dynamic> json){
+    List<dynamic> usersList = json['similar_users'] as List<dynamic>;
+
+    List<ESRUser> serializedUsers = usersList
+        .map((singleUser) => ESRUser.fromJson(singleUser as Map<String, dynamic>))
+        .toList();
+
+    return ESRUsersSimilarUsersResults(
+      status: json['status'],
+      similarUsers: serializedUsers
+    );
+  }
+}
