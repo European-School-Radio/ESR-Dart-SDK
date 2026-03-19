@@ -17,7 +17,7 @@ class ESRUserSettingsService {
   }
 
   Future<ESRUserSettingsByUserPublicResults> getUserSettingsByIdPublic(int userId, {ESRLang? language}) async {
-    final urlBuilder = UrlBuilder('$_apiURL/user-setting/$userId');
+    final urlBuilder = UrlBuilder('$_apiURL/user-setting/byUserPublic/$userId');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
