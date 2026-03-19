@@ -9,6 +9,10 @@ class ESRUserUrlUtils {
     return "${ESRServerConfig.communityBaseUrl}/wp-json/custom/get/user/banner/$userID";
   }
 
+  static String getCoverURL(int userID){
+    return "${ESRServerConfig.communityBaseUrl}/wp-json/custom/get/user/cover/$userID";
+  }
+
   static String getWebURL(int userID, {ESRLang? language}){
     String lang = "en";
     if (language != null){
