@@ -4,7 +4,10 @@ enum ESRArchiveUserSchoolsSorting {
   userLastName,
   userNativeFirstName,
   userNativeLastName,
-  archiveName
+  archiveName,
+  archiveLikesCount,
+  archiveSharesCount,
+  archiveCreated
 }
 
 extension ESRArchiveUserSchoolsSortingExtension on ESRArchiveUserSchoolsSorting {
@@ -21,7 +24,13 @@ extension ESRArchiveUserSchoolsSortingExtension on ESRArchiveUserSchoolsSorting 
       case ESRArchiveUserSchoolsSorting.userNativeLastName:
         return 'user_school__user__native_last_name';
       case ESRArchiveUserSchoolsSorting.archiveName:
-        return 'user_school__archive__translations__name';
+        return 'archive__translations__name';
+      case ESRArchiveUserSchoolsSorting.archiveLikesCount:
+        return 'archive__likes_count';
+      case ESRArchiveUserSchoolsSorting.archiveSharesCount:
+        return 'archive__shares_count';
+      case ESRArchiveUserSchoolsSorting.archiveCreated:
+        return 'archive__created';
     }
   }
 }
