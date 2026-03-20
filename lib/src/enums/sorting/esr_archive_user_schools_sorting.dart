@@ -7,6 +7,10 @@ enum ESRArchiveUserSchoolsSorting {
   archiveName,
   archiveLikesCount,
   archiveSharesCount,
+  archiveAverageRating,
+  archiveCommentsCount,
+  archiveListensCount,
+  archiveDuration,
   archiveCreated
 }
 
@@ -29,6 +33,14 @@ extension ESRArchiveUserSchoolsSortingExtension on ESRArchiveUserSchoolsSorting 
         return 'archive__likes_count';
       case ESRArchiveUserSchoolsSorting.archiveSharesCount:
         return 'archive__shares_count';
+      case ESRArchiveUserSchoolsSorting.archiveAverageRating:
+        return 'archive__average_rating';
+      case ESRArchiveUserSchoolsSorting.archiveCommentsCount:
+        return 'archive__comments_count';
+      case ESRArchiveUserSchoolsSorting.archiveListensCount:
+        return 'archive__listens_count';
+      case ESRArchiveUserSchoolsSorting.archiveDuration:
+        return 'archive__translations__duration';
       case ESRArchiveUserSchoolsSorting.archiveCreated:
         return 'archive__created';
     }
