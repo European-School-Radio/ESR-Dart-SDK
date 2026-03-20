@@ -24,7 +24,7 @@ class ESRPlaylistsByUserWebsocketService {
   final StreamController<ESRPlaylistsByUserResults> _controller =
   StreamController<ESRPlaylistsByUserResults>.broadcast();
 
-  ESRPlaylistsWebsocketService() {
+  ESRPlaylistsByUserWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
       "${ESRServerConfig.websocketTestUrl}/playlists-by-user/";
