@@ -78,3 +78,32 @@ class ESRSchool {
     );
   }
 }
+
+class ESRSchoolMap {
+  int id = 0;
+  String name = "";
+  String? nativeName;
+  double latitude = 0.0;
+  double longitude = 0.0;
+  ESRSchoolType? schoolType;
+
+  ESRSchoolMap({
+    required this.id,
+    required this.name,
+    required this.nativeName,
+    required this.latitude,
+    required this.longitude,
+    required this.schoolType
+  });
+  
+  factory ESRSchoolMap.fromJson(Map<String, dynamic> json){
+    return ESRSchoolMap(
+      id: json['id'],
+      name: json['name'],
+      nativeName: json['native_name'],
+      latitude: double.parse(json['latitude'].toString()),
+      longitude: double.parse(json['longitude'].toString()),
+      schoolType: ESRSchoolType.fromJson(json['school_type'])
+    );
+  }
+}

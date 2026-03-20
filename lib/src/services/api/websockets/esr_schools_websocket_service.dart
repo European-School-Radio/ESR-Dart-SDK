@@ -200,6 +200,142 @@ class ESRSchoolsSearchWebsocketService {
   }
 }
 
+class ESRSchoolsMapDataWebsocketService {
+  final sdk = ESRSDK();
+  String _baseWebSocketURL = "";
+  ESRLang? _language;
+  int _pageSize = 1;
+  int _page = 1;
+
+  bool _isConnected = false;
+  WebSocketChannel? _channel;
+  final StreamController<ESRSchoolsMapDataListResults> _controller =
+  StreamController<ESRSchoolsMapDataListResults>.broadcast();
+
+  ESRSchoolsMapDataWebsocketService() {
+    if (sdk.env == ESREnvironments.test) {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketTestUrl}/schools-map-data/";
+    } else {
+      _baseWebSocketURL =
+      "${ESRServerConfig.websocketUrl}/schools-map-data/";
+    }
+  }
+
+  void setLanguage(ESRLang language) {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException(
+          "WebSocket is already connected");
+    }
+    _language = language;
+  }
+
+  ESRLang? getLanguage() {
+    return _language;
+  }
+
+  void setPageSize(int newPageSize) {
+    _pageSize = newPageSize;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page_size": _pageSize.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPageSize() {
+    return _pageSize;
+  }
+
+  void setPage(int newPage) {
+    _page = newPage;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "page": _page.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  int getPage() {
+    return _page;
+  }
+
+  void connect() {
+    if (_isConnected) {
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
+    }
+
+    final urlBuilder = UrlBuilder(_baseWebSocketURL);
+    urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
+    urlBuilder.addQueryParam("page_size", _pageSize.toString());
+    urlBuilder.addQueryParam("page", _page.toString());
+
+    _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
+    _isConnected = true;
+    _channel?.stream.listen(
+          (message) {
+        Map<String, dynamic> jsonMessage = jsonDecode(message);
+        _controller.add(ESRSchoolsMapDataListResults.fromJson(jsonMessage));
+      },
+      onError: (error) {
+        _isConnected = false;
+        disconnect();
+      },
+      onDone: () {
+        _isConnected = false;
+      },
+    );
+  }
+
+  Stream<ESRSchoolsMapDataListResults> get stream => _controller.stream;
+
+  StreamSubscription<ESRSchoolsMapDataListResults> addListener(
+      void Function(ESRSchoolsMapDataListResults event) onData,
+      {Function? onError,
+        void Function()? onDone,
+        bool? cancelOnError}) {
+    return _controller.stream.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
+  }
+
+  void sendJson(Map<String, dynamic> message) {
+    if (!_isConnected) {
+      throw WebsocketNotConnectedException("WebSocket is NOT connected");
+    }
+
+    String jsonMessage = jsonEncode(message);
+
+    _channel?.sink.add(jsonMessage);
+  }
+
+  void disconnect() {
+    if (!_isConnected){
+      return;
+    }
+
+    _isConnected = false;
+
+    _channel?.sink.close(status.normalClosure);
+    _channel = null;
+
+    if (!_controller.isClosed) {
+      _controller.close();
+    }
+  }
+}
+
 class ESRSchoolsSharesCounterWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";

@@ -110,6 +110,38 @@ class ESRSchoolsWebsocketListResults {
   }
 }
 
+class ESRSchoolsMapDataListResults {
+  int count = 0;
+  List<ESRSchoolMap> results = [];
+
+  ESRSchoolsMapDataListResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRSchoolsMapDataListResults.fromJson(Map<String, dynamic> json){
+    List<ESRSchoolMap> serializedSchools = [];
+
+    if (!json.containsKey("data") || json['data'] == null){
+      return ESRSchoolsMapDataListResults(
+          count: 0,
+          results: []
+      );
+    }
+
+    List<dynamic> schoolsList = json['data'] as List<dynamic>;
+
+    serializedSchools = schoolsList
+        .map((singleSchool) => ESRSchoolMap.fromJson(singleSchool as Map<String, dynamic>))
+        .toList();
+
+    return ESRSchoolsMapDataListResults(
+        count: json['count'] ?? 0,
+        results: serializedSchools
+    );
+  }
+}
+
 class ESRSchoolsIncreaseSharesCounterResults {
   String status = "";
   String message = "";
