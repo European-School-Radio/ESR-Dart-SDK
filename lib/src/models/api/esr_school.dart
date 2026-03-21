@@ -101,8 +101,8 @@ class ESRSchoolMap {
       id: json['id'],
       name: json['name'],
       nativeName: json['native_name'],
-      latitude: double.parse(json['latitude'].toString()),
-      longitude: double.parse(json['longitude'].toString()),
+      latitude: (json['latitude'] != null) ? (double.tryParse(json['latitude'].toString()) ?? 0.0) : 0.0,
+      longitude: (json['longitude'] != null) ? (double.tryParse(json['longitude'].toString()) ?? 0.0) : 0.0,
       schoolType: ESRSchoolType.fromJson(json['school_type'])
     );
   }
