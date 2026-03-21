@@ -463,9 +463,6 @@ class ESRProductionsSearchWebsocketService {
 class ESRProductionsSharesCounterWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
-  ESRLang? _language;
-  int _pageSize = 1;
-  int _page = 1;
   int? _productionId;
 
   bool _isConnected = false;
@@ -481,51 +478,6 @@ class ESRProductionsSharesCounterWebsocketService {
       _baseWebSocketURL =
       "${ESRServerConfig.websocketUrl}/productions-shares/";
     }
-  }
-
-  void setLanguage(ESRLang language) {
-    if (_isConnected) {
-      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
-    }
-    _language = language;
-  }
-
-  ESRLang? getLanguage() {
-    return _language;
-  }
-
-  void setPageSize(int newMaxItems) {
-    _pageSize = newMaxItems;
-
-    if (_isConnected){
-      Map<String, String> message = {
-        "action": "paginate",
-        "page_size": _pageSize.toString()
-      };
-      String jsonMessage = jsonEncode(message);
-      _channel?.sink.add(jsonMessage);
-    }
-  }
-
-  int getPageSize() {
-    return _pageSize;
-  }
-
-  void setPage(int newPage) {
-    _page = newPage;
-
-    if (_isConnected){
-      Map<String, String> message = {
-        "action": "paginate",
-        "page": _page.toString()
-      };
-      String jsonMessage = jsonEncode(message);
-      _channel?.sink.add(jsonMessage);
-    }
-  }
-
-  int getPage() {
-    return _page;
   }
 
   void setProductionId(int newProductionId){
@@ -547,9 +499,6 @@ class ESRProductionsSharesCounterWebsocketService {
     }
 
     final urlBuilder = UrlBuilder(_baseWebSocketURL);
-    urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
-    urlBuilder.addQueryParam("page_size", _pageSize.toString());
-    urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("production_id", _productionId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));

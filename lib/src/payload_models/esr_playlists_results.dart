@@ -48,3 +48,56 @@ class ESRPlaylistsIncreaseSharesCounterResults {
     );
   }
 }
+
+class ESRPlaylistsSharesCounterByPlaylistResults {
+  int count = 0;
+
+  ESRPlaylistsSharesCounterByPlaylistResults({
+    required this.count
+  });
+
+  factory ESRPlaylistsSharesCounterByPlaylistResults.fromJson(Map<String, dynamic> json){
+    return ESRPlaylistsSharesCounterByPlaylistResults(
+      count: json['count']
+    );
+  }
+}
+
+class ESRPlaylistsFollowersByPlaylistResults {
+  int count = 0;
+  List<ESRFollowPlaylist> data = [];
+
+  ESRPlaylistsFollowersByPlaylistResults({
+    required this.count,
+    required this.data
+  });
+
+  factory ESRPlaylistsFollowersByPlaylistResults.fromJson(Map<String, dynamic> json){
+    List<ESRFollowPlaylist> serializedFollowPlaylists = [];
+
+    List<dynamic> playlistsList = json['data'] as List<dynamic>;
+
+    serializedFollowPlaylists = playlistsList
+        .map((singlePlaylistFollower) => ESRFollowPlaylist.fromJson(singlePlaylistFollower as Map<String, dynamic>))
+        .toList();
+
+    return ESRPlaylistsFollowersByPlaylistResults(
+        count: json['count'],
+        data: serializedFollowPlaylists
+    );
+  }
+}
+
+class ESRPlaylistsLikesCounterByPlaylistResults {
+  int count = 0;
+
+  ESRPlaylistsLikesCounterByPlaylistResults({
+    required this.count
+  });
+
+  factory ESRPlaylistsLikesCounterByPlaylistResults.fromJson(Map<String, dynamic> json){
+    return ESRPlaylistsLikesCounterByPlaylistResults(
+      count: json['count']
+    );
+  }
+}
