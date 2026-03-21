@@ -229,10 +229,10 @@ class ESRPlaylistsSharesCounterWebsocketService {
   ESRPlaylistsSharesCounterWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketTestUrl}/playlists-shares/";
+      "${ESRServerConfig.websocketTestUrl}/playlists-share/";
     } else {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketUrl}/playlists-shares/";
+      "${ESRServerConfig.websocketUrl}/playlists-share/";
     }
   }
 
