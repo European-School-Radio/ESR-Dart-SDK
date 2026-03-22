@@ -633,9 +633,8 @@ class ESRPlaylistsArchivesByPlaylistWebsocketService {
   int _page = 1;
   int? _playlistId;
   bool _onlyPublic = true;
-
-  ESRPlaylistArchivesSorting sorting = ESRPlaylistArchivesSorting.created;
-  ESRSortingDirections direction = ESRSortingDirections.desc;
+  ESRPlaylistArchivesSorting _sorting = ESRPlaylistArchivesSorting.created;
+  ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
@@ -723,6 +722,40 @@ class ESRPlaylistsArchivesByPlaylistWebsocketService {
     return _onlyPublic;
   }
 
+  void setSorting(ESRPlaylistArchivesSorting newSorting) {
+    _sorting = newSorting;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "sort": _sorting.value.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  ESRPlaylistArchivesSorting getSorting(){
+    return _sorting;
+  }
+
+  void setDirection(ESRSortingDirections newDirection){
+    _direction = newDirection;
+
+    if (_isConnected){
+      Map<String, String> message = {
+        "action": "paginate",
+        "direction": _direction.value.toString()
+      };
+      String jsonMessage = jsonEncode(message);
+      _channel?.sink.add(jsonMessage);
+    }
+  }
+
+  ESRSortingDirections getDirection(){
+    return _direction;
+  }
+
   void connect() {
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException("WebSocket is already connected");
@@ -734,8 +767,8 @@ class ESRPlaylistsArchivesByPlaylistWebsocketService {
     urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("playlist_id", _playlistId.toString());
     urlBuilder.addQueryParam("only_public", (_onlyPublic) ? "1" : "0");
-    urlBuilder.addQueryParam("sort", sorting.value.toString());
-    urlBuilder.addQueryParam("direction", direction.value.toString());
+    urlBuilder.addQueryParam("sort", _sorting.value.toString());
+    urlBuilder.addQueryParam("direction", _direction.value.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;
