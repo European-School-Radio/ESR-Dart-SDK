@@ -19,8 +19,8 @@ class ESRPlaylistArchive {
   factory ESRPlaylistArchive.fromJson(Map<String, dynamic> json){
     return ESRPlaylistArchive(
       id: json['id'],
-      playlist: (IsNumericUtils.isNumeric(json['playlist'])) ? null : ESRPlaylist.fromJson(json['playlist']),
-      archive: (IsNumericUtils.isNumeric(json['archive'])) ? null : ESRArchive.fromJson(json['archive']),
+      playlist: (IsNumericUtils.isNumeric(json['playlist'].toString())) ? null : ESRPlaylist.fromJson(json['playlist']),
+      archive: (IsNumericUtils.isNumeric(json['archive'].toString())) ? null : ESRArchive.fromJson(json['archive']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );
