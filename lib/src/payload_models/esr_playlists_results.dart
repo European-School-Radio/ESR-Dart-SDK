@@ -101,3 +101,28 @@ class ESRPlaylistsLikesCounterByPlaylistResults {
     );
   }
 }
+
+class ESRPlaylistsArchivesByPlaylistResults {
+  int count = 0;
+  List<ESRPlaylistArchive> playlistArchives = [];
+
+  ESRPlaylistsArchivesByPlaylistResults({
+    required this.count,
+    required this.playlistArchives
+  });
+
+  factory ESRPlaylistsArchivesByPlaylistResults.fromJson(Map<String, dynamic> json){
+    List<ESRPlaylistArchive> serializedPlaylistArchives = [];
+
+    List<dynamic> playlistArchivesList = json['data'] as List<dynamic>;
+
+    serializedPlaylistArchives = playlistArchivesList
+        .map((singlePlaylistArchive) => ESRPlaylistArchive.fromJson(singlePlaylistArchive as Map<String, dynamic>))
+        .toList();
+
+    return ESRPlaylistsArchivesByPlaylistResults(
+      count: json['count'],
+      playlistArchives: serializedPlaylistArchives
+    );
+  }
+}
