@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
+import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
 import 'package:esr_dart_sdk/src/enums/sorting/esr_school_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
+import 'package:esr_dart_sdk/src/utils/ip_utils.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
@@ -53,7 +55,7 @@ class ESRSchoolsService {
     }
   }
 
-  Future<ESRSchool> getSchoolById(int id, {ESRLang? language}) async {
+  Future<ESRSchool> getSchoolById(int id, {ESRLang? language, String? userJWT}) async {
     final urlBuilder = UrlBuilder('$_apiURL/school/$id');
 
     if (language == null){
@@ -62,7 +64,16 @@ class ESRSchoolsService {
       urlBuilder.addQueryParam("lang", language.flag);
     }
 
+    Map<String, String> allHeaders = {};
+
+    String userIP = await ESRIPUtils.getIP();
+    allHeaders['X-User-IP'] = userIP;
+    allHeaders['User-Agent'] = "${sdk.env.fullNameApplication} Application/${sdk.appVersion} (Dart SDK/${sdk.sdkVersion})";
+    allHeaders['Authorization'] = (userJWT == null) ? "" : "Bearer $userJWT";
+    allHeaders['X-App-Source-URL'] = sdk.env.sourceApplicationURL.toString();
+
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(allHeaders);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();

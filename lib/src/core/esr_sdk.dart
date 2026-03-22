@@ -7,14 +7,19 @@ class ESRSDK {
 
   late String apiKey;
   late ESREnvironments env;
+  late String appVersion;
+  late String sdkVersion;
 
   static Future<void> init({
     required String apiKey,
-    required ESREnvironments env
+    required ESREnvironments env,
+    required String appVersion
   }) async {
     final instance = _instance;
     instance.apiKey = apiKey;
     instance.env = env;
+    instance.appVersion = appVersion;
+    instance.sdkVersion = "1.1.0";
 
     print('ESR SDK initialised ✅');
   }

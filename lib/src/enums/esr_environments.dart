@@ -26,4 +26,26 @@ extension EsrEnvironmentsExtension on ESREnvironments {
         return "youth_radio";
     }
   }
+
+  String? get sourceApplicationURL {
+    switch (this){
+      case ESREnvironments.production:
+        return "European_School_Radio";
+      case ESREnvironments.test:
+        return "European_School_Radio";
+      case ESREnvironments.youthRadio:
+        return "Youth_Radio";
+    }
+  }
+
+  String? get fullNameApplication {
+    switch (this){
+      case ESREnvironments.production:
+        return "European School Radio";
+      case ESREnvironments.test:
+        return "European School Radio";
+      case ESREnvironments.youthRadio:
+        return "Youth Radio";
+    }
+  }
 }
