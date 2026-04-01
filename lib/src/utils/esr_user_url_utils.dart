@@ -5,8 +5,26 @@ import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 class ESRUserUrlUtils {
   static final sdk = ESRSDK();
 
-  static String getBannerURL(int userID){
-    return "${ESRServerConfig.communityBaseUrl}/wp-json/custom/get/user/banner/$userID";
+  static String getAvatarURL(int userID){
+    String baseURL = "";
+    if (sdk.env == ESREnvironments.test){
+      baseURL = ESRServerConfig.apiTestUrl;
+    } else {
+      baseURL = ESRServerConfig.apiUrl;
+    }
+
+    return "$baseURL/user/get-avatar/$userID";
+  }
+
+  static String getCoverURL(int userID){
+    String baseURL = "";
+    if (sdk.env == ESREnvironments.test){
+      baseURL = ESRServerConfig.apiTestUrl;
+    } else {
+      baseURL = ESRServerConfig.apiUrl;
+    }
+
+    return "$baseURL/user/get-cover/$userID";
   }
 
   static String getWebURL(int userID, {ESRLang? language}){
