@@ -19,3 +19,20 @@ class ESRArchiveHistoryListensAddResults {
     );
   }
 }
+
+class ESRArchiveHistoryListensUpdateResults {
+  String status = "";
+  String message = "";
+
+  ESRArchiveHistoryListensUpdateResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRArchiveHistoryListensUpdateResults.fromJson(Map<String, dynamic> json){
+    return ESRArchiveHistoryListensUpdateResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}

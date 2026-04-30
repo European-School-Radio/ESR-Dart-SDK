@@ -17,6 +17,50 @@ class ESRArchiveHistoryListensService {
   }
 
   Future<ESRArchiveHistoryListensAddResults> addArchiveHistoryListen(ESRAddArchiveHistoryListen archiveHistoryListen) async {
-  //   TODO: Add this code
+    final urlBuilder = UrlBuilder('$_apiURL/archive-history-listen/add');
+
+    var request = http.MultipartRequest('POST', Uri.parse(urlBuilder.build()));
+    request.fields.addAll({
+      "archive": archiveHistoryListen.archiveID.toString(),
+      "total_time": archiveHistoryListen.totalTime.toString()
+    });
+    if (archiveHistoryListen.userID != null){
+      request.fields.addAll({
+        "user": archiveHistoryListen.userID.toString()
+      });
+    }
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 201){
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchiveHistoryListensAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRArchiveHistoryListensUpdateResults> updateArchiveHistoryListen(int id, ESRAddArchiveHistoryListen archiveHistoryListen) async {
+    final urlBuilder = UrlBuilder("$_apiURL/archive-history-listen/edit/$id");
+
+    var request = http.MultipartRequest('PUT', Uri.parse(urlBuilder.build()));
+    request.fields.addAll({
+      "archive": archiveHistoryListen.archiveID.toString(),
+      "total_time": archiveHistoryListen.totalTime.toString()
+    });
+    if (archiveHistoryListen.userID != null){
+      request.fields.addAll({
+        "user": archiveHistoryListen.userID.toString()
+      });
+    }
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200){
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRArchiveHistoryListensUpdateResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
   }
 }

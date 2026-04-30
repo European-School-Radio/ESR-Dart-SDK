@@ -31,10 +31,12 @@ class ESRArchiveHistoryListen {
 
 class ESRAddArchiveHistoryListen {
   int archiveID;
+  int? userID;
   int totalTime;
 
   ESRAddArchiveHistoryListen({
     required this.archiveID,
+    this.userID,
     required this.totalTime
   });
 }
