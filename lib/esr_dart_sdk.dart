@@ -81,6 +81,7 @@ export 'src/models/api/esr_user_setting.dart' show ESRUserSetting;
 export 'src/models/api/esr_playlist.dart' show ESRPlaylist;
 export 'src/models/api/esr_follow_playlist.dart' show ESRFollowPlaylist;
 export 'src/models/api/esr_playlist_archive.dart' show ESRPlaylistArchive;
+export 'src/models/api/esr_archive_history_listen.dart' show ESRArchiveHistoryListen, ESRAddArchiveHistoryListen;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
@@ -108,6 +109,7 @@ export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesP
 export 'src/payload_models/esr_archive_user_schools_result.dart' show ESRArchiveUserSchoolsListResults;
 export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsByUserPublicResults;
 export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults;
+export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
