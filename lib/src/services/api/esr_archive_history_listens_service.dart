@@ -59,6 +59,8 @@ class ESRArchiveHistoryListensService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRArchiveHistoryListensUpdateResults.fromJson(jsonData);
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Archive History Listen with id $id not found");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
