@@ -19,16 +19,20 @@ class ESRArchiveHistoryListensService {
   Future<ESRArchiveHistoryListensAddResults> addArchiveHistoryListen(ESRAddArchiveHistoryListen archiveHistoryListen) async {
     final urlBuilder = UrlBuilder('$_apiURL/archive-history-listen/add');
 
-    var request = http.MultipartRequest('POST', Uri.parse(urlBuilder.build()));
-    request.fields.addAll({
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
       "archive": archiveHistoryListen.archiveID.toString(),
       "total_time": archiveHistoryListen.totalTime.toString()
-    });
+    };
     if (archiveHistoryListen.userID != null){
-      request.fields.addAll({
+      request.bodyFields.addAll({
         "user": archiveHistoryListen.userID.toString()
       });
     }
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 201){
@@ -43,16 +47,20 @@ class ESRArchiveHistoryListensService {
   Future<ESRArchiveHistoryListensUpdateResults> updateArchiveHistoryListen(int id, ESRAddArchiveHistoryListen archiveHistoryListen) async {
     final urlBuilder = UrlBuilder("$_apiURL/archive-history-listen/edit/$id");
 
-    var request = http.MultipartRequest('PUT', Uri.parse(urlBuilder.build()));
-    request.fields.addAll({
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
       "archive": archiveHistoryListen.archiveID.toString(),
       "total_time": archiveHistoryListen.totalTime.toString()
-    });
+    };
     if (archiveHistoryListen.userID != null){
-      request.fields.addAll({
+      request.bodyFields.addAll({
         "user": archiveHistoryListen.userID.toString()
       });
     }
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200){
