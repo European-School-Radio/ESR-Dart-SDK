@@ -271,7 +271,7 @@ class ESRFollowUsersByUserToWebsocketService {
     return _page;
   }
 
-  void setUserId(int newUserToId){
+  void setUserToId(int newUserToId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
           "WebSocket is already connected");
@@ -280,7 +280,7 @@ class ESRFollowUsersByUserToWebsocketService {
     _userToId = newUserToId;
   }
 
-  int? getUserId(){
+  int? getUserToId(){
     return _userToId;
   }
 
