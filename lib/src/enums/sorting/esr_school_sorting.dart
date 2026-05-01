@@ -34,7 +34,7 @@ extension ESRCountrySortingExtension on ESRSchoolSorting {
       case ESRSchoolSorting.nativeDescription:
         return 'native_description';
       case ESRSchoolSorting.schoolType:
-        return 'school_tpe__id';
+        return 'school_type__id';
       case ESRSchoolSorting.country:
         return 'country__id';
       case ESRSchoolSorting.city:

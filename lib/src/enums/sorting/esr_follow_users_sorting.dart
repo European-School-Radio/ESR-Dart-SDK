@@ -1,5 +1,6 @@
 enum ESRFollowUsersSorting {
   id,
+  userID,
   userFirstName,
   userLastName,
   userNativeFirstName,
@@ -22,6 +23,8 @@ extension ESRFollowUsersSortingExtension on ESRFollowUsersSorting {
     switch (this) {
       case ESRFollowUsersSorting.id:
         return 'id';
+      case ESRFollowUsersSorting.userID:
+        return "user__id";
       case ESRFollowUsersSorting.userFirstName:
         return "user__first_name";
       case ESRFollowUsersSorting.userLastName:

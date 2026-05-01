@@ -44,6 +44,7 @@ export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.d
 export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' show ESRUsersSchoolsBySchoolWebsocketService;
 export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService, ESRPlaylistsSharesCounterWebsocketService, ESRPlaylistsFollowersWebsocketService, ESRPlaylistsLikesCounterWebsocketService, ESRPlaylistsArchivesByPlaylistWebsocketService;
 export 'src/services/api/websockets/esr_follow_users_websocket_service.dart' show ESRFollowUsersByUserWebsocketService, ESRFollowUsersByUserToWebsocketService;
+export 'src/services/api/websockets/esr_follow_schools_websocket_service.dart' show ESRFollowSchoolsBySchoolWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -85,6 +86,7 @@ export 'src/models/api/esr_follow_playlist.dart' show ESRFollowPlaylist;
 export 'src/models/api/esr_playlist_archive.dart' show ESRPlaylistArchive;
 export 'src/models/api/esr_archive_history_listen.dart' show ESRArchiveHistoryListen, ESRAddArchiveHistoryListen;
 export 'src/models/api/esr_follow_user.dart' show ESRFollowUser;
+export 'src/models/api/esr_follow_school.dart' show ESRFollowSchool;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 
@@ -114,6 +116,7 @@ export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsB
 export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults;
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults;
+export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
@@ -151,6 +154,7 @@ export 'src/enums/sorting/esr_playlist_sorting.dart' show ESRPlaylistSorting;
 export 'src/enums/sorting/esr_playlist_followers_sorting.dart' show ESRPlaylistFollowersSorting;
 export 'src/enums/sorting/esr_playlist_archives_sorting.dart' show ESRPlaylistArchivesSorting;
 export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSorting;
+export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
