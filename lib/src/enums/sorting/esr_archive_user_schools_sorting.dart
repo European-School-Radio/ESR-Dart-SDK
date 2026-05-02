@@ -4,6 +4,8 @@ enum ESRArchiveUserSchoolsSorting {
   userLastName,
   userNativeFirstName,
   userNativeLastName,
+  userUsername,
+  userFollowers,
   archiveName,
   archiveLikesCount,
   archiveSharesCount,
@@ -27,6 +29,10 @@ extension ESRArchiveUserSchoolsSortingExtension on ESRArchiveUserSchoolsSorting 
         return 'user_school__user__native_first_name';
       case ESRArchiveUserSchoolsSorting.userNativeLastName:
         return 'user_school__user__native_last_name';
+      case ESRArchiveUserSchoolsSorting.userUsername:
+        return 'user_school__user__username';
+      case ESRArchiveUserSchoolsSorting.userFollowers:
+        return 'user_school__user__follow_count';
       case ESRArchiveUserSchoolsSorting.archiveName:
         return 'archive__translations__name';
       case ESRArchiveUserSchoolsSorting.archiveLikesCount:
