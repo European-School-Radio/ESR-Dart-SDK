@@ -1,9 +1,11 @@
 enum ESRProductionFollowersSorting {
   id,
-  firstName,
-  lastName,
-  nativeFirstName,
-  nativeLastName,
+  userFirstName,
+  userLastName,
+  userNativeFirstName,
+  userNativeLastName,
+  userUsername,
+  userFollowers,
   created
 }
 
@@ -12,14 +14,18 @@ extension ESRProductionFollowersSortingExtension on ESRProductionFollowersSortin
     switch (this) {
       case ESRProductionFollowersSorting.id:
         return 'id';
-      case ESRProductionFollowersSorting.firstName:
+      case ESRProductionFollowersSorting.userFirstName:
         return 'user__first_name';
-      case ESRProductionFollowersSorting.lastName:
+      case ESRProductionFollowersSorting.userLastName:
         return 'user__last_name';
-      case ESRProductionFollowersSorting.nativeFirstName:
+      case ESRProductionFollowersSorting.userNativeFirstName:
         return 'user__native_first_name';
-      case ESRProductionFollowersSorting.nativeLastName:
+      case ESRProductionFollowersSorting.userNativeLastName:
         return 'user__native_last_name';
+      case ESRProductionFollowersSorting.userUsername:
+        return 'user__username';
+      case ESRProductionFollowersSorting.userFollowers:
+        return 'user__follow_count';
       case ESRProductionFollowersSorting.created:
         return 'created';
     }
