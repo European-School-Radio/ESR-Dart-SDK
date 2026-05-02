@@ -4,6 +4,8 @@ enum ESRPlaylistFollowersSorting {
   userLastName,
   userNativeFirstName,
   userNativeLastName,
+  userUsername,
+  userFollowers,
   created
 }
 
@@ -20,6 +22,10 @@ extension ESRPlaylistFollowersSortingExtension on ESRPlaylistFollowersSorting {
         return 'user__native_first_name';
       case ESRPlaylistFollowersSorting.userNativeLastName:
         return 'user__native_last_name';
+      case ESRPlaylistFollowersSorting.userUsername:
+        return 'user__username';
+      case ESRPlaylistFollowersSorting.userFollowers:
+        return 'user__follow_count';
       case ESRPlaylistFollowersSorting.created:
         return 'created';
     }
