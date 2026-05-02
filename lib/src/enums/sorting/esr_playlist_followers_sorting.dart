@@ -1,9 +1,9 @@
 enum ESRPlaylistFollowersSorting {
   id,
-  firstName,
-  lastName,
-  nativeFirstName,
-  nativeLastName,
+  userFirstName,
+  userFastName,
+  userNativeFirstName,
+  userNativeLastName,
   created
 }
 
@@ -12,13 +12,13 @@ extension ESRPlaylistFollowersSortingExtension on ESRPlaylistFollowersSorting {
     switch (this) {
       case ESRPlaylistFollowersSorting.id:
         return 'id';
-      case ESRPlaylistFollowersSorting.firstName:
+      case ESRPlaylistFollowersSorting.userFirstName:
         return 'user__first_name';
-      case ESRPlaylistFollowersSorting.lastName:
+      case ESRPlaylistFollowersSorting.userFastName:
         return 'user__last_name';
-      case ESRPlaylistFollowersSorting.nativeFirstName:
+      case ESRPlaylistFollowersSorting.userNativeFirstName:
         return 'user__native_first_name';
-      case ESRPlaylistFollowersSorting.nativeLastName:
+      case ESRPlaylistFollowersSorting.userNativeLastName:
         return 'user__native_last_name';
       case ESRPlaylistFollowersSorting.created:
         return 'created';
