@@ -155,6 +155,7 @@ export 'src/enums/sorting/esr_playlist_followers_sorting.dart' show ESRPlaylistF
 export 'src/enums/sorting/esr_playlist_archives_sorting.dart' show ESRPlaylistArchivesSorting;
 export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSorting;
 export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;
+export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils
