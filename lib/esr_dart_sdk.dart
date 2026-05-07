@@ -33,6 +33,7 @@ export 'src/services/api/esr_user_settings_service.dart' show ESRUserSettingsSer
 export 'src/services/api/esr_playlists_service.dart' show ESRPlaylistsService;
 export 'src/services/api/esr_archive_history_listens_service.dart' show ESRArchiveHistoryListensService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
+export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
 // WebSocket Services
 export 'src/services/api/websockets/esr_jazler_now_playing_websocket.dart' show ESRJazlerNowPlayingWebsocketService;
@@ -89,6 +90,7 @@ export 'src/models/api/esr_follow_user.dart' show ESRFollowUser;
 export 'src/models/api/esr_follow_school.dart' show ESRFollowSchool;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
+export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment;
 
 // Wire Models
 export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults;
@@ -156,6 +158,7 @@ export 'src/enums/sorting/esr_playlist_archives_sorting.dart' show ESRPlaylistAr
 export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSorting;
 export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;
 export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
+export 'src/enums/sorting/community/esr_community_comment_sorting.dart' show ESRCommunityCommentSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
 
 // Utils

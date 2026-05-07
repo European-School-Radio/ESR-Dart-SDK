@@ -7,11 +7,9 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
 class ESRCommunityPostsService {
-  String _apiURL = "";
   String _baseURL = "";
 
   ESRCommunityPostsService(){
-    _apiURL = ESRServerConfig.communityApiUrl;
     _baseURL = ESRServerConfig.communityBaseUrl;
   }
 
