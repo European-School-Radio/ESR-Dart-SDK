@@ -90,7 +90,7 @@ export 'src/models/api/esr_follow_user.dart' show ESRFollowUser;
 export 'src/models/api/esr_follow_school.dart' show ESRFollowSchool;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
-export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment;
+export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
 
 // Wire Models
 export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults;

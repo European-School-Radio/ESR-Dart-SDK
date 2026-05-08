@@ -39,3 +39,23 @@ class ESRCommunityComment {
     );
   }
 }
+
+class ESRCommunityCountCommentsByPost {
+  String status = "";
+  int postID = 0;
+  int commentsCount = 0;
+
+  ESRCommunityCountCommentsByPost({
+    required this.status,
+    required this.postID,
+    required this.commentsCount
+  });
+
+  factory ESRCommunityCountCommentsByPost.fromJson(Map<String, dynamic> json){
+    return ESRCommunityCountCommentsByPost(
+      status: json['status'],
+      postID: json['post_id'],
+      commentsCount: json['total_comments']
+    );
+  }
+}

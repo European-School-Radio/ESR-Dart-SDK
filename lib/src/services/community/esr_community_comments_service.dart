@@ -76,4 +76,28 @@ class ESRCommunityCommentsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRCommunityCountCommentsByPost> getCommentsCounterByPost(int postID, {ESRLang? language}) async {
+    String lang = "en";
+    if (language != null){
+      lang = language.flag;
+    }
+
+    final urlBuilder = UrlBuilder('$_baseURL/$lang/wp-json/custom/post-comments/$postID');
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityCountCommentsByPost.fromJson(jsonData);
+    } else if (response.statusCode == 400){
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post with id $postID not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
