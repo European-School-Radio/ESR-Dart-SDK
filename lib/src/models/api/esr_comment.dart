@@ -37,7 +37,7 @@ class ESRComment {
       archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
       comment: json['comment'],
       reply: (json['reply'] == null) ? null : ESRComment.fromJson(json['reply']),
-      audioTimestampDuration: json['audio_timestamp_duration'],
+      audioTimestampDuration: (json['audio_timestamp_duration'] == null) ? null : json['audio_timestamp_duration'],
       isDeleted: json['is_deleted'],
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
