@@ -8,6 +8,7 @@ class ESRCommunityComment {
   String type = "";
   String content = "";
   String authorName = "";
+  String authorUsername = "";
   int userID = 0;
 
   ESRCommunityComment({
@@ -18,6 +19,7 @@ class ESRCommunityComment {
     required this.type,
     required this.content,
     required this.authorName,
+    required this.authorUsername,
     required this.userID
   });
 
@@ -32,6 +34,7 @@ class ESRCommunityComment {
       type: json['type'],
       content: unescape.convert(json['content']['rendered']),
       authorName: json['author_name'],
+      authorUsername: json['author_username'],
       userID: json['author_id']
     );
   }
