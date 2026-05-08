@@ -33,8 +33,8 @@ class ESRComment {
 
     return ESRComment(
       id: json['id'],
-      user: IsNumericUtils.isNumeric(json['user']) ? null : ESRUser.fromJson(json['user']),
-      archive: IsNumericUtils.isNumeric(json['archive']) ? null : ESRArchive.fromJson(json['archive']),
+      user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
+      archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
       comment: json['comment'],
       reply: (json['reply'] == null) ? null : ESRComment.fromJson(json['reply']),
       audioTimestampDuration: json['audio_timestamp_duration'],
