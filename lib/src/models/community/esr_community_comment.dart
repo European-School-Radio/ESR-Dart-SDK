@@ -8,8 +8,8 @@ class ESRCommunityComment {
   String type = "";
   String content = "";
   String authorName = "";
-  String authorUsername = "";
-  int userID = 0;
+  String? authorUsername = "";
+  int? authorUserID = 0;
 
   ESRCommunityComment({
     required this.id,
@@ -20,7 +20,7 @@ class ESRCommunityComment {
     required this.content,
     required this.authorName,
     required this.authorUsername,
-    required this.userID
+    required this.authorUserID
   });
 
   factory ESRCommunityComment.fromJson(Map<String, dynamic> json){
@@ -35,7 +35,7 @@ class ESRCommunityComment {
       content: unescape.convert(json['content']['rendered']),
       authorName: json['author_name'],
       authorUsername: json['author_username'],
-      userID: json['author_id']
+      authorUserID: json['author_id']
     );
   }
 }
