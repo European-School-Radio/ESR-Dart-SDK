@@ -26,3 +26,35 @@ class ESRCommentsPaginatedResults {
     );
   }
 }
+
+class ESRCommentsWebsocketListResults {
+  int count = 0;
+  List<ESRComment> results = [];
+
+  ESRCommentsWebsocketListResults({
+    required this.count,
+    required this.results
+  });
+
+  factory ESRCommentsWebsocketListResults.fromJson(Map<String, dynamic> json, int? limit){
+    List<ESRComment> serializedComments = [];
+
+    if ((!json.containsKey("data") || json['data'] == null) && json.containsKey("count")){
+      return ESRCommentsWebsocketListResults(
+          count: json['count'] ?? 0,
+          results: []
+      );
+    }
+
+    List<dynamic> commentsList = json['data'] as List<dynamic>;
+
+    serializedComments = commentsList
+        .map((singleArchive) => ESRComment.fromJson(singleArchive as Map<String, dynamic>))
+        .toList();
+
+    return ESRCommentsWebsocketListResults(
+        count: json['count'] ?? 0,
+        results: serializedComments
+    );
+  }
+}

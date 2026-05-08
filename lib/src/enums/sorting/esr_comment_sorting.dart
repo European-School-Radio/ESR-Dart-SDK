@@ -25,7 +25,8 @@ enum ESRCommentSorting {
   archiveSharesCount,
   archiveCommentsCount,
   archiveCreated,
-  audioTimestamp
+  audioTimestamp,
+  created
 }
 
 extension ESRCommentSortingExtension on ESRCommentSorting {
@@ -85,6 +86,8 @@ extension ESRCommentSortingExtension on ESRCommentSorting {
         return "archive__created";
       case ESRCommentSorting.audioTimestamp:
         return "audio_timestamp_duration";
+      case ESRCommentSorting.created:
+        return "created";
     }
   }
 }

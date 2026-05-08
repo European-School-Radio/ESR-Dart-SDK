@@ -47,6 +47,7 @@ export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' sh
 export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService, ESRPlaylistsSharesCounterWebsocketService, ESRPlaylistsFollowersWebsocketService, ESRPlaylistsLikesCounterWebsocketService, ESRPlaylistsArchivesByPlaylistWebsocketService;
 export 'src/services/api/websockets/esr_follow_users_websocket_service.dart' show ESRFollowUsersByUserWebsocketService, ESRFollowUsersByUserToWebsocketService;
 export 'src/services/api/websockets/esr_follow_schools_websocket_service.dart' show ESRFollowSchoolsBySchoolWebsocketService;
+export 'src/services/api/websockets/esr_comments_websocket_service.dart' show ESRCommentsByArchiveWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -121,7 +122,7 @@ export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserRe
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults;
 export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults;
-export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedResults;
+export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedResults, ESRCommentsWebsocketListResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
