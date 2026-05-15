@@ -27,9 +27,13 @@ class ESRComment {
   });
 
   factory ESRComment.fromJson(Map<String, dynamic> json){
-    List<ESRComment> serializedReplies = (json['replies'] as List<dynamic>)
-        .map((singleComment) => ESRComment.fromJson(singleComment as Map<String, dynamic>))
-        .toList();
+    List<ESRComment> serializedReplies = [];
+
+    if (json['replies'] != null){
+      serializedReplies = (json['replies'] as List<dynamic>)
+          .map((singleComment) => ESRComment.fromJson(singleComment as Map<String, dynamic>))
+          .toList();
+    }
 
     return ESRComment(
       id: json['id'],
