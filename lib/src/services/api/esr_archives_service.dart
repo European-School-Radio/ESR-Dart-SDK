@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
 import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
@@ -6,6 +7,7 @@ import 'package:esr_dart_sdk/src/enums/sorting/esr_archive_sorting.dart';
 import 'dart:io' as io;
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/datetime_formatter.dart';
+import 'package:esr_dart_sdk/src/utils/esr_image_resizer.dart';
 import 'package:esr_dart_sdk/src/utils/ip_utils.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
@@ -100,6 +102,23 @@ class ESRArchivesService {
         request.files.add(
             await http.MultipartFile.fromPath('en[banner]', archive.imageBanner.toString())
         );
+
+        final Uint8List? seoBannerImage = await ESRImageResizer.resizeImageContain(
+          archive.imageBanner.toString(),
+          targetWidth: 1200,
+          targetHeight: 630,
+        );
+
+        if (seoBannerImage != null) {
+          request.files.add(
+            http.MultipartFile.fromBytes(
+              'en[seo_banner]',
+              seoBannerImage,
+              filename: 'seo_banner.webp',
+              contentType: http.MediaType('image', 'webp'),
+            ),
+          );
+        }
       }
     }
 
