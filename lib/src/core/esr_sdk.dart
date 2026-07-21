@@ -7,6 +7,7 @@ class ESRSDK {
 
   late String apiKey;
   late String ssoApiKey;
+  late String communityApiKey;
   late ESREnvironments env;
   late String appVersion;
   late String sdkVersion;
@@ -14,12 +15,14 @@ class ESRSDK {
   static Future<void> init({
     required String apiKey,
     required String ssoApiKey,
+    required String communityApiKey,
     required ESREnvironments env,
     required String appVersion
   }) async {
     final instance = _instance;
     instance.apiKey = apiKey;
     instance.ssoApiKey = ssoApiKey;
+    instance.communityApiKey = communityApiKey;
     instance.env = env;
     instance.appVersion = appVersion;
     instance.sdkVersion = "1.1.0";

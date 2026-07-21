@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 class ESRUsersService {
   final sdk = ESRSDK();
   String _apiURL = "";
+  String _communityApiURL = ESRServerConfig.communityBaseUrl;
 
   ESRUsersService(){
     if (sdk.env == ESREnvironments.test){
@@ -92,6 +93,35 @@ class ESRUsersService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRUsersLoginResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRUsersCommunityRegisterResults> registerUserCommunity(String username, String email, String password, String firstName, String lastName, int userID) async {
+    final urlBuilder = UrlBuilder('$_communityApiURL/wp-json/custom/add/user');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'username': username,
+      'email': email,
+      'password': password,
+      'first_name': firstName,
+      'last_name': lastName,
+      'SR2_id': userID.toString(),
+      'api_key': sdk.communityApiKey
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersCommunityRegisterResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

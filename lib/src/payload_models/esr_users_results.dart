@@ -23,6 +23,23 @@ class ESRUsersLoginResults {
   }
 }
 
+class ESRUsersCommunityRegisterResults {
+  String message = "";
+  int userID = 0;
+
+  ESRUsersCommunityRegisterResults({
+    required this.message,
+    required this.userID
+  });
+
+  factory ESRUsersCommunityRegisterResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersCommunityRegisterResults(
+      message: json['message'],
+      userID: (json.containsKey("user_id")) ? json['user_id'] : 0
+    );
+  }
+}
+
 class ESRUsersCheckUsernameResults {
   String status = "";
   String message = "";
