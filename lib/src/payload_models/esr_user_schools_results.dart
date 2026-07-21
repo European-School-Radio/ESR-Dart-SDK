@@ -53,3 +53,23 @@ class ESRUserSchoolsBySchoolResults {
     );
   }
 }
+
+class ESRUserSchoolsAddUserToSchoolResults {
+  String status = "";
+  String message = "";
+  ESRUsersSchools? userSchool;
+
+  ESRUserSchoolsAddUserToSchoolResults({
+    required this.status,
+    required this.message,
+    required this.userSchool
+  });
+
+  factory ESRUserSchoolsAddUserToSchoolResults.fromJson(Map<String, dynamic> json){
+    return ESRUserSchoolsAddUserToSchoolResults(
+      status: json['status'],
+      message: json['message'],
+      userSchool: ESRUsersSchools.fromJson(json)
+    );
+  }
+}

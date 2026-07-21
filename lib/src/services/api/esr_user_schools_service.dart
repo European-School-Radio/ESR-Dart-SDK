@@ -48,4 +48,33 @@ class ESRUserSchoolsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRUserSchoolsAddUserToSchoolResults> addUserSchool(int userID, int schoolID, int roleID, bool disabled, String userToken) async {
+    final urlBuilder = UrlBuilder('$_apiURL/user-school/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $userToken'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'user': userID.toString(),
+      'school': schoolID.toString(),
+      'role': roleID.toString(),
+      'disabled': disabled ? "1" : "0"
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUserSchoolsAddUserToSchoolResults.fromJson(jsonData);
+    } else if (response.statusCode == 401){
+      throw UnAuthorizedException("Authentication not valid");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

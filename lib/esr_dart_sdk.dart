@@ -107,7 +107,7 @@ export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMi
 export 'src/payload_models/esr_reservation_slots_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/payload_models/esr_zones_results.dart' show ESRZonesPaginatedResults, ESRNowPlayingZoneResults;
 export 'src/payload_models/esr_users_results.dart' show ESRUsersLoginResults, ESRUsersCheckUsernameResults, ESRUsersWebsocketListResults, ESRUsersPublicProfile, ESRUserCoverDataResults, ESRUsersSimilarUsersResults;
-export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults;
+export 'src/payload_models/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults, ESRUserSchoolsAddUserToSchoolResults;
 export 'src/payload_models/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
 export 'src/payload_models/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
@@ -129,6 +129,7 @@ export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show 
 
 // Exceptions
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
+export 'src/exceptions/unauthorized_exception.dart' show UnAuthorizedException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
 export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
 export 'src/exceptions/information_not_valid_exception.dart' show InformationNotValidException;
