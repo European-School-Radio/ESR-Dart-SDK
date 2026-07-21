@@ -60,7 +60,7 @@ export 'src/models/api/esr_school.dart' show ESRSchool, ESRSchoolMap;
 export 'src/models/api/esr_school_type.dart' show ESRSchoolType;
 export 'src/models/api/esr_school_year.dart' show ESRSchoolYear;
 export 'src/models/api/esr_sector.dart' show ESRSector;
-export 'src/models/api/esr_user.dart' show ESRUser, ESRUserPublicProfile;
+export 'src/models/api/esr_user.dart' show ESRUser, ESRUserPublicProfile, ESRUserAdd;
 export 'src/models/api/esr_users_school.dart' show ESRUsersSchools;
 export 'src/models/api/esr_zone.dart' show ESRZone;
 export 'src/models/api/esr_zone_type.dart' show ESRZoneType;
@@ -140,6 +140,8 @@ export 'src/exceptions/websocket_already_connected_exception.dart' show Websocke
 export 'src/exceptions/websocket_not_connected_exception.dart' show WebsocketNotConnectedException;
 export 'src/exceptions/contest_submission_archive_exception.dart' show ContestSubmissionArchiveException;
 export 'src/exceptions/sort_not_allowed_exception.dart' show SortNotAllowedException;
+export 'src/exceptions/user_add_email_exists_exception.dart' show UserAddEmailExistsException;
+export 'src/exceptions/user_add_username_exists_exception.dart' show UserAddUsernameExistsException;
 
 // Enums
 export 'src/enums/directions/esr_sorting_directions.dart' show ESRSortingDirections;

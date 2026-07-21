@@ -129,3 +129,20 @@ class ESRUserPublicProfile {
     );
   }
 }
+
+class ESRUserAdd {
+  String firstName = "";
+  String lastName = "";
+  String nativeFirstName = "";
+  String nativeLastName = "";
+  int roleID = 0;
+  int sectorID = 0;
+  String username = "";
+  String password = "";
+  String email = "";
+  String position = "";
+  String ssoModel = "";
+  bool isBlocked = false;
+  int countryID = 0;
+  bool sendEmail = false;
+}

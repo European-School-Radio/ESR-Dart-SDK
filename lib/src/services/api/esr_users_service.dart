@@ -98,7 +98,71 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUsersLoginResults> registerUser(ESRUserAdd userAdd) async {
+    if (userAdd.firstName.isEmpty || userAdd.lastName.isEmpty || userAdd.nativeFirstName.isEmpty || userAdd.nativeLastName.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username.isEmpty || userAdd.password.isEmpty || userAdd.email.isEmpty || userAdd.position.isEmpty || userAdd.ssoModel.isEmpty || userAdd.countryID == 0){
+      throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
+    }
+    if (!EmailValidator.validate(userAdd.email)){
+      throw InformationNotValidException("Email has not a valid format");
+    }
+
+    final urlBuilder = UrlBuilder('$_apiURL/user/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'first_name': userAdd.firstName,
+      'last_name': userAdd.lastName,
+      'native_first_name': userAdd.nativeFirstName,
+      'native_last_name': userAdd.nativeLastName,
+      'role': userAdd.roleID.toString(),
+      'sector': userAdd.sectorID.toString(),
+      'username': userAdd.username,
+      'password': userAdd.password,
+      'email': userAdd.email,
+      'position': userAdd.position,
+      'sso_model': userAdd.ssoModel,
+      'is_blocked': userAdd.isBlocked ? "1" : "0",
+      'country': userAdd.countryID.toString(),
+      'send_email': userAdd.sendEmail ? "1" : "0",
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 201) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersLoginResults.fromJson(jsonData);
+    } else if (response.statusCode == 400){
+      var responsePlain = await response.stream.bytesToString();
+      Map<String, dynamic> jsonData = json.decode(responsePlain);
+
+      if (jsonData.containsKey("email")){
+        throw UserAddEmailExistsException("Email exists !");
+      }
+      if (jsonData.containsKey("username")){
+        throw UserAddUsernameExistsException("Username exists !");
+      }
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersCommunityRegisterResults> registerUserCommunity(String username, String email, String password, String firstName, String lastName, int userID) async {
+    if (username.isEmpty || email.isEmpty || password.isEmpty || firstName.isEmpty || lastName.isEmpty){
+      throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
+    }
+    if (!EmailValidator.validate(email)){
+      throw InformationNotValidException("Email has not a valid format");
+    }
+    if (sdk.communityApiKey.isEmpty){
+      throw InformationNotValidException("You MUST provide community API Key on SDK initialization");
+    }
+
     final urlBuilder = UrlBuilder('$_communityApiURL/wp-json/custom/add/user');
 
     var headers = {
