@@ -23,6 +23,26 @@ class ESRUsersLoginResults {
   }
 }
 
+class ESRUsersCheckUsernameResults {
+  String status = "";
+  String message = "";
+  bool exists = false;
+
+  ESRUsersCheckUsernameResults({
+    required this.status,
+    required this.message,
+    required this.exists
+  });
+
+  factory ESRUsersCheckUsernameResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersCheckUsernameResults(
+      status: json['status'],
+      message: json['message'],
+      exists: json['exists']
+    );
+  }
+}
+
 class ESRUsersWebsocketListResults {
   int count = 0;
   List<ESRUser> results = [];
