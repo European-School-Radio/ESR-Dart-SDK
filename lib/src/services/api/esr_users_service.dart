@@ -71,6 +71,32 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUsersLoginResults> loginExternalSSO(String username, String password) async {
+    final urlBuilder = UrlBuilder('$_apiURL/users/login-external-sso');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'username': username,
+      'password': password,
+      'sso_api_key': sdk.ssoApiKey,
+      'request_application': sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio"
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersLoginResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersCheckUsernameResults> checkUsernameExists(String username) async {
     final urlBuilder = UrlBuilder('$_apiURL/user/check-username');
     urlBuilder.addQueryParam("username", username);

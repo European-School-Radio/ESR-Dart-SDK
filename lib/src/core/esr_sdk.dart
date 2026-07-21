@@ -6,17 +6,20 @@ class ESRSDK {
   factory ESRSDK() => _instance;
 
   late String apiKey;
+  late String ssoApiKey;
   late ESREnvironments env;
   late String appVersion;
   late String sdkVersion;
 
   static Future<void> init({
     required String apiKey,
+    required String ssoApiKey,
     required ESREnvironments env,
     required String appVersion
   }) async {
     final instance = _instance;
     instance.apiKey = apiKey;
+    instance.ssoApiKey = ssoApiKey;
     instance.env = env;
     instance.appVersion = appVersion;
     instance.sdkVersion = "1.1.0";
