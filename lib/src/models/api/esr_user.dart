@@ -145,4 +145,21 @@ class ESRUserAdd {
   bool isBlocked = false;
   int countryID = 0;
   bool sendEmail = false;
+
+  ESRUserAdd({
+    required this.firstName,
+    required this.lastName,
+    required this.nativeFirstName,
+    required this.nativeLastName,
+    required this.roleID,
+    required this.sectorID,
+    required this.username,
+    required this.password,
+    required this.email,
+    required this.position,
+    required this.ssoModel,
+    required this.isBlocked,
+    required this.countryID,
+    required this.sendEmail
+  });
 }
