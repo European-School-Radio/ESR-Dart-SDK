@@ -46,7 +46,7 @@ class ESRSSOLoginTriesService {
 
     http.StreamedResponse response = await request.send();
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRSSOLoginTriesAddResult.fromJson(jsonData);
