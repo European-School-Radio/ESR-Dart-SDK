@@ -54,6 +54,23 @@ class ESRUsersCheckResetTokenValidityResults {
   }
 }
 
+class ESRUsersCancelResetTokenResults {
+  String status = "";
+  String message = "";
+
+  ESRUsersCancelResetTokenResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRUsersCancelResetTokenResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersCancelResetTokenResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;
