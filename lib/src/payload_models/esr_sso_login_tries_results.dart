@@ -15,7 +15,7 @@ class ESRSSOLoginTriesAddResult {
     return ESRSSOLoginTriesAddResult(
       status: json['status'],
       message: json['message'],
-      ssoLoginTry: ESRSSOLoginTry.fromJson(json)
+      ssoLoginTry: ESRSSOLoginTry.fromJson(json['sso_login_try_instance'])
     );
   }
 }

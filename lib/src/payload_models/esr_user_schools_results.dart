@@ -69,7 +69,7 @@ class ESRUserSchoolsAddUserToSchoolResults {
     return ESRUserSchoolsAddUserToSchoolResults(
       status: json['status'],
       message: json['message'],
-      userSchool: ESRUsersSchools.fromJson(json)
+      userSchool: ESRUsersSchools.fromJson(json['user_school'])
     );
   }
 }
