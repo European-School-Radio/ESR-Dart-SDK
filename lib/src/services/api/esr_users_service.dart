@@ -175,6 +175,43 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUsersCancelResetTokenResults> resetPassword(String password, String userToken, int userID) async {
+    if (!password.contains(RegExp(r'[^\w\s]'))){
+      throw InformationNotValidException("Password must contain at least one special character");
+    }
+    if (!password.contains(RegExp(r'[A-Z]'))){
+      throw InformationNotValidException("Password must contain at least one capital letter");
+    }
+    if (!password.contains(RegExp(r'[a-z]'))){
+      throw InformationNotValidException("Password must contain at least on lower letter");
+    }
+    if (password.length < 12){
+      throw InformationNotValidException("Password must be at least 12 characters long");
+    }
+    
+    final urlBuilder = UrlBuilder('$_apiURL/user/reset-password/$userID');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'token': userToken,
+      'password': password
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersCancelResetTokenResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersLoginResults> registerUser(ESRUserAdd userAdd) async {
     if (userAdd.firstName.isEmpty || userAdd.lastName.isEmpty || userAdd.nativeFirstName.isEmpty || userAdd.nativeLastName.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username.isEmpty || userAdd.password.isEmpty || userAdd.email.isEmpty || userAdd.position.isEmpty || userAdd.ssoModel.isEmpty || userAdd.countryID == 0){
       throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
