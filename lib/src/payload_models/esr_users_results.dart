@@ -23,6 +23,23 @@ class ESRUsersLoginResults {
   }
 }
 
+class ESRUsersRequestResetPasswordResults {
+  String status = "";
+  String message = "";
+
+  ESRUsersRequestResetPasswordResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRUsersRequestResetPasswordResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersRequestResetPasswordResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;
