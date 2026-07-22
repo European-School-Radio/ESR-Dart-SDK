@@ -175,7 +175,7 @@ class ESRUsersService {
     }
   }
 
-  Future<ESRUsersCancelResetTokenResults> resetPassword(String password, String userToken, int userID) async {
+  Future<ESRUsersResetPasswordResults> resetPassword(String password, String userToken, int userID) async {
     if (!password.contains(RegExp(r'[^\w\s]'))){
       throw InformationNotValidException("Password must contain at least one special character");
     }
@@ -206,7 +206,7 @@ class ESRUsersService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRUsersCancelResetTokenResults.fromJson(jsonData);
+      return ESRUsersResetPasswordResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
