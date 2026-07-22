@@ -40,6 +40,20 @@ class ESRUsersRequestResetPasswordResults {
   }
 }
 
+class ESRUsersCheckResetTokenValidityResults {
+  String status = "";
+
+  ESRUsersCheckResetTokenValidityResults({
+    required this.status
+  });
+
+  factory ESRUsersCheckResetTokenValidityResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersCheckResetTokenValidityResults(
+      status: json['status']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;
