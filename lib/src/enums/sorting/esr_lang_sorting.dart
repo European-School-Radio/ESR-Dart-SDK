@@ -13,9 +13,9 @@ extension ESRLangSortingExtension on ESRLangSorting {
       case ESRLangSorting.id:
         return 'id';
       case ESRLangSorting.name:
-        return 'name';
+        return 'translations__name';
       case ESRLangSorting.nativeName:
-        return 'native_name';
+        return 'translations__native_name';
       case ESRLangSorting.code:
         return 'code';
       case ESRLangSorting.flag:

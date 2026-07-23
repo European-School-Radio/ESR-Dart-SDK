@@ -11,7 +11,7 @@ extension ESRCountrySortingExtension on ESRCountrySorting {
       case ESRCountrySorting.id:
         return 'id';
       case ESRCountrySorting.name:
-        return 'name';
+        return 'translations__name';
       case ESRCountrySorting.code:
         return 'code';
       case ESRCountrySorting.created:
