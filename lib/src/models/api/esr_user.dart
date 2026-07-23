@@ -144,6 +144,10 @@ class ESRUserAdd {
   String ssoModel = "";
   bool isBlocked = false;
   int countryID = 0;
+  int? gender;
+  int? preferredLang;
+  DateTime? birthDate;
+  String? timezone;
   bool sendEmail = false;
 
   ESRUserAdd({
@@ -160,6 +164,10 @@ class ESRUserAdd {
     required this.ssoModel,
     required this.isBlocked,
     required this.countryID,
+    this.gender,
+    this.preferredLang,
+    this.birthDate,
+    this.timezone,
     required this.sendEmail
   });
 }

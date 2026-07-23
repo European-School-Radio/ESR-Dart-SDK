@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:email_validator/email_validator.dart';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ESRUsersService {
   final sdk = ESRSDK();
@@ -241,7 +243,30 @@ class ESRUsersService {
       'is_blocked': userAdd.isBlocked ? "1" : "0",
       'country': userAdd.countryID.toString(),
       'send_email': userAdd.sendEmail ? "1" : "0",
+      "source_platform": sdk.env.requestApplication.toString()
     };
+    if (userAdd.gender != null){
+      request.bodyFields.addAll({
+        "gender": userAdd.gender.toString()
+      });
+    }
+    if (userAdd.preferredLang != null){
+      request.bodyFields.addAll({
+        "preferred_lang": userAdd.preferredLang.toString()
+      });
+    }
+    if (userAdd.birthDate != null){
+      String formattedDate = DateFormat('yyyy-MM-dd').format(userAdd.birthDate!);
+      request.bodyFields.addAll({
+        "birth_date": formattedDate
+      });
+    }
+    if (userAdd.timezone != null){
+      request.bodyFields.addAll({
+        "time_zone": userAdd.timezone.toString()
+      });
+    }
+
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
