@@ -215,7 +215,7 @@ class ESRUsersService {
   }
 
   Future<ESRUsersLoginResults> registerUser(ESRUserAdd userAdd) async {
-    if (userAdd.firstName.isEmpty || userAdd.lastName.isEmpty || userAdd.nativeFirstName.isEmpty || userAdd.nativeLastName.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username.isEmpty || userAdd.password.isEmpty || userAdd.email.isEmpty || userAdd.position.isEmpty || userAdd.ssoModel.isEmpty || userAdd.countryID == 0){
+    if (userAdd.firstName.isEmpty || userAdd.lastName.isEmpty || userAdd.nativeFirstName.isEmpty || userAdd.nativeLastName.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username.isEmpty || userAdd.password.isEmpty || userAdd.email.isEmpty || userAdd.position.isEmpty || userAdd.countryID == 0){
       throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
     }
     if (!EmailValidator.validate(userAdd.email)){
@@ -239,12 +239,16 @@ class ESRUsersService {
       'password': userAdd.password,
       'email': userAdd.email,
       'position': userAdd.position,
-      'sso_model': userAdd.ssoModel,
       'is_blocked': userAdd.isBlocked ? "1" : "0",
       'country': userAdd.countryID.toString(),
       'send_email': userAdd.sendEmail ? "1" : "0",
       "source_platform": sdk.env.requestApplication.toString()
     };
+    if (userAdd.ssoModel.isNotEmpty){
+      request.bodyFields.addAll({
+        "sso_model": userAdd.ssoModel
+      });
+    }
     if (userAdd.gender != null){
       request.bodyFields.addAll({
         "gender": userAdd.gender.toString()
