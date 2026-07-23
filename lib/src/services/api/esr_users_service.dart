@@ -327,9 +327,16 @@ class ESRUsersService {
     }
 
     final urlBuilder = UrlBuilder('$_apiURL/user/check-email');
-    urlBuilder.addQueryParam("email", email);
 
-    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'email': email
+    };
+    request.headers.addAll(headers);
+
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
