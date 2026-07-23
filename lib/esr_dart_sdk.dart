@@ -171,6 +171,7 @@ export 'src/enums/sorting/esr_playlist_archives_sorting.dart' show ESRPlaylistAr
 export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSorting;
 export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;
 export 'src/enums/sorting/esr_comment_sorting.dart' show ESRCommentSorting;
+export 'src/enums/sorting/esr_gender_sorting.dart' show ESRGenderSorting;
 export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
 export 'src/enums/sorting/community/esr_community_comment_sorting.dart' show ESRCommunityCommentSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
