@@ -125,6 +125,26 @@ class ESRUsersCheckUsernameResults {
   }
 }
 
+class ESRUsersCheckEmailResults {
+  String status = "";
+  String message = "";
+  bool exists = false;
+
+  ESRUsersCheckEmailResults({
+    required this.status,
+    required this.message,
+    required this.exists
+  });
+
+  factory ESRUsersCheckEmailResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersCheckEmailResults(
+        status: json['status'],
+        message: json['message'],
+        exists: json['exists']
+    );
+  }
+}
+
 class ESRUsersWebsocketListResults {
   int count = 0;
   List<ESRUser> results = [];

@@ -321,6 +321,26 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUsersCheckEmailResults> checkEmailExists(String email) async {
+    if (!EmailValidator.validate(email)){
+      throw InformationNotValidException("Email has not a valid format");
+    }
+
+    final urlBuilder = UrlBuilder('$_apiURL/user/check-email');
+    urlBuilder.addQueryParam("email", email);
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersCheckEmailResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersPublicProfile> getPublicProfileById(int id, {ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/users/publicProfile/$id');
 
