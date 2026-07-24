@@ -23,7 +23,7 @@ class ESRUserSchoolApproval {
       id: json['id'],
       userSchool: IsNumericUtils.isNumeric(json['user_school'].toString()) ? null : ESRUsersSchools.fromJson(json['user_school']),
       approved: json['approved'],
-      updatedBy: IsNumericUtils.isNumeric(json['updated_by'].toString()) ? null : ESRUser.fromJson(json['updated_by']),
+      updatedBy: (IsNumericUtils.isNumeric(json['updated_by'].toString()) || json['updated_by'] == null) ? null : ESRUser.fromJson(json['updated_by']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );
