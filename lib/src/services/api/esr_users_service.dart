@@ -441,7 +441,8 @@ class ESRUsersService {
     final urlBuilder = UrlBuilder('$_apiURL/user/edit/$userID');
 
     var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
     };
     var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
     if (userAdd.firstName != null){
