@@ -377,6 +377,29 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUsersVerifyTokenResults> verifyRegistrationToken(String token) async {
+    final urlBuilder = UrlBuilder('$_apiURL/users/verifyToken');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'token': token
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersVerifyTokenResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersPublicProfile> getPublicProfileById(int id, {ESRLang? language}) async {
     final urlBuilder = UrlBuilder('$_apiURL/users/publicProfile/$id');
 

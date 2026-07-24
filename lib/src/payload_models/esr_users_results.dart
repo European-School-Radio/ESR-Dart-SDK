@@ -88,6 +88,23 @@ class ESRUsersResetPasswordResults {
   }
 }
 
+class ESRUsersVerifyTokenResults {
+  String status = "";
+  String message = "";
+
+  ESRUsersVerifyTokenResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRUsersVerifyTokenResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersVerifyTokenResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;
