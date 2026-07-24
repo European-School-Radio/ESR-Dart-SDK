@@ -231,7 +231,10 @@ class ESRUsersService {
       'Content-Type': 'application/x-www-form-urlencoded'
     };
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
-    request.bodyFields = {
+
+    Map<String, String> bodyFields = {};
+
+    bodyFields = {
       'first_name': userAdd.firstName!,
       'last_name': userAdd.lastName!,
       'native_first_name': userAdd.nativeFirstName!,
@@ -248,37 +251,38 @@ class ESRUsersService {
       "source_platform": sdk.env.requestApplication.toString()
     };
     if (userAdd.ssoModel != null && userAdd.ssoModel!.isNotEmpty){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "sso_model": userAdd.ssoModel!
       });
     }
     if (userAdd.phone != null && userAdd.phone!.isNotEmpty){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "phone": userAdd.phone!
       });
     }
     if (userAdd.gender != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "gender": userAdd.gender.toString()
       });
     }
     if (userAdd.preferredLang != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "preferred_lang": userAdd.preferredLang.toString()
       });
     }
     if (userAdd.birthDate != null){
       String formattedDate = DateFormat('yyyy-MM-dd').format(userAdd.birthDate!);
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "birth_date": formattedDate
       });
     }
     if (userAdd.timezone != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "time_zone": userAdd.timezone.toString()
       });
     }
 
+    request.bodyFields = bodyFields;
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
@@ -445,83 +449,87 @@ class ESRUsersService {
       'Authorization': 'Bearer $jwt'
     };
     var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
+
+    Map<String, String> bodyFields = {};
+
     if (userAdd.firstName != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "first_name": userAdd.firstName!
       });
     }
     if (userAdd.lastName != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "last_name": userAdd.lastName!
       });
     }
     if (userAdd.nativeFirstName != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "native_first_name": userAdd.nativeFirstName!
       });
     }
     if (userAdd.nativeLastName != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "native_last_name": userAdd.nativeLastName!
       });
     }
     if (userAdd.roleID != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "role": userAdd.roleID.toString()
       });
     }
     if (userAdd.sectorID != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "sector": userAdd.sectorID.toString()
       });
     }
     if (userAdd.password != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "password": userAdd.password!
       });
     }
     if (userAdd.position != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "position": userAdd.position!
       });
     }
     if (userAdd.countryID != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "country": userAdd.countryID.toString()
       });
     }
     if (userAdd.ssoModel != null && userAdd.ssoModel!.isNotEmpty){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "sso_model": userAdd.ssoModel!
       });
     }
     if (userAdd.phone != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "phone": userAdd.phone!
       });
     }
     if (userAdd.gender != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "gender": userAdd.gender.toString()
       });
     }
     if (userAdd.preferredLang != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "preferred_lang": userAdd.preferredLang.toString()
       });
     }
     if (userAdd.birthDate != null){
       String formattedDate = DateFormat('yyyy-MM-dd').format(userAdd.birthDate!);
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "birth_date": formattedDate
       });
     }
     if (userAdd.timezone != null){
-      request.bodyFields.addAll({
+      bodyFields.addAll({
         "time_zone": userAdd.timezone.toString()
       });
     }
 
+    request.bodyFields = bodyFields;
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
