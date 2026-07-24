@@ -105,6 +105,23 @@ class ESRUsersVerifyTokenResults {
   }
 }
 
+class ESRUsersVerifyUserResults {
+  String status = "";
+  String message = "";
+
+  ESRUsersVerifyUserResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRUsersVerifyUserResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersVerifyUserResults(
+        status: json['status'],
+        message: json['message']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;
