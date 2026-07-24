@@ -131,43 +131,43 @@ class ESRUserPublicProfile {
 }
 
 class ESRUserAdd {
-  String firstName = "";
-  String lastName = "";
-  String nativeFirstName = "";
-  String nativeLastName = "";
-  int roleID = 0;
-  int sectorID = 0;
-  String username = "";
-  String password = "";
-  String email = "";
-  String position = "";
-  String ssoModel = "";
-  bool isBlocked = false;
-  int countryID = 0;
+  String? firstName = "";
+  String? lastName = "";
+  String? nativeFirstName = "";
+  String? nativeLastName = "";
+  int? roleID = 0;
+  int ?sectorID = 0;
+  String? username = "";
+  String? password = "";
+  String? email = "";
+  String? position = "";
+  String? ssoModel = "";
+  bool? isBlocked = false;
+  int? countryID = 0;
   int? gender;
   int? preferredLang;
   DateTime? birthDate;
   String? timezone;
-  bool sendEmail = false;
+  bool? sendEmail = false;
 
   ESRUserAdd({
-    required this.firstName,
-    required this.lastName,
-    required this.nativeFirstName,
-    required this.nativeLastName,
-    required this.roleID,
-    required this.sectorID,
-    required this.username,
-    required this.password,
-    required this.email,
-    required this.position,
-    required this.ssoModel,
-    required this.isBlocked,
-    required this.countryID,
+    this.firstName,
+    this.lastName,
+    this.nativeFirstName,
+    this.nativeLastName,
+    this.roleID,
+    this.sectorID,
+    this.username,
+    this.password,
+    this.email,
+    this.position,
+    this.ssoModel,
+    this.isBlocked,
+    this.countryID,
     this.gender,
     this.preferredLang,
     this.birthDate,
     this.timezone,
-    required this.sendEmail
+    this.sendEmail
   });
 }

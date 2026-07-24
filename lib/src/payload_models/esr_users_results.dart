@@ -122,6 +122,23 @@ class ESRUsersVerifyUserResults {
   }
 }
 
+class ESRUsersEditResults {
+  String status = "";
+  String message = "";
+
+  ESRUsersEditResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRUsersEditResults.fromJson(Map<String, dynamic> json){
+    return ESRUsersEditResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
+
 class ESRUsersCommunityRegisterResults {
   String message = "";
   int userID = 0;

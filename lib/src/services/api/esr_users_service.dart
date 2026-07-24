@@ -215,10 +215,13 @@ class ESRUsersService {
   }
 
   Future<ESRUsersLoginResults> registerUser(ESRUserAdd userAdd) async {
-    if (userAdd.firstName.isEmpty || userAdd.lastName.isEmpty || userAdd.nativeFirstName.isEmpty || userAdd.nativeLastName.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username.isEmpty || userAdd.password.isEmpty || userAdd.email.isEmpty || userAdd.position.isEmpty || userAdd.countryID == 0){
+    if (userAdd.firstName == null || userAdd.lastName == null || userAdd.nativeFirstName == null || userAdd.nativeLastName == null || userAdd.roleID == null || userAdd.sectorID == null || userAdd.username == null || userAdd.password == null || userAdd.email == null || userAdd.position == null || userAdd.countryID == null){
       throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
     }
-    if (!EmailValidator.validate(userAdd.email)){
+    if (userAdd.firstName!.isEmpty || userAdd.lastName!.isEmpty || userAdd.nativeFirstName!.isEmpty || userAdd.nativeLastName!.isEmpty || userAdd.roleID == 0 || userAdd.sectorID == 0 || userAdd.username!.isEmpty || userAdd.password!.isEmpty || userAdd.email!.isEmpty || userAdd.position!.isEmpty || userAdd.countryID == 0){
+      throw InformationNotValidException("You have to send valid values for username, email, password, first name and last name");
+    }
+    if (!EmailValidator.validate(userAdd.email!)){
       throw InformationNotValidException("Email has not a valid format");
     }
 
@@ -229,24 +232,24 @@ class ESRUsersService {
     };
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
     request.bodyFields = {
-      'first_name': userAdd.firstName,
-      'last_name': userAdd.lastName,
-      'native_first_name': userAdd.nativeFirstName,
-      'native_last_name': userAdd.nativeLastName,
+      'first_name': userAdd.firstName!,
+      'last_name': userAdd.lastName!,
+      'native_first_name': userAdd.nativeFirstName!,
+      'native_last_name': userAdd.nativeLastName!,
       'role': userAdd.roleID.toString(),
       'sector': userAdd.sectorID.toString(),
-      'username': userAdd.username,
-      'password': userAdd.password,
-      'email': userAdd.email,
-      'position': userAdd.position,
-      'is_blocked': userAdd.isBlocked ? "1" : "0",
+      'username': userAdd.username!,
+      'password': userAdd.password!,
+      'email': userAdd.email!,
+      'position': userAdd.position!,
+      'is_blocked': userAdd.isBlocked! ? "1" : "0",
       'country': userAdd.countryID.toString(),
-      'send_email': userAdd.sendEmail ? "1" : "0",
+      'send_email': userAdd.sendEmail! ? "1" : "0",
       "source_platform": sdk.env.requestApplication.toString()
     };
-    if (userAdd.ssoModel.isNotEmpty){
+    if (userAdd.ssoModel != null && userAdd.ssoModel!.isNotEmpty){
       request.bodyFields.addAll({
-        "sso_model": userAdd.ssoModel
+        "sso_model": userAdd.ssoModel!
       });
     }
     if (userAdd.gender != null){
@@ -418,6 +421,104 @@ class ESRUsersService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRUsersVerifyUserResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRUsersEditResults> editUser(ESRUserAdd userAdd, String jwt, int userID) async {
+    if (userAdd.email != null && userAdd.email!.isNotEmpty){
+      if (!EmailValidator.validate(userAdd.email!)){
+        throw InformationNotValidException("Email has not a valid format");
+      }
+    }
+
+    final urlBuilder = UrlBuilder('$_apiURL/user/edit/$userID');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    };
+    var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
+    if (userAdd.firstName != null){
+      request.bodyFields.addAll({
+        "first_name": userAdd.firstName!
+      });
+    }
+    if (userAdd.lastName != null){
+      request.bodyFields.addAll({
+        "last_name": userAdd.lastName!
+      });
+    }
+    if (userAdd.nativeFirstName != null){
+      request.bodyFields.addAll({
+        "native_first_name": userAdd.nativeFirstName!
+      });
+    }
+    if (userAdd.nativeLastName != null){
+      request.bodyFields.addAll({
+        "native_last_name": userAdd.nativeLastName!
+      });
+    }
+    if (userAdd.roleID != null){
+      request.bodyFields.addAll({
+        "role": userAdd.roleID.toString()
+      });
+    }
+    if (userAdd.sectorID != null){
+      request.bodyFields.addAll({
+        "sector": userAdd.sectorID.toString()
+      });
+    }
+    if (userAdd.password != null){
+      request.bodyFields.addAll({
+        "password": userAdd.password!
+      });
+    }
+    if (userAdd.position != null){
+      request.bodyFields.addAll({
+        "position": userAdd.position!
+      });
+    }
+    if (userAdd.countryID != null){
+      request.bodyFields.addAll({
+        "country": userAdd.countryID.toString()
+      });
+    }
+    if (userAdd.ssoModel != null && userAdd.ssoModel!.isNotEmpty){
+      request.bodyFields.addAll({
+        "sso_model": userAdd.ssoModel!
+      });
+    }
+    if (userAdd.gender != null){
+      request.bodyFields.addAll({
+        "gender": userAdd.gender.toString()
+      });
+    }
+    if (userAdd.preferredLang != null){
+      request.bodyFields.addAll({
+        "preferred_lang": userAdd.preferredLang.toString()
+      });
+    }
+    if (userAdd.birthDate != null){
+      String formattedDate = DateFormat('yyyy-MM-dd').format(userAdd.birthDate!);
+      request.bodyFields.addAll({
+        "birth_date": formattedDate
+      });
+    }
+    if (userAdd.timezone != null){
+      request.bodyFields.addAll({
+        "time_zone": userAdd.timezone.toString()
+      });
+    }
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersEditResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
