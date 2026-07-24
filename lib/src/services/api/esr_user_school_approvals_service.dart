@@ -8,7 +8,7 @@ class ESRUserSchoolApprovalsService {
   final sdk = ESRSDK();
   String _apiURL = "";
 
-  EsrUserSchoolApprovalsService(){
+  ESRUserSchoolApprovalsService(){
     if (sdk.env == ESREnvironments.test){
       _apiURL = ESRServerConfig.apiTestUrl;
     } else {
