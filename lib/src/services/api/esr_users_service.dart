@@ -252,6 +252,11 @@ class ESRUsersService {
         "sso_model": userAdd.ssoModel!
       });
     }
+    if (userAdd.phone != null && userAdd.phone!.isNotEmpty){
+      request.bodyFields.addAll({
+        "phone": userAdd.phone!
+      });
+    }
     if (userAdd.gender != null){
       request.bodyFields.addAll({
         "gender": userAdd.gender.toString()
@@ -487,6 +492,11 @@ class ESRUsersService {
     if (userAdd.ssoModel != null && userAdd.ssoModel!.isNotEmpty){
       request.bodyFields.addAll({
         "sso_model": userAdd.ssoModel!
+      });
+    }
+    if (userAdd.phone != null){
+      request.bodyFields.addAll({
+        "phone": userAdd.phone!
       });
     }
     if (userAdd.gender != null){

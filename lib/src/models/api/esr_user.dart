@@ -142,6 +142,7 @@ class ESRUserAdd {
   String? email = "";
   String? position = "";
   String? ssoModel = "";
+  String? phone = "";
   bool? isBlocked = false;
   int? countryID = 0;
   int? gender;
@@ -162,6 +163,7 @@ class ESRUserAdd {
     this.email,
     this.position,
     this.ssoModel,
+    this.phone,
     this.isBlocked,
     this.countryID,
     this.gender,
