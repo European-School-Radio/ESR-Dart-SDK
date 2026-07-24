@@ -36,6 +36,7 @@ export 'src/services/api/esr_comments_service.dart' show ESRCommentsService;
 export 'src/services/api/esr_sso_login_tries_service.dart' show ESRSSOLoginTriesService;
 export 'src/services/api/esr_genders_service.dart' show ESRGendersService;
 export 'src/services/api/esr_geolocation_service.dart' show ESRGeolocationService;
+export 'src/services/api/esr_user_subjects_service.dart' show ESRUserSubjectsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -96,6 +97,7 @@ export 'src/models/api/esr_follow_school.dart' show ESRFollowSchool;
 export 'src/models/api/esr_comment.dart' show ESRComment;
 export 'src/models/api/esr_sso_login_try.dart' show ESRSSOLoginTry;
 export 'src/models/api/esr_gender.dart' show ESRGender;
+export 'src/models/api/esr_user_subject.dart' show ESRUserSubject, ESRUserSubjectAdd;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
@@ -131,6 +133,7 @@ export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedR
 export 'src/payload_models/esr_sso_login_tries_results.dart' show ESRSSOLoginTriesAddResult;
 export 'src/payload_models/esr_genders_results.dart' show ESRGendersPaginatedResults;
 export 'src/payload_models/esr_geolocation_results.dart' show ESRGeolocationCountryResults, ESRGeolocationTimezoneResults, ESRGeolocationCoordinatesResults;
+export 'src/payload_models/esr_user_subjects_results.dart' show ESRUserSubjectAddResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;

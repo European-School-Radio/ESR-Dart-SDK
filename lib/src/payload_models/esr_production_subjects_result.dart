@@ -8,14 +8,14 @@ class ESRProductionSubjectsAddResult {
   ESRProductionSubjectsAddResult({
     required this.status,
     required this.message,
-    required this.productionSubject
+    required this.productionSubject,
   });
-  
-  factory ESRProductionSubjectsAddResult.fromJson(Map<String, dynamic> json){
+
+  factory ESRProductionSubjectsAddResult.fromJson(Map<String, dynamic> json) {
     return ESRProductionSubjectsAddResult(
       status: json["status"],
       message: json["message"],
-        productionSubject: ESRProductionSubject.fromJson(json["production_subject"])
+      productionSubject: ESRProductionSubject.fromJson(json["production_subject"],),
     );
   }
 }
