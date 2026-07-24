@@ -409,7 +409,7 @@ class ESRUsersService {
   }
 
   Future<ESRUsersVerifyUserResults> verifyUser(String token, int userID) async {
-    final urlBuilder = UrlBuilder('$_apiURL/users/verify/$userID');
+    final urlBuilder = UrlBuilder('$_apiURL/user/verify/$userID');
 
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
