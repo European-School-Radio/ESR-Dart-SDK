@@ -14,6 +14,7 @@ class ESRSchool {
   double? latitude;
   double? longitude;
   String? officialNumber;
+  String? ssoModel;
   String? email;
   String? phone;
   String? banner;
@@ -40,6 +41,7 @@ class ESRSchool {
     required this.latitude,
     required this.longitude,
     this.officialNumber,
+    this.ssoModel,
     this.email,
     this.phone,
     this.banner,
@@ -66,6 +68,7 @@ class ESRSchool {
         latitude: (json['latitude'] != null) ? double.tryParse(json['latitude']) : null,
         longitude: (json['longitude'] != null) ? double.tryParse(json['longitude']) : null,
         officialNumber: json['official_number'],
+        ssoModel: json['sso_model'],
         email: json['email'],
         phone: json['phone'],
         followCount: json['follow_count'],
