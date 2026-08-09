@@ -98,8 +98,6 @@ class ESRAddSchool {
   String email = "";
   String phone = "";
   bool disabled = false;
-  DateTime created = DateTime.now();
-  DateTime updated = DateTime.now();
 
   ESRAddSchool({
     required this.name,
@@ -116,9 +114,7 @@ class ESRAddSchool {
     required this.officialNumber,
     required this.email,
     required this.phone,
-    required this.disabled,
-    required this.created,
-    required this.updated
+    required this.disabled
   });
 }
 
