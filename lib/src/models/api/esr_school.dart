@@ -62,7 +62,7 @@ class ESRSchool {
         name: json['name'],
         description: json['description'],
         schoolType: IsNumericUtils.isNumeric(json['school_type'].toString()) ? null : ESRSchoolType.fromJson(json['school_type']),
-        country: IsNumericUtils.isNumeric(json['country']) ? null : ESRCountry.fromJson(json['country']),
+        country: IsNumericUtils.isNumeric(json['country'].toString()) ? null : ESRCountry.fromJson(json['country']),
         city: json['city'],
         address: json['address'],
         zipCode: json['zip_code'],
