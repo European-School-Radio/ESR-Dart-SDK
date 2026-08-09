@@ -102,7 +102,7 @@ class ESRClassificationCategoriesService {
     }
   }
 
-  Future<ESRClassificationCategoriesCountryAverageResults> getPersonalizedClassificationCategories(String userID, String jwt, { ESRLang? language }) async {
+  Future<ESRClassificationCategoriesCountryAverageResults> getPersonalizedClassificationCategories(int userID, String jwt, { ESRLang? language }) async {
     final urlBuilder = UrlBuilder('$_apiURL/classification-category/suggestionsByUser/$userID');
 
     var headers = {
