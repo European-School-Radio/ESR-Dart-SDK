@@ -101,4 +101,33 @@ class ESRClassificationCategoriesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRClassificationCategoriesCountryAverageResults> getPersonalizedClassificationCategories(String userID, String jwt, { ESRLang? language }) async {
+    final urlBuilder = UrlBuilder('$_apiURL/classification-category/suggestionsByUser/$userID');
+
+    var headers = {
+      "Authorization": "Bearer $jwt"
+    };
+
+    if (language == null){
+      urlBuilder.addQueryParam("lang", "en");
+    } else {
+      urlBuilder.addQueryParam("lang", language.flag);
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRClassificationCategoriesCountryAverageResults.fromJson(jsonData);
+    } else if (response.statusCode == 401) {
+      throw UnAuthorizedException("Authentication not valid");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
