@@ -22,7 +22,7 @@ class ESRSchool {
   String? spot;
   int followCount = 0;
   int sharesCount = 0;
-  int schoolUsersCount = 0;
+  int? schoolUsersCount;
   int schoolProductionsCount = 0;
   bool disabled = false;
   DateTime created = DateTime.now();
