@@ -23,7 +23,7 @@ class ESRSchool {
   int followCount = 0;
   int sharesCount = 0;
   int? schoolUsersCount;
-  int schoolProductionsCount = 0;
+  int? schoolProductionsCount;
   bool disabled = false;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
