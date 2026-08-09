@@ -15,7 +15,7 @@ class ESRUserDeviceAddResult {
    return ESRUserDeviceAddResult(
      status: json['status'],
      message: json['message'],
-     userDevice: ESRUserDevice.fromJson(json['user_device'])
+     userDevice: (json['user_device'] == null) ? null : ESRUserDevice.fromJson(json['user_device'])
    ); 
   }
 }
