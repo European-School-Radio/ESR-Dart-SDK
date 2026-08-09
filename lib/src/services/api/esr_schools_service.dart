@@ -98,7 +98,6 @@ class ESRSchoolsService {
     final urlBuilder = UrlBuilder("$_apiURL/school/add");
 
     var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer $jwt'
     };
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
