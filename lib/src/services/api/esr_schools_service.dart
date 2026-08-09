@@ -132,6 +132,8 @@ class ESRSchoolsService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRSchoolAddResults.fromJson(jsonData);
+    } else if (response.statusCode == 401){
+      throw UnAuthorizedException("Authentication not valid");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
