@@ -82,6 +82,46 @@ class ESRSchool {
   }
 }
 
+class ESRAddSchool {
+  String name = "";
+  String description = "";
+  String nativeName = "";
+  String nativeDescription = "";
+  ESRSchoolType schoolType;
+  ESRCountry country;
+  String city = "";
+  String address = "";
+  String zipCode = "";
+  double latitude = 0.0;
+  double longitude = 0.0;
+  String officialNumber = "";
+  String email = "";
+  String phone = "";
+  bool disabled = false;
+  DateTime created = DateTime.now();
+  DateTime updated = DateTime.now();
+
+  ESRAddSchool({
+    required this.name,
+    required this.description,
+    required this.nativeName,
+    required this.nativeDescription,
+    required this.schoolType,
+    required this.country,
+    required this.city,
+    required this.address,
+    required this.zipCode,
+    required this.latitude,
+    required this.longitude,
+    required this.officialNumber,
+    required this.email,
+    required this.phone,
+    required this.disabled,
+    required this.created,
+    required this.updated
+  });
+}
+
 class ESRSchoolMap {
   int id = 0;
   String name = "";

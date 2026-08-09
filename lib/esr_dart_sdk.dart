@@ -61,7 +61,7 @@ export 'src/models/api/esr_lang.dart' show ESRLang;
 export 'src/models/api/esr_production.dart' show ESRProduction, ESRAddProduction;
 export 'src/models/api/esr_production_type.dart' show ESRProductionType;
 export 'src/models/api/esr_role.dart' show ESRRole;
-export 'src/models/api/esr_school.dart' show ESRSchool, ESRSchoolMap;
+export 'src/models/api/esr_school.dart' show ESRSchool, ESRAddSchool, ESRSchoolMap;
 export 'src/models/api/esr_school_type.dart' show ESRSchoolType;
 export 'src/models/api/esr_school_year.dart' show ESRSchoolYear;
 export 'src/models/api/esr_sector.dart' show ESRSector;
@@ -110,7 +110,7 @@ export 'src/payload_models/esr_langs_results.dart' show ESRLangsPaginatedResults
 export 'src/payload_models/esr_subjects_results.dart' show ESRSubjectsPaginatedResults;
 export 'src/payload_models/esr_school_types_results.dart' show ESRSchoolTypesPaginatedResults;
 export 'src/payload_models/esr_countries_results.dart' show ESRCountriesPaginatedResults;
-export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults, ESRSchoolsWebsocketListResults, ESRSchoolsMapDataListResults, ESRSchoolsIncreaseSharesCounterResults, ESRSchoolsSharesCounterBySchoolResults;
+export 'src/payload_models/esr_schools_results.dart' show ESRSchoolsPaginatedResults, ESRSchoolAddResults, ESRSchoolsMinimalData, ESRSchoolsMinimalDataResults, ESRSchoolsWebsocketListResults, ESRSchoolsMapDataListResults, ESRSchoolsIncreaseSharesCounterResults, ESRSchoolsSharesCounterBySchoolResults;
 export 'src/payload_models/esr_production_types_results.dart' show ESRProductionTypesPaginatedResults;
 export 'src/payload_models/esr_frequencies_results.dart' show ESRFrequenciesPaginatedResults;
 export 'src/payload_models/esr_reservations_results.dart' show ESRReservationsMinMaxDatesResults;

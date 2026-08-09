@@ -32,6 +32,26 @@ class ESRSchoolsPaginatedResults {
   }
 }
 
+class ESRSchoolAddResults {
+  String status = "";
+  String message = "";
+  ESRSchool? school;
+
+  ESRSchoolAddResults({
+    required this.status,
+    required this.message,
+    required this.school
+  });
+
+  factory ESRSchoolAddResults.fromJson(Map<String, dynamic> json){
+    return ESRSchoolAddResults(
+      status: json['status'],
+      message: json['message'],
+      school: ESRSchool.fromJson(json['school'])
+    );
+  }
+}
+
 class ESRSchoolsMinimalData {
   int id = 0;
   String name = "";

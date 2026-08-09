@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:email_validator/email_validator.dart';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
 import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
@@ -81,6 +82,57 @@ class ESRSchoolsService {
       return ESRSchool.fromJson(jsonData['school']);
     } else if (response.statusCode == 404){
       throw ObjectNotFoundException("School with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRSchoolAddResults> addSchool(ESRAddSchool schoolAdd, String jwt) async {
+    if (schoolAdd.name.isEmpty || schoolAdd.nativeName.isEmpty || schoolAdd.description.isEmpty || schoolAdd.nativeDescription.isEmpty || schoolAdd.city.isEmpty || schoolAdd.address.isEmpty || schoolAdd.zipCode.isEmpty || schoolAdd.latitude == 0.0 || schoolAdd.longitude == 0.0 || schoolAdd.officialNumber.isEmpty || schoolAdd.email.isEmpty || schoolAdd.phone.isEmpty){
+      throw InformationNotValidException("You have to send valid values for name, description, native name, native description, city, address, zip code, latitude, longitude, official number, email and phone");
+    }
+    if (!EmailValidator.validate(schoolAdd.email)){
+      throw InformationNotValidException("Email has not a valid format");
+    }
+    
+    final urlBuilder = UrlBuilder("$_apiURL/school/add");
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+
+    Map<String, String> bodyFields = {};
+
+    bodyFields = {
+      'en[name]': schoolAdd.name,
+      'en[native_name]': schoolAdd.nativeName,
+      'en[description]': schoolAdd.description,
+      'en[native_description]': schoolAdd.nativeDescription,
+      'en[school_type]': schoolAdd.schoolType.id.toString(),
+      'en[country]': schoolAdd.country.id.toString(),
+      'en[city]': schoolAdd.city,
+      'en[address]': schoolAdd.address,
+      'en[zip_code]': schoolAdd.zipCode,
+      'en[latitude]': schoolAdd.latitude.toString(),
+      'en[longitude]': schoolAdd.longitude.toString(),
+      'en[official_number]': schoolAdd.officialNumber,
+      'en[email]': schoolAdd.email,
+      'en[phone]': schoolAdd.phone,
+      'en[source_platform]': sdk.env.requestApplication.toString(),
+      'en[disabled]': schoolAdd.disabled ? "1" : "0"
+    };
+
+    request.bodyFields = bodyFields;
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 201) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRSchoolAddResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
