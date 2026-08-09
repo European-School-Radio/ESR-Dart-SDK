@@ -100,7 +100,7 @@ class ESRSchoolsService {
     var headers = {
       'Authorization': 'Bearer $jwt'
     };
-    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    var request = http.MultipartRequest('POST', Uri.parse(urlBuilder.build()));
 
     Map<String, String> bodyFields = {};
 
@@ -123,7 +123,7 @@ class ESRSchoolsService {
       'en[disabled]': schoolAdd.disabled ? "1" : "0"
     };
 
-    request.bodyFields = bodyFields;
+    request.fields.addAll(bodyFields);
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
