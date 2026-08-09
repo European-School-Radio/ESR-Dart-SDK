@@ -87,8 +87,8 @@ class ESRAddSchool {
   String description = "";
   String nativeName = "";
   String nativeDescription = "";
-  ESRSchoolType schoolType;
-  ESRCountry country;
+  int schoolTypeID;
+  int countryID;
   String city = "";
   String address = "";
   String zipCode = "";
@@ -106,8 +106,8 @@ class ESRAddSchool {
     required this.description,
     required this.nativeName,
     required this.nativeDescription,
-    required this.schoolType,
-    required this.country,
+    required this.schoolTypeID,
+    required this.countryID,
     required this.city,
     required this.address,
     required this.zipCode,
