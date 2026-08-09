@@ -39,6 +39,7 @@ export 'src/services/api/esr_geolocation_service.dart' show ESRGeolocationServic
 export 'src/services/api/esr_user_subjects_service.dart' show ESRUserSubjectsService;
 export 'src/services/api/esr_user_school_approvals_service.dart' show ESRUserSchoolApprovalsService;
 export 'src/services/api/esr_sectors_service.dart' show ESRSectorsService;
+export 'src/services/api/esr_user_devices_service.dart' show ESRUserDevicesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -101,6 +102,7 @@ export 'src/models/api/esr_sso_login_try.dart' show ESRSSOLoginTry;
 export 'src/models/api/esr_gender.dart' show ESRGender;
 export 'src/models/api/esr_user_subject.dart' show ESRUserSubject, ESRUserSubjectAdd;
 export 'src/models/api/esr_user_school_approval.dart' show ESRUserSchoolApproval;
+export 'src/models/api/esr_user_device.dart' show ESRUserDevice, ESRUserDeviceAdd;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
@@ -138,7 +140,8 @@ export 'src/payload_models/esr_genders_results.dart' show ESRGendersPaginatedRes
 export 'src/payload_models/esr_geolocation_results.dart' show ESRGeolocationCountryResults, ESRGeolocationTimezoneResults, ESRGeolocationCoordinatesResults;
 export 'src/payload_models/esr_user_subjects_results.dart' show ESRUserSubjectAddResults;
 export 'src/payload_models/esr_user_school_approvals_results.dart' show ESRUserSchoolApprovalsAddResults;
-export 'src/payload_models/esr_sectors_result.dart' show ESRSectorsPaginatedResults;
+export 'src/payload_models/esr_sectors_results.dart' show ESRSectorsPaginatedResults;
+export 'src/payload_models/esr_user_devices_results.dart' show ESRUserDeviceAddResult;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
