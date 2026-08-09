@@ -38,6 +38,7 @@ export 'src/services/api/esr_genders_service.dart' show ESRGendersService;
 export 'src/services/api/esr_geolocation_service.dart' show ESRGeolocationService;
 export 'src/services/api/esr_user_subjects_service.dart' show ESRUserSubjectsService;
 export 'src/services/api/esr_user_school_approvals_service.dart' show ESRUserSchoolApprovalsService;
+export 'src/services/api/esr_sectors_service.dart' show ESRSectorsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -137,6 +138,7 @@ export 'src/payload_models/esr_genders_results.dart' show ESRGendersPaginatedRes
 export 'src/payload_models/esr_geolocation_results.dart' show ESRGeolocationCountryResults, ESRGeolocationTimezoneResults, ESRGeolocationCoordinatesResults;
 export 'src/payload_models/esr_user_subjects_results.dart' show ESRUserSubjectAddResults;
 export 'src/payload_models/esr_user_school_approvals_results.dart' show ESRUserSchoolApprovalsAddResults;
+export 'src/payload_models/esr_sectors_result.dart' show ESRSectorsPaginatedResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
@@ -180,6 +182,7 @@ export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSort
 export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;
 export 'src/enums/sorting/esr_comment_sorting.dart' show ESRCommentSorting;
 export 'src/enums/sorting/esr_gender_sorting.dart' show ESRGenderSorting;
+export 'src/enums/sorting/esr_sector_sorting.dart' show ESRSectorSorting;
 export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
 export 'src/enums/sorting/community/esr_community_comment_sorting.dart' show ESRCommunityCommentSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;
