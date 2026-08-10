@@ -144,7 +144,7 @@ export 'src/payload_models/esr_user_subjects_results.dart' show ESRUserSubjectAd
 export 'src/payload_models/esr_user_school_approvals_results.dart' show ESRUserSchoolApprovalsAddResults;
 export 'src/payload_models/esr_sectors_results.dart' show ESRSectorsPaginatedResults;
 export 'src/payload_models/esr_user_devices_results.dart' show ESRUserDeviceAddResult;
-export 'src/payload_models/esr_like_production_results.dart' show ESRLikeProductionCheckLikedProductionResults;
+export 'src/payload_models/esr_like_production_results.dart' show ESRLikeProductionCheckLikedProductionResults, ESRLikeProductionAddResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;

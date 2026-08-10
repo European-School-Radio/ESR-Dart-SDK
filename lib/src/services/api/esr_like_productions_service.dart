@@ -39,4 +39,29 @@ class ESRLikeProductionsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRLikeProductionAddResults> addLikeProduction(int userID, int productionID, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/like-production/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      "user": userID.toString(),
+      "production": productionID.toString()
+    };
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 201) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRLikeProductionAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

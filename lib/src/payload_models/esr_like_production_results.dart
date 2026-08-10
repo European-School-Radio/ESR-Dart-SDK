@@ -19,3 +19,23 @@ class ESRLikeProductionCheckLikedProductionResults {
     );
   }
 }
+
+class ESRLikeProductionAddResults {
+  String status = "";
+  String message = "";
+  ESRLikeProduction? likeProduction;
+
+  ESRLikeProductionAddResults({
+    required this.status,
+    required this.message,
+    required this.likeProduction
+  });
+
+  factory ESRLikeProductionAddResults.fromJson(Map<String, dynamic> json){
+    return ESRLikeProductionAddResults(
+      status: json['status'],
+      message: json['message'],
+      likeProduction: ESRLikeProduction.fromJson(json['like_production'])
+    );
+  }
+}
