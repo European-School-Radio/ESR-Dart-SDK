@@ -39,3 +39,20 @@ class ESRLikeProductionAddResults {
     );
   }
 }
+
+class ESRLikeProductionDeleteResults {
+  String status = "";
+  String message = "";
+
+  ESRLikeProductionDeleteResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRLikeProductionDeleteResults.fromJson(Map<String, dynamic> json){
+    return ESRLikeProductionDeleteResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}

@@ -16,11 +16,12 @@ class ESRLikeProductionsService {
     }
   }
 
-  Future<ESRLikeProductionCheckLikedProductionResults> checkUserLikedProduction(int userID, int productionID) async {
+  Future<ESRLikeProductionCheckLikedProductionResults> checkUserLikedProduction(int userID, int productionID, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/like-production/userLikedProduction');
 
     var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
     };
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
     request.bodyFields = {
@@ -60,6 +61,27 @@ class ESRLikeProductionsService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
       return ESRLikeProductionAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRLikeProductionDeleteResults> removeLikeProduction(int likeProductionID, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/like-production/delete/$likeProductionID');
+    
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('DELETE', Uri.parse(urlBuilder.build()));
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRLikeProductionDeleteResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
