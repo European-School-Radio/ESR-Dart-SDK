@@ -61,6 +61,8 @@ export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' sh
 export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService, ESRPlaylistsSharesCounterWebsocketService, ESRPlaylistsFollowersWebsocketService, ESRPlaylistsLikesCounterWebsocketService, ESRPlaylistsArchivesByPlaylistWebsocketService;
 export 'src/services/api/websockets/esr_follow_users_websocket_service.dart' show ESRFollowUsersByUserWebsocketService, ESRFollowUsersByUserToWebsocketService;
 export 'src/services/api/websockets/esr_follow_schools_websocket_service.dart' show ESRFollowSchoolsBySchoolWebsocketService;
+export 'src/services/api/websockets/esr_follow_playlists_websocket_service.dart' show ESRFollowPlaylistsByPlaylistWebsocketService;
+export 'src/services/api/websockets/esr_follow_productions_websocket_service.dart' show ESRFollowProductionsByProductionWebsocketService;
 export 'src/services/api/websockets/esr_comments_websocket_service.dart' show ESRCommentsByArchiveWebsocketService;
 
 // Models
@@ -155,8 +157,8 @@ export 'src/payload_models/esr_user_devices_results.dart' show ESRUserDeviceAddR
 export 'src/payload_models/esr_like_production_results.dart' show ESRLikeProductionCheckLikedProductionResults, ESRLikeProductionAddResults, ESRLikeProductionDeleteResults;
 export 'src/payload_models/esr_like_archive_results.dart' show ESRLikeArchiveCheckLikedArchiveResults, ESRLikeArchiveAddResults, ESRLikeArchiveDeleteResults;
 export 'src/payload_models/esr_like_playlist_results.dart' show ESRLikePlaylistCheckLikedPlaylistResults, ESRLikePlaylistAddResults, ESRLikePlaylistDeleteResults;
-export 'src/payload_models/esr_follow_productions_results.dart' show ESRFollowProductionCheckFollowedProductionResults, ESRFollowProductionAddResults, ESRFollowProductionDeleteResults;
-export 'src/payload_models/esr_follow_playlists_results.dart' show ESRFollowPlaylistCheckFollowedPlaylistResults, ESRFollowPlaylistAddResults, ESRFollowPlaylistDeleteResults;
+export 'src/payload_models/esr_follow_productions_results.dart' show ESRFollowProductionsPaginatedResults, ESRFollowProductionCheckFollowedProductionResults, ESRFollowProductionAddResults, ESRFollowProductionDeleteResults;
+export 'src/payload_models/esr_follow_playlists_results.dart' show ESRFollowPlaylistsPaginatedResults, ESRFollowPlaylistCheckFollowedPlaylistResults, ESRFollowPlaylistAddResults, ESRFollowPlaylistDeleteResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
@@ -201,6 +203,8 @@ export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchools
 export 'src/enums/sorting/esr_comment_sorting.dart' show ESRCommentSorting;
 export 'src/enums/sorting/esr_gender_sorting.dart' show ESRGenderSorting;
 export 'src/enums/sorting/esr_sector_sorting.dart' show ESRSectorSorting;
+export 'src/enums/sorting/esr_follow_playlists_sorting.dart' show ESRFollowPlaylistsSorting;
+export 'src/enums/sorting/esr_follow_productions_sorting.dart' show ESRFollowProductionsSorting;
 export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
 export 'src/enums/sorting/community/esr_community_comment_sorting.dart' show ESRCommunityCommentSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;

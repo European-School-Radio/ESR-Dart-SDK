@@ -2,34 +2,34 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
-import 'package:esr_dart_sdk/src/enums/sorting/esr_follow_schools_sorting.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_follow_playlists_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-class ESRFollowSchoolsBySchoolWebsocketService {
+class ESRFollowPlaylistsByPlaylistWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
   int _page = 1;
-  int? _schoolId;
-  ESRFollowSchoolsSorting _sorting = ESRFollowSchoolsSorting.created;
+  int? _playlistId;
+  ESRFollowPlaylistsSorting _sorting = ESRFollowPlaylistsSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRFollowSchoolsPaginatedResults> _controller =
-  StreamController<ESRFollowSchoolsPaginatedResults>.broadcast();
+  final StreamController<ESRFollowPlaylistsPaginatedResults> _controller =
+  StreamController<ESRFollowPlaylistsPaginatedResults>.broadcast();
 
-  ESRFollowSchoolsBySchoolWebsocketService() {
+  ESRFollowPlaylistsByPlaylistWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketTestUrl}/follow-schools-by-school/";
+      "${ESRServerConfig.websocketTestUrl}/follow-playlists-by-playlist/";
     } else {
       _baseWebSocketURL =
-      "${ESRServerConfig.websocketUrl}/follow-schools-by-school/";
+      "${ESRServerConfig.websocketUrl}/follow-playlists-by-playlist/";
     }
   }
 
@@ -79,20 +79,20 @@ class ESRFollowSchoolsBySchoolWebsocketService {
     return _page;
   }
 
-  void setSchoolId(int newSchoolId){
+  void setPlaylistId(int newPlaylistId){
     if (_isConnected) {
       throw WebsocketAlreadyConnectedException(
           "WebSocket is already connected");
     }
 
-    _schoolId = newSchoolId;
+    _playlistId = newPlaylistId;
   }
 
-  int? getSchoolId(){
-    return _schoolId;
+  int? getPlaylistId(){
+    return _playlistId;
   }
 
-  void setSorting(ESRFollowSchoolsSorting newSorting) {
+  void setSorting(ESRFollowPlaylistsSorting newSorting) {
     _sorting = newSorting;
 
     if (_isConnected){
@@ -105,7 +105,7 @@ class ESRFollowSchoolsBySchoolWebsocketService {
     }
   }
 
-  ESRFollowSchoolsSorting getSorting(){
+  ESRFollowPlaylistsSorting getSorting(){
     return _sorting;
   }
 
@@ -137,17 +137,14 @@ class ESRFollowSchoolsBySchoolWebsocketService {
     urlBuilder.addQueryParam("page", _page.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
-
-    if (_schoolId != null){
-      urlBuilder.addQueryParam("school_id", _schoolId.toString());
-    }
+    urlBuilder.addQueryParam("playlist_id", _playlistId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRFollowSchoolsPaginatedResults.fromJson(jsonMessage));
+        _controller.add(ESRFollowPlaylistsPaginatedResults.fromJson(jsonMessage));
       },
       onError: (error) {
         _isConnected = false;
@@ -159,10 +156,10 @@ class ESRFollowSchoolsBySchoolWebsocketService {
     );
   }
 
-  Stream<ESRFollowSchoolsPaginatedResults> get stream => _controller.stream;
+  Stream<ESRFollowPlaylistsPaginatedResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRFollowSchoolsPaginatedResults> addListener(
-      void Function(ESRFollowSchoolsPaginatedResults event) onData,
+  StreamSubscription<ESRFollowPlaylistsPaginatedResults> addListener(
+      void Function(ESRFollowPlaylistsPaginatedResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {

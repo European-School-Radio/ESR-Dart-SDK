@@ -1,5 +1,29 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 
+class ESRFollowPlaylistsPaginatedResults {
+  int count = 0;
+  List<ESRFollowPlaylist>? followPlaylists;
+
+  ESRFollowPlaylistsPaginatedResults({
+    required this.count,
+    required this.followPlaylists
+  });
+
+  factory ESRFollowPlaylistsPaginatedResults.fromJson(Map<String, dynamic> json){
+    List<dynamic> followPlaylistsList = json['data'] as List<dynamic>;
+    List<ESRFollowPlaylist> serializedPlaylistFollows = [];
+
+    serializedPlaylistFollows = followPlaylistsList
+        .map((singleFollowPlaylist) => ESRFollowPlaylist.fromJson(singleFollowPlaylist as Map<String, dynamic>))
+        .toList();
+
+    return ESRFollowPlaylistsPaginatedResults(
+        count: json['count'] ?? 0,
+        followPlaylists: serializedPlaylistFollows
+    );
+  }
+}
+
 class ESRFollowPlaylistCheckFollowedPlaylistResults {
   String status = "";
   bool userFollowedPlaylist = false;
