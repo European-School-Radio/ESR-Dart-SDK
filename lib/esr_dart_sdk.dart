@@ -41,6 +41,7 @@ export 'src/services/api/esr_user_school_approvals_service.dart' show ESRUserSch
 export 'src/services/api/esr_sectors_service.dart' show ESRSectorsService;
 export 'src/services/api/esr_user_devices_service.dart' show ESRUserDevicesService;
 export 'src/services/api/esr_like_productions_service.dart' show ESRLikeProductionsService;
+export 'src/services/api/esr_follow_productions_service.dart' show ESRFollowProductionsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -145,6 +146,7 @@ export 'src/payload_models/esr_user_school_approvals_results.dart' show ESRUserS
 export 'src/payload_models/esr_sectors_results.dart' show ESRSectorsPaginatedResults;
 export 'src/payload_models/esr_user_devices_results.dart' show ESRUserDeviceAddResult;
 export 'src/payload_models/esr_like_production_results.dart' show ESRLikeProductionCheckLikedProductionResults, ESRLikeProductionAddResults, ESRLikeProductionDeleteResults;
+export 'src/payload_models/esr_follow_productions_results.dart' show ESRFollowProductionCheckFollowedProductionResults, ESRFollowProductionAddResults, ESRFollowProductionDeleteResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
