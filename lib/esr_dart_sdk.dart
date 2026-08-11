@@ -44,6 +44,7 @@ export 'src/services/api/esr_like_productions_service.dart' show ESRLikeProducti
 export 'src/services/api/esr_like_archives_service.dart' show ESRLikeArchivesService;
 export 'src/services/api/esr_like_playlists_service.dart' show ESRLikePlaylistsService;
 export 'src/services/api/esr_follow_productions_service.dart' show ESRFollowProductionsService;
+export 'src/services/api/esr_follow_playlists_service.dart' show ESRFollowPlaylistsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -153,6 +154,7 @@ export 'src/payload_models/esr_like_production_results.dart' show ESRLikeProduct
 export 'src/payload_models/esr_like_archive_results.dart' show ESRLikeArchiveCheckLikedArchiveResults, ESRLikeArchiveAddResults, ESRLikeArchiveDeleteResults;
 export 'src/payload_models/esr_like_playlist_results.dart' show ESRLikePlaylistCheckLikedPlaylistResults, ESRLikePlaylistAddResults, ESRLikePlaylistDeleteResults;
 export 'src/payload_models/esr_follow_productions_results.dart' show ESRFollowProductionCheckFollowedProductionResults, ESRFollowProductionAddResults, ESRFollowProductionDeleteResults;
+export 'src/payload_models/esr_follow_playlists_results.dart' show ESRFollowPlaylistCheckFollowedPlaylistResults, ESRFollowPlaylistAddResults, ESRFollowPlaylistDeleteResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;
