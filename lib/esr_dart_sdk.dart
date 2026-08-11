@@ -58,11 +58,11 @@ export 'src/services/api/websockets/esr_schools_websocket_service.dart' show ESR
 export 'src/services/api/websockets/esr_users_websocket_service.dart' show ESRUsersSearchWebsocketService;
 export 'src/services/api/websockets/esr_archive_user_schools_websocket_service.dart' show ESRArchiveUserSchoolsByArchiveWebsocketService, ESRArchiveUserSchoolsByUserWebsocketService;
 export 'src/services/api/websockets/esr_users_schools_websocket_service.dart' show ESRUsersSchoolsBySchoolWebsocketService;
-export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService, ESRPlaylistsSharesCounterWebsocketService, ESRPlaylistsFollowersWebsocketService, ESRPlaylistsLikesCounterWebsocketService, ESRPlaylistsArchivesByPlaylistWebsocketService;
+export 'src/services/api/websockets/esr_playlists_websocket_service.dart' show ESRPlaylistsByUserWebsocketService, ESRPlaylistsSharesCounterWebsocketService, ESRPlaylistsLikesCounterWebsocketService, ESRPlaylistsArchivesByPlaylistWebsocketService;
 export 'src/services/api/websockets/esr_follow_users_websocket_service.dart' show ESRFollowUsersByUserWebsocketService, ESRFollowUsersByUserToWebsocketService;
 export 'src/services/api/websockets/esr_follow_schools_websocket_service.dart' show ESRFollowSchoolsBySchoolWebsocketService;
-export 'src/services/api/websockets/esr_follow_playlists_websocket_service.dart' show ESRFollowPlaylistsByPlaylistWebsocketService;
-export 'src/services/api/websockets/esr_follow_productions_websocket_service.dart' show ESRFollowProductionsByProductionWebsocketService;
+export 'src/services/api/websockets/esr_follow_playlists_websocket_service.dart' show ESRPlaylistsFollowersWebsocketService;
+export 'src/services/api/websockets/esr_follow_productions_websocket_service.dart' show ESRProductionsFollowersWebsocketService;
 export 'src/services/api/websockets/esr_comments_websocket_service.dart' show ESRCommentsByArchiveWebsocketService;
 
 // Models
@@ -193,10 +193,8 @@ export 'src/enums/sorting/esr_classification_category_sorting.dart' show ESRClas
 export 'src/enums/sorting/esr_audio_class_sorting.dart' show ESRAudioClassSorting;
 export 'src/enums/sorting/esr_user_sorting.dart' show ESRUserSorting;
 export 'src/enums/sorting/esr_archive_user_schools_sorting.dart' show ESRArchiveUserSchoolsSorting;
-export 'src/enums/sorting/esr_production_followers_sorting.dart' show ESRProductionFollowersSorting;
 export 'src/enums/sorting/esr_users_schools_sorting.dart' show ESRUsersSchoolsSorting;
 export 'src/enums/sorting/esr_playlist_sorting.dart' show ESRPlaylistSorting;
-export 'src/enums/sorting/esr_playlist_followers_sorting.dart' show ESRPlaylistFollowersSorting;
 export 'src/enums/sorting/esr_playlist_archives_sorting.dart' show ESRPlaylistArchivesSorting;
 export 'src/enums/sorting/esr_follow_users_sorting.dart' show ESRFollowUsersSorting;
 export 'src/enums/sorting/esr_follow_schools_sorting.dart' show ESRFollowSchoolsSorting;

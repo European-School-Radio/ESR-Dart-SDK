@@ -8,22 +8,23 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-class ESRFollowPlaylistsByPlaylistWebsocketService {
+class ESRPlaylistsFollowersWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
   int _page = 1;
   int? _playlistId;
+
   ESRFollowPlaylistsSorting _sorting = ESRFollowPlaylistsSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRFollowPlaylistsPaginatedResults> _controller =
-  StreamController<ESRFollowPlaylistsPaginatedResults>.broadcast();
+  final StreamController<ESRPlaylistsFollowersByPlaylistResults> _controller =
+  StreamController<ESRPlaylistsFollowersByPlaylistResults>.broadcast();
 
-  ESRFollowPlaylistsByPlaylistWebsocketService() {
+  ESRPlaylistsFollowersWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
       "${ESRServerConfig.websocketTestUrl}/follow-playlists-by-playlist/";
@@ -35,8 +36,7 @@ class ESRFollowPlaylistsByPlaylistWebsocketService {
 
   void setLanguage(ESRLang language) {
     if (_isConnected) {
-      throw WebsocketAlreadyConnectedException(
-          "WebSocket is already connected");
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
     }
     _language = language;
   }
@@ -45,8 +45,8 @@ class ESRFollowPlaylistsByPlaylistWebsocketService {
     return _language;
   }
 
-  void setPageSize(int newPageSize) {
-    _pageSize = newPageSize;
+  void setPageSize(int newMaxItems) {
+    _pageSize = newMaxItems;
 
     if (_isConnected){
       Map<String, String> message = {
@@ -135,16 +135,16 @@ class ESRFollowPlaylistsByPlaylistWebsocketService {
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
     urlBuilder.addQueryParam("page", _page.toString());
+    urlBuilder.addQueryParam("playlist_id", _playlistId.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
-    urlBuilder.addQueryParam("playlist_id", _playlistId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRFollowPlaylistsPaginatedResults.fromJson(jsonMessage));
+        _controller.add(ESRPlaylistsFollowersByPlaylistResults.fromJson(jsonMessage));
       },
       onError: (error) {
         _isConnected = false;
@@ -156,10 +156,10 @@ class ESRFollowPlaylistsByPlaylistWebsocketService {
     );
   }
 
-  Stream<ESRFollowPlaylistsPaginatedResults> get stream => _controller.stream;
+  Stream<ESRPlaylistsFollowersByPlaylistResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRFollowPlaylistsPaginatedResults> addListener(
-      void Function(ESRFollowPlaylistsPaginatedResults event) onData,
+  StreamSubscription<ESRPlaylistsFollowersByPlaylistResults> addListener(
+      void Function(ESRPlaylistsFollowersByPlaylistResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {
@@ -169,16 +169,6 @@ class ESRFollowPlaylistsByPlaylistWebsocketService {
       onDone: onDone,
       cancelOnError: cancelOnError,
     );
-  }
-
-  void sendJson(Map<String, dynamic> message) {
-    if (!_isConnected) {
-      throw WebsocketNotConnectedException("WebSocket is NOT connected");
-    }
-
-    String jsonMessage = jsonEncode(message);
-
-    _channel?.sink.add(jsonMessage);
   }
 
   void disconnect() {

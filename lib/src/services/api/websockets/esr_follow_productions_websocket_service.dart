@@ -8,22 +8,23 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
-class ESRFollowProductionsByProductionWebsocketService {
+class ESRProductionsFollowersWebsocketService {
   final sdk = ESRSDK();
   String _baseWebSocketURL = "";
   ESRLang? _language;
   int _pageSize = 1;
   int _page = 1;
   int? _productionId;
+
   ESRFollowProductionsSorting _sorting = ESRFollowProductionsSorting.created;
   ESRSortingDirections _direction = ESRSortingDirections.desc;
 
   bool _isConnected = false;
   WebSocketChannel? _channel;
-  final StreamController<ESRFollowProductionsPaginatedResults> _controller =
-  StreamController<ESRFollowProductionsPaginatedResults>.broadcast();
+  final StreamController<ESRProductionsFollowersByProductionResults> _controller =
+  StreamController<ESRProductionsFollowersByProductionResults>.broadcast();
 
-  ESRFollowProductionsByProductionWebsocketService() {
+  ESRProductionsFollowersWebsocketService() {
     if (sdk.env == ESREnvironments.test) {
       _baseWebSocketURL =
       "${ESRServerConfig.websocketTestUrl}/follow-productions-by-production/";
@@ -35,8 +36,7 @@ class ESRFollowProductionsByProductionWebsocketService {
 
   void setLanguage(ESRLang language) {
     if (_isConnected) {
-      throw WebsocketAlreadyConnectedException(
-          "WebSocket is already connected");
+      throw WebsocketAlreadyConnectedException("WebSocket is already connected");
     }
     _language = language;
   }
@@ -45,8 +45,8 @@ class ESRFollowProductionsByProductionWebsocketService {
     return _language;
   }
 
-  void setPageSize(int newPageSize) {
-    _pageSize = newPageSize;
+  void setPageSize(int newMaxItems) {
+    _pageSize = newMaxItems;
 
     if (_isConnected){
       Map<String, String> message = {
@@ -135,16 +135,16 @@ class ESRFollowProductionsByProductionWebsocketService {
     urlBuilder.addQueryParam("lang", (_language == null) ? "en" : _language!.flag);
     urlBuilder.addQueryParam("page_size", _pageSize.toString());
     urlBuilder.addQueryParam("page", _page.toString());
+    urlBuilder.addQueryParam("production_id", _productionId.toString());
     urlBuilder.addQueryParam("sort", _sorting.value.toString());
     urlBuilder.addQueryParam("direction", _direction.value.toString());
-    urlBuilder.addQueryParam("production_id", _productionId.toString());
 
     _channel = WebSocketChannel.connect(Uri.parse(urlBuilder.build()));
     _isConnected = true;
     _channel?.stream.listen(
           (message) {
         Map<String, dynamic> jsonMessage = jsonDecode(message);
-        _controller.add(ESRFollowProductionsPaginatedResults.fromJson(jsonMessage));
+        _controller.add(ESRProductionsFollowersByProductionResults.fromJson(jsonMessage));
       },
       onError: (error) {
         _isConnected = false;
@@ -156,10 +156,10 @@ class ESRFollowProductionsByProductionWebsocketService {
     );
   }
 
-  Stream<ESRFollowProductionsPaginatedResults> get stream => _controller.stream;
+  Stream<ESRProductionsFollowersByProductionResults> get stream => _controller.stream;
 
-  StreamSubscription<ESRFollowProductionsPaginatedResults> addListener(
-      void Function(ESRFollowProductionsPaginatedResults event) onData,
+  StreamSubscription<ESRProductionsFollowersByProductionResults> addListener(
+      void Function(ESRProductionsFollowersByProductionResults event) onData,
       {Function? onError,
         void Function()? onDone,
         bool? cancelOnError}) {
@@ -169,16 +169,6 @@ class ESRFollowProductionsByProductionWebsocketService {
       onDone: onDone,
       cancelOnError: cancelOnError,
     );
-  }
-
-  void sendJson(Map<String, dynamic> message) {
-    if (!_isConnected) {
-      throw WebsocketNotConnectedException("WebSocket is NOT connected");
-    }
-
-    String jsonMessage = jsonEncode(message);
-
-    _channel?.sink.add(jsonMessage);
   }
 
   void disconnect() {
