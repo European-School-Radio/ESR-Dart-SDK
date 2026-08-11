@@ -1,25 +1,25 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
 
-class ESRLikeArchive {
+class ESRLikePlaylist {
   int id = 0;
-  ESRArchive? archive;
+  ESRPlaylist? playlist;
   ESRUser? user;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
 
-  ESRLikeArchive({
+  ESRLikePlaylist({
     required this.id,
-    required this.archive,
+    required this.playlist,
     required this.user,
     required this.created,
     required this.updated
   });
 
-  factory ESRLikeArchive.fromJson(Map<String, dynamic> json){
-    return ESRLikeArchive(
+  factory ESRLikePlaylist.fromJson(Map<String, dynamic> json){
+    return ESRLikePlaylist(
       id: json['id'],
-      archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
+      playlist: IsNumericUtils.isNumeric(json['playlist'].toString()) ? null : ESRPlaylist.fromJson(json['playlist']),
       user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])

@@ -8,7 +8,7 @@ class ESRLikeProductionCheckLikedProductionResults {
   ESRLikeProductionCheckLikedProductionResults({
     required this.status,
     required this.userLikedProduction,
-    this.likeProductionDetails
+    required this.likeProductionDetails
   });
 
   factory ESRLikeProductionCheckLikedProductionResults.fromJson(Map<String, dynamic> json){
