@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
 
 class ESRFollowSchool {
   int id = 0;
@@ -18,8 +19,8 @@ class ESRFollowSchool {
   factory ESRFollowSchool.fromJson(Map<String, dynamic> json){
     return ESRFollowSchool(
       id: json['id'],
-      school: ESRSchool.fromJson(json['school']),
-      user: ESRUser.fromJson(json['user']),
+      school: IsNumericUtils.isNumeric(json['school'].toString()) ? null : ESRSchool.fromJson(json['school']),
+      user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );

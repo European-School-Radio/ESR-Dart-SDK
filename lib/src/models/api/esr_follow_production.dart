@@ -19,8 +19,8 @@ class ESRFollowProduction {
   factory ESRFollowProduction.fromJson(Map<String, dynamic> json){
     return ESRFollowProduction(
       id: json['id'],
-      production: (IsNumericUtils.isNumeric(json['production'].toString())) ? null : ESRProduction.fromJson(json['production']),
-      user: (IsNumericUtils.isNumeric(json['user'].toString())) ? null : ESRUser.fromJson(json['user']),
+      production: IsNumericUtils.isNumeric(json['production'].toString()) ? null : ESRProduction.fromJson(json['production']),
+      user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );

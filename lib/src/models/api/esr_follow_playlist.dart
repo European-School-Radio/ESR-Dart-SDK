@@ -19,8 +19,8 @@ class ESRFollowPlaylist {
   factory ESRFollowPlaylist.fromJson(Map<String, dynamic> json){
     return ESRFollowPlaylist(
         id: json['id'],
-        playlist: (IsNumericUtils.isNumeric(json['playlist'].toString())) ? null : ESRPlaylist.fromJson(json['playlist']),
-        user: (IsNumericUtils.isNumeric(json['user'].toString())) ? null : ESRUser.fromJson(json['user']),
+        playlist: IsNumericUtils.isNumeric(json['playlist'].toString()) ? null : ESRPlaylist.fromJson(json['playlist']),
+        user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
         created: DateTime.parse(json['created']),
         updated: DateTime.parse(json['updated'])
     );

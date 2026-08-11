@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
 
 class ESRFollowUser {
   int id = 0;
@@ -18,8 +19,8 @@ class ESRFollowUser {
   factory ESRFollowUser.fromJson(Map<String, dynamic> json){
     return ESRFollowUser(
       id: json['id'],
-      user: ESRUser.fromJson(json['user']),
-      userTo: ESRUser.fromJson(json['user_to']),
+      user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
+      userTo: IsNumericUtils.isNumeric(json['user_to'].toString()) ? null : ESRUser.fromJson(json['user_to']),
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
     );

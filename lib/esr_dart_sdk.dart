@@ -45,6 +45,7 @@ export 'src/services/api/esr_like_archives_service.dart' show ESRLikeArchivesSer
 export 'src/services/api/esr_like_playlists_service.dart' show ESRLikePlaylistsService;
 export 'src/services/api/esr_follow_productions_service.dart' show ESRFollowProductionsService;
 export 'src/services/api/esr_follow_playlists_service.dart' show ESRFollowPlaylistsService;
+export 'src/services/api/esr_follow_schools_service.dart' show ESRFollowSchoolsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -141,7 +142,7 @@ export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsB
 export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults;
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults;
-export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults;
+export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults, ESRFollowSchoolCheckFollowedSchoolResults, ESRFollowSchoolAddResults, ESRFollowSchoolDeleteResults;
 export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedResults, ESRCommentsWebsocketListResults;
 export 'src/payload_models/esr_sso_login_tries_results.dart' show ESRSSOLoginTriesAddResult;
 export 'src/payload_models/esr_genders_results.dart' show ESRGendersPaginatedResults;
