@@ -1,4 +1,5 @@
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/utils/is_numeric.dart';
 
 class ESRPlaylist {
   int id = 0;
@@ -33,7 +34,7 @@ class ESRPlaylist {
       name: json['name'],
       description: json['description'],
       isPublic: json['is_public'],
-      user: ESRUser.fromJson(json['user']),
+      user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       followCount: json['follow_count'],
       likesCount: json['likes_count'],
       sharesCount: json['shares_count'],
@@ -42,4 +43,18 @@ class ESRPlaylist {
       updated: DateTime.parse(json['updated'])
     );
   }
+}
+
+class ESRPlaylistAdd {
+  String name = "";
+  String description = "";
+  bool isPublic = false;
+  int userID = 0;
+
+  ESRPlaylistAdd({
+    required this.name,
+    required this.description,
+    required this.isPublic,
+    required this.userID
+  });
 }

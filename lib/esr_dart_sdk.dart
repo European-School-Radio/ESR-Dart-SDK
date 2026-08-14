@@ -100,7 +100,7 @@ export 'src/models/api/esr_archive_language.dart' show ESRArchiveLanguage;
 export 'src/models/api/esr_follow_production.dart' show ESRFollowProduction;
 export 'src/models/api/esr_production_language.dart' show ESRProductionLanguage;
 export 'src/models/api/esr_user_setting.dart' show ESRUserSetting;
-export 'src/models/api/esr_playlist.dart' show ESRPlaylist;
+export 'src/models/api/esr_playlist.dart' show ESRPlaylist, ESRPlaylistAdd;
 export 'src/models/api/esr_follow_playlist.dart' show ESRFollowPlaylist;
 export 'src/models/api/esr_playlist_archive.dart' show ESRPlaylistArchive;
 export 'src/models/api/esr_archive_history_listen.dart' show ESRArchiveHistoryListen, ESRAddArchiveHistoryListen;
@@ -142,7 +142,7 @@ export 'src/payload_models/esr_classification_categories_results.dart' show ESRC
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
 export 'src/payload_models/esr_archive_user_schools_result.dart' show ESRArchiveUserSchoolsListResults;
 export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsByUserPublicResults;
-export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults;
+export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults, ESRPlaylistsAddResults;
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults, ESRFollowUserCheckFollowedUserResults, ESRFollowUserAddResults, ESRFollowUserDeleteResults;
 export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults, ESRFollowSchoolCheckFollowedSchoolResults, ESRFollowSchoolAddResults, ESRFollowSchoolDeleteResults;

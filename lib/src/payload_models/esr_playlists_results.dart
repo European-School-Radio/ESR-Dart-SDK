@@ -126,3 +126,23 @@ class ESRPlaylistsArchivesByPlaylistResults {
     );
   }
 }
+
+class ESRPlaylistsAddResults {
+  String status = "";
+  String message = "";
+  ESRPlaylist? playlist;
+
+  ESRPlaylistsAddResults({
+    required this.status,
+    required this.message,
+    required this.playlist
+  });
+
+  factory ESRPlaylistsAddResults.fromJson(Map<String, dynamic> json){
+    return ESRPlaylistsAddResults(
+      status: json['status'],
+      message: json['message'],
+      playlist: ESRPlaylist.fromJson(json['playlist'])
+    );
+  }
+}

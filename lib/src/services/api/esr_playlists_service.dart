@@ -49,6 +49,32 @@ class ESRPlaylistsService {
     }
   }
 
+  Future<ESRPlaylistsAddResults> addPlaylist(ESRPlaylistAdd playlist, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/playlist/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'name': playlist.name,
+      'description': playlist.description,
+      'is_public': (playlist.isPublic) ? "1" : "0",
+      'user': playlist.userID.toString()
+    };
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRPlaylistsAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRPlaylistsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
     final urlBuilder = UrlBuilder('$_apiURL/playlist/share/$id');
 
