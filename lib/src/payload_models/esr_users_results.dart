@@ -281,3 +281,29 @@ class ESRUsersSimilarUsersResults {
     );
   }
 }
+
+class ESRUsersArchiveSuggestionsResults {
+  String status = "";
+  bool resultsAreSuggestions = false;
+  List<ESRArchive> suggestedArchives = [];
+
+  ESRUsersArchiveSuggestionsResults({
+    required this.status,
+    required this.resultsAreSuggestions,
+    required this.suggestedArchives
+  });
+
+  factory ESRUsersArchiveSuggestionsResults.fromJson(Map<String, dynamic> json){
+    List<dynamic> archivesList = json['suggested_archives'] as List<dynamic>;
+
+    List<ESRArchive> serializedArchives = archivesList
+        .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
+        .toList();
+
+    return ESRUsersArchiveSuggestionsResults(
+      status: json['status'],
+      resultsAreSuggestions: json['results_are_suggestions'],
+      suggestedArchives: serializedArchives
+    );
+  }
+}

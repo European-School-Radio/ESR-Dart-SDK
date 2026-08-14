@@ -609,4 +609,40 @@ class ESRUsersService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRUsersArchiveSuggestionsResults> getArchiveSuggestions(int userID, String jwt, {int? limit, ESRLang? language, List<ESRClassificationCategory>? classificationCategories}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/users/ai/archive-suggestions/$userID');
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    } else {
+      urlBuilder.addQueryParam("limit", "8");
+    }
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag);
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+    
+    if (classificationCategories != null && classificationCategories.isNotEmpty){
+      urlBuilder.addQueryParam("classification_category_ids", classificationCategories.map((singleClassificationCategory) => singleClassificationCategory.id).join(","));
+    }
+
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersArchiveSuggestionsResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
