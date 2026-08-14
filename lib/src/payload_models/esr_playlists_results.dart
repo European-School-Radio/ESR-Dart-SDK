@@ -12,14 +12,13 @@ class ESRPlaylistsByUserResults {
   factory ESRPlaylistsByUserResults.fromJson(Map<String, dynamic> json){
     List<ESRPlaylist> serializedPlaylists = [];
 
-    if ((!json.containsKey("data") || json['data'] == null) && json.containsKey("count")){
-      return ESRPlaylistsByUserResults(
-          count: json['count'] ?? 0,
-          results: []
-      );
-    }
+    List<dynamic> playlistsList = [];
 
-    List<dynamic> playlistsList = json['data'] as List<dynamic>;
+    if (json.containsKey("data")){
+      playlistsList = json['data'] as List<dynamic>;
+    } else if (json.containsKey("results")){
+      playlistsList = json['results'] as List<dynamic>;
+    }
 
     serializedPlaylists = playlistsList
         .map((singlePlaylist) => ESRPlaylist.fromJson(singlePlaylist as Map<String, dynamic>))
