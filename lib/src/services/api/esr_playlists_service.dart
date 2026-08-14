@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+import 'package:esr_dart_sdk/src/enums/directions/esr_sorting_directions.dart';
 import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
+import 'package:esr_dart_sdk/src/enums/sorting/esr_playlist_sorting.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
 import 'package:esr_dart_sdk/src/utils/ip_utils.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
@@ -49,7 +51,7 @@ class ESRPlaylistsService {
     }
   }
 
-  Future<ESRPlaylistsByUserResults> getPlaylistsByUser(int userID, String jwt, {int? page, int? limit}) async {
+  Future<ESRPlaylistsByUserResults> getPlaylistsByUser(int userID, String jwt, {int? page, int? limit, ESRPlaylistSorting? sort, ESRSortingDirections? direction}) async {
     final urlBuilder = UrlBuilder('$_apiURL/playlists/byUser/$userID');
     urlBuilder.addQueryParam("only_public", "0");
 
@@ -63,6 +65,14 @@ class ESRPlaylistsService {
       urlBuilder.addQueryParam("limit", limit.toString());
     } else {
       urlBuilder.addQueryParam("limit", "16");
+    }
+
+    if (sort != null){
+      urlBuilder.addQueryParam("sort", sort.value.toString());
+    }
+
+    if (direction != null){
+      urlBuilder.addQueryParam("direction", direction.value.toString());
     }
 
     var headers = {
