@@ -145,20 +145,3 @@ class ESRPlaylistsAddResults {
     );
   }
 }
-
-class ESRPlaylistsCheckExistsInPlaylist {
-  String status = "";
-  bool archiveExistsInPlaylist = false;
-
-  ESRPlaylistsCheckExistsInPlaylist({
-    required this.status,
-    required this.archiveExistsInPlaylist
-  });
-
-  factory ESRPlaylistsCheckExistsInPlaylist.fromJson(Map<String, dynamic> json){
-    return ESRPlaylistsCheckExistsInPlaylist(
-      status: json['status'],
-      archiveExistsInPlaylist: json['archive_exists_in_playlist']
-    );
-  }
-}

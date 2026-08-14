@@ -31,6 +31,7 @@ export 'src/services/api/esr_classification_categories_service.dart' show ESRCla
 export 'src/services/api/esr_audio_classes_service.dart' show ESRAudioClassesService;
 export 'src/services/api/esr_user_settings_service.dart' show ESRUserSettingsService;
 export 'src/services/api/esr_playlists_service.dart' show ESRPlaylistsService;
+export 'src/services/api/esr_playlist_archives_service.dart' show ESRPlaylistArchivesService;
 export 'src/services/api/esr_archive_history_listens_service.dart' show ESRArchiveHistoryListensService;
 export 'src/services/api/esr_comments_service.dart' show ESRCommentsService;
 export 'src/services/api/esr_sso_login_tries_service.dart' show ESRSSOLoginTriesService;
@@ -142,7 +143,8 @@ export 'src/payload_models/esr_classification_categories_results.dart' show ESRC
 export 'src/payload_models/esr_audio_classes_results.dart' show ESRAudioClassesPaginatedResults;
 export 'src/payload_models/esr_archive_user_schools_result.dart' show ESRArchiveUserSchoolsListResults;
 export 'src/payload_models/esr_user_settings_results.dart' show ESRUserSettingsByUserPublicResults;
-export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults, ESRPlaylistsAddResults, ESRPlaylistsCheckExistsInPlaylist;
+export 'src/payload_models/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults, ESRPlaylistsAddResults;
+export 'src/payload_models/esr_playlist_archives_results.dart' show ESRPlaylistArchivesCheckExistsInPlaylist, ESRPlaylistArchivesAddArchiveToPlaylistResult;
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults, ESRFollowUserCheckFollowedUserResults, ESRFollowUserAddResults, ESRFollowUserDeleteResults;
 export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults, ESRFollowSchoolCheckFollowedSchoolResults, ESRFollowSchoolAddResults, ESRFollowSchoolDeleteResults;
