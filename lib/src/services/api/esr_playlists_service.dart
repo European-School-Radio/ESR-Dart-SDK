@@ -75,6 +75,23 @@ class ESRPlaylistsService {
     }
   }
 
+  Future<ESRPlaylistsCheckExistsInPlaylist> checkArchiveExistsInPlaylist(int playlistID, int archiveID) async {
+    final urlBuilder = UrlBuilder('$_apiURL/playlist-archive/existsInPlaylist');
+    urlBuilder.addQueryParam("only_public", "0");
+    urlBuilder.addQueryParam("archive_id", archiveID.toString());
+    urlBuilder.addQueryParam("playlist_id", playlistID.toString());
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRPlaylistsCheckExistsInPlaylist.fromJson(jsonData['playlist']);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRPlaylistsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
     final urlBuilder = UrlBuilder('$_apiURL/playlist/share/$id');
 
