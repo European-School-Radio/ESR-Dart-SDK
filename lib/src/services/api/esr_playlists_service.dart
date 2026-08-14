@@ -49,6 +49,38 @@ class ESRPlaylistsService {
     }
   }
 
+  Future<ESRPlaylistsByUserResults> getPlaylistsByUser(int userID, String jwt, {int? page, int? limit}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/playlists/byUser/$userID');
+    urlBuilder.addQueryParam("only_public", "0");
+
+    if (page != null){
+      urlBuilder.addQueryParam("page", page.toString());
+    } else {
+      urlBuilder.addQueryParam("page", "1");
+    }
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    } else {
+      urlBuilder.addQueryParam("limit", "16");
+    }
+
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRPlaylistsByUserResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRPlaylistsAddResults> addPlaylist(ESRPlaylistAdd playlist, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/playlist/add');
 
