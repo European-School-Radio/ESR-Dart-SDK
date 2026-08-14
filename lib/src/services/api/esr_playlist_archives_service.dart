@@ -16,13 +16,18 @@ class ESRPlaylistArchivesService {
     }
   }
 
-  Future<ESRPlaylistArchivesCheckExistsInPlaylist> checkArchiveExistsInPlaylist(int playlistID, int archiveID) async {
+  Future<ESRPlaylistArchivesCheckExistsInPlaylist> checkArchiveExistsInPlaylist(int playlistID, int archiveID, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/playlist-archive/existsInPlaylist');
     urlBuilder.addQueryParam("only_public", "0");
     urlBuilder.addQueryParam("archive_id", archiveID.toString());
     urlBuilder.addQueryParam("playlist_id", playlistID.toString());
 
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
