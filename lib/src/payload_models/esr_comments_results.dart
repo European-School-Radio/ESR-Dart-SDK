@@ -58,3 +58,23 @@ class ESRCommentsWebsocketListResults {
     );
   }
 }
+
+class ESRCommentsAddResults {
+  String status = "";
+  String message = "";
+  ESRComment? comment;
+
+  ESRCommentsAddResults({
+    required this.status,
+    required this.message,
+    required this.comment
+  });
+
+  factory ESRCommentsAddResults.fromJson(Map<String, dynamic> json){
+    return ESRCommentsAddResults(
+      status: json['status'],
+      message: json['message'],
+      comment: ESRComment.fromJson(json['comment'])
+    );
+  }
+}
