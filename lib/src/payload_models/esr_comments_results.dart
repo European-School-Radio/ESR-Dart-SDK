@@ -108,7 +108,7 @@ class ESRCommentsDeleteResults {
   factory ESRCommentsDeleteResults.fromJson(Map<String, dynamic> json){
     return ESRCommentsDeleteResults(
       status: json['status'],
-      message: json['messafe']
+      message: json['message']
     );
   }
 }
