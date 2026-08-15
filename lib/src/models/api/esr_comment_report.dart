@@ -34,7 +34,7 @@ class ESRCommentReport {
       description: json['description'],
       user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       replyDescription: json['reply_description'],
-      updatedBy: IsNumericUtils.isNumeric(json['updated_by'].toString()) ? null : ESRUser.fromJson(json['updated_by']),
+      updatedBy: (json['updated_by'] == null || IsNumericUtils.isNumeric(json['updated_by'].toString())) ? null : ESRUser.fromJson(json['updated_by']),
       reportClosed: json['report_closed'],
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated'])
