@@ -100,4 +100,36 @@ class ESRCommunityCommentsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRCommunityCommentsAddResults> addComment(int userID, int postID, String comment, {int? replyCommentID}) async {
+    final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/add-comment');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    Map<String, String> body = {
+      'post_id': postID.toString(),
+      'user_id': userID.toString(),
+      'content': comment
+    };
+    if (replyCommentID != null && replyCommentID != 0){
+      body['parent'] = replyCommentID.toString();
+    }
+
+    request.bodyFields = body;
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityCommentsAddResults.fromJson(jsonData);
+    } else if (response.statusCode == 400){
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Post or user not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
