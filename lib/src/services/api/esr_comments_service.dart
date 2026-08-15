@@ -176,4 +176,22 @@ class ESRCommentsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRCommentsDeleteResults> deleteComment(int commentID, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/comment/delete/$commentID');
+
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('DELETE', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200){
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommentsDeleteResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

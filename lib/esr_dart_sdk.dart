@@ -148,7 +148,7 @@ export 'src/payload_models/esr_playlist_archives_results.dart' show ESRPlaylistA
 export 'src/payload_models/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
 export 'src/payload_models/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults, ESRFollowUserCheckFollowedUserResults, ESRFollowUserAddResults, ESRFollowUserDeleteResults;
 export 'src/payload_models/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults, ESRFollowSchoolCheckFollowedSchoolResults, ESRFollowSchoolAddResults, ESRFollowSchoolDeleteResults;
-export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedResults, ESRCommentsWebsocketListResults, ESRCommentsAddResults, ESRCommentsEditResults;
+export 'src/payload_models/esr_comments_results.dart' show ESRCommentsPaginatedResults, ESRCommentsWebsocketListResults, ESRCommentsAddResults, ESRCommentsEditResults, ESRCommentsDeleteResults;
 export 'src/payload_models/esr_sso_login_tries_results.dart' show ESRSSOLoginTriesAddResult;
 export 'src/payload_models/esr_genders_results.dart' show ESRGendersPaginatedResults;
 export 'src/payload_models/esr_geolocation_results.dart' show ESRGeolocationCountryResults, ESRGeolocationTimezoneResults, ESRGeolocationCoordinatesResults;

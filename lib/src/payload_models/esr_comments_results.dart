@@ -95,3 +95,20 @@ class ESRCommentsEditResults {
     );
   }
 }
+
+class ESRCommentsDeleteResults {
+  String status = "";
+  String message = "";
+
+  ESRCommentsDeleteResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRCommentsDeleteResults.fromJson(Map<String, dynamic> json){
+    return ESRCommentsDeleteResults(
+      status: json['status'],
+      message: json['messafe']
+    );
+  }
+}
