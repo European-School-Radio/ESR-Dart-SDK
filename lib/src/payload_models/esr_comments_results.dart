@@ -78,3 +78,20 @@ class ESRCommentsAddResults {
     );
   }
 }
+
+class ESRCommentsEditResults {
+  String status = "";
+  String message = "";
+
+  ESRCommentsEditResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRCommentsEditResults.fromJson(Map<String, dynamic> json){
+    return ESRCommentsEditResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}

@@ -154,4 +154,26 @@ class ESRCommentsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRCommentsEditResults> editComment(int commentID, String comment, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/comment/edit/$commentID');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'comment': comment
+    };
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200){
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommentsEditResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
