@@ -16,8 +16,13 @@ class ESRCommentReportsService {
     }
   }
 
-  Future<ESRCommentReportsAddResult> addCommentReport(int commentID, int userID, int reportReasonID, String description) async {
+  Future<ESRCommentReportsAddResult> addCommentReport(int commentID, int userID, int reportReasonID, String description, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/comment-report/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
     request.bodyFields.addAll({
@@ -26,6 +31,7 @@ class ESRCommentReportsService {
       "user": userID.toString(),
       "description": description
     });
+    request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 201) {
