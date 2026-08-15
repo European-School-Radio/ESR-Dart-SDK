@@ -132,17 +132,17 @@ class ESRCommentsService {
       'Authorization': 'Bearer $jwt'
     };
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
-    request.bodyFields = {
+    Map<String, String> body = {
       "user": userID.toString(),
       "archive": archiveID.toString(),
       "comment": comment
     };
 
     if (replyCommentID != null && replyCommentID != 0){
-      request.bodyFields.addAll({
-        'reply': replyCommentID.toString()
-      });
+      body["reply"] = replyCommentID.toString();
     }
+
+    request.bodyFields = body;
 
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
