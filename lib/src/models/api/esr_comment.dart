@@ -40,7 +40,7 @@ class ESRComment {
       user: IsNumericUtils.isNumeric(json['user'].toString()) ? null : ESRUser.fromJson(json['user']),
       archive: IsNumericUtils.isNumeric(json['archive'].toString()) ? null : ESRArchive.fromJson(json['archive']),
       comment: json['comment'],
-      reply: (json['reply'] == null) ? null : ESRComment.fromJson(json['reply']),
+      reply: (json['reply'] == null || IsNumericUtils.isNumeric(json['reply'].toString())) ? null : ESRComment.fromJson(json['reply']),
       audioTimestampDuration: json['audio_timestamp_duration'],
       isDeleted: json['is_deleted'],
       created: DateTime.parse(json['created']),
