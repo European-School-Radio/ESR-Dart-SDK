@@ -25,12 +25,12 @@ class ESRCommentReportsService {
     };
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
-    request.bodyFields.addAll({
+    request.bodyFields = {
       "comment": commentID.toString(),
       "report_reason": reportReasonID.toString(),
       "user": userID.toString(),
       "description": description
-    });
+    };
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
