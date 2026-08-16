@@ -7,6 +7,7 @@ import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
 
 class ESRCommunityCommentsService {
+  final sdk = ESRSDK();
   String _baseURL = "";
 
   ESRCommunityCommentsService(){
@@ -111,7 +112,8 @@ class ESRCommunityCommentsService {
     Map<String, String> body = {
       'post_id': postID.toString(),
       'user_id': userID.toString(),
-      'content': comment
+      'content': comment,
+      'api_key': sdk.communityApiKey.toString()
     };
     if (replyCommentID != null && replyCommentID != 0){
       body['parent'] = replyCommentID.toString();
@@ -128,6 +130,59 @@ class ESRCommunityCommentsService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     } else if (response.statusCode == 404){
       throw ObjectNotFoundException("Post or user not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRCommunityCommentEditResults> editComment(int commentID, String comment) async {
+    final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/edit-comment/$commentID');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'content': comment,
+      'api_key': sdk.communityApiKey.toString()
+    };
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityCommentEditResults.fromJson(jsonData);
+    } else if (response.statusCode == 400){
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Comment not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
+  Future<ESRCommunityCommentDeleteResults> deleteComment(int commentID) async {
+    final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/delete-comment/$commentID');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'api_key': sdk.communityApiKey.toString()
+    };
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRCommunityCommentDeleteResults.fromJson(jsonData);
+    } else if (response.statusCode == 400){
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    } else if (response.statusCode == 404){
+      throw ObjectNotFoundException("Comment not found");
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }

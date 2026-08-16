@@ -167,7 +167,7 @@ export 'src/payload_models/api/esr_follow_productions_results.dart' show ESRFoll
 export 'src/payload_models/api/esr_follow_playlists_results.dart' show ESRFollowPlaylistsPaginatedResults, ESRFollowPlaylistCheckFollowedPlaylistResults, ESRFollowPlaylistAddResults, ESRFollowPlaylistDeleteResults;
 export 'src/payload_models/api/esr_report_reasons_results.dart' show ESRReportReasonsPaginatedResults;
 export 'src/payload_models/api/esr_comment_reports_results.dart' show ESRCommentReportsAddResult;
-export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults;
+export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults, ESRCommunityCommentEditResults, ESRCommunityCommentDeleteResults;
 
 // WebSockets Wire Models
 export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show ESRJazlerNowPlayingResults;

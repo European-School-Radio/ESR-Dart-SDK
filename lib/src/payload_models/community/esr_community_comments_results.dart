@@ -20,3 +20,43 @@ class ESRCommunityCommentsAddResults {
     );
   }
 }
+
+class ESRCommunityCommentEditResults {
+  String status = "";
+  int commentID = 0;
+  String message = "";
+
+  ESRCommunityCommentEditResults({
+    required this.status,
+    required this.commentID,
+    required this.message
+  });
+
+  factory ESRCommunityCommentEditResults.fromJson(Map<String, dynamic> json){
+    return ESRCommunityCommentEditResults(
+      status: json['status'],
+      commentID: json['comment_id'],
+      message: json['message']
+    );
+  }
+}
+
+class ESRCommunityCommentDeleteResults {
+  String status = "";
+  int commentID = 0;
+  String message = "";
+
+  ESRCommunityCommentDeleteResults({
+    required this.status,
+    required this.commentID,
+    required this.message
+  });
+
+  factory ESRCommunityCommentDeleteResults.fromJson(Map<String, dynamic> json){
+    return ESRCommunityCommentDeleteResults(
+      status: json['status'],
+      commentID: json['comment_id'],
+      message: json['message']
+    );
+  }
+}
