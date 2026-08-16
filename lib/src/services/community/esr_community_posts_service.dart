@@ -43,7 +43,7 @@ class ESRCommunityPostsService {
     }
     
     if (postSortDirection != null){
-      urlBuilder.addQueryParam("order", postSortDirection.value.toString());
+      urlBuilder.addQueryParam("order", postSortDirection.value.toString().toLowerCase());
     } else {
       urlBuilder.addQueryParam("order", ESRSortingDirections.desc.value.toString().toLowerCase());
     }
