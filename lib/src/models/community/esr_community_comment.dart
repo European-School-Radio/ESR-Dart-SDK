@@ -10,7 +10,7 @@ class ESRCommunityComment {
   String authorName = "";
   String? authorUsername = "";
   int? authorUserID = 0;
-  List<ESRCommunityCommentReply> replies = [];
+  List<ESRCommunityComment> replies = [];
 
   ESRCommunityComment({
     required this.id,
@@ -28,11 +28,11 @@ class ESRCommunityComment {
   factory ESRCommunityComment.fromJson(Map<String, dynamic> json){
     var unescape = HtmlUnescape();
 
-    List<ESRCommunityCommentReply> serializedReplies = [];
+    List<ESRCommunityComment> serializedReplies = [];
 
     if (json.containsKey("replies") && json['replies'] != null && json['replies'].length != 0){
       serializedReplies = (json['replies'] as List<dynamic>)
-          .map((singleComment) => ESRCommunityCommentReply.fromJson(singleComment as Map<String, dynamic>))
+          .map((singleComment) => ESRCommunityComment.fromJson(singleComment as Map<String, dynamic>))
           .toList();
     }
 
@@ -47,37 +47,6 @@ class ESRCommunityComment {
       authorUsername: json['author_username'],
       authorUserID: json['author_id'],
       replies: serializedReplies
-    );
-  }
-}
-
-class ESRCommunityCommentReply {
-  int id = 0;
-  int parent = 0;
-  String content = "";
-  String authorName = "";
-  int authorID = 0;
-  DateTime created = DateTime.now();
-
-  ESRCommunityCommentReply({
-    required this.id,
-    required this.parent,
-    required this.content,
-    required this.authorName,
-    required this.authorID,
-    required this.created
-  });
-
-  factory ESRCommunityCommentReply.fromJson(Map<String, dynamic> json){
-    var unescape = HtmlUnescape();
-
-    return ESRCommunityCommentReply(
-      id: json['id'],
-      parent: json['parent'],
-      content: unescape.convert(json['content']),
-      authorName: json['author_name'],
-      authorID: json['author_id'],
-      created: DateTime.parse(json['date_gmt'])
     );
   }
 }

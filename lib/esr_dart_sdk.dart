@@ -122,7 +122,7 @@ export 'src/models/api/esr_report_reason.dart' show ESRReportReason;
 export 'src/models/api/esr_comment_report.dart' show ESRCommentReport;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
-export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCommentReply, ESRCommunityCountCommentsByPost;
+export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
 
 // Wire Models
 export 'src/payload_models/api/esr_langs_results.dart' show ESRLangsPaginatedResults;
