@@ -51,7 +51,8 @@ class ESRRatingTypeArchivesService {
       'archive': archiveID.toString(),
       'rating_type': ratingTypeID.toString(),
       'user': userID.toString(),
-      'rating_value': ratingValue % 1 == 0 ? ratingValue.toInt().toString() : ratingValue.toString()
+      'rating_value': ratingValue.toString(),
+      'application_request': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
     };
 
     request.headers.addAll(headers);
@@ -74,7 +75,8 @@ class ESRRatingTypeArchivesService {
     };
     var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
     request.bodyFields = {
-      'rating_value': ratingValue % 1 == 0 ? ratingValue.toInt().toString() : ratingValue.toString()
+      'rating_value': ratingValue.toString(),
+      'application_request': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
     };
 
     request.headers.addAll(headers);
@@ -89,7 +91,7 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveDeleteResults> deleteRatingTypeArchive(int id, String jwt) async {
-    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id');
+    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id?application_request=${sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"}');
 
     var headers = {
       'Authorization': 'Bearer $jwt'
