@@ -87,4 +87,23 @@ class ESRRatingTypeArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRRatingTypeArchiveDeleteResults> deleteRatingTypeArchive(int id, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id');
+
+    var headers = {
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('DELETE', Uri.parse(urlBuilder.build()));
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRRatingTypeArchiveDeleteResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

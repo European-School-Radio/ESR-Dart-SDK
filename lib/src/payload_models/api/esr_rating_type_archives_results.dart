@@ -59,3 +59,20 @@ class ESRRatingTypeArchiveEditResults {
     );
   }
 }
+
+class ESRRatingTypeArchiveDeleteResults {
+  String status = "";
+  String message = "";
+
+  ESRRatingTypeArchiveDeleteResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRRatingTypeArchiveDeleteResults.fromJson(Map<String, dynamic> json){
+    return ESRRatingTypeArchiveDeleteResults(
+        status: json['status'],
+        message: json['message']
+    );
+  }
+}
