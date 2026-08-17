@@ -15,15 +15,15 @@ class ESRRatingTypeArchiveByUserArchiveResults {
 
   factory ESRRatingTypeArchiveByUserArchiveResults.fromJson(Map<String, dynamic> json) {
     List<bool> serializedRatingTypeHasVotes = (json['rating_type_has_vote'] == null) ? [] : (json['rating_type_has_vote'] as List<dynamic>)
-        .map((singleHasVote) => bool.parse(singleHasVote))
+        .map((singleHasVote) => bool.parse(singleHasVote.toString()))
         .toList();
 
     List<double> serializedRatingTypeVoteValue = (json['rating_type_vote_value'] == null) ? [] : (json['rating_type_vote_value'] as List<dynamic>)
-        .map((singleVoteValue) => double.parse(singleVoteValue))
+        .map((singleVoteValue) => double.parse(singleVoteValue.toString()))
         .toList();
 
     List<int> serializedRatingTypeVoteID = (json['rating_type_vote_id'] == null) ? [] : (json['rating_type_vote_id'] as List<dynamic>)
-        .map((singleVoteID) => int.parse(singleVoteID))
+        .map((singleVoteID) => int.parse(singleVoteID.toString()))
         .toList();
 
     return ESRRatingTypeArchiveByUserArchiveResults(
