@@ -38,4 +38,30 @@ class ESRRatingTypeArchivesService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRRatingTYpeArchiveAddResults> addRatingTypeArchive(int archiveID, int userID, int ratingTypeID, double ratingValue, String jwt) async {
+    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/add');
+
+    var headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer $jwt'
+    };
+    var request = http.Request('POST', Uri.parse(urlBuilder.build()));
+    request.bodyFields = {
+      'archive': archiveID.toString(),
+      'rating_type': ratingTypeID.toString(),
+      'user': userID.toString(),
+      'rating_value': ratingValue.toString()
+    };
+
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 201) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRRatingTYpeArchiveAddResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }

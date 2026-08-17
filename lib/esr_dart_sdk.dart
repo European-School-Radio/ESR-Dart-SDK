@@ -127,6 +127,7 @@ export 'src/models/api/esr_comment_report.dart' show ESRCommentReport;
 export 'src/models/api/esr_archive_report.dart' show ESRArchiveReport;
 export 'src/models/api/esr_setting.dart' show ESRSetting;
 export 'src/models/api/esr_rating_type.dart' show ESRRatingType;
+export 'src/models/api/esr_rating_type_archive.dart' show ESRRatingTypeArchive;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
@@ -176,7 +177,7 @@ export 'src/payload_models/api/esr_report_reasons_results.dart' show ESRReportRe
 export 'src/payload_models/api/esr_comment_reports_results.dart' show ESRCommentReportsAddResult;
 export 'src/payload_models/api/esr_archive_reports_results.dart' show ESRArchiveReportsAddResult;
 export 'src/payload_models/api/esr_settings_results.dart' show ESRSettingsBySettingKeyResults;
-export 'src/payload_models/api/esr_rating_type_archives_results.dart' show ESRRatingTypeArchiveByUserArchiveResults;
+export 'src/payload_models/api/esr_rating_type_archives_results.dart' show ESRRatingTypeArchiveByUserArchiveResults, ESRRatingTYpeArchiveAddResults;
 export 'src/payload_models/api/esr_rating_types_results.dart' show ESRRatingTypesPaginatedResults;
 export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults, ESRCommunityCommentEditResults, ESRCommunityCommentDeleteResults;
 

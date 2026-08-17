@@ -1,3 +1,5 @@
+import 'package:esr_dart_sdk/esr_dart_sdk.dart';
+
 class ESRRatingTypeArchiveByUserArchiveResults {
   String status = "";
   List<bool> ratingTypeHasVote = [];
@@ -17,6 +19,26 @@ class ESRRatingTypeArchiveByUserArchiveResults {
       ratingTypeHasVote: List<bool>.from(json['rating_type_has_vote'] ?? []),
       ratingTypeVoteValue: (json['rating_type_vote_value'] as List? ?? []).map((e) => (e as num).toDouble()).toList(),
       ratingTypeVoteID: List<int>.from(json['rating_type_vote_id'] ?? []),
+    );
+  }
+}
+
+class ESRRatingTYpeArchiveAddResults {
+  String status = "";
+  String message = "";
+  ESRRatingTypeArchive? ratingTypesArchive;
+
+  ESRRatingTYpeArchiveAddResults({
+    required this.status,
+    required this.message,
+    required this.ratingTypesArchive
+  });
+  
+  factory ESRRatingTYpeArchiveAddResults.fromJson(Map<String, dynamic> json){
+    return ESRRatingTYpeArchiveAddResults(
+      status: json['status'],
+      message: json['message'],
+      ratingTypesArchive: ESRRatingTypeArchive.fromJson(json['rating_types_archive'])
     );
   }
 }
