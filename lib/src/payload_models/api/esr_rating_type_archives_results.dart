@@ -42,3 +42,20 @@ class ESRRatingTypeArchiveAddResults {
     );
   }
 }
+
+class ESRRatingTypeArchiveEditResults {
+  String status = "";
+  String message = "";
+
+  ESRRatingTypeArchiveEditResults({
+    required this.status,
+    required this.message
+  });
+
+  factory ESRRatingTypeArchiveEditResults.fromJson(Map<String, dynamic> json){
+    return ESRRatingTypeArchiveEditResults(
+      status: json['status'],
+      message: json['message']
+    );
+  }
+}
