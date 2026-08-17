@@ -33,7 +33,7 @@ class ESRRatingTypeArchivesService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRRatingTypeArchiveByUserArchiveResults.fromJson(jsonData['lang']);
+      return ESRRatingTypeArchiveByUserArchiveResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
