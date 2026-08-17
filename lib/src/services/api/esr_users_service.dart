@@ -30,7 +30,7 @@ class ESRUsersService {
     request.bodyFields = {
       'username': username,
       'password': password,
-      'request_application': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
+      'request_application': sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio"
     };
     request.headers.addAll(headers);
 

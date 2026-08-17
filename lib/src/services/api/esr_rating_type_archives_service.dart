@@ -21,7 +21,7 @@ class ESRRatingTypeArchivesService {
     urlBuilder.addQueryParam("user_id", userID.toString());
     urlBuilder.addQueryParam("archive_id", userID.toString());
     urlBuilder.addQueryParam("all_rating_types", ratingTypes.join(","));
-    urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio");
+    urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio");
 
     var headers = {
       "Authorization": "Bearer $jwt"
@@ -52,7 +52,7 @@ class ESRRatingTypeArchivesService {
       'rating_type': ratingTypeID.toString(),
       'user': userID.toString(),
       'rating_value': ratingValue.toString(),
-      'application_request': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
+      'application_request': sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio"
     };
 
     request.headers.addAll(headers);
@@ -76,7 +76,7 @@ class ESRRatingTypeArchivesService {
     var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
     request.bodyFields = {
       'rating_value': ratingValue.toString(),
-      'application_request': sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"
+      'application_request': sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio"
     };
 
     request.headers.addAll(headers);
@@ -92,7 +92,7 @@ class ESRRatingTypeArchivesService {
 
   Future<ESRRatingTypeArchiveDeleteResults> deleteRatingTypeArchive(int id, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id');
-    urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio");
+    urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio");
 
     var headers = {
       'Authorization': 'Bearer $jwt'
