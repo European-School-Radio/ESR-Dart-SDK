@@ -11,12 +11,12 @@ class ESRRatingTypeArchiveByUserArchiveResults {
     required this.ratingTypeVoteID
   });
 
-  factory ESRRatingTypeArchiveByUserArchiveResults.fromJson(Map<String, dynamic> json){
+  factory ESRRatingTypeArchiveByUserArchiveResults.fromJson(Map<String, dynamic> json) {
     return ESRRatingTypeArchiveByUserArchiveResults(
       status: json['status'],
-      ratingTypeHasVote: json['rating_type_has_vote'],
-      ratingTypeVoteValue: json['rating_type_vote_value'],
-      ratingTypeVoteID: json['rating_type_vote_id']
+      ratingTypeHasVote: List<bool>.from(json['rating_type_has_vote'] ?? []),
+      ratingTypeVoteValue: (json['rating_type_vote_value'] as List? ?? []).map((e) => (e as num).toDouble()).toList(),
+      ratingTypeVoteID: List<int>.from(json['rating_type_vote_id'] ?? []),
     );
   }
 }
