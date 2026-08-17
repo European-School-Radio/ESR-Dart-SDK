@@ -14,11 +14,23 @@ class ESRRatingTypeArchiveByUserArchiveResults {
   });
 
   factory ESRRatingTypeArchiveByUserArchiveResults.fromJson(Map<String, dynamic> json) {
+    List<bool> serializedRatingTypeHasVotes = (json['rating_type_has_vote'] == null) ? [] : (json['rating_type_has_vote'] as List<dynamic>)
+        .map((singleHasVote) => bool.parse(singleHasVote))
+        .toList();
+
+    List<double> serializedRatingTypeVoteValue = (json['rating_type_vote_value'] == null) ? [] : (json['rating_type_vote_value'] as List<dynamic>)
+        .map((singleVoteValue) => double.parse(singleVoteValue))
+        .toList();
+
+    List<int> serializedRatingTypeVoteID = (json['rating_type_vote_id'] == null) ? [] : (json['rating_type_vote_id'] as List<dynamic>)
+        .map((singleVoteID) => int.parse(singleVoteID))
+        .toList();
+
     return ESRRatingTypeArchiveByUserArchiveResults(
       status: json['status'],
-      ratingTypeHasVote: List<bool>.from(json['rating_type_has_vote'] ?? []),
-      ratingTypeVoteValue: (json['rating_type_vote_value'] as List? ?? []).map((e) => (e as num).toDouble()).toList(),
-      ratingTypeVoteID: List<int>.from(json['rating_type_vote_id'] ?? []),
+      ratingTypeHasVote: serializedRatingTypeHasVotes,
+      ratingTypeVoteValue: serializedRatingTypeVoteValue,
+      ratingTypeVoteID: serializedRatingTypeVoteID,
     );
   }
 }
