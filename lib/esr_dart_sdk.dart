@@ -52,6 +52,7 @@ export 'src/services/api/esr_report_reasons_service.dart' show ESRReportReasonsS
 export 'src/services/api/esr_comment_reports_service.dart' show ESRCommentReportsService;
 export 'src/services/api/esr_archive_reports_service.dart' show ESRArchiveReportsService;
 export 'src/services/api/esr_settings_service.dart' show ESRSettingsService;
+export 'src/services/api/esr_rating_type_archives_service.dart' show ESRRatingTypeArchivesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -173,6 +174,7 @@ export 'src/payload_models/api/esr_report_reasons_results.dart' show ESRReportRe
 export 'src/payload_models/api/esr_comment_reports_results.dart' show ESRCommentReportsAddResult;
 export 'src/payload_models/api/esr_archive_reports_results.dart' show ESRArchiveReportsAddResult;
 export 'src/payload_models/api/esr_settings_results.dart' show ESRSettingsBySettingKeyResults;
+export 'src/payload_models/api/esr_rating_type_archives_results.dart' show ESRRatingTypeArchiveByUserArchiveResults;
 export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults, ESRCommunityCommentEditResults, ESRCommunityCommentDeleteResults;
 
 // WebSockets Wire Models
