@@ -19,7 +19,7 @@ class ESRRatingTypeArchivesService {
   Future<ESRRatingTypeArchiveByUserArchiveResults> getByUserArchive(int userID, int archiveID, List<int> ratingTypes, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/byUserArchive');
     urlBuilder.addQueryParam("user_id", userID.toString());
-    urlBuilder.addQueryParam("archive_id", userID.toString());
+    urlBuilder.addQueryParam("archive_id", archiveID.toString());
     urlBuilder.addQueryParam("all_rating_types", ratingTypes.join(","));
     urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio");
 
