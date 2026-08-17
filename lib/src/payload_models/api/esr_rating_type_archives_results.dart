@@ -23,19 +23,19 @@ class ESRRatingTypeArchiveByUserArchiveResults {
   }
 }
 
-class ESRRatingTYpeArchiveAddResults {
+class ESRRatingTypeArchiveAddResults {
   String status = "";
   String message = "";
   ESRRatingTypeArchive? ratingTypesArchive;
 
-  ESRRatingTYpeArchiveAddResults({
+  ESRRatingTypeArchiveAddResults({
     required this.status,
     required this.message,
     required this.ratingTypesArchive
   });
   
-  factory ESRRatingTYpeArchiveAddResults.fromJson(Map<String, dynamic> json){
-    return ESRRatingTYpeArchiveAddResults(
+  factory ESRRatingTypeArchiveAddResults.fromJson(Map<String, dynamic> json){
+    return ESRRatingTypeArchiveAddResults(
       status: json['status'],
       message: json['message'],
       ratingTypesArchive: ESRRatingTypeArchive.fromJson(json['rating_types_archive'])

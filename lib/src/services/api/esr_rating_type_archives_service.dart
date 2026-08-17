@@ -39,7 +39,7 @@ class ESRRatingTypeArchivesService {
     }
   }
 
-  Future<ESRRatingTYpeArchiveAddResults> addRatingTypeArchive(int archiveID, int userID, int ratingTypeID, double ratingValue, String jwt) async {
+  Future<ESRRatingTypeArchiveAddResults> addRatingTypeArchive(int archiveID, int userID, int ratingTypeID, double ratingValue, String jwt) async {
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/add');
 
     var headers = {
@@ -59,7 +59,7 @@ class ESRRatingTypeArchivesService {
     if (response.statusCode == 201) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
-      return ESRRatingTYpeArchiveAddResults.fromJson(jsonData);
+      return ESRRatingTypeArchiveAddResults.fromJson(jsonData);
     } else {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
