@@ -7,7 +7,7 @@ class ESRArchiveReport {
   ESRReportReason? reportReason;
   String description = "";
   ESRUser? user;
-  String replyDescription = "";
+  String? replyDescription;
   ESRUser? updatedBy;
   bool reportClosed = false;
   DateTime created = DateTime.now();
