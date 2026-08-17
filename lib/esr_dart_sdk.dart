@@ -50,6 +50,7 @@ export 'src/services/api/esr_follow_schools_service.dart' show ESRFollowSchoolsS
 export 'src/services/api/esr_follow_users_service.dart' show ESRFollowUsersService;
 export 'src/services/api/esr_report_reasons_service.dart' show ESRReportReasonsService;
 export 'src/services/api/esr_comment_reports_service.dart' show ESRCommentReportsService;
+export 'src/services/api/esr_archive_reports_service.dart' show ESRArchiveReportsService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -120,6 +121,7 @@ export 'src/models/api/esr_like_archive.dart' show ESRLikeArchive;
 export 'src/models/api/esr_like_playlist.dart' show ESRLikePlaylist;
 export 'src/models/api/esr_report_reason.dart' show ESRReportReason;
 export 'src/models/api/esr_comment_report.dart' show ESRCommentReport;
+export 'src/models/api/esr_archive_report.dart' show ESRArchiveReport;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
@@ -167,6 +169,7 @@ export 'src/payload_models/api/esr_follow_productions_results.dart' show ESRFoll
 export 'src/payload_models/api/esr_follow_playlists_results.dart' show ESRFollowPlaylistsPaginatedResults, ESRFollowPlaylistCheckFollowedPlaylistResults, ESRFollowPlaylistAddResults, ESRFollowPlaylistDeleteResults;
 export 'src/payload_models/api/esr_report_reasons_results.dart' show ESRReportReasonsPaginatedResults;
 export 'src/payload_models/api/esr_comment_reports_results.dart' show ESRCommentReportsAddResult;
+export 'src/payload_models/api/esr_archive_reports_results.dart' show ESRArchiveReportsAddResult;
 export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults, ESRCommunityCommentEditResults, ESRCommunityCommentDeleteResults;
 
 // WebSockets Wire Models
