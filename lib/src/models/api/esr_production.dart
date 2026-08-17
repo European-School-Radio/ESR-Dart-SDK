@@ -19,7 +19,7 @@ class ESRProduction {
   bool disabled = false;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
-  ESRReservation? reservation;
+  List<ESRReservation> reservation = [];
   List<ESRArchive> archives = [];
   List<ESRProductionSubject> productionSubjects = [];
   List<ESRProductionLanguage> productionSecondaryLanguages = [];
@@ -66,6 +66,10 @@ class ESRProduction {
         .map((singleSecondaryLanguage) => ESRProductionLanguage.fromJson(singleSecondaryLanguage as Map<String, dynamic>))
         .toList();
 
+    List<ESRReservation> serializedReservations = (json['reservations'] == null) ? [] : (json['reservations'] as List<dynamic>)
+        .map((singleReservation) => ESRReservation.fromJson(singleReservation as Map<String, dynamic>))
+        .toList();
+
     return ESRProduction(
       id: json['id'],
       name: json['name'],
@@ -85,7 +89,7 @@ class ESRProduction {
       disabled: json['disabled'] ?? false,
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
-      reservation: json['reservation'] != null ? ESRReservation.fromJson(json['reservation']) : null,
+      reservation: serializedReservations,
       archives: serializedArchives,
       productionSubjects: serializedProductionSubjects,
       productionSecondaryLanguages: serializedProductionSecondaryLanguages,
