@@ -91,7 +91,8 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveDeleteResults> deleteRatingTypeArchive(int id, String jwt) async {
-    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id?application_request=${sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio"}');
+    final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id');
+    urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "YouthRadio" : "European_School_Radio");
 
     var headers = {
       'Authorization': 'Bearer $jwt'
