@@ -51,7 +51,7 @@ class ESRRatingTypeArchivesService {
       'archive': archiveID.toString(),
       'rating_type': ratingTypeID.toString(),
       'user': userID.toString(),
-      'rating_value': ratingValue.toString()
+      'rating_value': ratingValue % 1 == 0 ? ratingValue.toInt().toString() : ratingValue.toString()
     };
 
     request.headers.addAll(headers);
@@ -74,7 +74,7 @@ class ESRRatingTypeArchivesService {
     };
     var request = http.Request('PUT', Uri.parse(urlBuilder.build()));
     request.bodyFields = {
-      'rating_value': ratingValue.toString()
+      'rating_value': ratingValue % 1 == 0 ? ratingValue.toInt().toString() : ratingValue.toString()
     };
 
     request.headers.addAll(headers);
