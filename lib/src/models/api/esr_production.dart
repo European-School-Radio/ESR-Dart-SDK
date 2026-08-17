@@ -19,7 +19,7 @@ class ESRProduction {
   bool disabled = false;
   DateTime created = DateTime.now();
   DateTime updated = DateTime.now();
-  List<ESRReservation> reservation = [];
+  List<ESRReservation> reservations = [];
   List<ESRArchive> archives = [];
   List<ESRProductionSubject> productionSubjects = [];
   List<ESRProductionLanguage> productionSecondaryLanguages = [];
@@ -44,7 +44,7 @@ class ESRProduction {
     required this.disabled,
     required this.created,
     required this.updated,
-    required this.reservation,
+    required this.reservations,
     required this.archives,
     required this.productionSubjects,
     required this.productionSecondaryLanguages,
@@ -89,7 +89,7 @@ class ESRProduction {
       disabled: json['disabled'] ?? false,
       created: DateTime.parse(json['created']),
       updated: DateTime.parse(json['updated']),
-      reservation: serializedReservations,
+      reservations: serializedReservations,
       archives: serializedArchives,
       productionSubjects: serializedProductionSubjects,
       productionSecondaryLanguages: serializedProductionSecondaryLanguages,
