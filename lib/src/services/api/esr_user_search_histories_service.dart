@@ -19,11 +19,17 @@ class ESRUserSearchHistoriesService {
   Future<ESRUserSearchHistoriesByUserResults> getSearchHistoriesByUser(int userID, String jwt, {int? limit}) async {
     final urlBuilder = UrlBuilder('$_apiURL/user-search-history/byUser/$userID');
 
+    var headers = {
+      "Authorization": "Bearer $jwt"
+    };
+
     if (limit != null){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
+
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
