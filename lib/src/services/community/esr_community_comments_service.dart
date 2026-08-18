@@ -21,6 +21,10 @@ class ESRCommunityCommentsService {
     ESRCommunityCommentSorting? commentSorting,
     ESRSortingDirections? commentSortDirection
   }) async {
+    if (postID == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     String lang = "en";
     if (language != null){
       lang = language.flag;
@@ -79,6 +83,10 @@ class ESRCommunityCommentsService {
   }
 
   Future<ESRCommunityCountCommentsByPost> getCommentsCounterByPost(int postID, {ESRLang? language}) async {
+    if (postID == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     String lang = "en";
     if (language != null){
       lang = language.flag;
@@ -103,6 +111,10 @@ class ESRCommunityCommentsService {
   }
 
   Future<ESRCommunityCommentsAddResults> addComment(int userID, int postID, String comment, {int? replyCommentID}) async {
+    if (userID == 0 || postID == 0 || comment.isEmpty){
+      throw InformationNotValidException("You send valid information");
+    }
+
     final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/add-comment');
 
     var headers = {
@@ -136,6 +148,10 @@ class ESRCommunityCommentsService {
   }
 
   Future<ESRCommunityCommentEditResults> editComment(int commentID, String comment) async {
+    if (commentID == 0 || comment.isEmpty){
+      throw InformationNotValidException("You send valid information");
+    }
+
     final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/edit-comment/$commentID');
 
     var headers = {
@@ -163,6 +179,10 @@ class ESRCommunityCommentsService {
   }
 
   Future<ESRCommunityCommentDeleteResults> deleteComment(int commentID) async {
+    if (commentID == 0){
+      throw InformationNotValidException("You send valid information");
+    }
+
     final urlBuilder = UrlBuilder('$_baseURL/wp-json/custom/delete-comment/$commentID');
 
     var headers = {

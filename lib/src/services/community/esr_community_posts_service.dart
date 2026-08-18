@@ -76,6 +76,10 @@ class ESRCommunityPostsService {
   }
 
   Future<ESRCommunityPost> getPostById(int id, {ESRLang? language}) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     String lang = "en";
     if (language != null){
       lang = language.flag;
@@ -95,6 +99,10 @@ class ESRCommunityPostsService {
   }
 
   Future<ESRCommunityPostReactions> getPostReactionsByUserForPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/reactions/check/all/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -109,6 +117,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addAmazedReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/amazed-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -123,6 +135,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addAngerReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/anger-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -137,6 +153,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addBadReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/bad-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -151,6 +171,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addCoolReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/cool-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -165,6 +189,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addJoyReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/joy-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -179,6 +207,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addLikeReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/like-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -193,6 +225,10 @@ class ESRCommunityPostsService {
   }
 
   Future<int?> addLolReactionToPost(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("You must specify post id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/add/lol-reaction-post/$id'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -207,6 +243,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeAmazedReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/amazed-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -217,6 +257,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeAngerReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/anger-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -227,6 +271,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeBadReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/bad-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -237,6 +285,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeCoolReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/cool-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -247,6 +299,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeJoyReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/joy-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -257,6 +313,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeLikeReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/like-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
@@ -267,6 +327,10 @@ class ESRCommunityPostsService {
   }
 
   Future<void> removeLolReactionFromPost(int reactionID) async {
+    if (reactionID == 0){
+      throw InformationNotValidException("You must specify reaction id");
+    }
+
     var request = http.Request('GET', Uri.parse('$_baseURL/wp-json/post/remove/lol-reaction-post/$reactionID'));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
