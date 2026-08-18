@@ -55,6 +55,7 @@ export 'src/services/api/esr_settings_service.dart' show ESRSettingsService;
 export 'src/services/api/esr_rating_types_service.dart' show ESRRatingTypesService;
 export 'src/services/api/esr_rating_type_archives_service.dart' show ESRRatingTypeArchivesService;
 export 'src/services/api/esr_production_search_histories_service.dart' show ESRProductionSearchHistoriesService;
+export 'src/services/api/esr_school_search_histories_service.dart' show ESRSchoolSearchHistoriesService;
 export 'src/services/community/esr_community_posts_service.dart' show ESRCommunityPostsService;
 export 'src/services/community/esr_community_comments_service.dart' show ESRCommunityCommentsService;
 
@@ -130,6 +131,7 @@ export 'src/models/api/esr_setting.dart' show ESRSetting;
 export 'src/models/api/esr_rating_type.dart' show ESRRatingType;
 export 'src/models/api/esr_rating_type_archive.dart' show ESRRatingTypeArchive;
 export 'src/models/api/esr_production_search_history.dart' show ESRProductionSearchHistory;
+export 'src/models/api/esr_school_search_history.dart' show ESRSchoolSearchHistory;
 export 'src/models/community/esr_community_post.dart' show ESRCommunityPost;
 export 'src/models/community/esr_community_post_reactions.dart' show ESRCommunityPostReactions;
 export 'src/models/community/esr_community_comment.dart' show ESRCommunityComment, ESRCommunityCountCommentsByPost;
@@ -182,6 +184,7 @@ export 'src/payload_models/api/esr_settings_results.dart' show ESRSettingsBySett
 export 'src/payload_models/api/esr_rating_type_archives_results.dart' show ESRRatingTypeArchiveByUserArchiveResults, ESRRatingTypeArchiveAddResults, ESRRatingTypeArchiveEditResults, ESRRatingTypeArchiveDeleteResults;
 export 'src/payload_models/api/esr_rating_types_results.dart' show ESRRatingTypesPaginatedResults;
 export 'src/payload_models/api/esr_production_search_histories_results.dart' show ESRProductionSearchHistoriesByUserResults;
+export 'src/payload_models/api/esr_school_search_histories_results.dart' show ESRSchoolSearchHistoriesByUserResults;
 export 'src/payload_models/community/esr_community_comments_results.dart' show ESRCommunityCommentsAddResults, ESRCommunityCommentEditResults, ESRCommunityCommentDeleteResults;
 
 // WebSockets Wire Models
