@@ -307,3 +307,78 @@ class ESRUsersArchiveSuggestionsResults {
     );
   }
 }
+
+class ESRUsersFollowingEntitiesPagination {
+  int totalCount = 0;
+  int page = 0;
+  int limit = 0;
+  int totalPages = 0;
+  bool hasNext = false;
+  bool hasPrevious = false;
+
+  ESRUsersFollowingEntitiesPagination({
+    required this.totalCount,
+    required this.page,
+    required this.limit,
+    required this.totalPages,
+    required this.hasNext,
+    required this.hasPrevious
+  });
+
+  factory ESRUsersFollowingEntitiesPagination.fromJson(Map<String, dynamic> json){
+    return ESRUsersFollowingEntitiesPagination(
+      totalCount: json['total_count'],
+      page: json['page'],
+      limit: json['limit'],
+      totalPages: json['total_pages'],
+      hasNext: json['has_next'],
+      hasPrevious: json['has_previous']
+    );
+  }
+}
+
+class ESRUsersFollowingEntitiesSingleResult {
+  int entityID = 0;
+  String entity = "";
+  ESRArchive? archive;
+
+  ESRUsersFollowingEntitiesSingleResult({
+    required this.entityID,
+    required this.entity,
+    required this.archive
+  });
+
+  factory ESRUsersFollowingEntitiesSingleResult.fromJson(Map<String, dynamic> json){
+    return ESRUsersFollowingEntitiesSingleResult(
+      entityID: json['entity_id'],
+      entity: json['entity'],
+      archive: ESRArchive.fromJson(json['archive'])
+    );
+  }
+}
+
+class ESRUsersFollowingEntitiesResults {
+  String status = "";
+  ESRUsersFollowingEntitiesPagination? pagination;
+  List<ESRUsersFollowingEntitiesSingleResult>? followEntities;
+
+  ESRUsersFollowingEntitiesResults({
+    required this.status,
+    required this.pagination,
+    required this.followEntities
+  });
+
+  factory ESRUsersFollowingEntitiesResults.fromJson(Map<String, dynamic> json){
+    List<dynamic> followEntitiesList = json['follow_entities'] as List<dynamic>;
+
+    List<ESRUsersFollowingEntitiesSingleResult> serializedFollowEntities = followEntitiesList
+        .map((singleFollowEntity) => ESRUsersFollowingEntitiesSingleResult.fromJson(singleFollowEntity as Map<String, dynamic>))
+        .toList();
+
+    return ESRUsersFollowingEntitiesResults(
+      status: json['status'],
+      pagination: ESRUsersFollowingEntitiesPagination.fromJson(json['pagination']),
+      followEntities: serializedFollowEntities
+    );
+  }
+}

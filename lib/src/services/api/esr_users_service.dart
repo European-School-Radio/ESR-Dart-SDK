@@ -645,4 +645,36 @@ class ESRUsersService {
       throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
     }
   }
+
+  Future<ESRUsersFollowingEntitiesResults> getFollowingEntitiesById(int id, String jwt, {int? limit, ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/users/following-entities/$id');
+
+    if (limit != null){
+      urlBuilder.addQueryParam("limit", limit.toString());
+    } else {
+      urlBuilder.addQueryParam("limit", "50");
+    }
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag);
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var headers = {
+      "Authorization": "Bearer $jwt"
+    };
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUsersFollowingEntitiesResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
 }
