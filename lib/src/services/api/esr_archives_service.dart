@@ -49,7 +49,7 @@ class ESRArchivesService {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
 
-      if (jsonData['is_active_contest_submission'] != null){
+      if (jsonData['is_active_contest_submission'] != null && jsonData['is_active_contest_submission']){
         throw ContestSubmissionArchiveException("Archive $id is an active contest submission and cannot be displayed yet");
       }
 

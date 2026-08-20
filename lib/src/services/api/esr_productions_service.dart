@@ -210,6 +210,11 @@ class ESRProductionsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
+
+      if (jsonData['is_active_contest_submission'] != null && jsonData['is_active_contest_submission']){
+        throw ContestSubmissionArchiveException("Production $id is an active contest submission and cannot be displayed yet");
+      }
+
       return ESRProduction.fromJson(jsonData['production']);
     } else if (response.statusCode == 404){
       throw ObjectNotFoundException("Production with id $id not found");
