@@ -17,13 +17,17 @@ class ESRSchoolSearchHistoriesService {
   }
 
   Future<ESRSchoolSearchHistoriesByUserResults> getSearchHistoriesByUser(int userID, String jwt, {int? limit}) async {
+    if (userID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/school-search-history/byUser/$userID');
 
     var headers = {
       "Authorization": "Bearer $jwt"
     };
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 

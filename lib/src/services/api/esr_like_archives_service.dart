@@ -17,6 +17,10 @@ class ESRLikeArchivesService {
   }
 
   Future<ESRLikeArchiveCheckLikedArchiveResults> checkUserLikedArchive(int userID, int archiveID, String jwt) async {
+    if (userID == 0 || archiveID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-archive/userLikedArchive');
 
     var headers = {
@@ -42,6 +46,10 @@ class ESRLikeArchivesService {
   }
 
   Future<ESRLikeArchiveAddResults> addLikeArchive(int userID, int archiveID, String jwt) async {
+    if (userID == 0 || archiveID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-archive/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRLikeArchivesService {
   }
 
   Future<ESRLikeArchiveDeleteResults> removeLikeArchive(int likeArchiveID, String jwt) async {
+    if (likeArchiveID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-archive/delete/$likeArchiveID');
 
     var headers = {

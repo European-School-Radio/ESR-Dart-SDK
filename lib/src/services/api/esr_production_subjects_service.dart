@@ -17,6 +17,10 @@ class ESRProductionSubjectsService {
   }
 
   Future<ESRProductionSubjectsAddResult> addProductionSubject(ESRAddProductionSubject productionSubject, String jwt) async {
+    if (productionSubject.subjectID == 0 || productionSubject.productionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/production-subject/add');
 
     var headers = {

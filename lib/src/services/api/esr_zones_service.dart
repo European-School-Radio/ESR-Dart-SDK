@@ -28,16 +28,20 @@ class ESRZonesService {
     final urlBuilder = UrlBuilder('$_apiURL/zones');
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
@@ -61,12 +65,20 @@ class ESRZonesService {
   }
 
   Future<ESRZone> getZoneById(int id, {ESRLang? language}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/zone/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -91,13 +103,21 @@ class ESRZonesService {
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
     
     if (zoneType == null){
       urlBuilder.addQueryParam("type_id", "1");
     } else {
-      urlBuilder.addQueryParam("type_id", zoneType.id.toString());
+      if (zoneType.id == 0){
+        urlBuilder.addQueryParam("type_id", "1");
+      } else {
+        urlBuilder.addQueryParam("type_id", zoneType.id.toString());
+      }
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));

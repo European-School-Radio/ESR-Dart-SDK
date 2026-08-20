@@ -33,18 +33,22 @@ class ESRProductionsService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/productions');
 
-    if (page != null) {
+    if (page != null && page != 0) {
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null) {
+    if (limit != null && limit != 0) {
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language == null) {
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     if (sorting != null) {
@@ -88,18 +92,22 @@ class ESRProductionsService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/productions/search');
 
-    if (page != null) {
+    if (page != null && page != 0) {
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null) {
+    if (limit != null && limit != 0) {
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language == null) {
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     if (sorting != null) {
@@ -122,46 +130,32 @@ class ESRProductionsService {
       urlBuilder.addQueryParam("show_schedulable", (showSchedulable) ? "1" : "0");
     }
 
-    if (reservationFrequency != null){
-      if (reservationFrequency.isNotEmpty){
-        urlBuilder.addQueryParam("reservation_frequency", reservationFrequency.map((singleFrequency) => singleFrequency.id).toSet().join(","));
-      }
+    if (reservationFrequency != null && reservationFrequency.isNotEmpty){
+      urlBuilder.addQueryParam("reservation_frequency", reservationFrequency.map((singleFrequency) => singleFrequency.id).toSet().join(","));
     }
 
-    if (productionSubjects != null){
-      if (productionSubjects.isNotEmpty){
-        urlBuilder.addQueryParam("subjects", productionSubjects.map((singleSubject) => singleSubject.id).toSet().join(","));
-      }
+    if (productionSubjects != null && productionSubjects.isNotEmpty){
+      urlBuilder.addQueryParam("subjects", productionSubjects.map((singleSubject) => singleSubject.id).toSet().join(","));
     }
 
-    if (productionZones != null){
-      if (productionZones.isNotEmpty){
-        urlBuilder.addQueryParam("zone", productionZones.map((singleZone) => singleZone.id).toSet().join(","));
-      }
+    if (productionZones != null && productionZones.isNotEmpty){
+      urlBuilder.addQueryParam("zone", productionZones.map((singleZone) => singleZone.id).toSet().join(","));
     }
 
-    if (productionTypes != null){
-      if (productionTypes.isNotEmpty){
-        urlBuilder.addQueryParam("ptype", productionTypes.map((singleProductionType) => singleProductionType.id).toSet().join(","));
-      }
+    if (productionTypes != null && productionTypes.isNotEmpty){
+      urlBuilder.addQueryParam("ptype", productionTypes.map((singleProductionType) => singleProductionType.id).toSet().join(","));
     }
 
-    if (schoolCountries != null){
-      if (schoolCountries.isNotEmpty){
-        urlBuilder.addQueryParam("country", schoolCountries.map((singleCountry) => singleCountry.id).toSet().join(","));
-      }
+    if (schoolCountries != null && schoolCountries.isNotEmpty){
+      urlBuilder.addQueryParam("country", schoolCountries.map((singleCountry) => singleCountry.id).toSet().join(","));
     }
 
-    if (productionLanguages != null){
-      if (productionLanguages.isNotEmpty){
-        urlBuilder.addQueryParam("production_lang", productionLanguages.map((singleLanguage) => singleLanguage.id).toSet().join(","));
-      }
+    if (productionLanguages != null && productionLanguages.isNotEmpty){
+      urlBuilder.addQueryParam("production_lang", productionLanguages.map((singleLanguage) => singleLanguage.id).toSet().join(","));
     }
 
-    if (schoolTypes != null){
-      if (schoolTypes.isNotEmpty){
-        urlBuilder.addQueryParam("school_type", schoolTypes.map((singleSchoolType) => singleSchoolType.id).toSet().join(","));
-      }
+    if (schoolTypes != null && schoolTypes.isNotEmpty){
+      urlBuilder.addQueryParam("school_type", schoolTypes.map((singleSchoolType) => singleSchoolType.id).toSet().join(","));
     }
 
     if (createdTo != null){
@@ -172,7 +166,7 @@ class ESRProductionsService {
       urlBuilder.addQueryParam("from", ESRDateTimeFormatter.formatDateTimeRequests(createdFrom));
     }
 
-    if (searchQuery != null){
+    if (searchQuery != null && searchQuery.isEmpty){
       urlBuilder.addQueryParam("q", searchQuery);
     }
 
@@ -188,12 +182,20 @@ class ESRProductionsService {
   }
 
   Future<ESRProduction> getProductionById(int id, {ESRLang? language, String? userJWT}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/production/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     Map<String, String> allHeaders = {};
@@ -201,7 +203,7 @@ class ESRProductionsService {
     String userIP = await ESRIPUtils.getIP();
     allHeaders['X-User-IP'] = userIP;
     allHeaders['User-Agent'] = "${sdk.env.fullNameApplication} Application/${sdk.appVersion} (Dart SDK/${sdk.sdkVersion})";
-    allHeaders['Authorization'] = (userJWT == null) ? "" : "Bearer $userJWT";
+    allHeaders['Authorization'] = (userJWT == null || userJWT.isEmpty) ? "" : "Bearer $userJWT";
     allHeaders['X-App-Source-URL'] = sdk.env.sourceApplicationURL.toString();
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -224,6 +226,10 @@ class ESRProductionsService {
   }
 
   Future<ESRProductionsAddResults> addProduction(ESRAddProduction production, String jwt) async {
+    if (production.name.isEmpty || production.description.isEmpty || production.schoolYearID == 0 || production.userSchoolID == 0 || production.productionTypeID == 0 || production.languageID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/production/add');
 
     var headers = {
@@ -309,6 +315,10 @@ class ESRProductionsService {
   }
 
   Future<ESRProductionsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    if (id != 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/production/share/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));

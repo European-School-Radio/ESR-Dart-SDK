@@ -11,7 +11,6 @@ import 'package:esr_dart_sdk/src/utils/esr_image_resizer.dart';
 import 'package:esr_dart_sdk/src/utils/ip_utils.dart';
 import 'package:esr_dart_sdk/src/utils/url_builder.dart';
 import 'package:http/http.dart' as http;
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 class ESRArchivesService {
   final sdk = ESRSDK();
@@ -26,12 +25,20 @@ class ESRArchivesService {
   }
 
   Future<ESRArchive> getArchiveById(int id, {ESRLang? language, String? userJWT}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     Map<String, String> allHeaders = {};
@@ -39,7 +46,7 @@ class ESRArchivesService {
     String userIP = await ESRIPUtils.getIP();
     allHeaders['X-User-IP'] = userIP;
     allHeaders['User-Agent'] = "${sdk.env.fullNameApplication} Application/${sdk.appVersion} (Dart SDK/${sdk.sdkVersion})";
-    allHeaders['Authorization'] = (userJWT == null) ? "" : "Bearer $userJWT";
+    allHeaders['Authorization'] = (userJWT == null || userJWT.isEmpty) ? "" : "Bearer $userJWT";
     allHeaders['X-App-Source-URL'] = sdk.env.sourceApplicationURL.toString();
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -62,6 +69,10 @@ class ESRArchivesService {
   }
 
   Future<ESRArchivesAddResults> addArchive(ESRAddArchive archive, String jwt) async {
+    if (archive.productionID == 0 || archive.name.isEmpty || archive.description.isEmpty || archive.audioFile.isEmpty || archive.audioFileDuration == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive/add');
 
     var headers = {
@@ -143,58 +154,6 @@ class ESRArchivesService {
     }
   }
 
-  Future<ESRArchivesForYouResults> getUserSuggestionsArchives(
-    String jwt,
-    {
-      int? page,
-      int? limit,
-      ESRLang? language
-    }
-  ) async {
-    if (jwt.isEmpty){
-      throw InformationNotValidException("JWT is not Valid");
-    }
-
-    Map<String, dynamic> userDetails;
-    try {
-      userDetails = JwtDecoder.decode(jwt);
-    } on FormatException {
-      throw InformationNotValidException("JWT is not Valid");
-    }
-
-    final urlBuilder = UrlBuilder('$_apiURL/users/ai/archive-suggestions/${userDetails['user']['id']}');
-
-    if (page != null){
-      urlBuilder.addQueryParam("page", page.toString());
-    }
-
-    if (limit != null){
-      urlBuilder.addQueryParam("limit", limit.toString());
-    }
-
-    if (language == null){
-      urlBuilder.addQueryParam("lang", "en");
-    } else {
-      urlBuilder.addQueryParam("lang", language.flag);
-    }
-
-    var headers = {
-      'Authorization': 'Bearer $jwt'
-    };
-    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
-    request.headers.addAll(headers);
-    http.StreamedResponse response = await request.send();
-    if (response.statusCode == 200) {
-      var responsePlain = await response.stream.bytesToString();
-      var jsonData = json.decode(responsePlain);
-      return ESRArchivesForYouResults.fromJson(jsonData);
-    } else if (response.statusCode == 401){
-      throw UnAuthorizedException("Authentication not valid");
-    } else {
-      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
-    }
-  }
-
   Future<ESRArchivesCountryPopularResults> getCountryPopularArchives({
     int? page,
     int? limit,
@@ -202,18 +161,22 @@ class ESRArchivesService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/archives/ai/country-popular');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -231,15 +194,23 @@ class ESRArchivesService {
     ESRLang? language,
     int? maxResults
   }) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archives/ai/similar/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
-    if (maxResults != null){
+    if (maxResults != null && maxResults != 0){
       urlBuilder.addQueryParam("max_results", maxResults.toString());
     }
 
@@ -257,12 +228,20 @@ class ESRArchivesService {
   Future<ESRArchivesMultipleResults> getMultipleArchives(List<int> ids, {
     ESRLang? language
   }) async {
+    if (ids.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archives/getMultiple/${ids.join(",")}');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -285,18 +264,22 @@ class ESRArchivesService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/archives');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && page != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
     
     if (sort == null){
@@ -356,18 +339,22 @@ class ESRArchivesService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/archives/search');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     if (sort == null){
@@ -385,31 +372,31 @@ class ESRArchivesService {
       urlBuilder.addQueryParam("direction", direction.value.toString());
     }
     
-    if (searchQuery != null){
+    if (searchQuery != null && searchQuery.isNotEmpty){
       urlBuilder.addQueryParam("q", searchQuery);
     }
     
-    if (subjects != null){
+    if (subjects != null && subjects.isNotEmpty){
       urlBuilder.addQueryParam("subject", subjects.map((singleSubject) => singleSubject.id).join(","));
     }
 
-    if (ageCategories != null){
+    if (ageCategories != null && ageCategories.isNotEmpty){
       urlBuilder.addQueryParam("age_categories", ageCategories.map((singleAgeCategory) => singleAgeCategory.id).join(","));
     }
     
-    if (classificationCategories != null){
+    if (classificationCategories != null && classificationCategories.isNotEmpty){
       urlBuilder.addQueryParam("classification_categories", classificationCategories.map((singleClassificationCategory) => singleClassificationCategory.id).join(","));
     }
 
-    if (audioClasses != null){
+    if (audioClasses != null && audioClasses.isNotEmpty){
       urlBuilder.addQueryParam("audio_classes", audioClasses.map((singleAudioClass) => singleAudioClass.id).join(","));
     }
 
-    if (tags != null){
+    if (tags != null && tags.isNotEmpty){
       urlBuilder.addQueryParam("tags", tags.join(","));
     }
 
-    if (schoolTypes != null){
+    if (schoolTypes != null && schoolTypes.isNotEmpty){
       urlBuilder.addQueryParam("school_type", schoolTypes.map((singleSchoolType) => singleSchoolType.id).join(","));
     }
 
@@ -421,27 +408,27 @@ class ESRArchivesService {
       urlBuilder.addQueryParam("to", ESRDateTimeFormatter.formatDateRequests(to));
     }
     
-    if (archiveLanguage != null){
+    if (archiveLanguage != null && archiveLanguage.flag.isNotEmpty){
       urlBuilder.addQueryParam("archive_lang", archiveLanguage.flag.toString());
     }
 
-    if (country != null){
+    if (country != null && country.isNotEmpty){
       urlBuilder.addQueryParam("country", country.map((singleCountry) => singleCountry.id).join(","));
     }
 
-    if (school != null){
+    if (school != null && school.isNotEmpty){
       urlBuilder.addQueryParam("school", school.map((singleSchool) => singleSchool.id).join(","));
     }
 
-    if (productionType != null){
+    if (productionType != null && productionType.isNotEmpty){
       urlBuilder.addQueryParam("ptype", productionType.map((singleProductionType) => singleProductionType.id).join(","));
     }
 
-    if (frequency != null){
+    if (frequency != null && frequency.isNotEmpty){
       urlBuilder.addQueryParam("frequency", frequency.map((singleFrequency) => singleFrequency.id).join(","));
     }
 
-    if (zone != null){
+    if (zone != null && zone.isNotEmpty){
       urlBuilder.addQueryParam("zone", zone.map((singleZone) => singleZone.id).join(","));
     }
 
@@ -491,6 +478,10 @@ class ESRArchivesService {
   }
 
   Future<ESRArchivesIncreaseListenCounterResults> increaseListenCounter(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive/listen/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));
@@ -507,10 +498,18 @@ class ESRArchivesService {
   }
 
   Future<ESRArchiveSubtitlesResults> getArchiveSubtitles(int id, { ESRLang? language }) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archives/subtitlesByArchive/$id');
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -529,6 +528,10 @@ class ESRArchivesService {
   }
 
   Future<ESRArchivesIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive/share/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));

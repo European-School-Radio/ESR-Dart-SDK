@@ -17,6 +17,10 @@ class ESRArchiveReportsService {
   }
 
   Future<ESRArchiveReportsAddResult> addArchiveReport(int archiveID, int userID, int reportReasonID, String description, String jwt) async {
+    if (archiveID == 0 || userID == 0 || reportReasonID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive-report/add');
 
     var headers = {
@@ -29,7 +33,7 @@ class ESRArchiveReportsService {
       "archive": archiveID.toString(),
       "report_reason": reportReasonID.toString(),
       "user": userID.toString(),
-      "description": description
+      "description": description.isEmpty ? "" : description
     };
     request.headers.addAll(headers);
 

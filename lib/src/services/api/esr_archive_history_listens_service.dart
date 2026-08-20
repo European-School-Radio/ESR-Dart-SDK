@@ -17,6 +17,10 @@ class ESRArchiveHistoryListensService {
   }
 
   Future<ESRArchiveHistoryListensAddResults> addArchiveHistoryListen(ESRAddArchiveHistoryListen archiveHistoryListen) async {
+    if (archiveHistoryListen.archiveID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive-history-listen/add');
 
     var headers = {
@@ -45,6 +49,10 @@ class ESRArchiveHistoryListensService {
   }
 
   Future<ESRArchiveHistoryListensUpdateResults> updateArchiveHistoryListen(int id, ESRAddArchiveHistoryListen archiveHistoryListen) async {
+    if (id == 0 || archiveHistoryListen.archiveID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder("$_apiURL/archive-history-listen/edit/$id");
 
     var headers = {

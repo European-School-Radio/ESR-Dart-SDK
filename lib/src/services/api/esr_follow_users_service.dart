@@ -17,6 +17,10 @@ class ESRFollowUsersService {
   }
 
   Future<ESRFollowUserCheckFollowedUserResults> checkUserFollowedUserTo(int userID, int userToID, String jwt) async {
+    if (userID == 0 || userToID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-user/userFollowedUserTo');
 
     var headers = {
@@ -42,6 +46,10 @@ class ESRFollowUsersService {
   }
 
   Future<ESRFollowUserAddResults> addFollowUser(int userID, int userToID, String jwt) async {
+    if (userID == 0 || userToID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-user/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRFollowUsersService {
   }
 
   Future<ESRFollowUserDeleteResults> removeFollowUser(int likeUserID, String jwt) async {
+    if (likeUserID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-user/delete/$likeUserID');
 
     var headers = {

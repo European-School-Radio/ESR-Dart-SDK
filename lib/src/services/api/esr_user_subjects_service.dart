@@ -17,6 +17,10 @@ class ESRUserSubjectsService {
   }
 
   Future<ESRUserSubjectAddResults> addUserSubject(ESRUserSubjectAdd userSubjectAdd, String jwt) async {
+    if (userSubjectAdd.subjectID == 0 || userSubjectAdd.userID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-subject/add');
 
     var headers = {

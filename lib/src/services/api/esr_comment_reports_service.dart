@@ -17,6 +17,10 @@ class ESRCommentReportsService {
   }
 
   Future<ESRCommentReportsAddResult> addCommentReport(int commentID, int userID, int reportReasonID, String description, String jwt) async {
+    if (commentID == 0 || userID == 0 || reportReasonID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment-report/add');
 
     var headers = {
@@ -29,7 +33,7 @@ class ESRCommentReportsService {
       "comment": commentID.toString(),
       "report_reason": reportReasonID.toString(),
       "user": userID.toString(),
-      "description": description
+      "description": description.isEmpty ? "" : description
     };
     request.headers.addAll(headers);
 

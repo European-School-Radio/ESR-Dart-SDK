@@ -17,12 +17,20 @@ class ESRUserSettingsService {
   }
 
   Future<ESRUserSettingsByUserPublicResults> getUserSettingsByIdPublic(int userId, {ESRLang? language}) async {
+    if (userId == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-setting/byUserPublic/$userId');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));

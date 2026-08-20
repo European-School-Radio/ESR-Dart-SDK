@@ -21,12 +21,20 @@ class ESRPlaylistsService {
   }
 
   Future<ESRPlaylist> getPlaylistById(int id, {ESRLang? language, String? userJWT}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlist/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     Map<String, String> allHeaders = {};
@@ -34,7 +42,7 @@ class ESRPlaylistsService {
     String userIP = await ESRIPUtils.getIP();
     allHeaders['X-User-IP'] = userIP;
     allHeaders['User-Agent'] = "${sdk.env.fullNameApplication} Application/${sdk.appVersion} (Dart SDK/${sdk.sdkVersion})";
-    allHeaders['Authorization'] = (userJWT == null) ? "" : "Bearer $userJWT";
+    allHeaders['Authorization'] = (userJWT == null || userJWT.isEmpty) ? "" : "Bearer $userJWT";
     allHeaders['X-App-Source-URL'] = sdk.env.sourceApplicationURL.toString();
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -55,16 +63,20 @@ class ESRPlaylistsService {
   }
 
   Future<ESRPlaylistsByUserResults> getPlaylistsByUser(int userID, String jwt, {int? page, int? limit, ESRPlaylistSorting? sort, ESRSortingDirections? direction}) async {
+    if (userID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlists/byUser/$userID');
     urlBuilder.addQueryParam("only_public", "0");
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     } else {
       urlBuilder.addQueryParam("page", "1");
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     } else {
       urlBuilder.addQueryParam("limit", "16");
@@ -95,6 +107,10 @@ class ESRPlaylistsService {
   }
 
   Future<ESRPlaylistsAddResults> addPlaylist(ESRPlaylistAdd playlist, String jwt) async {
+    if (playlist.name.isEmpty || playlist.userID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlist/add');
 
     var headers = {
@@ -121,6 +137,10 @@ class ESRPlaylistsService {
   }
 
   Future<ESRPlaylistsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlist/share/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));

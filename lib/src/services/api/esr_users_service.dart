@@ -21,6 +21,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersLoginResults> loginUsername(String username, String password) async {
+    if (username.isEmpty || password.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/login');
 
     var headers = {
@@ -46,6 +50,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersLoginResults> loginEmail(String email, String password) async {
+    if (email.isEmpty || password.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     if (!EmailValidator.validate(email)){
       throw InformationNotValidException("Email Address is not valid");
     }
@@ -75,6 +83,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersLoginResults> loginExternalSSO(String username, String password) async {
+    if (username.isEmpty || password.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/login-external-sso');
 
     var headers = {
@@ -101,6 +113,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersRequestResetPasswordResults> forgotPasswordRequest(String usernameEmail) async {
+    if (usernameEmail.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user/reset-password-request');
 
     var headers = {
@@ -130,6 +146,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersCheckResetTokenValidityResults> checkResetTokenValidityRequest(String userToken, int userID) async {
+    if (userToken.isEmpty || userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user/check-reset-token-validity');
 
     var headers = {
@@ -154,6 +174,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersCancelResetTokenResults> cancelResetPasswordToken(String userToken, int userID) async {
+    if (userToken.isEmpty || userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user/cancel-reset-token-request');
 
     var headers = {
@@ -178,6 +202,9 @@ class ESRUsersService {
   }
 
   Future<ESRUsersResetPasswordResults> resetPassword(String password, String userToken, int userID) async {
+    if (password.isEmpty || userToken.isEmpty || userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
     if (!password.contains(RegExp(r'[^\w\s]'))){
       throw InformationNotValidException("Password must contain at least one special character");
     }
@@ -347,6 +374,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersCheckUsernameResults> checkUsernameExists(String username) async {
+    if (username.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user/check-username');
     urlBuilder.addQueryParam("username", username);
 
@@ -363,6 +394,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersCheckEmailResults> checkEmailExists(String email) async {
+    if (email.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     if (!EmailValidator.validate(email)){
       throw InformationNotValidException("Email has not a valid format");
     }
@@ -390,6 +425,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersVerifyTokenResults> verifyRegistrationToken(String token) async {
+    if (token.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/verifyToken');
 
     var headers = {
@@ -413,6 +452,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersVerifyUserResults> verifyUser(String token, int userID) async {
+    if (token.isEmpty || userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user/verify/$userID');
 
     var headers = {
@@ -436,6 +479,10 @@ class ESRUsersService {
   }
 
   Future<ESRUsersEditResults> editUser(ESRUserAdd userAdd, String jwt, int userID) async {
+    if (jwt.isEmpty || userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     if (userAdd.email != null && userAdd.email!.isNotEmpty){
       if (!EmailValidator.validate(userAdd.email!)){
         throw InformationNotValidException("Email has not a valid format");
@@ -546,10 +593,18 @@ class ESRUsersService {
   }
 
   Future<ESRUsersPublicProfile> getPublicProfileById(int id, {ESRLang? language}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/publicProfile/$id');
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -569,6 +624,10 @@ class ESRUsersService {
   }
 
   Future<ESRUserCoverDataResults> getUserCoverById(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('${ESRServerConfig.communityBaseUrl}/wp-json/custom/get/user/cover/$id');
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -584,16 +643,24 @@ class ESRUsersService {
   }
 
   Future<ESRUsersSimilarUsersResults> getSimilarUsersById(int id, {int? maxItems, ESRLang? language}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/find-similar/$id');
 
-    if (maxItems != null){
+    if (maxItems != null && maxItems != 0){
       urlBuilder.addQueryParam("max_results", maxItems.toString());
     } else {
       urlBuilder.addQueryParam("max_results", "5");
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -611,16 +678,24 @@ class ESRUsersService {
   }
 
   Future<ESRUsersArchiveSuggestionsResults> getArchiveSuggestions(int userID, String jwt, {int? limit, ESRLang? language, List<ESRClassificationCategory>? classificationCategories}) async {
+    if (userID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/ai/archive-suggestions/$userID');
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     } else {
       urlBuilder.addQueryParam("limit", "8");
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -647,16 +722,24 @@ class ESRUsersService {
   }
 
   Future<ESRUsersFollowingEntitiesResults> getFollowingEntitiesById(int id, String jwt, {int? limit, ESRLang? language}) async {
+    if (id == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/users/following-entities/$id');
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     } else {
       urlBuilder.addQueryParam("limit", "50");
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }

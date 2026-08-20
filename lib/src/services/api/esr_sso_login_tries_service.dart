@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:esr_dart_sdk/esr_dart_sdk.dart';
 import 'package:esr_dart_sdk/src/enums/esr_environments.dart';
 import 'package:esr_dart_sdk/src/global_parameters/server_config.dart';
@@ -19,6 +20,10 @@ class ESRSSOLoginTriesService {
   }
 
   Future<ESRSSOLoginTriesAddResult> addSsoLoginTry(ESRSSOLoginTry loginTry) async {
+    if (loginTry.ssoModel.isEmpty || loginTry.firstName.isEmpty || loginTry.lastName.isEmpty || loginTry.username.isEmpty || loginTry.email.isEmpty || loginTry.phoneNumber.isEmpty || loginTry.ssoRolePosition.isEmpty || loginTry.ssoProfileUrl.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/sso-login-tries/add');
 
     String userIP = await ESRIPUtils.getIP();

@@ -17,6 +17,10 @@ class ESRArchiveSubjectsService {
   }
 
   Future<ESRArchiveSubjectsAddResult> addArchiveSubject(ESRAddArchiveSubject archiveSubject, String jwt) async {
+    if (archiveSubject.subjectID == 0 || archiveSubject.archiveID == 0 || jwt.isEmpty) {
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/archive-subject/add');
 
     var headers = {

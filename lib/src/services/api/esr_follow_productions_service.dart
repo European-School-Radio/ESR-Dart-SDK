@@ -17,6 +17,10 @@ class ESRFollowProductionsService {
   }
 
   Future<ESRFollowProductionCheckFollowedProductionResults> checkUserFollowedProduction(int userID, int productionID, String jwt) async {
+    if (userID == 0 || productionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-production/userFollowedProduction');
 
     var headers = {
@@ -42,6 +46,10 @@ class ESRFollowProductionsService {
   }
 
   Future<ESRFollowProductionAddResults> addFollowProduction(int userID, int productionID, String jwt) async {
+    if (userID == 0 || productionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-production/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRFollowProductionsService {
   }
 
   Future<ESRFollowProductionDeleteResults> removeFollowProduction(int likeProductionID, String jwt) async {
+    if (likeProductionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-production/delete/$likeProductionID');
 
     var headers = {

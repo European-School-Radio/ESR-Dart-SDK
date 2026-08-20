@@ -17,6 +17,10 @@ class ESRLikeProductionsService {
   }
 
   Future<ESRLikeProductionCheckLikedProductionResults> checkUserLikedProduction(int userID, int productionID, String jwt) async {
+    if (userID == 0 || productionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-production/userLikedProduction');
 
     var headers = {
@@ -42,6 +46,10 @@ class ESRLikeProductionsService {
   }
 
   Future<ESRLikeProductionAddResults> addLikeProduction(int userID, int productionID, String jwt) async {
+    if (userID == 0 || productionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-production/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRLikeProductionsService {
   }
 
   Future<ESRLikeProductionDeleteResults> removeLikeProduction(int likeProductionID, String jwt) async {
+    if (likeProductionID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/like-production/delete/$likeProductionID');
     
     var headers = {

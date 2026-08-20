@@ -21,11 +21,11 @@ class ESRRatingTypesService {
   Future<ESRRatingTypesPaginatedResults> getAllRatingTypes({ int? page, int? limit, ESRRatingTypeSorting? sort, ESRSortingDirections? direction }) async {
     final urlBuilder = UrlBuilder('$_apiURL/rating-types');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 

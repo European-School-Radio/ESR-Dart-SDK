@@ -19,6 +19,10 @@ class ESRUserSchoolsService {
   }
 
   Future<ESRUserSchoolsActiveSchoolsResults> getActiveUserSchoolsForUser(int userID, {ESRUsersSchoolsSorting? sorting, ESRSortingDirections? direction, ESRLang? language}) async {
+    if (userID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-school/byUser/$userID');
 
     urlBuilder.addQueryParam("page", "1");
@@ -33,7 +37,11 @@ class ESRUserSchoolsService {
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -50,13 +58,21 @@ class ESRUserSchoolsService {
   }
 
   Future<ESRUserSchoolsByUserCurrentResults> getCurrentForUser(int userID, int schoolID, {ESRLang? language}) async {
+    if (userID == 0 || schoolID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-school/byUserCurrent/');
 
     urlBuilder.addQueryParam("user_id", userID.toString());
     urlBuilder.addQueryParam("school_id", schoolID.toString());
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -73,6 +89,10 @@ class ESRUserSchoolsService {
   }
 
   Future<ESRUserSchoolsAddUserToSchoolResults> addUserSchool(int userID, int schoolID, int roleID, bool disabled, String userToken) async {
+    if (userID == 0 || schoolID == 0 || roleID == 0 || userToken.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-school/add');
 
     var headers = {

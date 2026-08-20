@@ -27,16 +27,20 @@ class ESRCommentsService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/comments');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && page != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -61,10 +65,18 @@ class ESRCommentsService {
   }
 
   Future<ESRComment> getCommentById(int id, { ESRLang? language }) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment/$id');
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -89,18 +101,26 @@ class ESRCommentsService {
     ESRCommentSorting? sorting,
     ESRSortingDirections? direction
   }) async {
+    if (archiveID == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment/byArchive/$archiveID');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
     if (language != null){
-      urlBuilder.addQueryParam("lang", language.flag.toString());
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag.toString());
+      }
     } else {
       urlBuilder.addQueryParam("lang", "en");
     }
@@ -125,6 +145,10 @@ class ESRCommentsService {
   }
 
   Future<ESRCommentsAddResults> addComment(int archiveID, int userID, String comment, String jwt, {int? replyCommentID}) async {
+    if (archiveID == 0 || userID == 0 || comment.isEmpty || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment/add');
 
     var headers = {
@@ -156,6 +180,10 @@ class ESRCommentsService {
   }
 
   Future<ESRCommentsEditResults> editComment(int commentID, String comment, String jwt) async {
+    if (commentID == 0 || comment.isEmpty || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment/edit/$commentID');
 
     var headers = {
@@ -178,6 +206,10 @@ class ESRCommentsService {
   }
 
   Future<ESRCommentsDeleteResults> deleteComment(int commentID, String jwt) async {
+    if (commentID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/comment/delete/$commentID');
 
     var headers = {

@@ -17,6 +17,10 @@ class ESRUserSchoolApprovalsService {
   }
 
   Future<ESRUserSchoolApprovalsAddResults> addUserSchoolApprovals(int userSchoolID, String jwt) async {
+    if (userSchoolID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/user-school-approval/add');
 
     var headers = {

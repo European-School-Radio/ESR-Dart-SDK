@@ -17,6 +17,10 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveByUserArchiveResults> getByUserArchive(int userID, int archiveID, List<int> ratingTypes, String jwt) async {
+    if (userID == 0 || archiveID == 0 || ratingTypes.isEmpty || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/byUserArchive');
     urlBuilder.addQueryParam("user_id", userID.toString());
     urlBuilder.addQueryParam("archive_id", archiveID.toString());
@@ -40,6 +44,10 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveAddResults> addRatingTypeArchive(int archiveID, int userID, int ratingTypeID, double ratingValue, String jwt) async {
+    if (archiveID == 0 || userID == 0 || ratingTypeID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveEditResults> editRatingTypeArchive(int id, double ratingValue, String jwt) async {
+    if (id == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/edit/$id');
 
     var headers = {
@@ -91,6 +103,10 @@ class ESRRatingTypeArchivesService {
   }
 
   Future<ESRRatingTypeArchiveDeleteResults> deleteRatingTypeArchive(int id, String jwt) async {
+    if (id == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/rating-types-archive/delete/$id');
     urlBuilder.addQueryParam("application_request", sdk.env == ESREnvironments.youthRadio ? "Youth_Radio" : "European_School_Radio");
 

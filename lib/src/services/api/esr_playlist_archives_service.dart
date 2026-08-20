@@ -17,6 +17,10 @@ class ESRPlaylistArchivesService {
   }
 
   Future<ESRPlaylistArchivesCheckExistsInPlaylist> checkArchiveExistsInPlaylist(int playlistID, int archiveID, String jwt) async {
+    if (playlistID == 0 || archiveID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlist-archive/existsInPlaylist');
     urlBuilder.addQueryParam("only_public", "0");
     urlBuilder.addQueryParam("archive_id", archiveID.toString());
@@ -39,6 +43,10 @@ class ESRPlaylistArchivesService {
   }
 
   Future<ESRPlaylistArchivesAddArchiveToPlaylistResult> addArchiveToPlaylist(int playlistID, int archiveID, String jwt) async {
+    if (playlistID == 0 || archiveID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/playlist-archive/add');
 
     var headers = {

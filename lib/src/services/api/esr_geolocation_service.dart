@@ -45,6 +45,10 @@ class ESRGeolocationService {
   }
 
   Future<ESRGeolocationCoordinatesResults> getCoordinates(String address, String city, String countryName, String zipCode) async {
+    if (address.isEmpty || city.isEmpty || countryName.isEmpty || zipCode.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/ip-geolocation/coordinates');
 
     var headers = {

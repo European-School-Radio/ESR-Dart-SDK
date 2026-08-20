@@ -17,6 +17,10 @@ class ESRSettingsService {
   }
 
   Future<ESRSettingsBySettingKeyResults> getSettingByKey(String settingKey) async {
+    if (settingKey.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/setting/bySettingKey');
 
     var headers = {

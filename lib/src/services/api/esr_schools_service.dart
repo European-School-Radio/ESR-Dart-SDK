@@ -29,11 +29,11 @@ class ESRSchoolsService {
   }) async {
     final urlBuilder = UrlBuilder('$_apiURL/schools');
 
-    if (page != null){
+    if (page != null && page != 0){
       urlBuilder.addQueryParam("page", page.toString());
     }
 
-    if (limit != null){
+    if (limit != null && limit != 0){
       urlBuilder.addQueryParam("limit", limit.toString());
     }
 
@@ -57,12 +57,20 @@ class ESRSchoolsService {
   }
 
   Future<ESRSchool> getSchoolById(int id, {ESRLang? language, String? userJWT}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/school/$id');
 
     if (language == null){
       urlBuilder.addQueryParam("lang", "en");
     } else {
-      urlBuilder.addQueryParam("lang", language.flag);
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
     }
 
     Map<String, String> allHeaders = {};
@@ -70,7 +78,7 @@ class ESRSchoolsService {
     String userIP = await ESRIPUtils.getIP();
     allHeaders['X-User-IP'] = userIP;
     allHeaders['User-Agent'] = "${sdk.env.fullNameApplication} Application/${sdk.appVersion} (Dart SDK/${sdk.sdkVersion})";
-    allHeaders['Authorization'] = (userJWT == null) ? "" : "Bearer $userJWT";
+    allHeaders['Authorization'] = (userJWT == null || userJWT.isEmpty) ? "" : "Bearer $userJWT";
     allHeaders['X-App-Source-URL'] = sdk.env.sourceApplicationURL.toString();
 
     var request = http.Request('GET', Uri.parse(urlBuilder.build()));
@@ -88,7 +96,7 @@ class ESRSchoolsService {
   }
 
   Future<ESRSchoolAddResults> addSchool(ESRAddSchool schoolAdd, String jwt) async {
-    if (schoolAdd.name.isEmpty || schoolAdd.nativeName.isEmpty || schoolAdd.description.isEmpty || schoolAdd.nativeDescription.isEmpty || schoolAdd.city.isEmpty || schoolAdd.address.isEmpty || schoolAdd.zipCode.isEmpty || schoolAdd.latitude == 0.0 || schoolAdd.longitude == 0.0 || schoolAdd.officialNumber.isEmpty || schoolAdd.email.isEmpty || schoolAdd.phone.isEmpty){
+    if (schoolAdd.name.isEmpty || schoolAdd.nativeName.isEmpty || schoolAdd.description.isEmpty || schoolAdd.nativeDescription.isEmpty || schoolAdd.city.isEmpty || schoolAdd.address.isEmpty || schoolAdd.zipCode.isEmpty || schoolAdd.latitude == 0.0 || schoolAdd.longitude == 0.0 || schoolAdd.officialNumber.isEmpty || schoolAdd.email.isEmpty || schoolAdd.phone.isEmpty || jwt.isEmpty){
       throw InformationNotValidException("You have to send valid values for name, description, native name, native description, city, address, zip code, latitude, longitude, official number, email and phone");
     }
     if (!EmailValidator.validate(schoolAdd.email)){
@@ -154,6 +162,10 @@ class ESRSchoolsService {
   }
 
   Future<ESRSchoolsIncreaseSharesCounterResults> increaseSharesCount(int id) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/school/share/$id');
 
     var request = http.Request('POST', Uri.parse(urlBuilder.build()));

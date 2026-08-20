@@ -17,6 +17,10 @@ class ESRFollowPlaylistsService {
   }
 
   Future<ESRFollowPlaylistCheckFollowedPlaylistResults> checkUserFollowedPlaylist(int userID, int playlistID, String jwt) async {
+    if (userID == 0 || playlistID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-playlist/userFollowedPlaylist');
 
     var headers = {
@@ -42,6 +46,10 @@ class ESRFollowPlaylistsService {
   }
 
   Future<ESRFollowPlaylistAddResults> addFollowPlaylist(int userID, int playlistID, String jwt) async {
+    if (userID == 0 || playlistID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-playlist/add');
 
     var headers = {
@@ -67,6 +75,10 @@ class ESRFollowPlaylistsService {
   }
 
   Future<ESRFollowPlaylistDeleteResults> removeFollowPlaylist(int likePlaylistID, String jwt) async {
+    if (likePlaylistID == 0 || jwt.isEmpty){
+      throw InformationNotValidException("Information not valid");
+    }
+
     final urlBuilder = UrlBuilder('$_apiURL/follow-playlist/delete/$likePlaylistID');
 
     var headers = {

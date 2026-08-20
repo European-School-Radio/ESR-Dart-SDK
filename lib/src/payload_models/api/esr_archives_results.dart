@@ -49,35 +49,6 @@ class ESRArchivesCountryPopularResults {
   }
 }
 
-class ESRArchivesForYouResults {
-  String status = "";
-  bool resultsAreSuggestions = true;
-  List<ESRArchive> suggestedArchives = [];
-
-  ESRArchivesForYouResults({
-    required this.status,
-    required this.resultsAreSuggestions,
-    required this.suggestedArchives
-  });
-
-  factory ESRArchivesForYouResults.fromJson(Map<String, dynamic> json){
-    List<ESRArchive> serializedArchives = [];
-
-    List<dynamic> archivesList = json['suggested_archives'] as List<dynamic>;
-
-    serializedArchives = archivesList
-        .map((singleArchive) => ESRArchive.fromJson(singleArchive as Map<String, dynamic>))
-        .where((item) => !item.disabled)
-        .toList();
-
-    return ESRArchivesForYouResults(
-        status: json["status"],
-        resultsAreSuggestions: json['results_are_suggestions'],
-        suggestedArchives: serializedArchives
-    );
-  }
-}
-
 class ESRArchivesPopularPaginatedResults {
   int count = 0;
   String? nextPage;
