@@ -75,17 +75,20 @@ class ESRUserSchoolsAddUserToSchoolResults {
 
 class ESRUserSchoolsByUserCurrentResults {
   String status = "";
+  bool userExistsInSchool = false;
   ESRUsersSchools? userSchool;
 
   ESRUserSchoolsByUserCurrentResults({
     required this.status,
+    required this.userExistsInSchool,
     required this.userSchool
   });
 
   factory ESRUserSchoolsByUserCurrentResults.fromJson(Map<String, dynamic> json){
     return ESRUserSchoolsByUserCurrentResults(
       status: json['status'],
-      userSchool: ESRUsersSchools.fromJson(json['user_school'])
+      userExistsInSchool: json['user_exists_in_school'],
+      userSchool: (json['user_school'] != null) ? ESRUsersSchools.fromJson(json['user_school']) : null
     );
   }
 }
