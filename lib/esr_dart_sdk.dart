@@ -197,6 +197,7 @@ export 'src/payload_models/websockets/esr_jazler_now_playing_results.dart' show 
 export 'src/exceptions/http_request_not_succeeded_exception.dart' show HttpRequestNotSucceededException;
 export 'src/exceptions/unauthorized_exception.dart' show UnAuthorizedException;
 export 'src/exceptions/object_not_found_exception.dart' show ObjectNotFoundException;
+export 'src/exceptions/object_not_public_exception.dart' show ObjectNotPublicException;
 export 'src/exceptions/no_more_pages_exception.dart' show NoMorePagesException;
 export 'src/exceptions/information_not_valid_exception.dart' show InformationNotValidException;
 export 'src/exceptions/websocket_already_connected_exception.dart' show WebsocketAlreadyConnectedException;

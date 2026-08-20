@@ -43,6 +43,9 @@ class ESRPlaylistsService {
     if (response.statusCode == 200) {
       var responsePlain = await response.stream.bytesToString();
       var jsonData = json.decode(responsePlain);
+      if (jsonData['status'] == "error" && jsonData['message'] == "This playlist is not public"){
+        throw ObjectNotPublicException("Playlist is not public");
+      }
       return ESRPlaylist.fromJson(jsonData['playlist']);
     } else if (response.statusCode == 404){
       throw ObjectNotFoundException("Playlist with id $id not found");
