@@ -49,6 +49,29 @@ class ESRUserSchoolsService {
     }
   }
 
+  Future<ESRUserSchoolsByUserCurrentResults> getCurrentForUser(int userID, int schoolID, {ESRLang? language}) async {
+    final urlBuilder = UrlBuilder('$_apiURL/user-school/byUserCurrent/');
+
+    urlBuilder.addQueryParam("user_id", userID.toString());
+    urlBuilder.addQueryParam("school_id", schoolID.toString());
+
+    if (language != null){
+      urlBuilder.addQueryParam("lang", language.flag.toString());
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUserSchoolsByUserCurrentResults.fromJson(jsonData);
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUserSchoolsAddUserToSchoolResults> addUserSchool(int userID, int schoolID, int roleID, bool disabled, String userToken) async {
     final urlBuilder = UrlBuilder('$_apiURL/user-school/add');
 

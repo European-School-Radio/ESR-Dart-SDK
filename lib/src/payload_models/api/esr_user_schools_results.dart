@@ -8,8 +8,7 @@ class ESRUserSchoolsActiveSchoolsResults {
       {required this.status,
       required this.userSchools});
 
-  factory ESRUserSchoolsActiveSchoolsResults.fromJson(
-      Map<String, dynamic> json) {
+  factory ESRUserSchoolsActiveSchoolsResults.fromJson(Map<String, dynamic> json) {
     List<dynamic> userSchoolsList = json['user_schools'] as List<dynamic>;
 
     return ESRUserSchoolsActiveSchoolsResults(
@@ -69,6 +68,23 @@ class ESRUserSchoolsAddUserToSchoolResults {
     return ESRUserSchoolsAddUserToSchoolResults(
       status: json['status'],
       message: json['message'],
+      userSchool: ESRUsersSchools.fromJson(json['user_school'])
+    );
+  }
+}
+
+class ESRUserSchoolsByUserCurrentResults {
+  String status = "";
+  ESRUsersSchools? userSchool;
+
+  ESRUserSchoolsByUserCurrentResults({
+    required this.status,
+    required this.userSchool
+  });
+
+  factory ESRUserSchoolsByUserCurrentResults.fromJson(Map<String, dynamic> json){
+    return ESRUserSchoolsByUserCurrentResults(
+      status: json['status'],
       userSchool: ESRUsersSchools.fromJson(json['user_school'])
     );
   }

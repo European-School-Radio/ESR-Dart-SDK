@@ -150,7 +150,7 @@ export 'src/payload_models/api/esr_reservations_results.dart' show ESRReservatio
 export 'src/payload_models/api/esr_reservation_slots_results.dart' show ESRReservationSlotsByDateResults;
 export 'src/payload_models/api/esr_zones_results.dart' show ESRZonesPaginatedResults, ESRNowPlayingZoneResults;
 export 'src/payload_models/api/esr_users_results.dart' show ESRUsersLoginResults, ESRUsersRequestResetPasswordResults, ESRUsersCheckResetTokenValidityResults, ESRUsersCancelResetTokenResults, ESRUsersResetPasswordResults, ESRUsersVerifyTokenResults, ESRUsersVerifyUserResults, ESRUsersEditResults, ESRUsersCommunityRegisterResults, ESRUsersCheckUsernameResults, ESRUsersCheckEmailResults, ESRUsersWebsocketListResults, ESRUsersPublicProfile, ESRUserCoverDataResults, ESRUsersSimilarUsersResults, ESRUsersArchiveSuggestionsResults, ESRUsersFollowingEntitiesPagination, ESRUsersFollowingEntitiesSingleResult, ESRUsersFollowingEntitiesResults;
-export 'src/payload_models/api/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults, ESRUserSchoolsAddUserToSchoolResults;
+export 'src/payload_models/api/esr_user_schools_results.dart' show ESRUserSchoolsActiveSchoolsResults, ESRUserSchoolsBySchoolResults, ESRUserSchoolsAddUserToSchoolResults, ESRUserSchoolsByUserCurrentResults;
 export 'src/payload_models/api/esr_school_years_results.dart' show ESRLatestSchoolYearResult;
 export 'src/payload_models/api/esr_production_subjects_result.dart' show ESRProductionSubjectsAddResult;
 export 'src/payload_models/api/esr_archive_subjects_result.dart' show ESRArchiveSubjectsAddResult;
