@@ -62,7 +62,7 @@ class ESRUserSchoolsService {
       throw InformationNotValidException("Information not valid");
     }
 
-    final urlBuilder = UrlBuilder('$_apiURL/user-school/byUserCurrent/');
+    final urlBuilder = UrlBuilder('$_apiURL/user-school/byUserCurrent');
 
     urlBuilder.addQueryParam("user_id", userID.toString());
     urlBuilder.addQueryParam("school_id", schoolID.toString());
