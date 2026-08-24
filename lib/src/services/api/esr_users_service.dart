@@ -592,6 +592,37 @@ class ESRUsersService {
     }
   }
 
+  Future<ESRUserViewResults> getUser(int id, {ESRLang? language}) async {
+    if (id == 0){
+      throw InformationNotValidException("Information not valid");
+    }
+
+    final urlBuilder = UrlBuilder('$_apiURL/user/$id');
+
+    if (language != null){
+      if (language.flag.isEmpty){
+        urlBuilder.addQueryParam("lang", "en");
+      } else {
+        urlBuilder.addQueryParam("lang", language.flag);
+      }
+    } else {
+      urlBuilder.addQueryParam("lang", "en");
+    }
+
+    var request = http.Request('GET', Uri.parse(urlBuilder.build()));
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      var responsePlain = await response.stream.bytesToString();
+      var jsonData = json.decode(responsePlain);
+      return ESRUserViewResults.fromJson(jsonData);
+    } else if (response.statusCode == 404) {
+      throw ObjectNotFoundException("User with id $id not found");
+    } else {
+      throw HttpRequestNotSucceededException(response.reasonPhrase ?? "HTTP Request not Succeeded");
+    }
+  }
+
   Future<ESRUsersPublicProfile> getPublicProfileById(int id, {ESRLang? language}) async {
     if (id == 0){
       throw InformationNotValidException("Information not valid");
