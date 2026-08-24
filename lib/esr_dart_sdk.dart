@@ -74,6 +74,7 @@ export 'src/services/api/websockets/esr_follow_schools_websocket_service.dart' s
 export 'src/services/api/websockets/esr_follow_playlists_websocket_service.dart' show ESRPlaylistsFollowersWebsocketService;
 export 'src/services/api/websockets/esr_follow_productions_websocket_service.dart' show ESRProductionsFollowersWebsocketService;
 export 'src/services/api/websockets/esr_comments_websocket_service.dart' show ESRCommentsByArchiveWebsocketService;
+export 'src/services/api/websockets/esr_archive_history_listens_websocket_service.dart' show ESRArchiveHistoryListensByUserWebsocketService;
 
 // Models
 export 'src/models/api/esr_country.dart' show ESRCountry;
@@ -163,7 +164,7 @@ export 'src/payload_models/api/esr_archive_user_schools_result.dart' show ESRArc
 export 'src/payload_models/api/esr_user_settings_results.dart' show ESRUserSettingsByUserPublicResults;
 export 'src/payload_models/api/esr_playlists_results.dart' show ESRPlaylistsByUserResults, ESRPlaylistsIncreaseSharesCounterResults, ESRPlaylistsSharesCounterByPlaylistResults, ESRPlaylistsFollowersByPlaylistResults, ESRPlaylistsLikesCounterByPlaylistResults, ESRPlaylistsArchivesByPlaylistResults, ESRPlaylistsAddResults;
 export 'src/payload_models/api/esr_playlist_archives_results.dart' show ESRPlaylistArchivesCheckExistsInPlaylist, ESRPlaylistArchivesAddArchiveToPlaylistResult;
-export 'src/payload_models/api/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults;
+export 'src/payload_models/api/esr_archive_history_listens_results.dart' show ESRArchiveHistoryListensAddResults, ESRArchiveHistoryListensUpdateResults, ESRArchiveHistoryListensByUserResults;
 export 'src/payload_models/api/esr_follow_users_results.dart' show ESRFollowUsersPaginatedResults, ESRFollowUserCheckFollowedUserResults, ESRFollowUserAddResults, ESRFollowUserDeleteResults;
 export 'src/payload_models/api/esr_follow_schools_results.dart' show ESRFollowSchoolsPaginatedResults, ESRFollowSchoolCheckFollowedSchoolResults, ESRFollowSchoolAddResults, ESRFollowSchoolDeleteResults;
 export 'src/payload_models/api/esr_comments_results.dart' show ESRCommentsPaginatedResults, ESRCommentsWebsocketListResults, ESRCommentsAddResults, ESRCommentsEditResults, ESRCommentsDeleteResults;
@@ -237,6 +238,7 @@ export 'src/enums/sorting/esr_follow_productions_sorting.dart' show ESRFollowPro
 export 'src/enums/sorting/esr_report_reason_sorting.dart' show ESRReportReasonSorting;
 export 'src/enums/sorting/esr_comment_report_sorting.dart' show ESRCommentReportSorting;
 export 'src/enums/sorting/esr_rating_type_sorting.dart' show ESRRatingTypeSorting;
+export 'src/enums/sorting/esr_archive_history_listen_sorting.dart' show ESRArchiveHistoryListenSorting;
 export 'src/enums/sorting/community/esr_community_post_sorting.dart' show ESRCommunityPostSorting;
 export 'src/enums/sorting/community/esr_community_comment_sorting.dart' show ESRCommunityCommentSorting;
 export 'src/enums/esr_environments.dart' show ESREnvironments;

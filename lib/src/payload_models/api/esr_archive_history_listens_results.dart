@@ -36,3 +36,35 @@ class ESRArchiveHistoryListensUpdateResults {
     );
   }
 }
+
+class ESRArchiveHistoryListensByUserResults {
+  String message = "";
+  int count = 0;
+  Map<String, List<ESRArchiveHistoryListen>> archiveHistoryListens = {};
+
+  ESRArchiveHistoryListensByUserResults({
+    required this.message,
+    required this.count,
+    required this.archiveHistoryListens
+  });
+
+  factory ESRArchiveHistoryListensByUserResults.fromJson(Map<String, dynamic> json){
+    Map<String, List<ESRArchiveHistoryListen>> archiveHistoryListens = {};
+
+    Map<String, dynamic> historyListensList = (json['data'] ?? json['results']) as Map<String, dynamic>;
+
+    archiveHistoryListens = historyListensList.map((dateKey, listJson) {
+      final historyList = (listJson as List)
+          .map((item) => ESRArchiveHistoryListen.fromJson(item as Map<String, dynamic>))
+          .toList();
+
+      return MapEntry(dateKey, historyList);
+    });
+
+    return ESRArchiveHistoryListensByUserResults(
+      message: json['message'],
+      count: json['count'],
+      archiveHistoryListens: archiveHistoryListens
+    );
+  }
+}
